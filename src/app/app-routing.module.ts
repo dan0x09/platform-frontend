@@ -16,6 +16,10 @@ const routes: Routes = [
     path: 'farmer',
     loadChildren: () => import('./farmer/farmer.module').then(m => m.FarmerModule)
   },
+  { 
+    path: 'login',
+    component: LoginComponent
+  },
   {
     path: '**',
     component: LoginComponent
