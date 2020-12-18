@@ -21,7 +21,7 @@ export class FarmersComponent implements AfterViewInit {
   customers: Customer[];
 
   visitCreate() {
-    this.router.navigate(['create-contractor'], { relativeTo: this.route.parent });
+    this.router.navigate(['create-farmer'], { relativeTo: this.route.parent });
   }
 
   ngAfterViewInit(): void {

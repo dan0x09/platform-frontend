@@ -30,4 +30,15 @@ export class AuthService {
   getDecodedToken(): UserTokenPayload | null {
     return this.decodedToken;
   }
+
+  isTokenExpired(): boolean {
+    const token = this.getToken();
+    if (token) {
+      return this.jwtHelper.isTokenExpired(token);
+    } return true;
+  }
+
+  deleteToken() {
+    sessionStorage.removeItem(this.tokenKey);
+  }
 }
