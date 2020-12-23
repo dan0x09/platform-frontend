@@ -33,6 +33,7 @@ import { EditSystemComponent } from './pages/edit-system/edit-system.component';
 import { InvitationsComponent } from './pages/invitations/invitations.component';
 import { MatSelectModule } from '@angular/material/select';
 import { CreateInvitationPageComponent } from './pages/create-invitation/create-invitation-page.component';
+import { EditUserComponent } from './pages/edit-user/edit-user.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { CreateInvitationPageComponent } from './pages/create-invitation/create-
     EditFarmerComponent,
     EditSystemComponent,
     InvitationsComponent,
-    CreateInvitationPageComponent
+    CreateInvitationPageComponent,
+    EditUserComponent
   ],
   imports: [
     CommonModule,

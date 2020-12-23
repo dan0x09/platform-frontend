@@ -37,4 +37,5 @@
     <button mat-stroked-button type="submit" *ngIf="editable" [disabled]="!editForm.valid">Speichern</button>
     <button mat-stroked-button type="button" *ngIf="editable" (click)="toggleEditable()">Abbrechen</button>
     <button mat-stroked-button type="button" *ngIf="!editable" (click)="toggleEditable()">Bearbeiten</button>
+    <button mat-stroked-button type="button" (click)="requestDelete()">Löschen</button>
 </form>

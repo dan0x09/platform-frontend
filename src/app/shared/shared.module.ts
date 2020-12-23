@@ -15,6 +15,7 @@ import { CreateInvitationComponent } from './components/create-invitation/create
 import { InvitationListComponent } from './components/invitation-list/invitation-list.component';
 import { MatSelectModule } from '@angular/material/select';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { UserListComponent } from './components/user-list/user-list.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     EditCustomerComponent,
     CreateInvitationComponent,
     InvitationListComponent,
+    UserListComponent,
   ],
   imports: [
     CommonModule,
@@ -48,7 +50,8 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     SystemListComponent,
     EditCustomerComponent,
     CreateInvitationComponent,
-    InvitationListComponent
+    InvitationListComponent,
+    UserListComponent
   ]
 })
 export class SharedModule { }

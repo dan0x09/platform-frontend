@@ -15,7 +15,8 @@ export class EditCustomerComponent implements OnInit {
     @Input('customer') customer!: Customer;
   
     @Output('onSubmit') onSubmit: EventEmitter<Customer> = new EventEmitter<Customer>();
-  
+    @Output('onDelete') onDelete: EventEmitter<Customer> = new EventEmitter<Customer>();
+
     editable: boolean = false;
     editForm: FormGroup;
   
@@ -46,5 +47,9 @@ export class EditCustomerComponent implements OnInit {
       } else {
         this.editForm.disable();
       }
+    }
+
+    requestDelete() {
+      this.onDelete.emit(this.customer);
     }
 }

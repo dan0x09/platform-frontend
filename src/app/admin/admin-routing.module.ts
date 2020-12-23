@@ -15,6 +15,7 @@ import { InvitationsComponent } from './pages/invitations/invitations.component'
 import { SiloDataComponent } from './pages/silo-data/silo-data.component';
 import { SystemsComponent } from './pages/systems/systems.component';
 import { UsersComponent } from './pages/users/users.component';
+import { EditUserComponent } from './pages/edit-user/edit-user.component';
 
 const routes: Routes = [
   {
@@ -76,6 +77,10 @@ const routes: Routes = [
       {
         path: 'create-invitation',
         component: CreateInvitationPageComponent
+      },
+      {
+        path: 'edit-user/:userId',
+        component: EditUserComponent
       },
       {
         path: '**',
