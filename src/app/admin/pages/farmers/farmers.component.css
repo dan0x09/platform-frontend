@@ -5,6 +5,6 @@
 .padding-18 {
     padding: 18px;
 }
-app-custom-list {
-    width: 100%;
+.main {
+    height: calc(100% - 64px);
 }

@@ -15,12 +15,6 @@ export class AuthService {
 
   setToken(token: string) {
     sessionStorage.setItem(this.tokenKey, token);
-    try {
-      this.decodedToken = this.jwtHelper.decodeToken(token);
-    } catch (error) {
-      console.warn(error);
-      this.decodedToken = null;
-    }
   }
 
   getToken(): string {
@@ -28,7 +22,7 @@ export class AuthService {
   }
 
   getDecodedToken(): UserTokenPayload | null {
-    return this.decodedToken;
+    return this.jwtHelper.decodeToken(this.getToken())
   }
 
   isTokenExpired(): boolean {

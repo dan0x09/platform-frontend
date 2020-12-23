@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
+import { ToolbarService } from 'src/app/services/toolbar.service';
 import { Card } from './card';
 
 @Component({
@@ -8,7 +10,9 @@ import { Card } from './card';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private toolbarService: ToolbarService
+  ) { }
 
   cards: Card[] = [
     {
@@ -17,23 +21,24 @@ export class DashboardComponent implements OnInit {
     },
     {
       title: 'Systeme',
-      uri: 'systems'
+      uri: 'system'
     },
     {
       title: 'Landwirte',
-      uri: 'farmers'
+      uri: 'farmer'
     },
     {
       title: 'Lohnunternehmer',
-      uri: 'contractors'
+      uri: 'contractor'
     },
     {
       title: 'Nutzer',
-      uri: 'users'
+      uri: 'user'
     }
   ]
 
   ngOnInit(): void {
+    this.toolbarService.setTitle('Dashboard');
   }
 
 }

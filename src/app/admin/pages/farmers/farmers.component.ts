@@ -1,27 +1,34 @@
 import { HttpClient } from '@angular/common/http';
 import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ConfigService } from 'src/app/services/config.service';
-import { Customer, Contractor, Farmer } from 'src/app/shared/types/interfaces';
+import { ToolbarService } from 'src/app/services/toolbar.service';
+import { Customer, Farmer } from 'src/app/shared/types/interfaces';
 
 @Component({
   selector: 'app-farmers',
   templateUrl: './farmers.component.html',
   styleUrls: ['./farmers.component.css']
 })
-export class FarmersComponent implements AfterViewInit {
+export class FarmersComponent implements OnInit, AfterViewInit {
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private http: HttpClient,
-    private config: ConfigService
+    private config: ConfigService,
+    private toolbarService: ToolbarService
   ) { }
 
   customers: Customer[];
 
   visitCreate() {
     this.router.navigate(['create-farmer'], { relativeTo: this.route.parent });
+  }
+
+  ngOnInit() {
+    this.toolbarService.setTitle('Landwirte');
   }
 
   ngAfterViewInit(): void {
@@ -42,5 +49,8 @@ export class FarmersComponent implements AfterViewInit {
         },
         console.error
       );
+  }
+  select(customer: Customer) {
+    this.router.navigate(['edit-farmer', customer.customerId], { relativeTo: this.route.parent });
   }
 }

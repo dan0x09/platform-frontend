@@ -1,6 +1,6 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { CreateCustomer } from '../../types/interfaces';
+import { CreateCustomer, Customer } from '../../types/interfaces';
 
 @Component({
   selector: 'app-create-customer',
@@ -26,6 +26,8 @@ export class CreateCustomerComponent implements OnInit {
   }
 
   submit() {
-    this.onSubmit.emit(this.createForm.value);
+    if (this.createForm.valid) {
+      this.onSubmit.emit(this.createForm.value);
+    }
   }
 }

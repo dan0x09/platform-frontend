@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { PageEvent, MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -14,35 +14,42 @@ import { Contractor, Customer } from '../../types/interfaces';
 })
 export class CustomerListComponent implements AfterViewInit {
 
-    constructor() { }
+  constructor() { }
 
-    @Input() customers!: Customer[];
-    displayedColumns: string[] = ['name', 'streetAndNumber', 'zipCode', 'city', 'country'];
-    dataSource: MatTableDataSource<Customer>;
+  @Input() customers!: Customer[];
 
-    // MatPaginator Inputs
-    length = 100;
-    pageSize = 10;
-    pageSizeOptions: number[] = [25, 50, 100, 200];
+  @Output('onSelect') onSelect: EventEmitter<Customer> = new EventEmitter<Customer>();
 
-    // MatPaginator Output
-    pageEvent: PageEvent;
-    @ViewChild(MatSort) sort: MatSort;
-    
-    @ViewChild(MatPaginator) paginator: MatPaginator;
+  displayedColumns: string[] = ['name', 'streetAndNumber', 'zipCode', 'city', 'country'];
+  dataSource: MatTableDataSource<Customer>;
 
-    ngAfterViewInit(): void {
-      this.dataSource = new MatTableDataSource<Customer>(this.customers);
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
+  // MatPaginator Inputs
+  length = 100;
+  pageSize = 10;
+  pageSizeOptions: number[] = [25, 50, 100, 200];
+
+  // MatPaginator Output
+  pageEvent: PageEvent;
+  @ViewChild(MatSort) sort: MatSort;
+  
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+
+  ngAfterViewInit(): void {
+    this.dataSource = new MatTableDataSource<Customer>(this.customers);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
     }
-    applyFilter(event: Event) {
-      const filterValue = (event.target as HTMLInputElement).value;
-      this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
 
-      if (this.dataSource.paginator) {
-        this.dataSource.paginator.firstPage();
-      }
-    }
+  select(customer: Customer) {
+    this.onSelect.emit(customer);
+  }
 
 }

@@ -23,8 +23,16 @@ import { MatInputModule } from '@angular/material/input';
 import { SharedModule } from '../shared/shared.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { CreateFarmerComponent } from './pages/create-farmer/create-farmer.component';
-import { MatTableModule } from '@angular/material/table';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatSortModule } from '@angular/material/sort';
+import { ToolbarComponent } from './components/toolbar/toolbar.component';
+import { CreateSystemComponent } from './pages/create-system/create-system.component';
+import { EditContractorComponent } from './pages/edit-contractor/edit-contractor.component';
+import { EditFarmerComponent } from './pages/edit-farmer/edit-farmer.component';
+import { EditSystemComponent } from './pages/edit-system/edit-system.component';
+import { InvitationsComponent } from './pages/invitations/invitations.component';
+import { MatSelectModule } from '@angular/material/select';
+import { CreateInvitationPageComponent } from './pages/create-invitation/create-invitation-page.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +45,14 @@ import { MatSortModule } from '@angular/material/sort';
     SiloDataComponent,
     UsersComponent,
     CreateContractorComponent,
-    CreateFarmerComponent
+    CreateFarmerComponent,
+    ToolbarComponent,
+    CreateSystemComponent,
+    EditContractorComponent,
+    EditFarmerComponent,
+    EditSystemComponent,
+    InvitationsComponent,
+    CreateInvitationPageComponent
   ],
   imports: [
     CommonModule,
@@ -48,6 +63,11 @@ import { MatSortModule } from '@angular/material/sort';
     MatButtonModule,
     MatCardModule,
     MatGridListModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatSelectModule
   ]
 })
 export class AdminModule { }

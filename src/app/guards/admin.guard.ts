@@ -18,6 +18,8 @@ export class AdminGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
       const token = this.auth.getDecodedToken();
+      console.log(token);
+      console.log(this.auth.isTokenExpired())
       if (token && !this.auth.isTokenExpired()) {
         switch (token.role) {
           case Role.ADMIN:

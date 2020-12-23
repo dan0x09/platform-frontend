@@ -1,0 +1,46 @@
+<form [formGroup]="form" (ngSubmit)="submit()">
+    <div class="form-row">
+        <span class="mat-headline">E-Mail</span>
+        <mat-form-field appearance="outline">
+            <mat-label>E-Mail des Nutzers</mat-label>
+            <input formControlName="email" matInput placeholder="E-Mail angeben">
+            <mat-hint>Hint</mat-hint>
+        </mat-form-field>
+    </div>
+    <div class="form-row">
+        <span class="mat-headline">Rolle</span>
+        <mat-form-field appearance="fill">
+            <mat-label>Rolle auswählen</mat-label>
+            <mat-select formControlName="role">
+              <mat-option *ngFor="let role of roles" [value]="role.id">
+                {{role.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+    </div>
+    <div class="form-row" [class.hidden]="contractorOrganizationControlHidden">
+        <span class="mat-headline">Lohnunternehmer</span>
+        <mat-form-field>
+            <mat-label>Lohnunternehmer auswählen</mat-label>
+            <mat-select formControlName="contractorOrganization">
+                <mat-option *ngFor="let contractor of contractors" [value]="contractor.contractorId">
+                  {{contractor.name}} <span class="small-address">({{contractor.streetAndNumber}}, {{contractor.zipCode}}, {{contractor.city}}, {{contractor.country}})</span>
+                </mat-option>
+              </mat-select>
+        </mat-form-field>
+    </div>
+    <div class="form-row" [class.hidden]="farmerOrganizationControlHidden">
+        <span class="mat-headline">Landwirt</span>
+        <mat-form-field>
+            <mat-label>Landwirt auswählen</mat-label>
+            <mat-select formControlName="farmerOrganization">
+                <mat-option *ngFor="let farmer of farmers" [value]="farmer.farmerId">
+                  {{farmer.name}} <span class="small-address">{{farmer.streetAndNumber}}, {{farmer.zipCode}}, {{farmer.city}}, {{farmer.country}}</span>
+                </mat-option>
+              </mat-select>
+        </mat-form-field>
+    </div>
+    <div class="form-row">
+        <button mat-stroked-button type="submit" [disabled]="!form.valid">Einladung senden</button>
+    </div>
+</form>

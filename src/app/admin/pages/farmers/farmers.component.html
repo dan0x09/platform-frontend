@@ -1,14 +1,17 @@
-<mat-grid-list cols="8" rowHeight="100%">
-    <mat-grid-tile colspan="6">
-        <div class="expand padding-18" *ngIf="customers">
-            <app-customer-list [customers]="customers"></app-customer-list>
-        </div>
-    </mat-grid-tile>
-    <mat-grid-tile colspan="2">
-        <div class="expand padding-18">
-            <div class="mat-elevation-z4 padding-18">
-                <button mat-button (click)="visitCreate()">Landwirt anlegen</button>
+<app-toolbar title="Lohnunternehmer erstellen"></app-toolbar>
+<div class="main">
+    <mat-grid-list cols="8" rowHeight="100%">
+        <mat-grid-tile colspan="6">
+            <div class="expand padding-18" *ngIf="customers">
+                <app-customer-list [customers]="customers" (onSelect)="select($event)"></app-customer-list>
             </div>
-        </div>
-    </mat-grid-tile>
-</mat-grid-list>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="2">
+            <div class="expand padding-18">
+                <div class="mat-elevation-z4 padding-18">
+                    <button mat-button (click)="visitCreate()">Landwirt anlegen</button>
+                </div>
+            </div>
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>

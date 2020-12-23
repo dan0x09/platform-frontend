@@ -9,11 +9,21 @@ import { CustomerListComponent } from './components/customer-list/customer-list.
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { SystemListComponent } from './components/system-list/system-list.component';
+import { EditCustomerComponent } from './components/edit-customer/edit-customer.component';
+import { CreateInvitationComponent } from './components/create-invitation/create-invitation.component';
+import { InvitationListComponent } from './components/invitation-list/invitation-list.component';
+import { MatSelectModule } from '@angular/material/select';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 @NgModule({
   declarations: [
     CreateCustomerComponent,
     CustomerListComponent,
+    SystemListComponent,
+    EditCustomerComponent,
+    CreateInvitationComponent,
+    InvitationListComponent,
   ],
   imports: [
     CommonModule,
@@ -28,11 +38,17 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatInputModule,
     MatSortModule,
     MatPaginatorModule,
-    MatTableModule
+    MatTableModule,
+    MatSelectModule,
+    MatAutocompleteModule
   ],
   exports: [
     CreateCustomerComponent,
-    CustomerListComponent
+    CustomerListComponent,
+    SystemListComponent,
+    EditCustomerComponent,
+    CreateInvitationComponent,
+    InvitationListComponent
   ]
 })
 export class SharedModule { }

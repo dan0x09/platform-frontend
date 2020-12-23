@@ -1,1 +1,17 @@
-<p>systems works!</p>
+<app-toolbar title="Systeme"></app-toolbar>
+<div class="main">
+    <mat-grid-list cols="8" rowHeight="100%">
+        <mat-grid-tile colspan="6">
+            <div class="expand padding-18" *ngIf="systems">
+                <app-system-list [systems]="systems" (onSelect)="select($event)"></app-system-list>
+            </div>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="2">
+            <div class="expand padding-18">
+                <div class="mat-elevation-z4 padding-18">
+                    <button mat-button (click)="visitCreate()">System anlegen</button>
+                </div>
+            </div>
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>

@@ -1,0 +1,33 @@
+.expand {
+    width: 100%;
+    height: 100%;
+}
+.padding-18 {
+    padding: 18px;
+}
+.table-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+.table-wrapper > * {
+    width: 100%;
+}
+.table-wrapper > .header {
+    padding: 12px 18px 2px 18px;
+    width: 100%;
+}
+.table-wrapper > .header > mat-form-field {
+    width: 100%;
+}
+.mat-row {
+    cursor: pointer;
+}
+.pending {
+    background: lightyellow;
+}
+.expired, .invalidated {
+    background: crimson;
+}
+.accepted {
+    background: seagreen;
+}

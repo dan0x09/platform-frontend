@@ -1,0 +1,17 @@
+<app-toolbar title="Einladungen verwalten"></app-toolbar>
+<div class="main">
+    <mat-grid-list cols="8" rowHeight="100%">
+        <mat-grid-tile colspan="6">
+            <div class="expand padding-18"> 
+                <app-invitation-list *ngIf="invitations" [invitations]="invitations"></app-invitation-list>
+            </div>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="2">
+            <div class="expand padding-18">
+                <div class="mat-elevation-z4 padding-18">
+                    <button mat-button (click)="visitCreate()">Nutzer einladen</button>
+                </div>
+            </div>
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>

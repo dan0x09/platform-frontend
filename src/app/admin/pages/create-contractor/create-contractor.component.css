@@ -16,3 +16,6 @@ mat-form-field {
     flex-direction: row;
     justify-content: space-between;
 }
+.main {
+    height: calc(100% - 64px);
+}

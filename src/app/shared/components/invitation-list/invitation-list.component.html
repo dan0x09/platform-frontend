@@ -1,0 +1,47 @@
+<div class="mat-elevation-z8 table-wrapper" [hidden]="!dataSource">
+    <div class="header">
+        <mat-form-field>
+            <mat-label>Filter</mat-label>
+            <input matInput (keyup)="applyFilter($event)" placeholder="z.B. Kundename" #input>
+        </mat-form-field>
+    </div>
+
+    <table *ngIf="dataSource" mat-table [dataSource]="dataSource">
+
+      <!-- Position Column -->
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+      </ng-container>
+  
+      <!-- Name Column -->
+      <ng-container matColumnDef="role">
+        <th mat-header-cell *matHeaderCellDef> Rolle </th>
+        <td mat-cell *matCellDef="let element"> {{prettyRole(element.role)}} </td>
+      </ng-container>
+  
+      <!-- Weight Column -->
+      <ng-container matColumnDef="expiresAt">
+        <th mat-header-cell *matHeaderCellDef> Gültig bis </th>
+        <td mat-cell *matCellDef="let element"> {{prettyDate(element.expiresAt)}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef> Status </th>
+        <td mat-cell *matCellDef="let element"> {{getStatus(element)}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="userId">
+        <th mat-header-cell *matHeaderCellDef> Aktion </th>
+        <td mat-cell *matCellDef="let element">
+            <button mat-stroked-button (click)="invalidate(element)" *ngIf="!element.userId && element.userId !== 0 && !element.invalidated">Zurücknehmen</button>
+            <button mat-stroked-button (click)="visitUser(element)" *ngIf="element.userId || element.userId === 0 && element.accepted">zum Benutzer</button>
+            <span *ngIf="element.invalidated"> - </span>
+        </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="select(row)" [class.pending]="true" [class.invalidated]="row.invalidated" [class.accepted]="row.accepted" [class.expired]="isInvitationExpired(row)"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="pageSizeOptions" showFirstLastButtons></mat-paginator>
+</div>
