@@ -22,8 +22,8 @@ export class LoginComponent {
   ) { }
 
   loginForm: FormGroup = this.formBuilder.group({
-    email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required, Validators.minLength(7)])
+    email: new FormControl('admin@example.com', [Validators.required, Validators.email]),
+    password: new FormControl('12341234', [Validators.required, Validators.minLength(7)])
   });
 
   loginError: boolean = false;

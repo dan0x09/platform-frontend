@@ -16,6 +16,7 @@ import { SiloDataComponent } from './pages/silo-data/silo-data.component';
 import { SystemsComponent } from './pages/systems/systems.component';
 import { UsersComponent } from './pages/users/users.component';
 import { EditUserComponent } from './pages/edit-user/edit-user.component';
+import { ViewSiloDatumComponent } from './pages/view-silo-datum/view-silo-datum.component';
 
 const routes: Routes = [
   {
@@ -81,6 +82,10 @@ const routes: Routes = [
       {
         path: 'edit-user/:userId',
         component: EditUserComponent
+      },
+      {
+        path: 'view-silo-datum/:siloDatumId',
+        component: ViewSiloDatumComponent
       },
       {
         path: '**',

@@ -1,0 +1,6 @@
+.main {
+    height: calc(100% - 64px);
+}
+.main > * {
+    margin-top: 20px;
+}

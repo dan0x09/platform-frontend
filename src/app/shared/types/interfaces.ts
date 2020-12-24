@@ -85,3 +85,12 @@ export interface User {
     lastName: string;
     role: string;
 }
+export interface SiloDatum {
+    systemId: number;
+    siloDataId: number;
+    gpsLocation: string;
+    path: string;
+
+    createdAt: Date;
+    updatedAt: Date;
+}

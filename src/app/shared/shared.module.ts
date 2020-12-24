@@ -16,6 +16,9 @@ import { InvitationListComponent } from './components/invitation-list/invitation
 import { MatSelectModule } from '@angular/material/select';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { UserListComponent } from './components/user-list/user-list.component';
+import { SiloDatumMetadataComponent } from './components/silo-datum-metadata/silo-datum-metadata.component';
+import { SiloDatumMapComponent } from './components/silo-datum-map/silo-datum-map.component';
+import { SiloDatumVolumeComponent } from './components/silo-datum-volume/silo-datum-volume.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +29,9 @@ import { UserListComponent } from './components/user-list/user-list.component';
     CreateInvitationComponent,
     InvitationListComponent,
     UserListComponent,
+    SiloDatumMetadataComponent,
+    SiloDatumMapComponent,
+    SiloDatumVolumeComponent,
   ],
   imports: [
     CommonModule,
@@ -51,7 +57,10 @@ import { UserListComponent } from './components/user-list/user-list.component';
     EditCustomerComponent,
     CreateInvitationComponent,
     InvitationListComponent,
-    UserListComponent
+    UserListComponent,
+    SiloDatumMetadataComponent,
+    SiloDatumMapComponent,
+    SiloDatumVolumeComponent
   ]
 })
 export class SharedModule { }

@@ -34,6 +34,7 @@ import { InvitationsComponent } from './pages/invitations/invitations.component'
 import { MatSelectModule } from '@angular/material/select';
 import { CreateInvitationPageComponent } from './pages/create-invitation/create-invitation-page.component';
 import { EditUserComponent } from './pages/edit-user/edit-user.component';
+import { ViewSiloDatumComponent } from './pages/view-silo-datum/view-silo-datum.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { EditUserComponent } from './pages/edit-user/edit-user.component';
     EditSystemComponent,
     InvitationsComponent,
     CreateInvitationPageComponent,
-    EditUserComponent
+    EditUserComponent,
+    ViewSiloDatumComponent
   ],
   imports: [
     CommonModule,
