@@ -16,6 +16,7 @@ export class SiloDatumMetadataComponent implements OnInit {
   @Input() siloDatum!: SiloDatum;
 
   ngOnInit(): void {
+    console.log(this.siloDatum)
     
   }
 

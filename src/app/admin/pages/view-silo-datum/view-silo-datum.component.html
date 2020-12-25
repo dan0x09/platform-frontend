@@ -1,6 +1,11 @@
 <app-toolbar title="Silo Datum"></app-toolbar>
 <div class="main" *ngIf="siloDatum">
-    <app-silo-datum-metadata [siloDatum]=siloDatum></app-silo-datum-metadata>
-    <app-silo-datum-map [siloDatum]="siloDatum"></app-silo-datum-map>
-    <app-silo-datum-volume [siloDatum]="siloDatum"></app-silo-datum-volume>
+    <div class="row">
+        <app-silo-datum-metadata [siloDatum]=siloDatum></app-silo-datum-metadata>
+        <app-silo-datum-map [siloDatum]="siloDatum"></app-silo-datum-map>
+    </div>
+    <div class="row">
+        <app-silo-datum-volume [siloDatum]="siloDatum"></app-silo-datum-volume>
+        <app-silo-datum-feed [siloDatum]="siloDatum"></app-silo-datum-feed>
+    </div>
 </div>

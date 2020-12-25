@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Config } from 'protractor';
 import { ConfigService } from 'src/app/services/config.service';
 
 @Component({

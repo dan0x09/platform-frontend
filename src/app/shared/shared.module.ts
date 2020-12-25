@@ -19,6 +19,7 @@ import { UserListComponent } from './components/user-list/user-list.component';
 import { SiloDatumMetadataComponent } from './components/silo-datum-metadata/silo-datum-metadata.component';
 import { SiloDatumMapComponent } from './components/silo-datum-map/silo-datum-map.component';
 import { SiloDatumVolumeComponent } from './components/silo-datum-volume/silo-datum-volume.component';
+import { SiloDatumFeedComponent } from './components/silo-datum-feed/silo-datum-feed.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { SiloDatumVolumeComponent } from './components/silo-datum-volume/silo-da
     SiloDatumMetadataComponent,
     SiloDatumMapComponent,
     SiloDatumVolumeComponent,
+    SiloDatumFeedComponent,
   ],
   imports: [
     CommonModule,
@@ -60,7 +62,8 @@ import { SiloDatumVolumeComponent } from './components/silo-datum-volume/silo-da
     UserListComponent,
     SiloDatumMetadataComponent,
     SiloDatumMapComponent,
-    SiloDatumVolumeComponent
+    SiloDatumVolumeComponent,
+    SiloDatumFeedComponent
   ]
 })
 export class SharedModule { }
