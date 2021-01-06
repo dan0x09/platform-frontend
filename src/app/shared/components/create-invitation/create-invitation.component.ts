@@ -122,7 +122,7 @@ export class CreateInvitationComponent implements OnInit {
             const data: UserInvitation = {
               email: this.form.value.email,
               role: this.form.value.role,
-              organizationId: this.form.value.contractorOrganization
+              organizationId: this.form.value.farmerOrganization
             }
             this.onInvite.emit(data);
           } else farmerOrganizationControl.setErrors({ incorrect: true });

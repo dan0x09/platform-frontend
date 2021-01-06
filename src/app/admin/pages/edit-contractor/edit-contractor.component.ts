@@ -61,4 +61,8 @@ export class EditContractorComponent implements OnInit {
         console.error
       );
   }
+
+  visitSystem(system: System) {
+    return this.router.navigate(['edit-system', system.systemId], { relativeTo: this.route.parent });
+  }
 }
