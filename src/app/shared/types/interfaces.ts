@@ -89,8 +89,17 @@ export interface SiloDatum {
     systemId: number;
     siloDataId: number;
     gpsLocation: string;
-    path: string;
+    name: string;
 
     createdAt: Date;
     updatedAt: Date;
 }
+
+export interface SiloDatumWithUrls {
+    siloDatum: SiloDatum,
+    urls: {
+      volumeMap: string;
+      volumeModel: string;
+    }
+  }
+  

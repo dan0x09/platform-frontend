@@ -22,13 +22,15 @@ export class SiloDataComponent implements OnInit {
   ngOnInit(): void {
     this.http.get<any>(this.config.getUrl(`/silo-data/`))
       .subscribe(
-        (siloData) => this.siloData = siloData,
+        (siloData) => {
+          this.siloData = siloData;
+        },
         console.error
       )
   }
 
   select(siloDatum: any) {
-    this.router.navigate(['view-silo-datum', siloDatum.siloDataId], { relativeTo: this.route.parent });
+    this.router.navigate(['view-silo-datum', siloDatum.siloDatum.siloDatumId], { relativeTo: this.route.parent });
   }
 
 }

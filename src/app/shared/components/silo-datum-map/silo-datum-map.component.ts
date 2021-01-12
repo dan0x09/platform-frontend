@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import { SiloDatum } from '../../types/interfaces';
+import { SiloDatum, SiloDatumWithUrls } from '../../types/interfaces';
 import { Feature, Map, View } from 'ol';
 import Tile from 'ol/layer/Tile';
 import OSM from 'ol/source/OSM';
@@ -21,7 +21,7 @@ export class SiloDatumMapComponent implements OnInit, AfterViewInit {
   constructor(
     ) { }
   
-    @Input() siloDatum!: SiloDatum;
+    @Input() data!: SiloDatumWithUrls;
   
     @ViewChild('mapContainer') mapContainer: ElementRef<HTMLElement>;
 
@@ -30,9 +30,8 @@ export class SiloDatumMapComponent implements OnInit, AfterViewInit {
     }
 
     ngAfterViewInit() {
-      const [lat, lon] = this.siloDatum.gpsLocation.split(',').map(parseFloat);
+      const [lat, lon] = this.data.siloDatum.gpsLocation.split(',').map(parseFloat);
       const lonLat = transform([lon,lat], 'EPSG:4326', 'EPSG:3857');
-      console.log(this.mapContainer)
       const map = new Map({
         target: this.mapContainer.nativeElement,
         layers: [
@@ -59,6 +58,6 @@ export class SiloDatumMapComponent implements OnInit, AfterViewInit {
           zoom: 18,
         })
       });
-      console.log(map)
   }
 }
+

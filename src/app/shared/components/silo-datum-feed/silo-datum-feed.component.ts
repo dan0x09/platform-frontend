@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { SiloDatum } from '../../types/interfaces';
+import { SiloDatum, SiloDatumWithUrls } from '../../types/interfaces';
 
 @Component({
   selector: 'app-silo-datum-feed',
@@ -11,7 +11,7 @@ export class SiloDatumFeedComponent implements OnInit {
   constructor(
     ) { }
   
-    @Input() siloDatum!: SiloDatum;
+    @Input() data!: SiloDatumWithUrls;
   
     ngOnInit(): void {
       

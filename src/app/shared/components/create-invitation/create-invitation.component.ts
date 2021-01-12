@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { filter, map, startWith } from 'rxjs/operators';
 import { ConfigService } from 'src/app/services/config.service';
 import { Contractor, Farmer, Role, User, UserInvitation } from '../../types/interfaces';
 

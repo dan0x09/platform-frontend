@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ConfigService } from 'src/app/services/config.service';
-import { SiloDatum } from 'src/app/shared/types/interfaces';
+import { SiloDatum, SiloDatumWithUrls } from 'src/app/shared/types/interfaces';
 
 @Component({
   selector: 'app-view-silo-datum',
@@ -17,13 +17,15 @@ export class ViewSiloDatumComponent implements OnInit {
     private route: ActivatedRoute
   ) { }
 
-  siloDatum: SiloDatum;
+  siloDatumWithUrls: SiloDatumWithUrls;
 
   ngOnInit(): void {
     const siloDatumId = this.route.snapshot.paramMap.get('siloDatumId');
-    this.http.get<SiloDatum>(this.config.getUrl(`/silo-data/${siloDatumId}`))
+    this.http.get<SiloDatumWithUrls>(this.config.getUrl(`/silo-data/${siloDatumId}`))
       .subscribe(
-        (siloDatum: SiloDatum) => this.siloDatum = siloDatum,
+        (siloDatumWithUrls: SiloDatumWithUrls) =>  {
+          this.siloDatumWithUrls = siloDatumWithUrls;
+        },
         console.error
       )
   }

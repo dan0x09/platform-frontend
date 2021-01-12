@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { ConfigService } from 'src/app/services/config.service';
-import { SiloDatum } from '../../types/interfaces';
+import { SiloDatum, SiloDatumWithUrls } from '../../types/interfaces';
 
 @Component({
   selector: 'app-silo-datum-metadata',
@@ -13,11 +13,10 @@ export class SiloDatumMetadataComponent implements OnInit {
   constructor(
   ) { }
 
-  @Input() siloDatum!: SiloDatum;
+  @Input() data!: SiloDatumWithUrls
 
   ngOnInit(): void {
-    console.log(this.siloDatum)
-    
+    console.log(this.data)
   }
 
 }
