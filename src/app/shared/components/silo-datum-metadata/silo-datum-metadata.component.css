@@ -3,3 +3,7 @@
     width: 100%;
     height: 100%;
 }
+.container div {
+    font-size: 1.6em;
+    margin: 3px 0;
+}

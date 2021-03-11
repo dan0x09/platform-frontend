@@ -14,6 +14,7 @@ export class SiloDatumVolumeComponent implements OnInit, AfterViewInit {
     @Input() data!: SiloDatumWithUrls;
   
     ngOnInit(): void {
+      this.data.urls.volumeModel = 'assets/silo.png'
     }
   
     ngAfterViewInit() {

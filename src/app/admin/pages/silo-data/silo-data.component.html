@@ -1,4 +1,4 @@
-<app-toolbar title="Silo Data"></app-toolbar>
+<app-toolbar title="Silo Datensätze"></app-toolbar>
 <div class="main" *ngIf="siloData">
     <button *ngFor="let siloDatum of siloData" (click)="select(siloDatum)">
         {{siloDatum.siloDatum.siloDatumId}}
