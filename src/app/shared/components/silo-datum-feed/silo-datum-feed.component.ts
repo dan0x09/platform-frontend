@@ -14,6 +14,5 @@ export class SiloDatumFeedComponent implements OnInit {
     @Input() data!: SiloDatumWithUrls;
   
     ngOnInit(): void {
-      this.data.urls.volumeMap = 'assets/map.png';
     }
 }
