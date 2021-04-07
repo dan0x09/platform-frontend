@@ -20,6 +20,7 @@ import { SiloDatumMetadataComponent } from './components/silo-datum-metadata/sil
 import { SiloDatumMapComponent } from './components/silo-datum-map/silo-datum-map.component';
 import { SiloDatumVolumeComponent } from './components/silo-datum-volume/silo-datum-volume.component';
 import { SiloDatumFeedComponent } from './components/silo-datum-feed/silo-datum-feed.component';
+import { SiloDatumInteractiveVolumeModelComponent } from './components/silo-datum-interactive-volume-model/silo-datum-interactive-volume-model.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { SiloDatumFeedComponent } from './components/silo-datum-feed/silo-datum-
     SiloDatumMapComponent,
     SiloDatumVolumeComponent,
     SiloDatumFeedComponent,
+    SiloDatumInteractiveVolumeModelComponent,
   ],
   imports: [
     CommonModule,
@@ -63,7 +65,8 @@ import { SiloDatumFeedComponent } from './components/silo-datum-feed/silo-datum-
     SiloDatumMetadataComponent,
     SiloDatumMapComponent,
     SiloDatumVolumeComponent,
-    SiloDatumFeedComponent
+    SiloDatumFeedComponent,
+    SiloDatumInteractiveVolumeModelComponent
   ]
 })
 export class SharedModule { }
