@@ -100,6 +100,7 @@ export interface SiloDatumWithUrls {
     urls: {
       volumeMap: string;
       volumeModel: string;
+      interactiveVolumeModel: string;
     }
   }
   

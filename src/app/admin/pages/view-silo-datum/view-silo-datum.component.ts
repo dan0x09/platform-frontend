@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ConfigService } from 'src/app/services/config.service';
-import { SiloDatum, SiloDatumWithUrls } from 'src/app/shared/types/interfaces';
+import { SiloDatumWithUrls } from 'src/app/shared/types/interfaces';
 
 @Component({
   selector: 'app-view-silo-datum',
@@ -14,7 +14,7 @@ export class ViewSiloDatumComponent implements OnInit {
   constructor(
     private config: ConfigService,
     private http: HttpClient,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
   ) { }
 
   siloDatumWithUrls: SiloDatumWithUrls;

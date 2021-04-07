@@ -1,0 +1,10 @@
+.container {
+    padding: 18px;
+}
+iframe {
+    min-width: 600px;
+    min-height: 300px;
+    width: 100%;
+    border: none;
+    outline: none;
+}

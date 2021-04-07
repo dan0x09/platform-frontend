@@ -6,6 +6,7 @@ import { ContractorGuard } from './guards/contractor.guard';
 import { FarmerGuard } from './guards/farmer.guard';
 import { GuestGuard } from './guards/guest.guard';
 import { LoginComponent } from './pages/login/login.component';
+import { SignupComponent } from './pages/signup/signup.component';
 
 const routes: Routes = [
   { 
@@ -26,6 +27,11 @@ const routes: Routes = [
   { 
     path: 'login',
     component: LoginComponent,
+    canActivate: [ GuestGuard ]
+  },
+  { 
+    path: 'signup',
+    component: SignupComponent,
     canActivate: [ GuestGuard ]
   },
   {

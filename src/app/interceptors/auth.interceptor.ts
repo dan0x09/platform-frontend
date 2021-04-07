@@ -18,6 +18,9 @@ export class AuthInterceptor implements HttpInterceptor {
   ) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+    if (request.url.indexOf('blob.core.windows.net') != -1) {
+      return next.handle(request);
+    }
     const token = this.auth.getToken();
     if (token) {
       request = request.clone({
