@@ -37,7 +37,7 @@ export class SignupComponent implements OnInit {
         token: new FormControl(this.token, [Validators.required, Validators.minLength(7)]),
       });
     } else {
-      this.router.navigate(['..']);
+      this.router.navigate(['..']); 
     }
   }
 
