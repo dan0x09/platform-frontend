@@ -54,19 +54,7 @@ export class ResetPasswordComponent implements OnInit {
       this.http.post(this.config.getUrl('/user/change-password'), body)
       .subscribe(
         () => {
-          const role = this.auth.getDecodedToken().role;
-          switch(role) {
-            case Role.ADMIN:
-            case Role.OWNER:
-              this.router.navigate(['admin']);
-              break;
-            case Role.CONTRACTOR:
-              this.router.navigate(['contractor']);
-              break;
-            case Role.FARMER:
-            default:
-              this.router.navigate(['farmer']);
-          }
+          this.router.navigate(['login']);
         },
         () => {
           this.error = true;
