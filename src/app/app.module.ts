@@ -13,12 +13,16 @@ import { LoginComponent } from './pages/login/login.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { SharedModule } from './shared/shared.module';
 import { SignupComponent } from './pages/signup/signup.component';
+import { RequestResetPasswordComponent } from './pages/request-reset-password/request-reset-password.component';
+import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    RequestResetPasswordComponent,
+    ResetPasswordComponent
   ],
   imports: [
     BrowserModule,

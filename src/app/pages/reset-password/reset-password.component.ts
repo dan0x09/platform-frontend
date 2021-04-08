@@ -1,17 +1,17 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { ConfigService } from 'src/app/services/config.service';
 import { Role } from 'src/app/shared/types/interfaces';
 
 @Component({
-  selector: 'app-signup',
-  templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.css']
+  selector: 'app-reset-password',
+  templateUrl: './reset-password.component.html',
+  styleUrls: ['./reset-password.component.css']
 })
-export class SignupComponent implements OnInit {
+export class ResetPasswordComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
@@ -22,7 +22,7 @@ export class SignupComponent implements OnInit {
     private config: ConfigService
   ) { }
 
-  signupForm: FormGroup;
+  form: FormGroup;
 
   token: string | null;
   error: boolean = false;
@@ -30,14 +30,11 @@ export class SignupComponent implements OnInit {
   ngOnInit() {
     this.token = this.route.snapshot.queryParamMap.get('t')
     if (this.token) {
-      this.signupForm = this.formBuilder.group({
-        firstName: new FormControl('', [Validators.required, Validators.minLength(2)]),
-        lastName: new FormControl('', [Validators.required, Validators.minLength(2)]),
+      this.form = this.formBuilder.group({
         password: new FormControl('', [Validators.required, Validators.minLength(7)]),
-        repeatPassword: new FormControl('', [Validators.required, Validators.minLength(7)]),
+        repeatPassword: new FormControl('', [Validators.required]),
         token: new FormControl(this.token, [Validators.required, Validators.minLength(7)]),
-      },
-      {
+      }, {
         validators: [ (fg: FormGroup) => {
           return fg.value.password === fg.value.repeatPassword;           
         }]
@@ -49,14 +46,12 @@ export class SignupComponent implements OnInit {
 
   submit() {
     this.error = false;
-    if (this.signupForm.valid) {
+    if (this.form.valid) {
       const body = {
-        firstName: this.signupForm.value.firstName,
-        lastName: this.signupForm.value.lastName,
-        password: this.signupForm.value.password,
-        token: this.signupForm.value.token
+        token: this.form.value.token,
+        password: this.form.value.password
       }
-      this.http.post(this.config.getUrl('/invitation/user/accept'), body)
+      this.http.post(this.config.getUrl('/user/change-password'), body)
       .subscribe(
         () => {
           const role = this.auth.getDecodedToken().role;
@@ -66,11 +61,11 @@ export class SignupComponent implements OnInit {
               this.router.navigate(['admin']);
               break;
             case Role.CONTRACTOR:
-              this.router.navigate(['../contractor']);
+              this.router.navigate(['contractor']);
               break;
             case Role.FARMER:
             default:
-              this.router.navigate(['../farmer']);
+              this.router.navigate(['farmer']);
           }
         },
         () => {
@@ -80,5 +75,4 @@ export class SignupComponent implements OnInit {
       this.error = true;
     }
   }
-
 }

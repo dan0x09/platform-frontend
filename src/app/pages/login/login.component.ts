@@ -29,22 +29,29 @@ export class LoginComponent {
   loginError: boolean = false;
 
   submit() {
+    this.loginError = false;
     if (this.loginForm.valid) {
-      this.http.post(this.config.getUrl('/user/login'), this.loginForm.value, {responseType: 'text'}).subscribe(() => {
-        const role = this.auth.getDecodedToken().role;
-        switch(role) {
-          case Role.ADMIN:
-          case Role.OWNER:
-            this.router.navigate(['admin']);
-            break;
-          case Role.CONTRACTOR:
-            this.router.navigate(['../contractor']);
-            break;
-          case Role.FARMER:
-          default:
-            this.router.navigate(['../farmer']);
+      this.http.post(this.config.getUrl('/user/login'), this.loginForm.value)
+      .subscribe(
+        () => {
+          const role = this.auth.getDecodedToken().role;
+          switch(role) {
+            case Role.ADMIN:
+            case Role.OWNER:
+              this.router.navigate(['admin']);
+              break;
+            case Role.CONTRACTOR:
+              this.router.navigate(['contractor']);
+              break;
+            case Role.FARMER:
+            default:
+              this.router.navigate(['farmer']);
+          }
+        },
+        (err) => {
+          this.loginError = true;
         }
-      })
+      )
     } else {
       this.loginError = true;
     }
