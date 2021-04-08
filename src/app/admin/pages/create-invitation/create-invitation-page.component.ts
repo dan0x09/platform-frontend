@@ -34,7 +34,7 @@ export class CreateInvitationPageComponent implements OnInit {
   }
 
   invite(invitation: UserInvitation) {
-    this.http.post(this.config.getUrl('/invitation/user/'), invitation, { responseType: 'text' })
+    this.http.post(this.config.getUrl('/invitation/user/'), invitation)
       .subscribe(
         (result: any) => {
           this.router.navigate(['invitations'], { relativeTo: this.route.parent });
