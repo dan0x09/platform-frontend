@@ -3,22 +3,18 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { SiloDatumWithUrls } from '../../types/interfaces';
 
 @Component({
-  selector: 'app-silo-datum-interactive-volume-model',
-  templateUrl: './silo-datum-interactive-volume-model.component.html',
-  styleUrls: ['./silo-datum-interactive-volume-model.component.css']
+    selector: 'app-silo-datum-interactive-volume-model',
+    templateUrl: './silo-datum-interactive-volume-model.component.html',
+    styleUrls: ['./silo-datum-interactive-volume-model.component.css'],
 })
 export class SiloDatumInteractiveVolumeModelComponent implements OnInit {
+    constructor(private sanitizer: DomSanitizer) {}
 
-  constructor(
-    private sanitizer: DomSanitizer
-  ) { }
+    @Input() data!: SiloDatumWithUrls;
 
-  @Input() data!: SiloDatumWithUrls;
+    url: SafeResourceUrl;
 
-  url: SafeResourceUrl;
-
-  ngOnInit(): void {
-    this.url = this.sanitizer.bypassSecurityTrustResourceUrl(this.data.urls.interactiveVolumeModel);
-  }
-
+    ngOnInit(): void {
+        this.url = this.sanitizer.bypassSecurityTrustResourceUrl(this.data.urls.interactiveVolumeModel);
+    }
 }

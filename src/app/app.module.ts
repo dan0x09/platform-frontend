@@ -17,32 +17,32 @@ import { RequestResetPasswordComponent } from './pages/request-reset-password/re
 import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    LoginComponent,
-    SignupComponent,
-    RequestResetPasswordComponent,
-    ResetPasswordComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
-    HttpClientModule,
-    FormsModule,
-    ReactiveFormsModule,
-    SharedModule,
-  ],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor,
-      multi: true
-    }
-  ],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        LoginComponent,
+        SignupComponent,
+        RequestResetPasswordComponent,
+        ResetPasswordComponent,
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatButtonModule,
+        HttpClientModule,
+        FormsModule,
+        ReactiveFormsModule,
+        SharedModule,
+    ],
+    providers: [
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: AuthInterceptor,
+            multi: true,
+        },
+    ],
+    bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

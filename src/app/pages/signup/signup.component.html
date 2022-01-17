@@ -2,20 +2,20 @@
 <form [formGroup]="signupForm">
     <mat-form-field>
         <mat-label>Vorname</mat-label>
-        <input type="text" matInput formControlName="firstName" placeholder="Vornamen eingeben">
+        <input type="text" matInput formControlName="firstName" placeholder="Vornamen eingeben" />
     </mat-form-field>
     <mat-form-field>
         <mat-label>Nachname</mat-label>
-        <input type="text" matInput formControlName="lastName" placeholder="Nachnamen eingeben">
+        <input type="text" matInput formControlName="lastName" placeholder="Nachnamen eingeben" />
     </mat-form-field>
     <mat-form-field>
         <mat-label>Passwort</mat-label>
-        <input type="password" matInput formControlName="password">
+        <input type="password" matInput formControlName="password" />
     </mat-form-field>
     <mat-form-field>
         <mat-label>Passwort wdh.</mat-label>
-        <input type="password" matInput formControlName="repeatPassword">
+        <input type="password" matInput formControlName="repeatPassword" />
     </mat-form-field>
-    <input type="password" matInput formControlName="token" class="hidden">
+    <input type="password" matInput formControlName="token" class="hidden" />
     <button mat-button (click)="submit()">Login</button>
 </form>

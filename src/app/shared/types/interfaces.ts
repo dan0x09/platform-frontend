@@ -4,13 +4,13 @@ export enum Subject {
     USER_AUTH = 'user_authentication',
     ROBOT_AUTH = 'robot_authentication',
     RESET_PASSWORD = 'reset_password',
-    INVITE_USER = 'invite_user'
+    INVITE_USER = 'invite_user',
 }
 export enum Role {
-    OWNER = "owner",
+    OWNER = 'owner',
     CONTRACTOR = 'contractor',
     FARMER = 'farmer',
-    ADMIN = 'admin'
+    ADMIN = 'admin',
 }
 export interface UserTokenPayload {
     uid: number;
@@ -96,11 +96,10 @@ export interface SiloDatum {
 }
 
 export interface SiloDatumWithUrls {
-    siloDatum: SiloDatum,
+    siloDatum: SiloDatum;
     urls: {
-      volumeMap: string;
-      volumeModel: string;
-      interactiveVolumeModel: string;
-    }
-  }
-  
+        volumeMap: string;
+        volumeModel: string;
+        interactiveVolumeModel: string;
+    };
+}

@@ -6,54 +6,45 @@ import { ConfigService } from 'src/app/services/config.service';
 import { Role, User } from 'src/app/shared/types/interfaces';
 
 @Component({
-  selector: 'app-edit-user',
-  templateUrl: './edit-user.component.html',
-  styleUrls: ['./edit-user.component.css']
+    selector: 'app-edit-user',
+    templateUrl: './edit-user.component.html',
+    styleUrls: ['./edit-user.component.css'],
 })
 export class EditUserComponent implements OnInit {
+    constructor(private http: HttpClient, private config: ConfigService, private route: ActivatedRoute) {}
 
-  constructor(
-    private http: HttpClient,
-    private config: ConfigService,
-    private route: ActivatedRoute
-  ) { }
+    user: User;
 
-  user: User;
+    form: FormGroup;
 
-  form: FormGroup;
-
-  ngOnInit(): void {
-    const userId = this.route.snapshot.paramMap.get('userId');
-    this.http.get<User>(this.config.getUrl(`/user/${userId}`))
-      .subscribe(
-        (user: User) => {
-          this.user = user;
-          this.form = new FormGroup({
-            email: new FormControl({ value: this.user.email, disabled: true }),
-            firstName: new FormControl({ value: this.user.firstName, disabled: true }),
-            lastName: new FormControl({ value: this.user.lastName, disabled: true }),
-            role: new FormControl({ value: this.prettyRole(this.user.role as Role), disabled: true })
-          });
-          console.log(this.form)
-        },
-        console.error
-      )
-  }
-
-  prettyRole(role: Role): string {
-    console.log(role)
-    if (role === Role.OWNER) {
-      return 'Owner';
-    } else if (role === Role.ADMIN) {
-      return 'Admin';
-    } else if (role === Role.CONTRACTOR) {
-      return 'Lohnunternehmer';
-    } else {
-      return 'Landwirt';
+    ngOnInit(): void {
+        const userId = this.route.snapshot.paramMap.get('userId');
+        this.http.get<User>(this.config.getUrl(`/user/${userId}`)).subscribe((user: User) => {
+            this.user = user;
+            this.form = new FormGroup({
+                email: new FormControl({ value: this.user.email, disabled: true }),
+                firstName: new FormControl({ value: this.user.firstName, disabled: true }),
+                lastName: new FormControl({ value: this.user.lastName, disabled: true }),
+                role: new FormControl({ value: this.prettyRole(this.user.role as Role), disabled: true }),
+            });
+            console.log(this.form);
+        }, console.error);
     }
-  }
 
-  requestDelete() {
-    console.log('request delete')
-  }
+    prettyRole(role: Role): string {
+        console.log(role);
+        if (role === Role.OWNER) {
+            return 'Owner';
+        } else if (role === Role.ADMIN) {
+            return 'Admin';
+        } else if (role === Role.CONTRACTOR) {
+            return 'Lohnunternehmer';
+        } else {
+            return 'Landwirt';
+        }
+    }
+
+    requestDelete() {
+        console.log('request delete');
+    }
 }

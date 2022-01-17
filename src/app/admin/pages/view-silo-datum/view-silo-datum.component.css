@@ -4,7 +4,7 @@
 .row > * {
     padding: 12px;
 }
-@media(max-width: 800px) {
+@media (max-width: 800px) {
     .row {
         display: block;
         width: 100%;
@@ -14,11 +14,11 @@
         width: 100%;
     }
 }
-@media(min-width: 800px) {
+@media (min-width: 800px) {
     .row {
         display: grid;
         grid-template-columns: auto auto;
-        grid-template-rows: auto
+        grid-template-rows: auto;
     }
     .row:nth-child(1) {
         grid-row: 1;

@@ -22,7 +22,8 @@
 .pending {
     background: lightyellow;
 }
-.expired, .invalidated {
+.expired,
+.invalidated {
     background: crimson;
 }
 .accepted {

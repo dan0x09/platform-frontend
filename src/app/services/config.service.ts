@@ -2,13 +2,12 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root',
 })
 export class ConfigService {
+    constructor() {}
 
-  constructor() { }
-
-  getUrl(uri: string): string {
-    return environment.apiBaseUrl + uri;
-  }
+    getUrl(uri: string): string {
+        return environment.apiBaseUrl + uri;
+    }
 }

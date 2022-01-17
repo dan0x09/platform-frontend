@@ -5,7 +5,7 @@
             <span class="mat-headline">Name</span>
             <mat-form-field appearance="outline">
                 <mat-label>Name des Systems</mat-label>
-                <input formControlName="name" matInput placeholder="Placeholder">
+                <input formControlName="name" matInput placeholder="Placeholder" />
                 <mat-hint>Hint</mat-hint>
             </mat-form-field>
         </div>
@@ -15,7 +15,11 @@
                 <mat-label>Lohnunternehmer auswählen</mat-label>
                 <mat-select formControlName="contractor">
                     <mat-option *ngFor="let contractor of contractors" [value]="contractor">
-                        {{contractor.name}}<span class="small-address">({{contractor.streetAndNumber}}, {{contractor.zipCode}}, {{contractor.city}}, {{contractor.country}})</span>
+                        {{ contractor.name
+                        }}<span class="small-address"
+                            >({{ contractor.streetAndNumber }}, {{ contractor.zipCode }}, {{ contractor.city }},
+                            {{ contractor.country }})</span
+                        >
                     </mat-option>
                 </mat-select>
             </mat-form-field>

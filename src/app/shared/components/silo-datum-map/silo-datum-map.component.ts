@@ -12,52 +12,47 @@ import Icon from 'ol/style/Icon';
 import Layer from 'ol/layer/Layer';
 
 @Component({
-  selector: 'app-silo-datum-map',
-  templateUrl: './silo-datum-map.component.html',
-  styleUrls: ['./silo-datum-map.component.css']
+    selector: 'app-silo-datum-map',
+    templateUrl: './silo-datum-map.component.html',
+    styleUrls: ['./silo-datum-map.component.css'],
 })
 export class SiloDatumMapComponent implements OnInit, AfterViewInit {
+    constructor() {}
 
-  constructor(
-    ) { }
-  
     @Input() data!: SiloDatumWithUrls;
-  
+
     @ViewChild('mapContainer') mapContainer: ElementRef<HTMLElement>;
 
-    ngOnInit(): void {
-      
-    }
+    ngOnInit(): void {}
 
     ngAfterViewInit() {
-      const [lat, lon] = this.data.siloDatum.gpsLocation.split(',').map(parseFloat);
-      const lonLat = transform([lon,lat], 'EPSG:4326', 'EPSG:3857');
-      const map = new Map({
-        target: this.mapContainer.nativeElement,
-        layers: [
-          new Tile({
-            source: new OSM(),
-          }),
-          new VectorLayer({
-            source: new Vector({
-              features: [
-                new Feature({
-                    geometry: new Point(lonLat)
-                })
-            ]
+        const [lat, lon] = this.data.siloDatum.gpsLocation.split(',').map(parseFloat);
+        const lonLat = transform([lon, lat], 'EPSG:4326', 'EPSG:3857');
+        const map = new Map({
+            target: this.mapContainer.nativeElement,
+            layers: [
+                new Tile({
+                    source: new OSM(),
+                }),
+                new VectorLayer({
+                    source: new Vector({
+                        features: [
+                            new Feature({
+                                geometry: new Point(lonLat),
+                            }),
+                        ],
+                    }),
+                    style: new Style({
+                        image: new Icon({
+                            src: 'assets/location_on-black-18dp.svg',
+                        }),
+                    }),
+                }),
+            ],
+            view: new View({
+                center: lonLat,
+                zoom: 18,
             }),
-            style: new Style({
-              image: new Icon({
-                src: 'assets/location_on-black-18dp.svg',
-              }),
-            }),
-          }),
-        ],
-        view: new View({
-          center: lonLat,
-          zoom: 18,
-        })
-      });
-  }
+        });
+    }
 }
-
