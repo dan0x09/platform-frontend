@@ -3,25 +3,19 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
-  selector: 'app-toolbar',
-  templateUrl: './toolbar.component.html',
-  styleUrls: ['./toolbar.component.css']
+    selector: 'app-toolbar',
+    templateUrl: './toolbar.component.html',
+    styleUrls: ['./toolbar.component.css'],
 })
 export class ToolbarComponent implements OnInit {
+    constructor(private auth: AuthService, private router: Router) {}
 
-  constructor(
-    private auth: AuthService,
-    private router: Router
-  ) { }
+    @Input() title!: string;
 
-  @Input() title!: string;
+    ngOnInit(): void {}
 
-  ngOnInit(): void {
-  }
-
-  logout() {
-    this.auth.deleteToken();
-    this.router.navigate(['']);
-  }
-
+    logout() {
+        this.auth.deleteToken();
+        this.router.navigate(['']);
+    }
 }

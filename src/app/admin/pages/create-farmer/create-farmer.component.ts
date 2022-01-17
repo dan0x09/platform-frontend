@@ -8,29 +8,26 @@ import { ToolbarService } from 'src/app/services/toolbar.service';
 import { CreateCustomer } from 'src/app/shared/types/interfaces';
 
 @Component({
-  selector: 'app-create-farmer',
-  templateUrl: './create-farmer.component.html',
-  styleUrls: ['./create-farmer.component.css']
+    selector: 'app-create-farmer',
+    templateUrl: './create-farmer.component.html',
+    styleUrls: ['./create-farmer.component.css'],
 })
 export class CreateFarmerComponent implements OnInit {
+    constructor(
+        private http: HttpClient,
+        private config: ConfigService,
+        private toolbarService: ToolbarService,
+        private router: Router,
+        private route: ActivatedRoute
+    ) {}
 
-  constructor(
-    private http: HttpClient,
-    private config: ConfigService,
-    private toolbarService: ToolbarService,
-    private router: Router,
-    private route: ActivatedRoute
-  ) { }
+    ngOnInit(): void {
+        this.toolbarService.setTitle('Landwirt erstellen');
+    }
 
-  ngOnInit(): void {
-    this.toolbarService.setTitle('Landwirt erstellen');
-  }
-
-  submit(data: CreateCustomer) {
-    this.http.post<any>(this.config.getUrl('/farmer/'), data)
-      .subscribe(
-        () => this.router.navigate(['farmer'], { relativeTo: this.route.parent }),
-        console.error
-      );
-  }
+    submit(data: CreateCustomer) {
+        this.http
+            .post<any>(this.config.getUrl('/farmer/'), data)
+            .subscribe(() => this.router.navigate(['farmer'], { relativeTo: this.route.parent }), console.error);
+    }
 }

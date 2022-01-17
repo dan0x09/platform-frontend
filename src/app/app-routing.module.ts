@@ -11,55 +11,53 @@ import { ResetPasswordComponent } from './pages/reset-password/reset-password.co
 import { SignupComponent } from './pages/signup/signup.component';
 
 const routes: Routes = [
-  { 
-    path: 'admin',
-    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
-    canActivate: [ AdminGuard ]
-  },
-  { 
-    path: 'contractor',
-    loadChildren: () => import('./contractor/contractor.module').then(m => m.ContractorModule),
-    canActivate: [ ContractorGuard ]
-  },
-  {
-    path: 'farmer',
-    loadChildren: () => import('./farmer/farmer.module').then(m => m.FarmerModule),
-    canActivate: [ FarmerGuard ]
-  },
-  { 
-    path: '',
-    component: LoginComponent,
-    canActivate: [ GuestGuard ]
-  },
-  { 
-    path: 'login',
-    redirectTo: ''
-  },
-  { 
-    path: 'signup',
-    component: SignupComponent,
-    canActivate: [ GuestGuard ]
-  },
-  { 
-    path: 'request-password',
-    component: RequestResetPasswordComponent,
-    canActivate: [ GuestGuard ]
-  },
-  { 
-    path: 'password',
-    component: ResetPasswordComponent,
-    canActivate: [ GuestGuard ]
-  },
-  {
-    path: '**',
-    redirectTo: ''
-  }
+    {
+        path: 'admin',
+        loadChildren: () => import('./admin/admin.module').then((m) => m.AdminModule),
+        canActivate: [AdminGuard],
+    },
+    {
+        path: 'contractor',
+        loadChildren: () => import('./contractor/contractor.module').then((m) => m.ContractorModule),
+        canActivate: [ContractorGuard],
+    },
+    {
+        path: 'farmer',
+        loadChildren: () => import('./farmer/farmer.module').then((m) => m.FarmerModule),
+        canActivate: [FarmerGuard],
+    },
+    {
+        path: '',
+        component: LoginComponent,
+        canActivate: [GuestGuard],
+    },
+    {
+        path: 'login',
+        redirectTo: '',
+    },
+    {
+        path: 'signup',
+        component: SignupComponent,
+        canActivate: [GuestGuard],
+    },
+    {
+        path: 'request-password',
+        component: RequestResetPasswordComponent,
+        canActivate: [GuestGuard],
+    },
+    {
+        path: 'password',
+        component: ResetPasswordComponent,
+        canActivate: [GuestGuard],
+    },
+    {
+        path: '**',
+        redirectTo: '',
+    },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {enableTracing: false})],
-  exports: [RouterModule]
+    imports: [RouterModule.forRoot(routes, { enableTracing: false })],
+    exports: [RouterModule],
 })
-export class AppRoutingModule {
-  
-}
+export class AppRoutingModule {}

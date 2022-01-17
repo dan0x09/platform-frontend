@@ -6,40 +6,36 @@ import { ToolbarService } from 'src/app/services/toolbar.service';
 import { Customer, Contractor, User } from 'src/app/shared/types/interfaces';
 
 @Component({
-  selector: 'app-users',
-  templateUrl: './users.component.html',
-  styleUrls: ['./users.component.css']
+    selector: 'app-users',
+    templateUrl: './users.component.html',
+    styleUrls: ['./users.component.css'],
 })
 export class UsersComponent implements OnInit {
-  constructor(
-    private router: Router,
-    private route: ActivatedRoute,
-    private http: HttpClient,
-    private config: ConfigService,
-    private toolbarService: ToolbarService
-  ) { }
+    constructor(
+        private router: Router,
+        private route: ActivatedRoute,
+        private http: HttpClient,
+        private config: ConfigService,
+        private toolbarService: ToolbarService
+    ) {}
 
-  users: User[];
+    users: User[];
 
-  visitCreate() {
-    this.router.navigate(['create-invitation'], { relativeTo: this.route.parent });
-  }
+    visitCreate() {
+        this.router.navigate(['create-invitation'], { relativeTo: this.route.parent });
+    }
 
-  ngOnInit(): void {
-    this.toolbarService.setTitle('Nutzer')
-  }
+    ngOnInit(): void {
+        this.toolbarService.setTitle('Nutzer');
+    }
 
-  ngAfterViewInit(): void {
-    this.http.get<User[]>(this.config.getUrl('/user/'))
-      .subscribe(
-        (users: User[]) => {
-          this.users = users;
-        },
-        console.error
-      );
-  }
+    ngAfterViewInit(): void {
+        this.http.get<User[]>(this.config.getUrl('/user/')).subscribe((users: User[]) => {
+            this.users = users;
+        }, console.error);
+    }
 
-  select(user: User) {
-    this.router.navigate(['edit-user', user.userId], { relativeTo: this.route.parent });
-  }
+    select(user: User) {
+        this.router.navigate(['edit-user', user.userId], { relativeTo: this.route.parent });
+    }
 }

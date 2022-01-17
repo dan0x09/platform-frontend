@@ -1,7 +1,7 @@
 <app-toolbar title="Silo Datensatz"></app-toolbar>
 <div class="main" *ngIf="siloDatumWithUrls">
     <div class="row">
-        <app-silo-datum-metadata [data]=siloDatumWithUrls></app-silo-datum-metadata>
+        <app-silo-datum-metadata [data]="siloDatumWithUrls"></app-silo-datum-metadata>
         <app-silo-datum-map [data]="siloDatumWithUrls"></app-silo-datum-map>
     </div>
     <div class="row">

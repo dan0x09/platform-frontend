@@ -8,48 +8,46 @@ import { ConfigService } from 'src/app/services/config.service';
 import { Contractor, Customer } from '../../types/interfaces';
 
 @Component({
-  selector: 'app-customer-list',
-  templateUrl: './customer-list.component.html',
-  styleUrls: ['./customer-list.component.css']
+    selector: 'app-customer-list',
+    templateUrl: './customer-list.component.html',
+    styleUrls: ['./customer-list.component.css'],
 })
 export class CustomerListComponent implements AfterViewInit {
+    constructor() {}
 
-  constructor() { }
+    @Input() customers!: Customer[];
 
-  @Input() customers!: Customer[];
+    @Output('onSelect') onSelect: EventEmitter<Customer> = new EventEmitter<Customer>();
 
-  @Output('onSelect') onSelect: EventEmitter<Customer> = new EventEmitter<Customer>();
+    displayedColumns: string[] = ['name', 'streetAndNumber', 'zipCode', 'city', 'country'];
+    dataSource: MatTableDataSource<Customer>;
 
-  displayedColumns: string[] = ['name', 'streetAndNumber', 'zipCode', 'city', 'country'];
-  dataSource: MatTableDataSource<Customer>;
+    // MatPaginator Inputs
+    length = 100;
+    pageSize = 10;
+    pageSizeOptions: number[] = [25, 50, 100, 200];
 
-  // MatPaginator Inputs
-  length = 100;
-  pageSize = 10;
-  pageSizeOptions: number[] = [25, 50, 100, 200];
+    // MatPaginator Output
+    pageEvent: PageEvent;
+    @ViewChild(MatSort) sort: MatSort;
 
-  // MatPaginator Output
-  pageEvent: PageEvent;
-  @ViewChild(MatSort) sort: MatSort;
-  
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+    @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  ngAfterViewInit(): void {
-    this.dataSource = new MatTableDataSource<Customer>(this.customers);
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-  }
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
+    ngAfterViewInit(): void {
+        this.dataSource = new MatTableDataSource<Customer>(this.customers);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
     }
-  }
+    applyFilter(event: Event) {
+        const filterValue = (event.target as HTMLInputElement).value;
+        this.dataSource.filter = filterValue.trim().toLowerCase();
 
-  select(customer: Customer) {
-    this.onSelect.emit(customer);
-  }
+        if (this.dataSource.paginator) {
+            this.dataSource.paginator.firstPage();
+        }
+    }
 
+    select(customer: Customer) {
+        this.onSelect.emit(customer);
+    }
 }

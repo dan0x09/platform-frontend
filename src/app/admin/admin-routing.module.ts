@@ -19,84 +19,84 @@ import { EditUserComponent } from './pages/edit-user/edit-user.component';
 import { ViewSiloDatumComponent } from './pages/view-silo-datum/view-silo-datum.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: AdminComponent,
-    children: [
-      {
-        path: 'dashboard',
-        component: DashboardComponent
-      },
-      {
-        path: 'system',
-        component: SystemsComponent
-      },
-      {
-        path: 'contractor',
-        component: ContractorsComponent
-      },
-      {
-        path: 'create-contractor',
-        component: CreateContractorComponent
-      },
-      {
-        path: 'farmer',
-        component: FarmersComponent
-      },
-      {
-        path: 'create-farmer',
-        component: CreateFarmerComponent
-      },
-      {
-        path: 'user',
-        component: UsersComponent
-      },
-      {
-        path: 'silo-data',
-        component: SiloDataComponent
-      },
-      {
-        path: 'create-system',
-        component: CreateSystemComponent
-      },
-      {
-        path: 'edit-contractor/:contractorId',
-        component: EditContractorComponent
-      },
-      {
-        path: 'edit-farmer/:farmerId',
-        component: EditFarmerComponent
-      },
-      {
-        path: 'edit-system/:systemId',
-        component: EditSystemComponent
-      },
-      {
-        path: 'invitations',
-        component: InvitationsComponent
-      },
-      {
-        path: 'create-invitation',
-        component: CreateInvitationPageComponent
-      },
-      {
-        path: 'edit-user/:userId',
-        component: EditUserComponent
-      },
-      {
-        path: 'view-silo-datum/:siloDatumId',
-        component: ViewSiloDatumComponent
-      },
-      {
-        path: '**',
-        redirectTo: 'dashboard'
-      }
-    ]
-  }
+    {
+        path: '',
+        component: AdminComponent,
+        children: [
+            {
+                path: 'dashboard',
+                component: DashboardComponent,
+            },
+            {
+                path: 'system',
+                component: SystemsComponent,
+            },
+            {
+                path: 'contractor',
+                component: ContractorsComponent,
+            },
+            {
+                path: 'create-contractor',
+                component: CreateContractorComponent,
+            },
+            {
+                path: 'farmer',
+                component: FarmersComponent,
+            },
+            {
+                path: 'create-farmer',
+                component: CreateFarmerComponent,
+            },
+            {
+                path: 'user',
+                component: UsersComponent,
+            },
+            {
+                path: 'silo-data',
+                component: SiloDataComponent,
+            },
+            {
+                path: 'create-system',
+                component: CreateSystemComponent,
+            },
+            {
+                path: 'edit-contractor/:contractorId',
+                component: EditContractorComponent,
+            },
+            {
+                path: 'edit-farmer/:farmerId',
+                component: EditFarmerComponent,
+            },
+            {
+                path: 'edit-system/:systemId',
+                component: EditSystemComponent,
+            },
+            {
+                path: 'invitations',
+                component: InvitationsComponent,
+            },
+            {
+                path: 'create-invitation',
+                component: CreateInvitationPageComponent,
+            },
+            {
+                path: 'edit-user/:userId',
+                component: EditUserComponent,
+            },
+            {
+                path: 'view-silo-datum/:siloDatumId',
+                component: ViewSiloDatumComponent,
+            },
+            {
+                path: '**',
+                redirectTo: 'dashboard',
+            },
+        ],
+    },
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+    imports: [RouterModule.forChild(routes)],
+    exports: [RouterModule],
 })
-export class AdminRoutingModule { }
+export class AdminRoutingModule {}

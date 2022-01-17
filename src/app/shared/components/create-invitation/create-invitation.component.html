@@ -3,7 +3,7 @@
         <span class="mat-headline">E-Mail</span>
         <mat-form-field appearance="outline">
             <mat-label>E-Mail des Nutzers</mat-label>
-            <input formControlName="email" matInput placeholder="E-Mail angeben">
+            <input formControlName="email" matInput placeholder="E-Mail angeben" />
             <mat-hint>Hint</mat-hint>
         </mat-form-field>
     </div>
@@ -12,11 +12,11 @@
         <mat-form-field appearance="fill">
             <mat-label>Rolle auswählen</mat-label>
             <mat-select formControlName="role">
-              <mat-option *ngFor="let role of roles" [value]="role.id">
-                {{role.viewValue}}
-              </mat-option>
+                <mat-option *ngFor="let role of roles" [value]="role.id">
+                    {{ role.viewValue }}
+                </mat-option>
             </mat-select>
-          </mat-form-field>
+        </mat-form-field>
     </div>
     <div class="form-row" [class.hidden]="contractorOrganizationControlHidden">
         <span class="mat-headline">Lohnunternehmer</span>
@@ -24,9 +24,13 @@
             <mat-label>Lohnunternehmer auswählen</mat-label>
             <mat-select formControlName="contractorOrganization">
                 <mat-option *ngFor="let contractor of contractors" [value]="contractor.contractorId">
-                  {{contractor.name}} <span class="small-address">({{contractor.streetAndNumber}}, {{contractor.zipCode}}, {{contractor.city}}, {{contractor.country}})</span>
+                    {{ contractor.name }}
+                    <span class="small-address"
+                        >({{ contractor.streetAndNumber }}, {{ contractor.zipCode }}, {{ contractor.city }},
+                        {{ contractor.country }})</span
+                    >
                 </mat-option>
-              </mat-select>
+            </mat-select>
         </mat-form-field>
     </div>
     <div class="form-row" [class.hidden]="farmerOrganizationControlHidden">
@@ -35,9 +39,13 @@
             <mat-label>Landwirt auswählen</mat-label>
             <mat-select formControlName="farmerOrganization">
                 <mat-option *ngFor="let farmer of farmers" [value]="farmer.farmerId">
-                  {{farmer.name}} <span class="small-address">{{farmer.streetAndNumber}}, {{farmer.zipCode}}, {{farmer.city}}, {{farmer.country}}</span>
+                    {{ farmer.name }}
+                    <span class="small-address"
+                        >{{ farmer.streetAndNumber }}, {{ farmer.zipCode }}, {{ farmer.city }},
+                        {{ farmer.country }}</span
+                    >
                 </mat-option>
-              </mat-select>
+            </mat-select>
         </mat-form-field>
     </div>
     <div class="form-row">

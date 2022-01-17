@@ -4,19 +4,16 @@ import { ConfigService } from 'src/app/services/config.service';
 import { SiloDatum, SiloDatumWithUrls } from '../../types/interfaces';
 
 @Component({
-  selector: 'app-silo-datum-metadata',
-  templateUrl: './silo-datum-metadata.component.html',
-  styleUrls: ['./silo-datum-metadata.component.css']
+    selector: 'app-silo-datum-metadata',
+    templateUrl: './silo-datum-metadata.component.html',
+    styleUrls: ['./silo-datum-metadata.component.css'],
 })
 export class SiloDatumMetadataComponent implements OnInit {
+    constructor() {}
 
-  constructor(
-  ) { }
+    @Input() data!: SiloDatumWithUrls;
 
-  @Input() data!: SiloDatumWithUrls
-
-  ngOnInit(): void {
-    console.log(this.data)
-  }
-
+    ngOnInit(): void {
+        console.log(this.data);
+    }
 }
