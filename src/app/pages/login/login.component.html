@@ -1,4 +1,4 @@
-<h1>Einloggen</h1>
+<img id="logo" src="assets/images/logo.svg">
 <form [formGroup]="loginForm">
     <mat-form-field>
         <mat-label>E-Mail</mat-label>
@@ -8,7 +8,7 @@
         <mat-label>Passwort</mat-label>
         <input type="password" matInput formControlName="password">
     </mat-form-field>
-    <button mat-button (click)="submit()">Login</button>
+    <button mat-flat-button color="primary" (click)="submit()">Login</button>
 </form>
 <div>
     Passwort vergessen? <a routerLink="../request-password">Zurücksetzen</a>
