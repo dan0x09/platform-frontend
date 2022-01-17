@@ -85,10 +85,10 @@ export class InvitationListComponent {
     }
 
     getStatus(element: Invitation): string {
-        if (element.invalidated) {
-            return 'Zurückgenommen';
-        } else if (element.accepted) {
+        if (element.accepted) {
             return 'Angenommen';
+        } else if (element.invalidated) {
+            return 'Invalidiert';
         } else if (this.isInvitationExpired(element.expiresAt as unknown as string)) {
             return 'Abgelaufen';
         }

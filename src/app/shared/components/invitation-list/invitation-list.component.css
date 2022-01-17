@@ -20,12 +20,14 @@
     width: 100%;
 }
 .pending {
-    background: lightyellow;
+    background: khaki;
 }
 .expired,
 .invalidated {
-    background: crimson;
+    background: lightgray;
+    opacity: 0.5;
 }
 .accepted {
     background: seagreen;
+    opacity: 1;
 }
