@@ -42,7 +42,7 @@ export class InvitationListComponent {
     @ViewChild(MatPaginator) paginator: MatPaginator;
 
     ngAfterViewInit(): void {
-        this.invitations.sort(this.sortFunc);
+        this.invitations.sort(this.sortByDate);
         this.dataSource = new MatTableDataSource<Invitation>(this.invitations);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
@@ -61,7 +61,7 @@ export class InvitationListComponent {
         this.onSelect.emit(invitation);
     }
 
-    prettyRole(role: Role): string {
+    roleToString(role: Role): string {
         if (role === Role.OWNER) {
             return 'Owner';
         } else if (role === Role.ADMIN) {
@@ -72,7 +72,7 @@ export class InvitationListComponent {
         return 'Landwirt';
     }
 
-    prettyDate(dateString: string): string {
+    formatDate(dateString: string): string {
         const date = new Date(dateString);
         if (date > this.now) {
             return date.toLocaleString();
@@ -84,15 +84,16 @@ export class InvitationListComponent {
         return date < this.now;
     }
 
-    getStatus(element: Invitation): string {
-        if (element.accepted) {
+    getInvitationStatus(invitation: Invitation): string {
+        if (invitation.accepted) {
             return 'Angenommen';
-        } else if (element.invalidated) {
+        } else if (invitation.invalidated) {
             return 'Invalidiert';
-        } else if (this.isInvitationExpired(element.expiresAt as unknown as string)) {
+        } else if (this.isInvitationExpired(invitation.expiresAt as unknown as string)) {
             return 'Abgelaufen';
+        } else {
+            return 'Ausstehend';
         }
-        return 'Ausstehend';
     }
 
     visitUser(element: Invitation) {
@@ -102,22 +103,27 @@ export class InvitationListComponent {
     invalidate(element: Invitation) {
         this.http
             .post<Invitation>(this.config.getUrl(`/invitation/user/${element.invitationId}/invalidate`), {})
-            .subscribe((invitation: Invitation) => {
-                const newList = this.dataSource.data.filter((x) => x.invitationId !== element.invitationId);
-                newList.push(invitation);
-                newList.sort(this.sortFunc);
-                this.dataSource.data = newList;
-            }, console.error);
+            .subscribe({
+                next: (invitation: Invitation) => {
+                    const newList = this.dataSource.data.filter((x) => x.invitationId !== element.invitationId);
+                    newList.push(invitation);
+                    newList.sort(this.sortByDate);
+                    this.dataSource.data = newList;
+                },
+                error: (e) => console.error(e),
+            });
     }
 
-    sortFunc(a: Invitation, b: Invitation) {
+    sortByDate(a: Invitation, b: Invitation, ascendingOrder = false) {
         const aDate = new Date(a.expiresAt);
         const bDate = new Date(b.expiresAt);
-        if (aDate < bDate) {
-            return 1;
-        } else if (aDate > bDate) {
+
+        if ((aDate < bDate && ascendingOrder) || (aDate > bDate && !ascendingOrder)) {
             return -1;
+        } else if ((aDate > bDate && ascendingOrder) || (aDate < bDate && !ascendingOrder)) {
+            return 1;
+        } else {
+            return 0;
         }
-        return 0;
     }
 }
