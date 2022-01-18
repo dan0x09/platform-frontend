@@ -1,6 +1,6 @@
-# PlatformFrontend
+# Frontend of Silage Control Platform
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.2.0.
+This project contains the frontend for the Silage Control Platform. It uses [Angular](https://angular.io/) to provide a web application for farmers and contractors. Owners and admins are users which manage the platform, e.g., the invitation of new users.
 
 ## Development server
 
