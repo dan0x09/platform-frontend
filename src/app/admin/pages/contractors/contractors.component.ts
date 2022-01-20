@@ -1,16 +1,9 @@
 import { HttpClient } from '@angular/common/http';
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator, PageEvent } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
-import { Title } from '@angular/platform-browser';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { pipe } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { ContractorComponent } from 'src/app/contractor/contractor.component';
 import { ConfigService } from 'src/app/services/config.service';
 import { ToolbarService } from 'src/app/services/toolbar.service';
-import { Contractor, Customer, Farmer } from 'src/app/shared/types/interfaces';
+import { Contractor, Customer } from 'src/app/shared/types/interfaces';
 
 @Component({
     selector: 'app-contractors',

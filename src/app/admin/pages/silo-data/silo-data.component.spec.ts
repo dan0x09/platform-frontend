@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { SiloDataComponent } from './silo-data.component';
 
 describe('SiloDataComponent', () => {

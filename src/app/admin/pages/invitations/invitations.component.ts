@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConfigService } from 'src/app/services/config.service';
-import { Invitation, Role } from 'src/app/shared/types/interfaces';
+import { Invitation } from 'src/app/shared/types/interfaces';
 
 @Component({
     selector: 'app-invitations',

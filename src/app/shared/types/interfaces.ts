@@ -1,5 +1,3 @@
-import { FarmerComponent } from 'src/app/farmer/farmer.component';
-
 export enum Subject {
     USER_AUTH = 'user_authentication',
     ROBOT_AUTH = 'robot_authentication',

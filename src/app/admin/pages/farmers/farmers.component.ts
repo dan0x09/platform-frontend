@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { Title } from '@angular/platform-browser';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ConfigService } from 'src/app/services/config.service';
 import { ToolbarService } from 'src/app/services/toolbar.service';
 import { Customer, Farmer } from 'src/app/shared/types/interfaces';

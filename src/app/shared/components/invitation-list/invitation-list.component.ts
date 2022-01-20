@@ -1,12 +1,11 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { PageEvent, MatPaginator } from '@angular/material/paginator';
+import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConfigService } from 'src/app/services/config.service';
-import { Customer, Invitation, Role } from '../../types/interfaces';
+import { Invitation, Role } from '../../types/interfaces';
 
 @Component({
     selector: 'app-invitation-list',

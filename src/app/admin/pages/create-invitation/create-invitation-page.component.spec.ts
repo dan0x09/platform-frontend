@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { CreateInvitationPageComponent } from './create-invitation-page.component';
 
 describe('CreateInvitationComponent', () => {

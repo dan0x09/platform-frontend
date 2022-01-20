@@ -1,6 +1,5 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { NgModule } from '@angular/core';
 import { ContractorRoutingModule } from './contractor-routing.module';
 import { ContractorComponent } from './contractor.component';
 

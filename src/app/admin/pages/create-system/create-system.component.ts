@@ -2,8 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { filter, map, startWith } from 'rxjs/operators';
 import { ConfigService } from 'src/app/services/config.service';
 import { Contractor } from 'src/app/shared/types/interfaces';
 

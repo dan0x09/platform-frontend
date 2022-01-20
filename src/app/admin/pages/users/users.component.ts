@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ConfigService } from 'src/app/services/config.service';
 import { ToolbarService } from 'src/app/services/toolbar.service';
-import { Customer, Contractor, User } from 'src/app/shared/types/interfaces';
+import { User } from 'src/app/shared/types/interfaces';
 
 @Component({
     selector: 'app-users',

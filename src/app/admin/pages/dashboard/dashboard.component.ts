@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Title } from '@angular/platform-browser';
 import { ToolbarService } from 'src/app/services/toolbar.service';
 import { Card } from './card';
 
