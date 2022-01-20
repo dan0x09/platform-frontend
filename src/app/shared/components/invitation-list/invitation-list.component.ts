@@ -95,8 +95,8 @@ export class InvitationListComponent {
         }
     }
 
-    visitUser(element: Invitation) {
-        this.router.navigate(['user'], { relativeTo: this.route.parent });
+    visitUser(invitation: Invitation) {
+        this.router.navigate([`admin/edit-user/${invitation.userId}`]);
     }
 
     invalidate(element: Invitation) {
