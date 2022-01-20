@@ -44,7 +44,7 @@
                 >
                     Zum Benutzer
                 </button>
-                <span *ngIf="element.invalidated"> - </span>
+                <span *ngIf="element.invalidated && !element.accepted"> - </span>
             </td>
         </ng-container>
 
