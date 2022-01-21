@@ -5,6 +5,10 @@ form {
     padding-bottom: 25px;
 }
 
+mat-form-field {
+    padding-bottom: 15px;
+}
+
 :host {
     width: 100%;
     height: 100%;
@@ -12,6 +16,10 @@ form {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.error-hint {
+    color: red;
 }
 
 #logo {

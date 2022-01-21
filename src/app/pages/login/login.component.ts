@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { ConfigService } from '../../services/config.service';
@@ -25,9 +25,15 @@ export class LoginComponent {
         password: new FormControl('', [Validators.required, Validators.minLength(7)]),
     });
 
+    submitted: boolean = false;
     loginError: boolean = false;
 
+    get f(): { [key: string]: AbstractControl } {
+        return this.loginForm.controls;
+    }
+
     submit() {
+        this.submitted = true;
         this.loginError = false;
         if (this.loginForm.valid) {
             this.http.post(this.config.getUrl('/user/login'), this.loginForm.value).subscribe(
@@ -46,7 +52,7 @@ export class LoginComponent {
                             this.router.navigate(['farmer']);
                     }
                 },
-                (err) => {
+                (error) => {
                     this.loginError = true;
                 }
             );
