@@ -1,0 +1,14 @@
+@import '~@angular/material/theming';
+@include mat-core();
+
+$silage-control-theme-primary: mat-palette($mat-light-green);
+$silage-control-theme-accent: mat-palette($mat-lime, A200, A100, A400);
+$silage-control-theme-warn: mat-palette($mat-red);
+
+$silage-control-theme: mat-light-theme(
+    $silage-control-theme-primary,
+    $silage-control-theme-accent,
+    $silage-control-theme-warn
+);
+
+@include angular-material-theme($silage-control-theme);
