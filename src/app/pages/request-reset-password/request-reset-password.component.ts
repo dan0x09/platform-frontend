@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/services/auth.service';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ConfigService } from 'src/app/services/config.service';
 
 @Component({
@@ -11,7 +10,14 @@ import { ConfigService } from 'src/app/services/config.service';
     styleUrls: ['./request-reset-password.component.css'],
 })
 export class RequestResetPasswordComponent {
-    constructor(private formBuilder: FormBuilder, private http: HttpClient, private config: ConfigService) {}
+    constructor(
+        private formBuilder: FormBuilder,
+        private http: HttpClient,
+        private router: Router,
+        private config: ConfigService
+    ) {}
+
+    submitted: boolean = false;
 
     form: FormGroup = this.formBuilder.group({
         email: new FormControl('', [Validators.required, Validators.email]),
@@ -20,8 +26,14 @@ export class RequestResetPasswordComponent {
     error: boolean = false;
     success: boolean = false;
 
+    get f(): { [key: string]: AbstractControl } {
+        return this.form.controls;
+    }
+
     submit() {
         this.error = false;
+        this.submitted = true;
+
         if (this.form.valid) {
             this.http.post<any>(this.config.getUrl('/user/request-password'), this.form.value).subscribe(
                 (res) => {
@@ -34,5 +46,9 @@ export class RequestResetPasswordComponent {
         } else {
             this.error = true;
         }
+    }
+
+    backToLogin() {
+        this.router.navigate(['']);
     }
 }
