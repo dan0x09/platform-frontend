@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { ConfigService } from 'src/app/services/config.service';
 import { Role, UserInvitation } from 'src/app/shared/types/interfaces';
+import { AlertService } from 'src/app/services/alert.service';
 
 @Component({
     selector: 'app-create-invitation-page',
@@ -16,7 +17,8 @@ export class CreateInvitationPageComponent implements OnInit {
         private http: HttpClient,
         private config: ConfigService,
         private router: Router,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
+        private alertService: AlertService
     ) {}
 
     allowedRoles: Role[];
@@ -33,8 +35,12 @@ export class CreateInvitationPageComponent implements OnInit {
     }
 
     invite(invitation: UserInvitation) {
-        this.http.post(this.config.getUrl('/invitation/user/'), invitation).subscribe((result: any) => {
-            this.router.navigate(['invitations'], { relativeTo: this.route.parent });
-        }, console.error);
+        this.alertService.clear();
+        this.http.post(this.config.getUrl('/invitation/user/'), invitation).subscribe(
+            (result: any) => {
+                this.router.navigate(['invitations'], { relativeTo: this.route.parent });
+            },
+            (error) => this.alertService.error(error)
+        );
     }
 }
