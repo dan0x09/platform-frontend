@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { ConfigService } from '../../services/config.service';
+import { AlertService } from '../../services/alert.service';
 import { Role } from 'src/app/shared/types/interfaces';
 
 @Component({
@@ -17,7 +18,8 @@ export class LoginComponent {
         private http: HttpClient,
         private router: Router,
         private auth: AuthService,
-        private config: ConfigService
+        private config: ConfigService,
+        private alertService: AlertService
     ) {}
 
     loginForm: FormGroup = this.formBuilder.group({
@@ -25,13 +27,20 @@ export class LoginComponent {
         password: new FormControl('', [Validators.required, Validators.minLength(7)]),
     });
 
-    loginError: boolean = false;
+    submitted: boolean = false;
+
+    get f(): { [key: string]: AbstractControl } {
+        return this.loginForm.controls;
+    }
 
     submit() {
-        this.loginError = false;
+        this.submitted = true;
+        this.alertService.clear();
+
         if (this.loginForm.valid) {
             this.http.post(this.config.getUrl('/user/login'), this.loginForm.value).subscribe(
                 () => {
+                    window.location.reload();
                     const role = this.auth.getDecodedToken().role;
                     switch (role) {
                         case Role.ADMIN:
@@ -46,12 +55,10 @@ export class LoginComponent {
                             this.router.navigate(['farmer']);
                     }
                 },
-                (err) => {
-                    this.loginError = true;
+                (error) => {
+                    this.alertService.error(error);
                 }
             );
-        } else {
-            this.loginError = true;
         }
     }
 }
