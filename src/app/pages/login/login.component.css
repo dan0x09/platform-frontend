@@ -1,8 +1,9 @@
 form {
     display: flex;
     flex-direction: column;
-    max-width: 90%;
+    max-width: 70%;
     padding-bottom: 25px;
+    margin: auto;
 }
 
 mat-form-field {
@@ -20,6 +21,10 @@ mat-form-field {
 
 .error-hint {
     color: red;
+}
+
+.login-container {
+    text-align: center;
 }
 
 #logo {
