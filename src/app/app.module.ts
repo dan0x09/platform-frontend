@@ -12,10 +12,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoginComponent } from './pages/login/login.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { ErrorInterceptor } from './interceptors/error.interceptor';
 import { SharedModule } from './shared/shared.module';
 import { SignupComponent } from './pages/signup/signup.component';
 import { RequestResetPasswordComponent } from './pages/request-reset-password/request-reset-password.component';
 import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
+import { AlertComponent } from './shared/components/alert/alert.component';
 
 @NgModule({
     declarations: [
@@ -24,6 +26,7 @@ import { ResetPasswordComponent } from './pages/reset-password/reset-password.co
         SignupComponent,
         RequestResetPasswordComponent,
         ResetPasswordComponent,
+        AlertComponent,
     ],
     imports: [
         BrowserModule,
@@ -44,6 +47,7 @@ import { ResetPasswordComponent } from './pages/reset-password/reset-password.co
             useClass: AuthInterceptor,
             multi: true,
         },
+        { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     ],
     bootstrap: [AppComponent],
 })
