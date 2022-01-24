@@ -13,11 +13,14 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoginComponent } from './pages/login/login.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { SharedModule } from './shared/shared.module';
 import { SignupComponent } from './pages/signup/signup.component';
 import { RequestResetPasswordComponent } from './pages/request-reset-password/request-reset-password.component';
 import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
 import { AlertComponent } from './shared/components/alert/alert.component';
+import { SidenavComponent } from './admin/components/sidenav/sidenav.component';
+import { SidenavService } from './services/sidenav.service';
 
 @NgModule({
     declarations: [
@@ -27,6 +30,7 @@ import { AlertComponent } from './shared/components/alert/alert.component';
         RequestResetPasswordComponent,
         ResetPasswordComponent,
         AlertComponent,
+        SidenavComponent,
     ],
     imports: [
         BrowserModule,
@@ -35,6 +39,7 @@ import { AlertComponent } from './shared/components/alert/alert.component';
         MatFormFieldModule,
         MatInputModule,
         MatIconModule,
+        MatSidenavModule,
         MatButtonModule,
         HttpClientModule,
         FormsModule,
@@ -48,6 +53,7 @@ import { AlertComponent } from './shared/components/alert/alert.component';
             multi: true,
         },
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+        SidenavService,
     ],
     bootstrap: [AppComponent],
 })
