@@ -48,7 +48,7 @@ export class SidenavComponent {
         {
             title: 'Nutzer',
             icon: 'person',
-            uri: 'user',
+            uri: 'users',
         },
         {
             title: 'Einladungen',

@@ -29,7 +29,7 @@ export class DashboardComponent implements OnInit {
         },
         {
             title: 'Nutzer',
-            uri: 'user',
+            uri: 'users',
         },
         {
             title: 'Einladungen',

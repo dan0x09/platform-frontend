@@ -48,7 +48,7 @@ const routes: Routes = [
                 component: CreateFarmComponent,
             },
             {
-                path: 'user',
+                path: 'users',
                 component: UsersComponent,
             },
             {
