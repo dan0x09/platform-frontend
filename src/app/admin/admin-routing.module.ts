@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AdminComponent } from './admin.component';
 import { ContractorsComponent } from './pages/contractors/contractors.component';
 import { CreateContractorComponent } from './pages/create-contractor/create-contractor.component';
-import { CreateFarmerComponent } from './pages/create-farmer/create-farmer.component';
+import { CreateFarmComponent } from './pages/create-farm/create-farm.component';
 import { CreateInvitationPageComponent } from './pages/create-invitation/create-invitation-page.component';
 import { CreateSystemComponent } from './pages/create-system/create-system.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
@@ -44,8 +44,8 @@ const routes: Routes = [
                 component: FarmersComponent,
             },
             {
-                path: 'create-farmer',
-                component: CreateFarmerComponent,
+                path: 'create-farm',
+                component: CreateFarmComponent,
             },
             {
                 path: 'user',

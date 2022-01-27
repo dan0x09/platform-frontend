@@ -20,7 +20,7 @@ export class CreateContractorComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
-        this.toolbarService.setTitle('Lohnunternehmer erstellen');
+        this.toolbarService.setTitle('Lohnunternehmen erstellen');
     }
 
     submit(data: CreateCustomer) {

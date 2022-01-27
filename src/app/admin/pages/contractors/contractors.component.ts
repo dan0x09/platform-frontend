@@ -26,7 +26,7 @@ export class ContractorsComponent implements OnInit, AfterViewInit {
     }
 
     ngOnInit(): void {
-        this.toolbarService.setTitle('Lohnunternehmer');
+        this.toolbarService.setTitle('Lohnunternehmen');
     }
 
     ngAfterViewInit(): void {

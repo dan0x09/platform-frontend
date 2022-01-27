@@ -22,11 +22,11 @@ export class FarmersComponent implements OnInit, AfterViewInit {
     customers: Customer[];
 
     visitCreate() {
-        this.router.navigate(['create-farmer'], { relativeTo: this.route.parent });
+        this.router.navigate(['create-farm'], { relativeTo: this.route.parent });
     }
 
     ngOnInit() {
-        this.toolbarService.setTitle('Landwirte');
+        this.toolbarService.setTitle('Betriebe');
     }
 
     ngAfterViewInit(): void {

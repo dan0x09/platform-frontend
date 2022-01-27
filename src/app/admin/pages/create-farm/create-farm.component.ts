@@ -6,11 +6,11 @@ import { ToolbarService } from 'src/app/services/toolbar.service';
 import { CreateCustomer } from 'src/app/shared/types/interfaces';
 
 @Component({
-    selector: 'app-create-farmer',
-    templateUrl: './create-farmer.component.html',
-    styleUrls: ['./create-farmer.component.css'],
+    selector: 'app-create-farm',
+    templateUrl: './create-farm.component.html',
+    styleUrls: ['./create-farm.component.css'],
 })
-export class CreateFarmerComponent implements OnInit {
+export class CreateFarmComponent implements OnInit {
     constructor(
         private http: HttpClient,
         private config: ConfigService,
@@ -20,7 +20,7 @@ export class CreateFarmerComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
-        this.toolbarService.setTitle('Landwirt erstellen');
+        this.toolbarService.setTitle('Betrieb anlegen');
     }
 
     submit(data: CreateCustomer) {

@@ -15,7 +15,7 @@ import { AdminComponent } from './admin.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { ContractorsComponent } from './pages/contractors/contractors.component';
 import { CreateContractorComponent } from './pages/create-contractor/create-contractor.component';
-import { CreateFarmerComponent } from './pages/create-farmer/create-farmer.component';
+import { CreateFarmComponent } from './pages/create-farm/create-farm.component';
 import { CreateInvitationPageComponent } from './pages/create-invitation/create-invitation-page.component';
 import { CreateSystemComponent } from './pages/create-system/create-system.component';
 import { CardComponent } from './pages/dashboard/card/card.component';
@@ -42,7 +42,7 @@ import { ViewSiloDatumComponent } from './pages/view-silo-datum/view-silo-datum.
         SiloDataComponent,
         UsersComponent,
         CreateContractorComponent,
-        CreateFarmerComponent,
+        CreateFarmComponent,
         ToolbarComponent,
         CreateSystemComponent,
         EditContractorComponent,

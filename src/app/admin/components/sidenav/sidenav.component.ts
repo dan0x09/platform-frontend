@@ -36,12 +36,12 @@ export class SidenavComponent {
             uri: 'system',
         },
         {
-            title: 'Landwirte',
+            title: 'Betriebe',
             icon: 'agriculture',
             uri: 'farmer',
         },
         {
-            title: 'Lohnunternehmer',
+            title: 'Lohnunternehmen',
             icon: 'business',
             uri: 'contractor',
         },

@@ -20,11 +20,11 @@ export class DashboardComponent implements OnInit {
             uri: 'system',
         },
         {
-            title: 'Landwirte',
+            title: 'Betriebe',
             uri: 'farmer',
         },
         {
-            title: 'Lohnunternehmer',
+            title: 'Lohnunternehmen',
             uri: 'contractor',
         },
         {
