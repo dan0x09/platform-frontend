@@ -25,7 +25,7 @@ export class DashboardComponent implements OnInit {
         },
         {
             title: 'Lohnunternehmen',
-            uri: 'contractor',
+            uri: 'contractors',
         },
         {
             title: 'Nutzer',

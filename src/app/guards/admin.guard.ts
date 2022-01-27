@@ -23,7 +23,7 @@ export class AdminGuard implements CanActivate {
                 case Role.OWNER:
                     return true;
                 case Role.CONTRACTOR:
-                    this.router.navigate(['contractor']);
+                    this.router.navigate(['contractors']);
                     return false;
                 case Role.FARMER:
                     this.router.navigate(['farmer']);

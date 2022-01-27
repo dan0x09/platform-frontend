@@ -16,7 +16,7 @@ const routes: Routes = [
         canActivate: [AdminGuard],
     },
     {
-        path: 'contractor',
+        path: 'contractors',
         loadChildren: () => import('./contractor/contractor.module').then((m) => m.ContractorModule),
         canActivate: [ContractorGuard],
     },

@@ -43,7 +43,7 @@ export class SidenavComponent {
         {
             title: 'Lohnunternehmen',
             icon: 'business',
-            uri: 'contractor',
+            uri: 'contractors',
         },
         {
             title: 'Nutzer',

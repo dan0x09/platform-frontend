@@ -53,7 +53,7 @@ export class EditContractorComponent implements OnInit {
         this.http
             .patch<Contractor>(this.config.getUrl(`/contractor/${customer.customerId}`), body)
             .subscribe(
-                (farmer: Contractor) => this.router.navigate(['contractor'], { relativeTo: this.route.parent }),
+                (farmer: Contractor) => this.router.navigate(['contractors'], { relativeTo: this.route.parent }),
                 console.error
             );
     }

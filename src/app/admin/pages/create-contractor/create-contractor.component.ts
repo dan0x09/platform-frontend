@@ -26,6 +26,6 @@ export class CreateContractorComponent implements OnInit {
     submit(data: CreateCustomer) {
         this.http
             .post<any>(this.config.getUrl('/contractor/'), data)
-            .subscribe(() => this.router.navigate(['contractor'], { relativeTo: this.route.parent }), console.error);
+            .subscribe(() => this.router.navigate(['contractors'], { relativeTo: this.route.parent }), console.error);
     }
 }
