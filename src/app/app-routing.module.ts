@@ -21,7 +21,7 @@ const routes: Routes = [
         canActivate: [ContractorGuard],
     },
     {
-        path: 'farmer',
+        path: 'farms',
         loadChildren: () => import('./farmer/farmer.module').then((m) => m.FarmerModule),
         canActivate: [FarmerGuard],
     },

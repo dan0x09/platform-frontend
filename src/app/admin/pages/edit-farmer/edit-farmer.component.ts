@@ -51,7 +51,7 @@ export class EditFarmerComponent implements OnInit {
         this.http
             .patch<Farmer>(this.config.getUrl(`/farmer/${customer.customerId}`), body)
             .subscribe(
-                (farmer: Farmer) => this.router.navigate(['farmer'], { relativeTo: this.route.parent }),
+                (farmer: Farmer) => this.router.navigate(['farms'], { relativeTo: this.route.parent }),
                 console.error
             );
     }

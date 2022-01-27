@@ -17,11 +17,11 @@ export class DashboardComponent implements OnInit {
         },
         {
             title: 'Systeme',
-            uri: 'system',
+            uri: 'systems',
         },
         {
             title: 'Betriebe',
-            uri: 'farmer',
+            uri: 'farms',
         },
         {
             title: 'Lohnunternehmen',

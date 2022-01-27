@@ -52,7 +52,7 @@ export class LoginComponent {
                             break;
                         case Role.FARMER:
                         default:
-                            this.router.navigate(['farmer']);
+                            this.router.navigate(['farms']);
                     }
                 },
                 (error) => {

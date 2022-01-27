@@ -28,7 +28,7 @@ const routes: Routes = [
                 component: DashboardComponent,
             },
             {
-                path: 'system',
+                path: 'systems',
                 component: SystemsComponent,
             },
             {
@@ -40,7 +40,7 @@ const routes: Routes = [
                 component: CreateContractorComponent,
             },
             {
-                path: 'farmer',
+                path: 'farms',
                 component: FarmersComponent,
             },
             {

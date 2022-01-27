@@ -33,12 +33,12 @@ export class SidenavComponent {
         {
             title: 'Systeme',
             icon: 'developer_board',
-            uri: 'system',
+            uri: 'systems',
         },
         {
             title: 'Betriebe',
             icon: 'agriculture',
-            uri: 'farmer',
+            uri: 'farms',
         },
         {
             title: 'Lohnunternehmen',
