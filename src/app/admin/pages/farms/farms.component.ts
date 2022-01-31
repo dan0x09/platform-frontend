@@ -3,14 +3,14 @@ import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConfigService } from 'src/app/services/config.service';
 import { ToolbarService } from 'src/app/services/toolbar.service';
-import { Customer, Farmer } from 'src/app/shared/types/interfaces';
+import { Customer, Farm } from 'src/app/shared/types/interfaces';
 
 @Component({
-    selector: 'app-farmers',
-    templateUrl: './farmers.component.html',
-    styleUrls: ['./farmers.component.css'],
+    selector: 'app-farms',
+    templateUrl: './farms.component.html',
+    styleUrls: ['./farms.component.css'],
 })
-export class FarmersComponent implements OnInit, AfterViewInit {
+export class FarmsComponent implements OnInit, AfterViewInit {
     constructor(
         private router: Router,
         private route: ActivatedRoute,
@@ -30,21 +30,21 @@ export class FarmersComponent implements OnInit, AfterViewInit {
     }
 
     ngAfterViewInit(): void {
-        this.http.get<Farmer[]>(this.config.getUrl('/farmer/')).subscribe((farmers: Farmer[]) => {
-            this.customers = farmers.map((farmer: Farmer) => {
+        this.http.get<Farm[]>(this.config.getUrl('/farm/')).subscribe((farms: Farm[]) => {
+            this.customers = farms.map((farm: Farm) => {
                 const customer: Customer = {
-                    customerId: farmer.farmerId,
-                    city: farmer.city,
-                    name: farmer.name,
-                    country: farmer.country,
-                    streetAndNumber: farmer.streetAndNumber,
-                    zipCode: farmer.zipCode,
+                    customerId: farm.farmId,
+                    city: farm.city,
+                    name: farm.name,
+                    country: farm.country,
+                    streetAndNumber: farm.streetAndNumber,
+                    zipCode: farm.zipCode,
                 };
                 return customer;
             });
         }, console.error);
     }
     select(customer: Customer) {
-        this.router.navigate(['edit-farmer', customer.customerId], { relativeTo: this.route.parent });
+        this.router.navigate(['edit-farm', customer.customerId], { relativeTo: this.route.parent });
     }
 }

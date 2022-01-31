@@ -25,7 +25,7 @@ export class CreateFarmComponent implements OnInit {
 
     submit(data: CreateCustomer) {
         this.http
-            .post<any>(this.config.getUrl('/farmer/'), data)
+            .post<any>(this.config.getUrl('/farm/'), data)
             .subscribe(() => this.router.navigate(['farms'], { relativeTo: this.route.parent }), console.error);
     }
 }

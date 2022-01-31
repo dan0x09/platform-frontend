@@ -58,7 +58,6 @@ export class SidenavComponent {
     ];
 
     navigateTo(uri: string) {
-        console.log('naviate to', uri);
         this.router.navigate([`admin/${uri}`]);
     }
 }

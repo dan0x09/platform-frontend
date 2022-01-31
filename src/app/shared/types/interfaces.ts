@@ -27,8 +27,8 @@ export interface Customer extends CreateCustomer {
     customerId: number;
 }
 
-export interface Farmer extends CreateCustomer {
-    farmerId: number;
+export interface Farm extends CreateCustomer {
+    farmId: number;
 }
 
 export interface Contractor extends CreateCustomer {

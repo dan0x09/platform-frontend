@@ -3,7 +3,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { ConfigService } from 'src/app/services/config.service';
-import { Contractor, Farmer, Role, User, UserInvitation } from '../../types/interfaces';
+import { Contractor, Farm, Role, User, UserInvitation } from '../../types/interfaces';
 
 @Component({
     selector: 'app-create-invitation',
@@ -47,8 +47,8 @@ export class CreateInvitationComponent implements OnInit {
     contractors: Contractor[];
     filteredContractors: Observable<Contractor[]>;
 
-    farmers: Farmer[];
-    filteredFarmers: Observable<Farmer[]>;
+    farms: Farm[];
+    filteredFarms: Observable<Farm[]>;
 
     ngOnInit(): void {
         this.roles = this.baseRoles.filter((role: { id: Role; viewValue: string }) =>
@@ -67,8 +67,8 @@ export class CreateInvitationComponent implements OnInit {
                 this.farmerOrganizationControlHidden = false;
             }
         });
-        this.http.get<Farmer[]>(this.config.getUrl('/farmer/')).subscribe((farmers: Farmer[]) => {
-            this.farmers = farmers;
+        this.http.get<Farm[]>(this.config.getUrl('/farmer/')).subscribe((farms: Farm[]) => {
+            this.farms = farms;
             this.http.get<Contractor[]>(this.config.getUrl('/contractor/')).subscribe((contractors: Contractor[]) => {
                 this.contractors = contractors;
             }, console.error);

@@ -38,7 +38,7 @@
         <mat-form-field>
             <mat-label>Betrieb auswählen</mat-label>
             <mat-select formControlName="farmerOrganization">
-                <mat-option *ngFor="let farmer of farmers" [value]="farmer.farmerId">
+                <mat-option *ngFor="let farm of farms" [value]="farm.farmId">
                     {{ farmer.name }}
                     <span class="small-address"
                         >{{ farmer.streetAndNumber }}, {{ farmer.zipCode }}, {{ farmer.city }},

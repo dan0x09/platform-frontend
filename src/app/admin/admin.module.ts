@@ -21,10 +21,10 @@ import { CreateSystemComponent } from './pages/create-system/create-system.compo
 import { CardComponent } from './pages/dashboard/card/card.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { EditContractorComponent } from './pages/edit-contractor/edit-contractor.component';
-import { EditFarmerComponent } from './pages/edit-farmer/edit-farmer.component';
+import { EditFarmComponent } from './pages/edit-farm/edit-farm.component';
 import { EditSystemComponent } from './pages/edit-system/edit-system.component';
 import { EditUserComponent } from './pages/edit-user/edit-user.component';
-import { FarmersComponent } from './pages/farmers/farmers.component';
+import { FarmsComponent } from './pages/farms/farms.component';
 import { InvitationsComponent } from './pages/invitations/invitations.component';
 import { SiloDataComponent } from './pages/silo-data/silo-data.component';
 import { SystemsComponent } from './pages/systems/systems.component';
@@ -38,7 +38,7 @@ import { ViewSiloDatumComponent } from './pages/view-silo-datum/view-silo-datum.
         CardComponent,
         SystemsComponent,
         ContractorsComponent,
-        FarmersComponent,
+        FarmsComponent,
         SiloDataComponent,
         UsersComponent,
         CreateContractorComponent,
@@ -46,7 +46,7 @@ import { ViewSiloDatumComponent } from './pages/view-silo-datum/view-silo-datum.
         ToolbarComponent,
         CreateSystemComponent,
         EditContractorComponent,
-        EditFarmerComponent,
+        EditFarmComponent,
         EditSystemComponent,
         InvitationsComponent,
         CreateInvitationPageComponent,
