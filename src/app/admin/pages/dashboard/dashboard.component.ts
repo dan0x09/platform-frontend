@@ -12,8 +12,8 @@ export class DashboardComponent implements OnInit {
 
     cards: Card[] = [
         {
-            title: 'Silage Daten',
-            uri: 'silo-data',
+            title: 'Silage',
+            uri: 'silage-heaps',
         },
         {
             title: 'Systeme',

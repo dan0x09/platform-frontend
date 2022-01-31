@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import { SiloDatum, SiloDatumWithUrls } from '../../types/interfaces';
+import { SilageHeap, SilageHeapWithUrls } from '../../types/interfaces';
 import { Feature, Map, View } from 'ol';
 import Tile from 'ol/layer/Tile';
 import OSM from 'ol/source/OSM';
@@ -12,21 +12,21 @@ import Icon from 'ol/style/Icon';
 import Layer from 'ol/layer/Layer';
 
 @Component({
-    selector: 'app-silo-datum-map',
-    templateUrl: './silo-datum-map.component.html',
-    styleUrls: ['./silo-datum-map.component.css'],
+    selector: 'app-silage-heap-map',
+    templateUrl: './silage-heap-map.component.html',
+    styleUrls: ['./silage-heap-map.component.css'],
 })
-export class SiloDatumMapComponent implements OnInit, AfterViewInit {
+export class SilageHeapMapComponent implements OnInit, AfterViewInit {
     constructor() {}
 
-    @Input() data!: SiloDatumWithUrls;
+    @Input() data!: SilageHeapWithUrls;
 
     @ViewChild('mapContainer') mapContainer: ElementRef<HTMLElement>;
 
     ngOnInit(): void {}
 
     ngAfterViewInit() {
-        const [lat, lon] = this.data.siloDatum.gpsLocation.split(',').map(parseFloat);
+        const [lat, lon] = this.data.silageHeap.gpsLocation.split(',').map(parseFloat);
         const lonLat = transform([lon, lat], 'EPSG:4326', 'EPSG:3857');
         const map = new Map({
             target: this.mapContainer.nativeElement,

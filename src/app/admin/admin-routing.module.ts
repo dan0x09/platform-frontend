@@ -13,10 +13,10 @@ import { EditSystemComponent } from './pages/edit-system/edit-system.component';
 import { EditUserComponent } from './pages/edit-user/edit-user.component';
 import { FarmsComponent } from './pages/farms/farms.component';
 import { InvitationsComponent } from './pages/invitations/invitations.component';
-import { SiloDataComponent } from './pages/silo-data/silo-data.component';
+import { SilageHeapsComponent } from './pages/silage-heaps/silage-heaps.component';
 import { SystemsComponent } from './pages/systems/systems.component';
 import { UsersComponent } from './pages/users/users.component';
-import { ViewSiloDatumComponent } from './pages/view-silo-datum/view-silo-datum.component';
+import { ViewSilageHeapComponent } from './pages/view-silage-heap/view-silage-heap.component';
 
 const routes: Routes = [
     {
@@ -52,8 +52,8 @@ const routes: Routes = [
                 component: UsersComponent,
             },
             {
-                path: 'silo-data',
-                component: SiloDataComponent,
+                path: 'silage-heaps',
+                component: SilageHeapsComponent,
             },
             {
                 path: 'create-system',
@@ -84,8 +84,8 @@ const routes: Routes = [
                 component: EditUserComponent,
             },
             {
-                path: 'view-silo-datum/:siloDatumId',
-                component: ViewSiloDatumComponent,
+                path: 'view-silage-heap/:silageHeapId',
+                component: ViewSilageHeapComponent,
             },
             {
                 path: '**',

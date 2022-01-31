@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SiloDatumMapComponent } from './silo-datum-map.component';
+import { SilageHeapMetadataComponent } from './silage-heap-metadata.component';
 
-describe('SiloDatumMapComponent', () => {
-    let component: SiloDatumMapComponent;
-    let fixture: ComponentFixture<SiloDatumMapComponent>;
+describe('SilageHeapMetadataComponent', () => {
+    let component: SilageHeapMetadataComponent;
+    let fixture: ComponentFixture<SilageHeapMetadataComponent>;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            declarations: [SiloDatumMapComponent],
+            declarations: [SilageHeapMetadataComponent],
         }).compileComponents();
     });
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(SiloDatumMapComponent);
+        fixture = TestBed.createComponent(SilageHeapMetadataComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });

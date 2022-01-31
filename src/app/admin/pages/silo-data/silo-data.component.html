@@ -1,6 +1,0 @@
-<app-toolbar title="Silage Datensätze"></app-toolbar>
-<div class="main" *ngIf="siloData">
-    <button *ngFor="let siloDatum of siloData" (click)="select(siloDatum)">
-        {{ siloDatum.siloDatum.siloDatumId }}
-    </button>
-</div>

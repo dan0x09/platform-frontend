@@ -1,18 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { SiloDataComponent } from './silo-data.component';
 
-describe('SiloDataComponent', () => {
-    let component: SiloDataComponent;
-    let fixture: ComponentFixture<SiloDataComponent>;
+import { SilageHeapVolumeComponent } from './silage-heap-volume.component';
+
+describe('SilageHeapVolumeComponent', () => {
+    let component: SilageHeapVolumeComponent;
+    let fixture: ComponentFixture<SilageHeapVolumeComponent>;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            declarations: [SiloDataComponent],
+            declarations: [SilageHeapVolumeComponent],
         }).compileComponents();
     });
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(SiloDataComponent);
+        fixture = TestBed.createComponent(SilageHeapVolumeComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });

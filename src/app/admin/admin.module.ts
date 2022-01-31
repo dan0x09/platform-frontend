@@ -26,10 +26,10 @@ import { EditSystemComponent } from './pages/edit-system/edit-system.component';
 import { EditUserComponent } from './pages/edit-user/edit-user.component';
 import { FarmsComponent } from './pages/farms/farms.component';
 import { InvitationsComponent } from './pages/invitations/invitations.component';
-import { SiloDataComponent } from './pages/silo-data/silo-data.component';
+import { SilageHeapsComponent as SilageHeapsComponent } from './pages/silage-heaps/silage-heaps.component';
 import { SystemsComponent } from './pages/systems/systems.component';
 import { UsersComponent } from './pages/users/users.component';
-import { ViewSiloDatumComponent } from './pages/view-silo-datum/view-silo-datum.component';
+import { ViewSilageHeapComponent } from './pages/view-silage-heap/view-silage-heap.component';
 
 @NgModule({
     declarations: [
@@ -39,7 +39,7 @@ import { ViewSiloDatumComponent } from './pages/view-silo-datum/view-silo-datum.
         SystemsComponent,
         ContractorsComponent,
         FarmsComponent,
-        SiloDataComponent,
+        SilageHeapsComponent,
         UsersComponent,
         CreateContractorComponent,
         CreateFarmComponent,
@@ -51,7 +51,7 @@ import { ViewSiloDatumComponent } from './pages/view-silo-datum/view-silo-datum.
         InvitationsComponent,
         CreateInvitationPageComponent,
         EditUserComponent,
-        ViewSiloDatumComponent,
+        ViewSilageHeapComponent,
     ],
     imports: [
         CommonModule,

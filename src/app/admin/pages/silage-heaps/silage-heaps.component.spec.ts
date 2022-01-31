@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ViewSiloDatumComponent } from './view-silo-datum.component';
+import { SilageHeapsComponent } from './silage-heaps.component';
 
-describe('ViewSiloDataComponent', () => {
-    let component: ViewSiloDatumComponent;
-    let fixture: ComponentFixture<ViewSiloDatumComponent>;
+describe('SilageHeapsComponent', () => {
+    let component: SilageHeapsComponent;
+    let fixture: ComponentFixture<SilageHeapsComponent>;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            declarations: [ViewSiloDatumComponent],
+            declarations: [SilageHeapsComponent],
         }).compileComponents();
     });
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(ViewSiloDatumComponent);
+        fixture = TestBed.createComponent(SilageHeapsComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });

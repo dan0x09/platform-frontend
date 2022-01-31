@@ -83,9 +83,9 @@ export interface User {
     lastName: string;
     role: string;
 }
-export interface SiloDatum {
+export interface SilageHeap {
     systemId: number;
-    siloDataId: number;
+    silageHeapId: number;
     gpsLocation: string;
     name: string;
 
@@ -93,8 +93,8 @@ export interface SiloDatum {
     updatedAt: Date;
 }
 
-export interface SiloDatumWithUrls {
-    siloDatum: SiloDatum;
+export interface SilageHeapWithUrls {
+    silageHeap: SilageHeap;
     urls: {
         volumeMap: string;
         volumeModel: string;

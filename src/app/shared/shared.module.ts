@@ -16,11 +16,11 @@ import { InvitationListComponent } from './components/invitation-list/invitation
 import { MatSelectModule } from '@angular/material/select';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { UserListComponent } from './components/user-list/user-list.component';
-import { SiloDatumMetadataComponent } from './components/silo-datum-metadata/silo-datum-metadata.component';
-import { SiloDatumMapComponent } from './components/silo-datum-map/silo-datum-map.component';
-import { SiloDatumVolumeComponent } from './components/silo-datum-volume/silo-datum-volume.component';
-import { SiloDatumFeedComponent } from './components/silo-datum-feed/silo-datum-feed.component';
-import { SiloDatumInteractiveVolumeModelComponent } from './components/silo-datum-interactive-volume-model/silo-datum-interactive-volume-model.component';
+import { SilageHeapMetadataComponent } from './components/silage-heap-metadata/silage-heap-metadata.component';
+import { SilageHeapMapComponent } from './components/silage-heap-map/silage-heap-map.component';
+import { SilageHeapVolumeComponent } from './components/silage-heap-volume/silage-heap-volume.component';
+import { SilageHeapFeedComponent } from './components/silage-heap-feed/silage-heap-feed.component';
+import { SilageHeapInteractiveVolumeModelComponent } from './components/silage-heap-interactive-volume-model/silage-heap-interactive-volume-model.component';
 
 @NgModule({
     declarations: [
@@ -31,11 +31,11 @@ import { SiloDatumInteractiveVolumeModelComponent } from './components/silo-datu
         CreateInvitationComponent,
         InvitationListComponent,
         UserListComponent,
-        SiloDatumMetadataComponent,
-        SiloDatumMapComponent,
-        SiloDatumVolumeComponent,
-        SiloDatumFeedComponent,
-        SiloDatumInteractiveVolumeModelComponent,
+        SilageHeapMetadataComponent,
+        SilageHeapMapComponent,
+        SilageHeapVolumeComponent,
+        SilageHeapFeedComponent,
+        SilageHeapInteractiveVolumeModelComponent,
     ],
     imports: [
         CommonModule,
@@ -62,11 +62,11 @@ import { SiloDatumInteractiveVolumeModelComponent } from './components/silo-datu
         CreateInvitationComponent,
         InvitationListComponent,
         UserListComponent,
-        SiloDatumMetadataComponent,
-        SiloDatumMapComponent,
-        SiloDatumVolumeComponent,
-        SiloDatumFeedComponent,
-        SiloDatumInteractiveVolumeModelComponent,
+        SilageHeapMetadataComponent,
+        SilageHeapMapComponent,
+        SilageHeapVolumeComponent,
+        SilageHeapFeedComponent,
+        SilageHeapInteractiveVolumeModelComponent,
     ],
 })
 export class SharedModule {}

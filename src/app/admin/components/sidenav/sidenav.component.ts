@@ -41,9 +41,9 @@ export class SidenavComponent {
             uri: 'farms',
         },
         {
-            title: 'Silage Daten',
+            title: 'Silage',
             icon: 'grass',
-            uri: 'silo-data',
+            uri: 'silage-heaps',
         },
         {
             title: 'Nutzer',

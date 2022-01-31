@@ -1,0 +1,16 @@
+<app-toolbar title="Silage Datensatz"></app-toolbar>
+<div class="main" *ngIf="silageHeapWithUrls">
+    <div class="row">
+        <app-silage-heap-metadata [data]="silageHeapWithUrls"></app-silage-heap-metadata>
+        <app-silage-heap-map [data]="silageHeapWithUrls"></app-silage-heap-map>
+    </div>
+    <div class="row">
+        <app-silage-heap-volume [data]="silageHeapWithUrls"></app-silage-heap-volume>
+        <app-silage-heap-feed [data]="silageHeapWithUrls"></app-silage-heap-feed>
+    </div>
+    <div class="row">
+        <app-silage-heap-interactive-volume-model
+            [data]="silageHeapWithUrls"
+        ></app-silage-heap-interactive-volume-model>
+    </div>
+</div>

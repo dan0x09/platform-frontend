@@ -1,0 +1,6 @@
+<app-toolbar title="Silage Datensätze"></app-toolbar>
+<div class="main" *ngIf="silageHeaps">
+    <button *ngFor="let silageHeap of silageHeaps" (click)="select(silageHeap)">
+        {{ silageHeap.silageHeap.silageHeap }}
+    </button>
+</div>
