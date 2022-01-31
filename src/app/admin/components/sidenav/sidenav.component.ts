@@ -26,14 +26,14 @@ export class SidenavComponent {
             uri: 'dashboard',
         },
         {
-            title: 'Silo Daten',
-            icon: 'grass',
-            uri: 'silo-data',
-        },
-        {
             title: 'Systeme',
             icon: 'developer_board',
             uri: 'systems',
+        },
+        {
+            title: 'Lohnunternehmen',
+            icon: 'business',
+            uri: 'contractors',
         },
         {
             title: 'Betriebe',
@@ -41,9 +41,9 @@ export class SidenavComponent {
             uri: 'farms',
         },
         {
-            title: 'Lohnunternehmen',
-            icon: 'business',
-            uri: 'contractors',
+            title: 'Silage Daten',
+            icon: 'grass',
+            uri: 'silo-data',
         },
         {
             title: 'Nutzer',

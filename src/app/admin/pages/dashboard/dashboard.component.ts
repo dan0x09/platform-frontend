@@ -12,7 +12,7 @@ export class DashboardComponent implements OnInit {
 
     cards: Card[] = [
         {
-            title: 'Silo Daten',
+            title: 'Silage Daten',
             uri: 'silo-data',
         },
         {
