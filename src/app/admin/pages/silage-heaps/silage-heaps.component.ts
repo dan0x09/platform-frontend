@@ -20,11 +20,13 @@ export class SilageHeapsComponent implements OnInit {
 
     ngOnInit(): void {
         this.http.get<any>(this.config.getUrl(`/silage-heap/`)).subscribe((silageHeaps) => {
+            console.log('Silage Heaps: ', silageHeaps);
             this.silageHeaps = silageHeaps;
         }, console.error);
     }
 
     select(silageHeap: any) {
+        console.log('Silage Heap: ', silageHeap);
         this.router.navigate(['view-silage-heap', silageHeap.silageHeap.silageHeapId], {
             relativeTo: this.route.parent,
         });

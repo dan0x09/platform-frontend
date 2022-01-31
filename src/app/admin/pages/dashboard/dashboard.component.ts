@@ -12,20 +12,20 @@ export class DashboardComponent implements OnInit {
 
     cards: Card[] = [
         {
-            title: 'Silage',
-            uri: 'silage-heaps',
-        },
-        {
             title: 'Systeme',
             uri: 'systems',
+        },
+        {
+            title: 'Lohnunternehmen',
+            uri: 'contractors',
         },
         {
             title: 'Betriebe',
             uri: 'farms',
         },
         {
-            title: 'Lohnunternehmen',
-            uri: 'contractors',
+            title: 'Silage',
+            uri: 'silage-heaps',
         },
         {
             title: 'Nutzer',
