@@ -1,0 +1,7 @@
+.main {
+    height: calc(100% - 64px);
+}
+
+.silage-heap-button {
+    margin: 2em;
+}

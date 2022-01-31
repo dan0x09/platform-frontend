@@ -39,7 +39,7 @@ export class CreateSystemComponent implements OnInit {
                     name: this.createForm.value.name,
                 })
                 .subscribe((contractor: Contractor) => {
-                    this.router.navigate(['system'], { relativeTo: this.route.parent });
+                    this.router.navigate(['systems'], { relativeTo: this.route.parent });
                 }, console.error);
         }
     }

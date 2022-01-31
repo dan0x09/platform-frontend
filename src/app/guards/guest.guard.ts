@@ -22,10 +22,10 @@ export class GuestGuard implements CanActivate {
                     this.router.navigate(['admin']);
                     return false;
                 case Role.CONTRACTOR:
-                    this.router.navigate(['contractor']);
+                    this.router.navigate(['contractors']);
                     return false;
                 case Role.FARMER:
-                    this.router.navigate(['farmer']);
+                    this.router.navigate(['farms']);
                     return false;
                 default:
                     // todo add 404 page

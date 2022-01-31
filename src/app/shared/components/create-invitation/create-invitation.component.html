@@ -19,9 +19,9 @@
         </mat-form-field>
     </div>
     <div class="form-row" [class.hidden]="contractorOrganizationControlHidden">
-        <span class="mat-headline">Lohnunternehmer</span>
+        <span class="mat-headline">Lohnunternehmen</span>
         <mat-form-field>
-            <mat-label>Lohnunternehmer auswählen</mat-label>
+            <mat-label>Lohnunternehmen auswählen</mat-label>
             <mat-select formControlName="contractorOrganization">
                 <mat-option *ngFor="let contractor of contractors" [value]="contractor.contractorId">
                     {{ contractor.name }}
@@ -34,11 +34,11 @@
         </mat-form-field>
     </div>
     <div class="form-row" [class.hidden]="farmerOrganizationControlHidden">
-        <span class="mat-headline">Landwirt</span>
+        <span class="mat-headline">Betrieb</span>
         <mat-form-field>
-            <mat-label>Landwirt auswählen</mat-label>
+            <mat-label>Betrieb auswählen</mat-label>
             <mat-select formControlName="farmerOrganization">
-                <mat-option *ngFor="let farmer of farmers" [value]="farmer.farmerId">
+                <mat-option *ngFor="let farm of farms" [value]="farm.farmId">
                     {{ farmer.name }}
                     <span class="small-address"
                         >{{ farmer.streetAndNumber }}, {{ farmer.zipCode }}, {{ farmer.city }},

@@ -6,11 +6,11 @@ import { ToolbarService } from 'src/app/services/toolbar.service';
 import { CreateCustomer } from 'src/app/shared/types/interfaces';
 
 @Component({
-    selector: 'app-create-contractor',
-    templateUrl: './create-contractor.component.html',
-    styleUrls: ['./create-contractor.component.css'],
+    selector: 'app-create-farm',
+    templateUrl: './create-farm.component.html',
+    styleUrls: ['./create-farm.component.css'],
 })
-export class CreateContractorComponent implements OnInit {
+export class CreateFarmComponent implements OnInit {
     constructor(
         private http: HttpClient,
         private config: ConfigService,
@@ -20,12 +20,12 @@ export class CreateContractorComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
-        this.toolbarService.setTitle('Lohnunternehmen erstellen');
+        this.toolbarService.setTitle('Betrieb anlegen');
     }
 
     submit(data: CreateCustomer) {
         this.http
-            .post<any>(this.config.getUrl('/contractor/'), data)
-            .subscribe(() => this.router.navigate(['contractors'], { relativeTo: this.route.parent }), console.error);
+            .post<any>(this.config.getUrl('/farm/'), data)
+            .subscribe(() => this.router.navigate(['farms'], { relativeTo: this.route.parent }), console.error);
     }
 }

@@ -12,24 +12,24 @@ export class DashboardComponent implements OnInit {
 
     cards: Card[] = [
         {
-            title: 'Silo Daten',
-            uri: 'silo-data',
-        },
-        {
             title: 'Systeme',
-            uri: 'system',
+            uri: 'systems',
         },
         {
-            title: 'Landwirte',
-            uri: 'farmer',
+            title: 'Lohnunternehmen',
+            uri: 'contractors',
         },
         {
-            title: 'Lohnunternehmer',
-            uri: 'contractor',
+            title: 'Betriebe',
+            uri: 'farms',
+        },
+        {
+            title: 'Silage',
+            uri: 'silage-heaps',
         },
         {
             title: 'Nutzer',
-            uri: 'user',
+            uri: 'users',
         },
         {
             title: 'Einladungen',

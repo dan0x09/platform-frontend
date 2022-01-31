@@ -27,12 +27,10 @@ export class EditUserComponent implements OnInit {
                 lastName: new FormControl({ value: this.user.lastName, disabled: true }),
                 role: new FormControl({ value: this.prettyRole(this.user.role as Role), disabled: true }),
             });
-            console.log(this.form);
         }, console.error);
     }
 
     prettyRole(role: Role): string {
-        console.log(role);
         if (role === Role.OWNER) {
             return 'Owner';
         } else if (role === Role.ADMIN) {

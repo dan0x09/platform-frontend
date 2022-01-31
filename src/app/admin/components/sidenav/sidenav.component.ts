@@ -26,29 +26,29 @@ export class SidenavComponent {
             uri: 'dashboard',
         },
         {
-            title: 'Silo Daten',
-            icon: 'grass',
-            uri: 'silo-data',
-        },
-        {
             title: 'Systeme',
             icon: 'developer_board',
-            uri: 'system',
+            uri: 'systems',
         },
         {
-            title: 'Landwirte',
-            icon: 'agriculture',
-            uri: 'farmer',
-        },
-        {
-            title: 'Lohnunternehmer',
+            title: 'Lohnunternehmen',
             icon: 'business',
-            uri: 'contractor',
+            uri: 'contractors',
+        },
+        {
+            title: 'Betriebe',
+            icon: 'agriculture',
+            uri: 'farms',
+        },
+        {
+            title: 'Silage',
+            icon: 'grass',
+            uri: 'silage-heaps',
         },
         {
             title: 'Nutzer',
             icon: 'person',
-            uri: 'user',
+            uri: 'users',
         },
         {
             title: 'Einladungen',
@@ -58,7 +58,6 @@ export class SidenavComponent {
     ];
 
     navigateTo(uri: string) {
-        console.log('naviate to', uri);
         this.router.navigate([`admin/${uri}`]);
     }
 }

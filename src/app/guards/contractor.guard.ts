@@ -24,7 +24,7 @@ export class ContractorGuard implements CanActivate {
                 case Role.CONTRACTOR:
                     return true;
                 case Role.FARMER:
-                    this.router.navigate(['farmer']);
+                    this.router.navigate(['farms']);
                     return false;
                 default:
                     // todo add 404 page

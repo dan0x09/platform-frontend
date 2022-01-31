@@ -16,12 +16,12 @@ const routes: Routes = [
         canActivate: [AdminGuard],
     },
     {
-        path: 'contractor',
+        path: 'contractors',
         loadChildren: () => import('./contractor/contractor.module').then((m) => m.ContractorModule),
         canActivate: [ContractorGuard],
     },
     {
-        path: 'farmer',
+        path: 'farms',
         loadChildren: () => import('./farmer/farmer.module').then((m) => m.FarmerModule),
         canActivate: [FarmerGuard],
     },

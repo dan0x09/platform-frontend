@@ -27,8 +27,8 @@ export interface Customer extends CreateCustomer {
     customerId: number;
 }
 
-export interface Farmer extends CreateCustomer {
-    farmerId: number;
+export interface Farm extends CreateCustomer {
+    farmId: number;
 }
 
 export interface Contractor extends CreateCustomer {
@@ -83,9 +83,9 @@ export interface User {
     lastName: string;
     role: string;
 }
-export interface SiloDatum {
+export interface SilageHeap {
     systemId: number;
-    siloDataId: number;
+    silageHeapId: number;
     gpsLocation: string;
     name: string;
 
@@ -93,8 +93,8 @@ export interface SiloDatum {
     updatedAt: Date;
 }
 
-export interface SiloDatumWithUrls {
-    siloDatum: SiloDatum;
+export interface SilageHeapWithUrls {
+    silageHeap: SilageHeap;
     urls: {
         volumeMap: string;
         volumeModel: string;
