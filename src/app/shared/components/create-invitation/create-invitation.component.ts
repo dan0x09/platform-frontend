@@ -67,7 +67,7 @@ export class CreateInvitationComponent implements OnInit {
                 this.farmerOrganizationControlHidden = false;
             }
         });
-        this.http.get<Farm[]>(this.config.getUrl('/farmer/')).subscribe({
+        this.http.get<Farm[]>(this.config.getUrl('/farm/')).subscribe({
             next: (farms: Farm[]) => {
                 this.farms = farms;
                 this.http.get<Contractor[]>(this.config.getUrl('/contractor/')).subscribe({
