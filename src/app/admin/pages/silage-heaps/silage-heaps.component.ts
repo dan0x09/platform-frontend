@@ -19,10 +19,13 @@ export class SilageHeapsComponent implements OnInit {
     silageHeaps: any;
 
     ngOnInit(): void {
-        this.http.get<any>(this.config.getUrl(`/silage-heap/`)).subscribe((silageHeaps) => {
-            console.log('Silage Heaps: ', silageHeaps);
-            this.silageHeaps = silageHeaps;
-        }, console.error);
+        this.http.get<any>(this.config.getUrl(`/silage-heap/`)).subscribe({
+            next: (silageHeaps) => {
+                console.log('Silage Heaps: ', silageHeaps);
+                this.silageHeaps = silageHeaps;
+            },
+            error: (e) => console.error(e),
+        });
     }
 
     select(silageHeap: any) {

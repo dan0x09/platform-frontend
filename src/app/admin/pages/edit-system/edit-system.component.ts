@@ -22,28 +22,35 @@ export class EditSystemComponent implements OnInit {
 
     ngOnInit(): void {
         const systemId = this.route.snapshot.paramMap.get('systemId');
-        this.http.get<System>(this.config.getUrl(`/system/${systemId}`)).subscribe((system: System) => {
-            this.system = system;
-            this.http
-                .get<Contractor>(this.config.getUrl(`/contractor/${this.system.contractorId}`))
-                .subscribe((contractor: Contractor) => {
-                    this.contractor = contractor;
-                    this.editForm = new FormGroup({
-                        name: new FormControl({ value: this.system.name, disabled: true }, [Validators.required]),
-                        contractor: new FormControl({ value: this.contractor.name, disabled: true }, [
-                            Validators.required,
-                        ]),
-                    });
-                }, console.error);
-        }, console.error);
+        this.http.get<System>(this.config.getUrl(`/system/${systemId}`)).subscribe({
+            next: (system: System) => {
+                this.system = system;
+                this.http.get<Contractor>(this.config.getUrl(`/contractor/${this.system.contractorId}`)).subscribe({
+                    next: (contractor: Contractor) => {
+                        this.contractor = contractor;
+                        this.editForm = new FormGroup({
+                            name: new FormControl({ value: this.system.name, disabled: true }, [Validators.required]),
+                            contractor: new FormControl({ value: this.contractor.name, disabled: true }, [
+                                Validators.required,
+                            ]),
+                        });
+                    },
+                    error: (e) => console.error(e),
+                });
+            },
+            error: (e) => console.error(e),
+        });
     }
 
     generateKey() {
         this.token = undefined;
         this.http
             .post<GenerateToken>(this.config.getUrl(`/system/${this.system.systemId}/generate-token`), {})
-            .subscribe((result: GenerateToken) => {
-                this.token = result.token;
-            }, console.error);
+            .subscribe({
+                next: (result: GenerateToken) => {
+                    this.token = result.token;
+                },
+                error: (e) => console.error(e),
+            });
     }
 }

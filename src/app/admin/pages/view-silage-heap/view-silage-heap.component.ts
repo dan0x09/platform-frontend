@@ -16,10 +16,11 @@ export class ViewSilageHeapComponent implements OnInit {
 
     ngOnInit(): void {
         const silageHeapId = this.route.snapshot.paramMap.get('silageHeapId');
-        this.http
-            .get<SilageHeapWithUrls>(this.config.getUrl(`/silage-heap/${silageHeapId}`))
-            .subscribe((silageHeapWithUrls: SilageHeapWithUrls) => {
+        this.http.get<SilageHeapWithUrls>(this.config.getUrl(`/silage-heap/${silageHeapId}`)).subscribe({
+            next: (silageHeapWithUrls: SilageHeapWithUrls) => {
                 this.silageHeapWithUrls = silageHeapWithUrls;
-            }, console.error);
+            },
+            error: (e) => console.error(e),
+        });
     }
 }
