@@ -64,8 +64,7 @@ export class SignupComponent implements OnInit {
                 this.auth.decodeToken(this.token).subject === 'invite_user'
                     ? '/invitation/user/accept'
                     : '/user/register';
-            console.log('URL: ', url);
-            this.http.post(this.config.getUrl('/invitation/user/accept'), body).subscribe({
+            this.http.post(this.config.getUrl(url), body).subscribe({
                 next: () => {
                     const role = this.auth.getDecodedToken().role;
                     switch (role) {
