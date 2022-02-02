@@ -24,9 +24,8 @@ export class EditContractorComponent implements OnInit {
 
     ngOnInit(): void {
         const contractorId = this.route.snapshot.paramMap.get('contractorId');
-        this.http
-            .get<Contractor>(this.config.getUrl(`/contractor/${contractorId}`))
-            .subscribe((contractor: Contractor) => {
+        this.http.get<Contractor>(this.config.getUrl(`/contractor/${contractorId}`)).subscribe({
+            next: (contractor: Contractor) => {
                 this.contractor = contractor;
                 this.customer = {
                     name: this.contractor.name,
@@ -36,12 +35,16 @@ export class EditContractorComponent implements OnInit {
                     customerId: this.contractor.contractorId,
                     streetAndNumber: this.contractor.streetAndNumber,
                 };
-            }, console.error);
-        this.http
-            .get<System[]>(this.config.getUrl('/system/'), { params: { contractorId: contractorId } })
-            .subscribe((systems: System[]) => {
+            },
+            error: (e) => console.error(e),
+        });
+
+        this.http.get<System[]>(this.config.getUrl('/system/'), { params: { contractorId: contractorId } }).subscribe({
+            next: (systems: System[]) => {
                 this.systems = systems;
-            }, console.error);
+            },
+            error: (e) => console.error(e),
+        });
     }
 
     submit(customer: Customer) {
@@ -50,12 +53,12 @@ export class EditContractorComponent implements OnInit {
         };
         delete body.customerId;
 
-        this.http
-            .patch<Contractor>(this.config.getUrl(`/contractor/${customer.customerId}`), body)
-            .subscribe(
-                (farmer: Contractor) => this.router.navigate(['contractors'], { relativeTo: this.route.parent }),
-                console.error
-            );
+        this.http.patch<Contractor>(this.config.getUrl(`/contractor/${customer.customerId}`), body).subscribe({
+            next: () => {
+                this.router.navigate(['contractors'], { relativeTo: this.route.parent });
+            },
+            error: (e) => console.error(e),
+        });
     }
 
     visitSystem(system: System) {

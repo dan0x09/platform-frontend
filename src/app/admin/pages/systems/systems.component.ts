@@ -20,9 +20,12 @@ export class SystemsComponent implements OnInit {
     systems: System[];
 
     ngOnInit(): void {
-        this.http.get<System[]>(this.config.getUrl('/system/')).subscribe((systems: System[]) => {
-            this.systems = systems;
-        }, console.error);
+        this.http.get<System[]>(this.config.getUrl('/system/')).subscribe({
+            next: (systems: System[]) => {
+                this.systems = systems;
+            },
+            error: (e) => console.error(e),
+        });
     }
 
     visitCreate() {

@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AlertService } from 'src/app/services/alert.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { ConfigService } from 'src/app/services/config.service';
 import { Role, UserInvitation } from 'src/app/shared/types/interfaces';
-import { AlertService } from 'src/app/services/alert.service';
 
 @Component({
     selector: 'app-create-invitation-page',
@@ -36,11 +36,11 @@ export class CreateInvitationPageComponent implements OnInit {
 
     invite(invitation: UserInvitation) {
         this.alertService.clear();
-        this.http.post(this.config.getUrl('/invitation/user/'), invitation).subscribe(
-            (result: any) => {
+        this.http.post(this.config.getUrl('/invitation/user/'), invitation).subscribe({
+            next: () => {
                 this.router.navigate(['invitations'], { relativeTo: this.route.parent });
             },
-            (error) => this.alertService.error(error)
-        );
+            error: (error) => this.alertService.error(error),
+        });
     }
 }

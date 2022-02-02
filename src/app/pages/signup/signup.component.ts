@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { ConfigService } from 'src/app/services/config.service';
@@ -59,8 +59,8 @@ export class SignupComponent implements OnInit {
                 password: this.signupForm.value.password,
                 token: this.signupForm.value.token,
             };
-            this.http.post(this.config.getUrl('/invitation/user/accept'), body).subscribe(
-                () => {
+            this.http.post(this.config.getUrl('/invitation/user/accept'), body).subscribe({
+                next: () => {
                     const role = this.auth.getDecodedToken().role;
                     switch (role) {
                         case Role.ADMIN:
@@ -75,10 +75,8 @@ export class SignupComponent implements OnInit {
                             this.router.navigate(['../farmer']);
                     }
                 },
-                () => {
-                    this.error = true;
-                }
-            );
+                error: (e) => console.error(e),
+            });
         } else {
             this.error = true;
         }
