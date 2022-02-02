@@ -30,19 +30,22 @@ export class ContractorsComponent implements OnInit, AfterViewInit {
     }
 
     ngAfterViewInit(): void {
-        this.http.get<Contractor[]>(this.config.getUrl('/contractor/')).subscribe((contractors: Contractor[]) => {
-            this.customers = contractors.map((contractor: Contractor) => {
-                const customer: Customer = {
-                    customerId: contractor.contractorId,
-                    city: contractor.city,
-                    name: contractor.name,
-                    country: contractor.country,
-                    streetAndNumber: contractor.streetAndNumber,
-                    zipCode: contractor.zipCode,
-                };
-                return customer;
-            });
-        }, console.error);
+        this.http.get<Contractor[]>(this.config.getUrl('/contractor/')).subscribe({
+            next: (contractors: Contractor[]) => {
+                this.customers = contractors.map((contractor: Contractor) => {
+                    const customer: Customer = {
+                        customerId: contractor.contractorId,
+                        city: contractor.city,
+                        name: contractor.name,
+                        country: contractor.country,
+                        streetAndNumber: contractor.streetAndNumber,
+                        zipCode: contractor.zipCode,
+                    };
+                    return customer;
+                });
+            },
+            error: (e) => console.error(e),
+        });
     }
 
     select(customer: Customer) {

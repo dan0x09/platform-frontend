@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { ConfigService } from 'src/app/services/config.service';
-import { Contractor, Farm, Role, User, UserInvitation } from '../../types/interfaces';
+import { Contractor, Farm, Role, UserInvitation } from '../../types/interfaces';
 
 @Component({
     selector: 'app-create-invitation',
@@ -67,12 +67,18 @@ export class CreateInvitationComponent implements OnInit {
                 this.farmerOrganizationControlHidden = false;
             }
         });
-        this.http.get<Farm[]>(this.config.getUrl('/farmer/')).subscribe((farms: Farm[]) => {
-            this.farms = farms;
-            this.http.get<Contractor[]>(this.config.getUrl('/contractor/')).subscribe((contractors: Contractor[]) => {
-                this.contractors = contractors;
-            }, console.error);
-        }, console.error);
+        this.http.get<Farm[]>(this.config.getUrl('/farm/')).subscribe({
+            next: (farms: Farm[]) => {
+                this.farms = farms;
+                this.http.get<Contractor[]>(this.config.getUrl('/contractor/')).subscribe({
+                    next: (contractors: Contractor[]) => {
+                        this.contractors = contractors;
+                    },
+                    error: (e) => console.error(e),
+                });
+            },
+            error: (e) => console.error(e),
+        });
     }
 
     submit() {

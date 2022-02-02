@@ -30,19 +30,22 @@ export class FarmsComponent implements OnInit, AfterViewInit {
     }
 
     ngAfterViewInit(): void {
-        this.http.get<Farm[]>(this.config.getUrl('/farm/')).subscribe((farms: Farm[]) => {
-            this.customers = farms.map((farm: Farm) => {
-                const customer: Customer = {
-                    customerId: farm.farmId,
-                    city: farm.city,
-                    name: farm.name,
-                    country: farm.country,
-                    streetAndNumber: farm.streetAndNumber,
-                    zipCode: farm.zipCode,
-                };
-                return customer;
-            });
-        }, console.error);
+        this.http.get<Farm[]>(this.config.getUrl('/farm/')).subscribe({
+            next: (farms: Farm[]) => {
+                this.customers = farms.map((farm: Farm) => {
+                    const customer: Customer = {
+                        customerId: farm.farmId,
+                        city: farm.city,
+                        name: farm.name,
+                        country: farm.country,
+                        streetAndNumber: farm.streetAndNumber,
+                        zipCode: farm.zipCode,
+                    };
+                    return customer;
+                });
+            },
+            error: (e) => console.error(e),
+        });
     }
     select(customer: Customer) {
         this.router.navigate(['edit-farm', customer.customerId], { relativeTo: this.route.parent });

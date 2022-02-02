@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ConfigService } from 'src/app/services/config.service';
 
 @Component({
@@ -35,14 +35,12 @@ export class RequestResetPasswordComponent {
         this.submitted = true;
 
         if (this.form.valid) {
-            this.http.post<any>(this.config.getUrl('/user/request-password'), this.form.value).subscribe(
-                (res) => {
+            this.http.post<any>(this.config.getUrl('/user/request-password'), this.form.value).subscribe({
+                next: (res) => {
                     this.success = true;
                 },
-                (err) => {
-                    this.error = true;
-                }
-            );
+                error: (e) => (this.error = true),
+            });
         } else {
             this.error = true;
         }

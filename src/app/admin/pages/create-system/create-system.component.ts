@@ -26,9 +26,12 @@ export class CreateSystemComponent implements OnInit {
     contractors: Contractor[];
 
     ngOnInit(): void {
-        this.http.get<Contractor[]>(this.config.getUrl('/contractor/')).subscribe((contractors: Contractor[]) => {
-            this.contractors = contractors;
-        }, console.error);
+        this.http.get<Contractor[]>(this.config.getUrl('/contractor/')).subscribe({
+            next: (contractors: Contractor[]) => {
+                this.contractors = contractors;
+            },
+            error: (e) => console.error(e),
+        });
     }
 
     submit() {
@@ -38,9 +41,12 @@ export class CreateSystemComponent implements OnInit {
                     contractorId: this.createForm.value.contractor.contractorId,
                     name: this.createForm.value.name,
                 })
-                .subscribe((contractor: Contractor) => {
-                    this.router.navigate(['systems'], { relativeTo: this.route.parent });
-                }, console.error);
+                .subscribe({
+                    next: () => {
+                        this.router.navigate(['systems'], { relativeTo: this.route.parent });
+                    },
+                    error: (e) => console.error(e),
+                });
         }
     }
 }

@@ -20,10 +20,13 @@ export class InvitationsComponent implements OnInit {
     invitations: Invitation[];
 
     ngOnInit(): void {
-        this.http.get<Invitation[]>(this.config.getUrl('/invitation/user/')).subscribe((invitations: Invitation[]) => {
-            this.invitations = invitations;
-            console.log(invitations);
-        }, console.error);
+        this.http.get<Invitation[]>(this.config.getUrl('/invitation/user/')).subscribe({
+            next: (invitations: Invitation[]) => {
+                this.invitations = invitations;
+                console.log(invitations);
+            },
+            error: (e) => console.error(e),
+        });
     }
 
     visitCreate() {

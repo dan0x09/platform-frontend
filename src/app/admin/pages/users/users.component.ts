@@ -30,9 +30,12 @@ export class UsersComponent implements OnInit {
     }
 
     ngAfterViewInit(): void {
-        this.http.get<User[]>(this.config.getUrl('/user/')).subscribe((users: User[]) => {
-            this.users = users;
-        }, console.error);
+        this.http.get<User[]>(this.config.getUrl('/user/')).subscribe({
+            next: (users: User[]) => {
+                this.users = users;
+            },
+            error: (e) => console.error(e),
+        });
     }
 
     select(user: User) {

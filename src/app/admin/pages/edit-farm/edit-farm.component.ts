@@ -17,29 +17,34 @@ export class EditFarmComponent implements OnInit {
         private router: Router
     ) {}
 
-    Farm: Farm;
+    farm: Farm;
     customer: Customer;
 
     systems: System[];
 
     ngOnInit(): void {
         const farmId = this.route.snapshot.paramMap.get('farmId');
-        this.http.get<Farm>(this.config.getUrl(`/farm/${farmId}`)).subscribe((contractor: Farm) => {
-            this.Farm = contractor;
-            this.customer = {
-                name: this.Farm.name,
-                city: this.Farm.city,
-                zipCode: this.Farm.zipCode,
-                country: this.Farm.country,
-                customerId: this.Farm.farmId,
-                streetAndNumber: this.Farm.streetAndNumber,
-            };
-        }, console.error);
-        this.http
-            .get<System[]>(this.config.getUrl('/system/'), { params: { contractorId: farmId } })
-            .subscribe((systems: System[]) => {
+        this.http.get<Farm>(this.config.getUrl(`/farm/${farmId}`)).subscribe({
+            next: (farm: Farm) => {
+                this.farm = farm;
+                this.customer = {
+                    name: this.farm.name,
+                    city: this.farm.city,
+                    zipCode: this.farm.zipCode,
+                    country: this.farm.country,
+                    customerId: this.farm.farmId,
+                    streetAndNumber: this.farm.streetAndNumber,
+                };
+            },
+            error: (e) => console.error(e),
+        });
+
+        this.http.get<System[]>(this.config.getUrl('/system/'), { params: { contractorId: farmId } }).subscribe({
+            next: (systems: System[]) => {
                 this.systems = systems;
-            }, console.error);
+            },
+            error: (e) => console.error(e),
+        });
     }
 
     submit(customer: Customer) {
@@ -48,11 +53,11 @@ export class EditFarmComponent implements OnInit {
         };
         delete body.customerId;
 
-        this.http
-            .patch<Farm>(this.config.getUrl(`/farm/${customer.customerId}`), body)
-            .subscribe(
-                (farm: Farm) => this.router.navigate(['farms'], { relativeTo: this.route.parent }),
-                console.error
-            );
+        this.http.patch<Farm>(this.config.getUrl(`/farm/${customer.customerId}`), body).subscribe({
+            next: () => {
+                this.router.navigate(['farms'], { relativeTo: this.route.parent });
+            },
+            error: (e) => console.error(e),
+        });
     }
 }

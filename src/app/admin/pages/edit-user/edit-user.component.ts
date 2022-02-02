@@ -19,15 +19,18 @@ export class EditUserComponent implements OnInit {
 
     ngOnInit(): void {
         const userId = this.route.snapshot.paramMap.get('userId');
-        this.http.get<User>(this.config.getUrl(`/user/${userId}`)).subscribe((user: User) => {
-            this.user = user;
-            this.form = new FormGroup({
-                email: new FormControl({ value: this.user.email, disabled: true }),
-                firstName: new FormControl({ value: this.user.firstName, disabled: true }),
-                lastName: new FormControl({ value: this.user.lastName, disabled: true }),
-                role: new FormControl({ value: this.prettyRole(this.user.role as Role), disabled: true }),
-            });
-        }, console.error);
+        this.http.get<User>(this.config.getUrl(`/user/${userId}`)).subscribe({
+            next: (user: User) => {
+                this.user = user;
+                this.form = new FormGroup({
+                    email: new FormControl({ value: this.user.email, disabled: true }),
+                    firstName: new FormControl({ value: this.user.firstName, disabled: true }),
+                    lastName: new FormControl({ value: this.user.lastName, disabled: true }),
+                    role: new FormControl({ value: this.prettyRole(this.user.role as Role), disabled: true }),
+                });
+            },
+            error: (e) => console.error(e),
+        });
     }
 
     prettyRole(role: Role): string {

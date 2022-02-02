@@ -1,11 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Role } from 'src/app/shared/types/interfaces';
+import { AlertService } from '../../services/alert.service';
 import { AuthService } from '../../services/auth.service';
 import { ConfigService } from '../../services/config.service';
-import { AlertService } from '../../services/alert.service';
-import { Role } from 'src/app/shared/types/interfaces';
 
 @Component({
     selector: 'app-login',
@@ -38,8 +38,8 @@ export class LoginComponent {
         this.alertService.clear();
 
         if (this.loginForm.valid) {
-            this.http.post(this.config.getUrl('/user/login'), this.loginForm.value).subscribe(
-                () => {
+            this.http.post(this.config.getUrl('/user/login'), this.loginForm.value).subscribe({
+                next: () => {
                     window.location.reload();
                     const role = this.auth.getDecodedToken().role;
                     switch (role) {
@@ -55,10 +55,10 @@ export class LoginComponent {
                             this.router.navigate(['farms']);
                     }
                 },
-                (error) => {
+                error: (error) => {
                     this.alertService.error(error);
-                }
-            );
+                },
+            });
         }
     }
 }

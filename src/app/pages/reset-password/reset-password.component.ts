@@ -1,10 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { ConfigService } from 'src/app/services/config.service';
-import { Role } from 'src/app/shared/types/interfaces';
 
 @Component({
     selector: 'app-reset-password',
@@ -55,14 +54,12 @@ export class ResetPasswordComponent implements OnInit {
                 token: this.form.value.token,
                 password: this.form.value.password,
             };
-            this.http.post(this.config.getUrl('/user/change-password'), body).subscribe(
-                () => {
+            this.http.post(this.config.getUrl('/user/change-password'), body).subscribe({
+                next: () => {
                     this.router.navigate(['login']);
                 },
-                () => {
-                    this.error = true;
-                }
-            );
+                error: (e) => console.error(e),
+            });
         } else {
             this.error = true;
         }
