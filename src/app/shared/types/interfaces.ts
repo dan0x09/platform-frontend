@@ -13,6 +13,7 @@ export enum Role {
 export interface UserTokenPayload {
     uid: number;
     role: string;
+    subject: string;
     organizationId: number;
 }
 export interface CreateCustomer {

@@ -1,26 +1,25 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SidenavComponent } from './admin/components/sidenav/sidenav.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { LoginComponent } from './pages/login/login.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { SharedModule } from './shared/shared.module';
-import { SignupComponent } from './pages/signup/signup.component';
+import { LoginComponent } from './pages/login/login.component';
 import { RequestResetPasswordComponent } from './pages/request-reset-password/request-reset-password.component';
 import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
-import { AlertComponent } from './shared/components/alert/alert.component';
-import { SidenavComponent } from './admin/components/sidenav/sidenav.component';
+import { SignupComponent } from './pages/signup/signup.component';
 import { SidenavService } from './services/sidenav.service';
+import { AlertComponent } from './shared/components/alert/alert.component';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
     declarations: [

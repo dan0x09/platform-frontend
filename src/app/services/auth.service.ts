@@ -21,7 +21,11 @@ export class AuthService {
     }
 
     getDecodedToken(): UserTokenPayload | null {
-        return this.jwtHelper.decodeToken(this.getToken());
+        return this.decodeToken(this.getToken());
+    }
+
+    decodeToken(token: string): UserTokenPayload | null {
+        return this.jwtHelper.decodeToken(token);
     }
 
     isTokenExpired(): boolean {
