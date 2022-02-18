@@ -18,9 +18,11 @@ jobs:
       - uses: actions/checkout@v2
         with:
           submodules: true
+      - name: Install dependencies
+        run: npm ci
       - name: Test
         run: npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
-      - name: Build And Deploy
+      - name: Deploy to Azure
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v0.0.1-preview
         with:
