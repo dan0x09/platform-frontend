@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { RouterTestingModule } from '@angular/router/testing';
+import { SidenavService } from 'src/app/services/sidenav.service';
 import { SidenavComponent } from './sidenav.component';
 
 describe('SidenavComponent', () => {
@@ -8,7 +9,9 @@ describe('SidenavComponent', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
+            imports: [RouterTestingModule],
             declarations: [SidenavComponent],
+            providers: [SidenavService],
         }).compileComponents();
     });
 
