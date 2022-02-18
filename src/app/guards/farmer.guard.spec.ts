@@ -1,13 +1,16 @@
-import { TestBed } from '@angular/core/testing';
-
-import { FarmerGuard } from './farmer.guard';
+import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
+import { FarmerGuard } from './Farmer.guard';
 
 describe('FarmerGuard', () => {
     let guard: FarmerGuard;
+    let routerSpy: jasmine.SpyObj<Router>;
+    let serviceStub: Partial<AuthService>;
 
     beforeEach(() => {
-        TestBed.configureTestingModule({});
-        guard = TestBed.inject(FarmerGuard);
+        routerSpy = jasmine.createSpyObj<Router>('Router', ['navigate']); // [1]
+        serviceStub = {};
+        guard = new FarmerGuard(serviceStub as AuthService, routerSpy); // [3]
     });
 
     it('should be created', () => {
