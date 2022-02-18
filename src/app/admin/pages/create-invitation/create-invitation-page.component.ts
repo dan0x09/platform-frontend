@@ -25,6 +25,10 @@ export class CreateInvitationPageComponent implements OnInit {
 
     ngOnInit(): void {
         const decodedToken = this.auth.getDecodedToken();
+        if (!decodedToken) {
+            this.allowedRoles = [];
+            return;
+        }
         if (decodedToken.role === Role.OWNER) {
             this.allowedRoles = [Role.ADMIN, Role.CONTRACTOR, Role.FARMER];
         } else if (decodedToken.role === Role.ADMIN) {
