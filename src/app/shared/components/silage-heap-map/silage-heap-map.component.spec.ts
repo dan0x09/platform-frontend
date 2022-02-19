@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { SilageHeapMapComponent } from './silage-heap-map.component';
 
 describe('SilageHeapMapComponent', () => {
@@ -15,6 +14,21 @@ describe('SilageHeapMapComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(SilageHeapMapComponent);
         component = fixture.componentInstance;
+        component.data = {
+            silageHeap: {
+                systemId: 42,
+                silageHeapId: 23,
+                gpsLocation: 'Located near Kiel',
+                name: 'Example Silage Heap',
+                createdAt: null,
+                updatedAt: null,
+            },
+            urls: {
+                volumeMap: 'URL',
+                volumeModel: 'URL',
+                interactiveVolumeModel: 'URL',
+            },
+        };
         fixture.detectChanges();
     });
 

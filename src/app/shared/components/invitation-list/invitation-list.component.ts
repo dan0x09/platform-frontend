@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { ConfigService } from 'src/app/services/config.service';
 import { Invitation, Role } from '../../types/interfaces';
 
@@ -12,13 +12,8 @@ import { Invitation, Role } from '../../types/interfaces';
     templateUrl: './invitation-list.component.html',
     styleUrls: ['./invitation-list.component.css'],
 })
-export class InvitationListComponent {
-    constructor(
-        private router: Router,
-        private route: ActivatedRoute,
-        private http: HttpClient,
-        private config: ConfigService
-    ) {}
+export class InvitationListComponent implements OnInit {
+    constructor(private router: Router, private http: HttpClient, private config: ConfigService) {}
 
     @Input() invitations!: Invitation[];
 
@@ -40,7 +35,7 @@ export class InvitationListComponent {
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
 
-    ngAfterViewInit(): void {
+    ngOnInit(): void {
         this.invitations.sort(this.sortByDate);
         this.dataSource = new MatTableDataSource<Invitation>(this.invitations);
         this.dataSource.paginator = this.paginator;

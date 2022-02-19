@@ -1,18 +1,15 @@
-import { HttpClient } from '@angular/common/http';
-import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { PageEvent, MatPaginator } from '@angular/material/paginator';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { Router, ActivatedRoute } from '@angular/router';
-import { ConfigService } from 'src/app/services/config.service';
-import { Contractor, Customer } from '../../types/interfaces';
+import { Customer } from '../../types/interfaces';
 
 @Component({
     selector: 'app-customer-list',
     templateUrl: './customer-list.component.html',
     styleUrls: ['./customer-list.component.css'],
 })
-export class CustomerListComponent implements AfterViewInit {
+export class CustomerListComponent implements OnInit {
     constructor() {}
 
     @Input() customers!: Customer[];
@@ -33,11 +30,12 @@ export class CustomerListComponent implements AfterViewInit {
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
 
-    ngAfterViewInit(): void {
+    ngOnInit(): void {
         this.dataSource = new MatTableDataSource<Customer>(this.customers);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
     }
+
     applyFilter(event: Event) {
         const filterValue = (event.target as HTMLInputElement).value;
         this.dataSource.filter = filterValue.trim().toLowerCase();
