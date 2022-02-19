@@ -1,9 +1,7 @@
-import { HttpClient } from '@angular/common/http';
-import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { PageEvent, MatPaginator } from '@angular/material/paginator';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { ConfigService } from 'src/app/services/config.service';
 import { Role, User } from '../../types/interfaces';
 
 @Component({
@@ -11,7 +9,7 @@ import { Role, User } from '../../types/interfaces';
     templateUrl: './user-list.component.html',
     styleUrls: ['./user-list.component.css'],
 })
-export class UserListComponent implements AfterViewInit {
+export class UserListComponent implements OnInit {
     constructor() {}
 
     @Input() users!: User[];
@@ -32,11 +30,12 @@ export class UserListComponent implements AfterViewInit {
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
 
-    ngAfterViewInit(): void {
+    ngOnInit(): void {
         this.dataSource = new MatTableDataSource<User>(this.users);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
     }
+
     applyFilter(event: Event) {
         const filterValue = (event.target as HTMLInputElement).value;
         this.dataSource.filter = filterValue.trim().toLowerCase();

@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { PageEvent, MatPaginator } from '@angular/material/paginator';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { Customer as any, System } from '../../types/interfaces';
+import { System } from '../../types/interfaces';
 
 @Component({
     selector: 'app-system-list',
@@ -11,7 +11,11 @@ import { Customer as any, System } from '../../types/interfaces';
 })
 export class SystemListComponent implements OnInit {
     constructor() {}
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        this.dataSource = new MatTableDataSource<System>(this.systems);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+    }
 
     @Input() systems!: System[];
 
@@ -29,12 +33,6 @@ export class SystemListComponent implements OnInit {
     @ViewChild(MatSort) sort: MatSort;
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
-
-    ngAfterViewInit(): void {
-        this.dataSource = new MatTableDataSource<System>(this.systems);
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
-    }
 
     applyFilter(event: Event) {
         const filterValue = (event.target as HTMLInputElement).value;
