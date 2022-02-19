@@ -10,10 +10,10 @@ on:
       - main
 
 jobs:
-  build_and_deploy_job:
+  build_and_test_job:
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
     runs-on: ubuntu-latest
-    name: Build and Deploy Job
+    name: Build and Test Job
     steps:
       - uses: actions/checkout@v2
         with:
