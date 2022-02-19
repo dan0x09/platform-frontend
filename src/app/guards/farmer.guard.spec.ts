@@ -1,6 +1,6 @@
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
-import { FarmerGuard } from './Farmer.guard';
+import { FarmerGuard } from './farmer.guard';
 
 describe('FarmerGuard', () => {
     let guard: FarmerGuard;
