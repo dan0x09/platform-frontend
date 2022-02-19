@@ -21,7 +21,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Test
-        run: npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
+        run: npm run ci-test
       - name: Deploy to Azure
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v0.0.1-preview
