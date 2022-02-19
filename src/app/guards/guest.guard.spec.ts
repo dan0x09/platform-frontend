@@ -1,6 +1,6 @@
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
-import { GuestGuard } from './Guest.guard';
+import { GuestGuard } from './guest.guard';
 
 describe('GuestGuard', () => {
     let guard: GuestGuard;
