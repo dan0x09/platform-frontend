@@ -1,11 +1,10 @@
-import { Component, OnInit, OnDestroy, Input } from '@angular/core';
-import { Router, NavigationStart } from '@angular/router';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { NavigationStart, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-
 import { Alert, AlertType } from 'src/app/models/alert.model';
 import { AlertService } from 'src/app/services/alert.service';
 
-@Component({ selector: 'alert', templateUrl: 'alert.component.html' })
+@Component({ selector: 'app-alert', templateUrl: 'alert.component.html' })
 export class AlertComponent implements OnInit, OnDestroy {
     @Input() id = 'default-alert';
     @Input() fade = true;
@@ -16,7 +15,7 @@ export class AlertComponent implements OnInit, OnDestroy {
 
     constructor(private router: Router, private alertService: AlertService) {}
 
-    ngOnInit() {
+    ngOnInit(): void {
         this.alertSubscription = this.alertService.onAlert(this.id).subscribe((alert) => {
             if (!alert.message) {
                 this.alerts = this.alerts.filter((x) => x.keepAfterRouteChange);
@@ -40,15 +39,17 @@ export class AlertComponent implements OnInit, OnDestroy {
         });
     }
 
-    ngOnDestroy() {
+    ngOnDestroy(): void {
         // Unsubscribe to avoid memory leaks
         this.alertSubscription.unsubscribe();
         this.routeSubscription.unsubscribe();
     }
 
-    removeAlert(alert: Alert) {
+    removeAlert(alert: Alert): void {
         // check if already removed to prevent error on auto close
-        if (!this.alerts.includes(alert)) return;
+        if (!this.alerts.includes(alert)) {
+            return;
+        }
 
         if (this.fade) {
             alert.fade = true;
@@ -63,8 +64,10 @@ export class AlertComponent implements OnInit, OnDestroy {
         }
     }
 
-    cssClass(alert: Alert) {
-        if (!alert) return;
+    cssClass(alert: Alert): void | string {
+        if (!alert) {
+            return;
+        }
 
         const classes = ['alert', 'alert-dismissible', 'mt-4', 'container'];
 

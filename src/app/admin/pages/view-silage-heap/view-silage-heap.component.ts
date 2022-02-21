@@ -10,9 +10,9 @@ import { SilageHeapWithUrls } from 'src/app/shared/types/interfaces';
     styleUrls: ['./view-silage-heap.component.css'],
 })
 export class ViewSilageHeapComponent implements OnInit {
-    constructor(private config: ConfigService, private http: HttpClient, private route: ActivatedRoute) {}
-
     silageHeapWithUrls: SilageHeapWithUrls;
+
+    constructor(private config: ConfigService, private http: HttpClient, private route: ActivatedRoute) {}
 
     ngOnInit(): void {
         const silageHeapId = this.route.snapshot.paramMap.get('silageHeapId');

@@ -11,14 +11,12 @@ import { Contractor, GenerateToken, System } from 'src/app/shared/types/interfac
     styleUrls: ['./edit-system.component.css'],
 })
 export class EditSystemComponent implements OnInit {
-    constructor(private http: HttpClient, private config: ConfigService, private route: ActivatedRoute) {}
-
     editForm: FormGroup;
-
     system: System;
     contractor: Contractor;
-
     token: string | undefined;
+
+    constructor(private http: HttpClient, private config: ConfigService, private route: ActivatedRoute) {}
 
     ngOnInit(): void {
         const systemId = this.route.snapshot.paramMap.get('systemId');
@@ -42,7 +40,7 @@ export class EditSystemComponent implements OnInit {
         });
     }
 
-    generateKey() {
+    generateKey(): void {
         this.token = undefined;
         this.http
             .post<GenerateToken>(this.config.getUrl(`/system/${this.system.systemId}/generate-token`), {})

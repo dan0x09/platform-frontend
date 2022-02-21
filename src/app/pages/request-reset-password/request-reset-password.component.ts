@@ -10,43 +10,41 @@ import { ConfigService } from 'src/app/services/config.service';
     styleUrls: ['./request-reset-password.component.css'],
 })
 export class RequestResetPasswordComponent {
+    form: FormGroup = this.formBuilder.group({
+        email: new FormControl('', [Validators.required, Validators.email]),
+    });
+
+    submitted = false;
+    error = false;
+    success = false;
+
     constructor(
         private formBuilder: FormBuilder,
         private http: HttpClient,
         private router: Router,
         private config: ConfigService
     ) {}
-
-    submitted: boolean = false;
-
-    form: FormGroup = this.formBuilder.group({
-        email: new FormControl('', [Validators.required, Validators.email]),
-    });
-
-    error: boolean = false;
-    success: boolean = false;
-
     get f(): { [key: string]: AbstractControl } {
         return this.form.controls;
     }
 
-    submit() {
+    submit(): void {
         this.error = false;
         this.submitted = true;
 
         if (this.form.valid) {
             this.http.post<any>(this.config.getUrl('/user/request-password'), this.form.value).subscribe({
-                next: (res) => {
+                next: () => {
                     this.success = true;
                 },
-                error: (e) => (this.error = true),
+                error: () => (this.error = true),
             });
         } else {
             this.error = true;
         }
     }
 
-    backToLogin() {
+    backToLogin(): void {
         this.router.navigate(['']);
     }
 }

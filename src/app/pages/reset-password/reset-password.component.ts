@@ -11,6 +11,11 @@ import { ConfigService } from 'src/app/services/config.service';
     styleUrls: ['./reset-password.component.css'],
 })
 export class ResetPasswordComponent implements OnInit {
+    form: FormGroup;
+
+    token: string | null;
+    error = false;
+
     constructor(
         private formBuilder: FormBuilder,
         private http: HttpClient,
@@ -20,12 +25,7 @@ export class ResetPasswordComponent implements OnInit {
         private config: ConfigService
     ) {}
 
-    form: FormGroup;
-
-    token: string | null;
-    error: boolean = false;
-
-    ngOnInit() {
+    ngOnInit(): void {
         this.token = this.route.snapshot.queryParamMap.get('t');
         if (this.token) {
             this.form = this.formBuilder.group(
@@ -37,7 +37,8 @@ export class ResetPasswordComponent implements OnInit {
                 {
                     validators: [
                         (fg: FormGroup) => {
-                            return fg.value.password === fg.value.repeatPassword;
+                            const formInput = fg.value as { password: string; repeatPassword: string };
+                            return formInput.password === formInput.repeatPassword;
                         },
                     ],
                 }
@@ -47,12 +48,13 @@ export class ResetPasswordComponent implements OnInit {
         }
     }
 
-    submit() {
+    submit(): void {
         this.error = false;
         if (this.form.valid) {
+            const formInput = this.form.value as { token: string; password: string };
             const body = {
-                token: this.form.value.token,
-                password: this.form.value.password,
+                token: formInput.token,
+                password: formInput.password,
             };
             this.http.post(this.config.getUrl('/user/change-password'), body).subscribe({
                 next: () => {

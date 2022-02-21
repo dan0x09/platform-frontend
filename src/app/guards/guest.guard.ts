@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
+import { CanActivate, Router, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 import { Role } from '../shared/types/interfaces';
@@ -10,10 +10,7 @@ import { Role } from '../shared/types/interfaces';
 export class GuestGuard implements CanActivate {
     constructor(private auth: AuthService, private router: Router) {}
 
-    canActivate(
-        route: ActivatedRouteSnapshot,
-        state: RouterStateSnapshot
-    ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+    canActivate(): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
         const token = this.auth.getDecodedToken();
         if (token && !this.auth.isTokenExpired()) {
             switch (token.role) {

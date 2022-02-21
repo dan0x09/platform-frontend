@@ -11,6 +11,8 @@ import { Customer, Farm } from 'src/app/shared/types/interfaces';
     styleUrls: ['./farms.component.css'],
 })
 export class FarmsComponent implements OnInit, AfterViewInit {
+    customers: Customer[];
+
     constructor(
         private router: Router,
         private route: ActivatedRoute,
@@ -19,13 +21,11 @@ export class FarmsComponent implements OnInit, AfterViewInit {
         private toolbarService: ToolbarService
     ) {}
 
-    customers: Customer[];
-
-    visitCreate() {
+    visitCreate(): void {
         this.router.navigate(['create-farm'], { relativeTo: this.route.parent });
     }
 
-    ngOnInit() {
+    ngOnInit(): void {
         this.toolbarService.setTitle('Betriebe');
     }
 
@@ -47,7 +47,7 @@ export class FarmsComponent implements OnInit, AfterViewInit {
             error: (e) => console.error(e),
         });
     }
-    select(customer: Customer) {
+    select(customer: Customer): void {
         this.router.navigate(['edit-farm', customer.customerId], { relativeTo: this.route.parent });
     }
 }

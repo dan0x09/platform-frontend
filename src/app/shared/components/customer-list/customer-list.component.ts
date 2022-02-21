@@ -10,11 +10,11 @@ import { Customer } from '../../types/interfaces';
     styleUrls: ['./customer-list.component.css'],
 })
 export class CustomerListComponent implements OnInit {
-    constructor() {}
-
     @Input() customers!: Customer[];
+    @Output() selectEvent: EventEmitter<Customer> = new EventEmitter<Customer>();
 
-    @Output('onSelect') onSelect: EventEmitter<Customer> = new EventEmitter<Customer>();
+    @ViewChild(MatSort) sort: MatSort;
+    @ViewChild(MatPaginator) paginator: MatPaginator;
 
     displayedColumns: string[] = ['name', 'streetAndNumber', 'zipCode', 'city', 'country'];
     dataSource: MatTableDataSource<Customer>;
@@ -26,17 +26,15 @@ export class CustomerListComponent implements OnInit {
 
     // MatPaginator Output
     pageEvent: PageEvent;
-    @ViewChild(MatSort) sort: MatSort;
 
-    @ViewChild(MatPaginator) paginator: MatPaginator;
-
+    constructor() {}
     ngOnInit(): void {
         this.dataSource = new MatTableDataSource<Customer>(this.customers);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
     }
 
-    applyFilter(event: Event) {
+    applyFilter(event: Event): void {
         const filterValue = (event.target as HTMLInputElement).value;
         this.dataSource.filter = filterValue.trim().toLowerCase();
 
@@ -45,7 +43,7 @@ export class CustomerListComponent implements OnInit {
         }
     }
 
-    select(customer: Customer) {
-        this.onSelect.emit(customer);
+    select(customer: Customer): void {
+        this.selectEvent.emit(customer);
     }
 }

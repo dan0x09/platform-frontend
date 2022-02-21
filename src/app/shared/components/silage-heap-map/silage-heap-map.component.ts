@@ -1,15 +1,14 @@
 import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import { SilageHeap, SilageHeapWithUrls } from '../../types/interfaces';
 import { Feature, Map, View } from 'ol';
-import Tile from 'ol/layer/Tile';
-import OSM from 'ol/source/OSM';
-import { fromLonLat, ProjectionLike, transform } from 'ol/proj';
 import Point from 'ol/geom/Point';
-import Vector from 'ol/source/Vector';
+import Tile from 'ol/layer/Tile';
 import VectorLayer from 'ol/layer/Vector';
-import Style from 'ol/style/Style';
+import { transform } from 'ol/proj';
+import OSM from 'ol/source/OSM';
+import Vector from 'ol/source/Vector';
 import Icon from 'ol/style/Icon';
-import Layer from 'ol/layer/Layer';
+import Style from 'ol/style/Style';
+import { SilageHeapWithUrls } from '../../types/interfaces';
 
 @Component({
     selector: 'app-silage-heap-map',
@@ -17,18 +16,18 @@ import Layer from 'ol/layer/Layer';
     styleUrls: ['./silage-heap-map.component.css'],
 })
 export class SilageHeapMapComponent implements OnInit, AfterViewInit {
-    constructor() {}
-
     @Input() data!: SilageHeapWithUrls;
 
     @ViewChild('mapContainer') mapContainer: ElementRef<HTMLElement>;
 
+    constructor() {}
+
     ngOnInit(): void {}
 
-    ngAfterViewInit() {
+    ngAfterViewInit(): void {
         const [lat, lon] = this.data.silageHeap.gpsLocation.split(',').map(parseFloat);
         const lonLat = transform([lon, lat], 'EPSG:4326', 'EPSG:3857');
-        const map = new Map({
+        new Map({
             target: this.mapContainer.nativeElement,
             layers: [
                 new Tile({

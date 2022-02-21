@@ -11,11 +11,10 @@ import { Role, User } from 'src/app/shared/types/interfaces';
     styleUrls: ['./edit-user.component.css'],
 })
 export class EditUserComponent implements OnInit {
-    constructor(private http: HttpClient, private config: ConfigService, private route: ActivatedRoute) {}
-
     user: User;
-
     form: FormGroup;
+
+    constructor(private http: HttpClient, private config: ConfigService, private route: ActivatedRoute) {}
 
     ngOnInit(): void {
         const userId = this.route.snapshot.paramMap.get('userId');
@@ -45,7 +44,7 @@ export class EditUserComponent implements OnInit {
         }
     }
 
-    requestDelete() {
+    requestDelete(): void {
         console.log('request delete');
     }
 }

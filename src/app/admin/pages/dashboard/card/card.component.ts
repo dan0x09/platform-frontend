@@ -8,12 +8,12 @@ import { Card } from '../card';
     styleUrls: ['./card.component.css'],
 })
 export class CardComponent {
-    constructor(private router: Router, private route: ActivatedRoute) {}
-
     @Input() card!: Card;
 
+    constructor(private router: Router, private route: ActivatedRoute) {}
+
     @HostListener('click', ['$event.target'])
-    onClick(host) {
+    onClick(): void {
         this.router.navigate([this.card.uri], { relativeTo: this.route.parent });
     }
 }

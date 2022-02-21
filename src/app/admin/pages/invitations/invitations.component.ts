@@ -10,14 +10,14 @@ import { Invitation } from 'src/app/shared/types/interfaces';
     styleUrls: ['./invitations.component.css'],
 })
 export class InvitationsComponent implements OnInit {
+    invitations: Invitation[];
+
     constructor(
         private router: Router,
         private route: ActivatedRoute,
         private config: ConfigService,
         private http: HttpClient
     ) {}
-
-    invitations: Invitation[];
 
     ngOnInit(): void {
         this.http.get<Invitation[]>(this.config.getUrl('/invitation/user/')).subscribe({
@@ -29,7 +29,7 @@ export class InvitationsComponent implements OnInit {
         });
     }
 
-    visitCreate() {
+    visitCreate(): void {
         this.router.navigate(['create-invitation'], { relativeTo: this.route.parent });
     }
 }

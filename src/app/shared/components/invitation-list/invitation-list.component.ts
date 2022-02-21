@@ -13,11 +13,11 @@ import { Invitation, Role } from '../../types/interfaces';
     styleUrls: ['./invitation-list.component.css'],
 })
 export class InvitationListComponent implements OnInit {
-    constructor(private router: Router, private http: HttpClient, private config: ConfigService) {}
+    @ViewChild(MatSort) sort: MatSort;
+    @ViewChild(MatPaginator) paginator: MatPaginator;
 
     @Input() invitations!: Invitation[];
-
-    @Output('onSelect') onSelect: EventEmitter<Invitation> = new EventEmitter<Invitation>();
+    @Output() selectEvent: EventEmitter<Invitation> = new EventEmitter<Invitation>();
 
     now: Date = new Date();
 
@@ -31,10 +31,8 @@ export class InvitationListComponent implements OnInit {
 
     // MatPaginator Output
     pageEvent: PageEvent;
-    @ViewChild(MatSort) sort: MatSort;
 
-    @ViewChild(MatPaginator) paginator: MatPaginator;
-
+    constructor(private router: Router, private http: HttpClient, private config: ConfigService) {}
     ngOnInit(): void {
         this.invitations.sort(this.sortByDate);
         this.dataSource = new MatTableDataSource<Invitation>(this.invitations);
@@ -42,7 +40,7 @@ export class InvitationListComponent implements OnInit {
         this.dataSource.sort = this.sort;
     }
 
-    applyFilter(event: Event) {
+    applyFilter(event: Event): void {
         const filterValue = (event.target as HTMLInputElement).value;
         this.dataSource.filter = filterValue.trim().toLowerCase();
 
@@ -51,8 +49,8 @@ export class InvitationListComponent implements OnInit {
         }
     }
 
-    select(invitation: Invitation) {
-        this.onSelect.emit(invitation);
+    select(invitation: Invitation): void {
+        this.selectEvent.emit(invitation);
     }
 
     roleToString(role: Role): string {
@@ -70,7 +68,9 @@ export class InvitationListComponent implements OnInit {
         const date = new Date(dateString);
         if (date > this.now) {
             return date.toLocaleString();
-        } else return `Abgelaufen am ${date.toLocaleString()}`;
+        } else {
+            return `Abgelaufen am ${date.toLocaleString()}`;
+        }
     }
 
     isInvitationExpired(dateString: string): boolean {
@@ -90,11 +90,11 @@ export class InvitationListComponent implements OnInit {
         }
     }
 
-    visitUser(invitation: Invitation) {
+    visitUser(invitation: Invitation): void {
         this.router.navigate([`admin/edit-user/${invitation.userId}`]);
     }
 
-    invalidate(element: Invitation) {
+    invalidate(element: Invitation): void {
         this.http
             .post<Invitation>(this.config.getUrl(`/invitation/user/${element.invitationId}/invalidate`), {})
             .subscribe({
@@ -108,7 +108,7 @@ export class InvitationListComponent implements OnInit {
             });
     }
 
-    sortByDate(a: Invitation, b: Invitation, ascendingOrder = false) {
+    sortByDate(a: Invitation, b: Invitation, ascendingOrder = false): number {
         const aDate = new Date(a.expiresAt);
         const bDate = new Date(b.expiresAt);
 

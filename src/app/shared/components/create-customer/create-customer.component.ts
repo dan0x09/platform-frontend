@@ -1,6 +1,6 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { CreateCustomer, Customer } from '../../types/interfaces';
+import { CreateCustomer } from '../../types/interfaces';
 
 @Component({
     selector: 'app-create-customer',
@@ -8,9 +8,7 @@ import { CreateCustomer, Customer } from '../../types/interfaces';
     styleUrls: ['./create-customer.component.css'],
 })
 export class CreateCustomerComponent implements OnInit {
-    constructor() {}
-
-    @Output('onSubmit') onSubmit: EventEmitter<CreateCustomer> = new EventEmitter<CreateCustomer>();
+    @Output() submitEvent: EventEmitter<CreateCustomer> = new EventEmitter<CreateCustomer>();
 
     createForm: FormGroup = new FormGroup({
         name: new FormControl('', [Validators.required]),
@@ -20,11 +18,13 @@ export class CreateCustomerComponent implements OnInit {
         country: new FormControl('', [Validators.required]),
     });
 
+    constructor() {}
+
     ngOnInit(): void {}
 
-    submit() {
+    submit(): void {
         if (this.createForm.valid) {
-            this.onSubmit.emit(this.createForm.value);
+            this.submitEvent.emit(this.createForm.value as CreateCustomer);
         }
     }
 }

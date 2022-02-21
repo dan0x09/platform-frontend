@@ -9,13 +9,13 @@ import { SidenavService } from 'src/app/services/sidenav.service';
     styleUrls: ['./toolbar.component.css'],
 })
 export class ToolbarComponent implements OnInit {
-    constructor(private auth: AuthService, private router: Router, public sidenav: SidenavService) {}
-
     @Input() title!: string;
+
+    constructor(private auth: AuthService, private router: Router, public sidenav: SidenavService) {}
 
     ngOnInit(): void {}
 
-    logout() {
+    logout(): void {
         this.sidenav.close();
         this.auth.deleteToken();
         this.router.navigate(['']);

@@ -9,7 +9,7 @@ export class AuthInterceptor implements HttpInterceptor {
     constructor(private auth: AuthService) {}
 
     intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-        if (request.url.indexOf('blob.core.windows.net') != -1) {
+        if (request.url.indexOf('blob.core.windows.net') !== -1) {
             return next.handle(request);
         }
         const token = this.auth.getToken();
@@ -27,8 +27,8 @@ export class AuthInterceptor implements HttpInterceptor {
 
                     const header = res.headers.get('x-authorization');
                     if (header) {
-                        const token = header.substr(7);
-                        this.auth.setToken(token);
+                        const newToken = header.substr(7);
+                        this.auth.setToken(newToken);
                     }
                 }
             })

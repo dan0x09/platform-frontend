@@ -23,7 +23,7 @@ export class CreateFarmComponent implements OnInit {
         this.toolbarService.setTitle('Betrieb anlegen');
     }
 
-    submit(data: CreateCustomer) {
+    submit(data: CreateCustomer): void {
         this.http.post<any>(this.config.getUrl('/farm/'), data).subscribe({
             next: () => {
                 this.router.navigate(['farms'], { relativeTo: this.route.parent });

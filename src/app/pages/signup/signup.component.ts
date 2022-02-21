@@ -12,6 +12,11 @@ import { Role } from 'src/app/shared/types/interfaces';
     styleUrls: ['./signup.component.css'],
 })
 export class SignupComponent implements OnInit {
+    signupForm: FormGroup;
+
+    token: string | null;
+    error = false;
+
     constructor(
         private formBuilder: FormBuilder,
         private http: HttpClient,
@@ -21,12 +26,7 @@ export class SignupComponent implements OnInit {
         private config: ConfigService
     ) {}
 
-    signupForm: FormGroup;
-
-    token: string | null;
-    error: boolean = false;
-
-    ngOnInit() {
+    ngOnInit(): void {
         this.token = this.route.snapshot.queryParamMap.get('t');
         if (this.token) {
             this.signupForm = this.formBuilder.group(
@@ -40,7 +40,8 @@ export class SignupComponent implements OnInit {
                 {
                     validators: [
                         (fg: FormGroup) => {
-                            return fg.value.password === fg.value.repeatPassword;
+                            const formInput = fg.value as { password: string; repeatPassword: string };
+                            return formInput.password === formInput.repeatPassword;
                         },
                     ],
                 }
@@ -50,14 +51,20 @@ export class SignupComponent implements OnInit {
         }
     }
 
-    submit() {
+    submit(): void {
         this.error = false;
         if (this.signupForm.valid) {
+            const formInput = this.signupForm.value as {
+                firstName: string;
+                lastName: string;
+                password: string;
+                token: string;
+            };
             const body = {
-                firstName: this.signupForm.value.firstName,
-                lastName: this.signupForm.value.lastName,
-                password: this.signupForm.value.password,
-                token: this.signupForm.value.token,
+                firstName: formInput.firstName,
+                lastName: formInput.lastName,
+                password: formInput.password,
+                token: formInput.token,
             };
 
             const url =
