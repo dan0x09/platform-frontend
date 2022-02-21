@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
-import { SilageHeap, SilageHeapWithUrls } from '../../types/interfaces';
+import { SilageHeapWithUrls } from '../../types/interfaces';
 
 @Component({
     selector: 'app-silage-heap-volume',
@@ -7,11 +7,11 @@ import { SilageHeap, SilageHeapWithUrls } from '../../types/interfaces';
     styleUrls: ['./silage-heap-volume.component.css'],
 })
 export class SilageHeapVolumeComponent implements OnInit, AfterViewInit {
-    constructor() {}
-
     @Input() data!: SilageHeapWithUrls;
+
+    constructor() {}
 
     ngOnInit(): void {}
 
-    ngAfterViewInit() {}
+    ngAfterViewInit(): void {}
 }

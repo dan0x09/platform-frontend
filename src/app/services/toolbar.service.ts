@@ -6,11 +6,11 @@ import { BehaviorSubject, Observable } from 'rxjs';
     providedIn: 'root',
 })
 export class ToolbarService {
-    constructor(private title: Title) {}
-
     subject: BehaviorSubject<string> = new BehaviorSubject<string>('Silolytics');
 
-    setTitle(title: string) {
+    constructor(private title: Title) {}
+
+    setTitle(title: string): void {
         this.title.setTitle(title);
         this.subject.next(title);
     }

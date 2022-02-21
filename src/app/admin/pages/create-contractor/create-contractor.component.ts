@@ -23,7 +23,7 @@ export class CreateContractorComponent implements OnInit {
         this.toolbarService.setTitle('Lohnunternehmen erstellen');
     }
 
-    submit(data: CreateCustomer) {
+    submit(data: CreateCustomer): void {
         this.http.post<any>(this.config.getUrl('/contractor/'), data).subscribe({
             next: () => {
                 this.router.navigate(['contractors'], { relativeTo: this.route.parent });

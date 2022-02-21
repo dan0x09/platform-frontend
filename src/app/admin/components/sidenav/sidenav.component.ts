@@ -1,6 +1,6 @@
-import { Component, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
+import { Router } from '@angular/router';
 import { SidenavService } from 'src/app/services/sidenav.service';
 
 @Component({
@@ -8,14 +8,8 @@ import { SidenavService } from 'src/app/services/sidenav.service';
     templateUrl: './sidenav.component.html',
     styleUrls: ['./sidenav.component.css'],
 })
-export class SidenavComponent {
+export class SidenavComponent implements AfterViewInit {
     @ViewChild('drawer', { static: true }) public sidenav!: MatDrawer;
-
-    constructor(private sidenavService: SidenavService, private router: Router) {}
-
-    ngAfterViewInit(): void {
-        this.sidenavService.setSidenav(this.sidenav);
-    }
 
     showFiller = false;
 
@@ -57,7 +51,13 @@ export class SidenavComponent {
         },
     ];
 
-    navigateTo(uri: string) {
+    constructor(private sidenavService: SidenavService, private router: Router) {}
+
+    ngAfterViewInit(): void {
+        this.sidenavService.setSidenav(this.sidenav);
+    }
+
+    navigateTo(uri: string): void {
         this.router.navigate([`admin/${uri}`]);
     }
 }

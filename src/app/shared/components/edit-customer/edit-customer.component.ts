@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { CreateCustomer, Customer } from '../../types/interfaces';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Customer } from '../../types/interfaces';
 
 @Component({
     selector: 'app-edit-customer',
@@ -8,16 +8,16 @@ import { CreateCustomer, Customer } from '../../types/interfaces';
     styleUrls: ['./edit-customer.component.css'],
 })
 export class EditCustomerComponent implements OnInit {
-    constructor() {}
+    @Input() customer!: Customer;
 
-    @Input('customer') customer!: Customer;
+    @Output() submitEvent: EventEmitter<Customer> = new EventEmitter<Customer>();
+    @Output() deleteEvent: EventEmitter<Customer> = new EventEmitter<Customer>();
 
-    @Output('onSubmit') onSubmit: EventEmitter<Customer> = new EventEmitter<Customer>();
-    @Output('onDelete') onDelete: EventEmitter<Customer> = new EventEmitter<Customer>();
+    editable = false;
 
-    editable: boolean = false;
     editForm: FormGroup;
 
+    constructor() {}
     ngOnInit(): void {
         this.editForm = new FormGroup({
             name: new FormControl({ value: this.customer.name, disabled: true }, [Validators.required]),
@@ -30,17 +30,18 @@ export class EditCustomerComponent implements OnInit {
         });
     }
 
-    submit() {
+    submit(): void {
         if (this.editForm.valid) {
+            // eslint-disable-next-line
             const customer: Customer = {
                 ...this.editForm.value,
                 customerId: this.customer.customerId,
             };
-            this.onSubmit.emit(customer);
+            this.submitEvent.emit(customer);
         }
     }
 
-    toggleEditable() {
+    toggleEditable(): void {
         this.editable = !this.editable;
         if (this.editable) {
             this.editForm.enable();
@@ -49,7 +50,7 @@ export class EditCustomerComponent implements OnInit {
         }
     }
 
-    requestDelete() {
-        this.onDelete.emit(this.customer);
+    requestDelete(): void {
+        this.deleteEvent.emit(this.customer);
     }
 }

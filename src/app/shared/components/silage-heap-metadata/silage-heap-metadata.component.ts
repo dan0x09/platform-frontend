@@ -1,7 +1,5 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
-import { ConfigService } from 'src/app/services/config.service';
-import { SilageHeap, SilageHeapWithUrls } from '../../types/interfaces';
+import { SilageHeapWithUrls } from '../../types/interfaces';
 
 @Component({
     selector: 'app-silage-heap-metadata',
@@ -9,9 +7,9 @@ import { SilageHeap, SilageHeapWithUrls } from '../../types/interfaces';
     styleUrls: ['./silage-heap-metadata.component.css'],
 })
 export class SilageHeapMetadataComponent implements OnInit {
-    constructor() {}
-
     @Input() data!: SilageHeapWithUrls;
+
+    constructor() {}
 
     ngOnInit(): void {
         console.log(this.data);

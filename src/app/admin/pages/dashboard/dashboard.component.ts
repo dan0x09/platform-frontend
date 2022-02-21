@@ -8,8 +8,6 @@ import { Card } from './card';
     styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent implements OnInit {
-    constructor(private toolbarService: ToolbarService) {}
-
     cards: Card[] = [
         {
             title: 'Systeme',
@@ -36,6 +34,8 @@ export class DashboardComponent implements OnInit {
             uri: 'invitations',
         },
     ];
+
+    constructor(private toolbarService: ToolbarService) {}
 
     ngOnInit(): void {
         this.toolbarService.setTitle('Dashboard');

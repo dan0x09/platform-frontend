@@ -10,16 +10,12 @@ import { System } from '../../types/interfaces';
     styleUrls: ['./system-list.component.css'],
 })
 export class SystemListComponent implements OnInit {
-    constructor() {}
-    ngOnInit(): void {
-        this.dataSource = new MatTableDataSource<System>(this.systems);
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
-    }
+    @ViewChild(MatSort) sort: MatSort;
+    @ViewChild(MatPaginator) paginator: MatPaginator;
 
     @Input() systems!: System[];
+    @Output() selectEvent: EventEmitter<System> = new EventEmitter<System>();
 
-    @Output('onSelect') onSelect: EventEmitter<System> = new EventEmitter<System>();
     displayedColumns: string[] = ['name', 'version', 'invalidated'];
     dataSource: MatTableDataSource<System>;
 
@@ -30,11 +26,15 @@ export class SystemListComponent implements OnInit {
 
     // MatPaginator Output
     pageEvent: PageEvent;
-    @ViewChild(MatSort) sort: MatSort;
 
-    @ViewChild(MatPaginator) paginator: MatPaginator;
+    constructor() {}
+    ngOnInit(): void {
+        this.dataSource = new MatTableDataSource<System>(this.systems);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+    }
 
-    applyFilter(event: Event) {
+    applyFilter(event: Event): void {
         const filterValue = (event.target as HTMLInputElement).value;
         this.dataSource.filter = filterValue.trim().toLowerCase();
 
@@ -43,7 +43,7 @@ export class SystemListComponent implements OnInit {
         }
     }
 
-    select(system: System) {
-        this.onSelect.emit(system);
+    select(system: System): void {
+        this.selectEvent.emit(system);
     }
 }

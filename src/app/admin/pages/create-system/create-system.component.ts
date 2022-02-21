@@ -11,19 +11,19 @@ import { Contractor } from 'src/app/shared/types/interfaces';
     styleUrls: ['./create-system.component.css'],
 })
 export class CreateSystemComponent implements OnInit {
-    constructor(
-        private http: HttpClient,
-        private config: ConfigService,
-        private router: Router,
-        private route: ActivatedRoute
-    ) {}
-
     createForm: FormGroup = new FormGroup({
         name: new FormControl('', [Validators.required]),
         contractor: new FormControl('', [Validators.required]),
     });
 
     contractors: Contractor[];
+
+    constructor(
+        private http: HttpClient,
+        private config: ConfigService,
+        private router: Router,
+        private route: ActivatedRoute
+    ) {}
 
     ngOnInit(): void {
         this.http.get<Contractor[]>(this.config.getUrl('/contractor/')).subscribe({
@@ -34,12 +34,13 @@ export class CreateSystemComponent implements OnInit {
         });
     }
 
-    submit() {
+    submit(): void {
         if (this.createForm.valid) {
+            const formInput = this.createForm.value as { contractor: Contractor; name: string };
             this.http
                 .post<Contractor>(this.config.getUrl('/system/'), {
-                    contractorId: this.createForm.value.contractor.contractorId,
-                    name: this.createForm.value.name,
+                    contractorId: formInput.contractor.contractorId,
+                    name: formInput.name,
                 })
                 .subscribe({
                     next: () => {

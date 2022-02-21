@@ -13,6 +13,13 @@ import { ConfigService } from '../../services/config.service';
     styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
+    loginForm: FormGroup = this.formBuilder.group({
+        email: new FormControl('', [Validators.required, Validators.email]),
+        password: new FormControl('', [Validators.required, Validators.minLength(7)]),
+    });
+
+    submitted = false;
+
     constructor(
         private formBuilder: FormBuilder,
         private http: HttpClient,
@@ -22,18 +29,11 @@ export class LoginComponent {
         private alertService: AlertService
     ) {}
 
-    loginForm: FormGroup = this.formBuilder.group({
-        email: new FormControl('', [Validators.required, Validators.email]),
-        password: new FormControl('', [Validators.required, Validators.minLength(7)]),
-    });
-
-    submitted: boolean = false;
-
     get f(): { [key: string]: AbstractControl } {
         return this.loginForm.controls;
     }
 
-    submit() {
+    submit(): void {
         this.submitted = true;
         this.alertService.clear();
 
@@ -56,7 +56,7 @@ export class LoginComponent {
                     }
                 },
                 error: (error) => {
-                    this.alertService.error(error);
+                    this.alertService.error(error as string);
                 },
             });
         }

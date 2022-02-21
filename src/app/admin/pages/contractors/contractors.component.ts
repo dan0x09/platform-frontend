@@ -11,6 +11,8 @@ import { Contractor, Customer } from 'src/app/shared/types/interfaces';
     styleUrls: ['./contractors.component.css'],
 })
 export class ContractorsComponent implements OnInit, AfterViewInit {
+    customers: Customer[];
+
     constructor(
         private router: Router,
         private route: ActivatedRoute,
@@ -19,9 +21,7 @@ export class ContractorsComponent implements OnInit, AfterViewInit {
         private toolbarService: ToolbarService
     ) {}
 
-    customers: Customer[];
-
-    visitCreate() {
+    visitCreate(): void {
         this.router.navigate(['create-contractor'], { relativeTo: this.route.parent });
     }
 
@@ -48,7 +48,7 @@ export class ContractorsComponent implements OnInit, AfterViewInit {
         });
     }
 
-    select(customer: Customer) {
+    select(customer: Customer): void {
         this.router.navigate(['edit-contractor', customer.customerId], { relativeTo: this.route.parent });
     }
 }

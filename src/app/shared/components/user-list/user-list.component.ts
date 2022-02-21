@@ -10,11 +10,13 @@ import { Role, User } from '../../types/interfaces';
     styleUrls: ['./user-list.component.css'],
 })
 export class UserListComponent implements OnInit {
-    constructor() {}
+    @ViewChild(MatSort) sort: MatSort;
+
+    @ViewChild(MatPaginator) paginator: MatPaginator;
 
     @Input() users!: User[];
 
-    @Output('onSelect') onSelect: EventEmitter<User> = new EventEmitter<User>();
+    @Output() selectEvent: EventEmitter<User> = new EventEmitter<User>();
 
     displayedColumns: string[] = ['email', 'firstName', 'lastName', 'role'];
     dataSource: MatTableDataSource<User>;
@@ -26,9 +28,8 @@ export class UserListComponent implements OnInit {
 
     // MatPaginator Output
     pageEvent: PageEvent;
-    @ViewChild(MatSort) sort: MatSort;
 
-    @ViewChild(MatPaginator) paginator: MatPaginator;
+    constructor() {}
 
     ngOnInit(): void {
         this.dataSource = new MatTableDataSource<User>(this.users);
@@ -36,7 +37,7 @@ export class UserListComponent implements OnInit {
         this.dataSource.sort = this.sort;
     }
 
-    applyFilter(event: Event) {
+    applyFilter(event: Event): void {
         const filterValue = (event.target as HTMLInputElement).value;
         this.dataSource.filter = filterValue.trim().toLowerCase();
 
@@ -45,8 +46,8 @@ export class UserListComponent implements OnInit {
         }
     }
 
-    select(user: User) {
-        this.onSelect.emit(user);
+    select(user: User): void {
+        this.selectEvent.emit(user);
     }
 
     prettyRole(role: Role): string {

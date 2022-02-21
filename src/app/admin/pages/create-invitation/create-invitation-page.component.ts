@@ -12,6 +12,8 @@ import { Role, UserInvitation } from 'src/app/shared/types/interfaces';
     styleUrls: ['./create-invitation-page.component.css'],
 })
 export class CreateInvitationPageComponent implements OnInit {
+    allowedRoles: Role[];
+
     constructor(
         private auth: AuthService,
         private http: HttpClient,
@@ -20,8 +22,6 @@ export class CreateInvitationPageComponent implements OnInit {
         private route: ActivatedRoute,
         private alertService: AlertService
     ) {}
-
-    allowedRoles: Role[];
 
     ngOnInit(): void {
         const decodedToken = this.auth.getDecodedToken();
@@ -38,13 +38,13 @@ export class CreateInvitationPageComponent implements OnInit {
         }
     }
 
-    invite(invitation: UserInvitation) {
+    invite(invitation: UserInvitation): void {
         this.alertService.clear();
         this.http.post(this.config.getUrl('/invitation/user/'), invitation).subscribe({
             next: () => {
                 this.router.navigate(['invitations'], { relativeTo: this.route.parent });
             },
-            error: (error) => this.alertService.error(error),
+            error: (error) => this.alertService.error(String(error)),
         });
     }
 }

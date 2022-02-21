@@ -10,17 +10,16 @@ import { Contractor, Customer, System } from 'src/app/shared/types/interfaces';
     styleUrls: ['./edit-contractor.component.css'],
 })
 export class EditContractorComponent implements OnInit {
+    contractor: Contractor;
+    customer: Customer;
+    systems: System[];
+
     constructor(
         private http: HttpClient,
         private config: ConfigService,
         private route: ActivatedRoute,
         private router: Router
     ) {}
-
-    contractor: Contractor;
-    customer: Customer;
-
-    systems: System[];
 
     ngOnInit(): void {
         const contractorId = this.route.snapshot.paramMap.get('contractorId');
@@ -39,7 +38,7 @@ export class EditContractorComponent implements OnInit {
             error: (e) => console.error(e),
         });
 
-        this.http.get<System[]>(this.config.getUrl('/system/'), { params: { contractorId: contractorId } }).subscribe({
+        this.http.get<System[]>(this.config.getUrl('/system/'), { params: { contractorId } }).subscribe({
             next: (systems: System[]) => {
                 this.systems = systems;
             },
@@ -47,7 +46,7 @@ export class EditContractorComponent implements OnInit {
         });
     }
 
-    submit(customer: Customer) {
+    submit(customer: Customer): void {
         const body = {
             ...customer,
         };
@@ -61,7 +60,7 @@ export class EditContractorComponent implements OnInit {
         });
     }
 
-    visitSystem(system: System) {
+    visitSystem(system: System): Promise<boolean> {
         return this.router.navigate(['edit-system', system.systemId], { relativeTo: this.route.parent });
     }
 }

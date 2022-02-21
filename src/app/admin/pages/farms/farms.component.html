@@ -3,7 +3,7 @@
     <mat-grid-list cols="8" rowHeight="100%">
         <mat-grid-tile colspan="6">
             <div class="expand padding-18" *ngIf="customers">
-                <app-customer-list [customers]="customers" (onSelect)="select($event)"></app-customer-list>
+                <app-customer-list [customers]="customers" (selectEvent)="select($event)"></app-customer-list>
             </div>
         </mat-grid-tile>
         <mat-grid-tile colspan="2">

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { SilageHeap, SilageHeapWithUrls } from '../../types/interfaces';
+import { SilageHeapWithUrls } from '../../types/interfaces';
 
 @Component({
     selector: 'app-silage-heap-feed',
@@ -7,9 +7,9 @@ import { SilageHeap, SilageHeapWithUrls } from '../../types/interfaces';
     styleUrls: ['./silage-heap-feed.component.css'],
 })
 export class SilageHeapFeedComponent implements OnInit {
-    constructor() {}
-
     @Input() data!: SilageHeapWithUrls;
+
+    constructor() {}
 
     ngOnInit(): void {}
 }

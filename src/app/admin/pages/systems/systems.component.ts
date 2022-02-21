@@ -10,14 +10,14 @@ import { System } from 'src/app/shared/types/interfaces';
     styleUrls: ['./systems.component.css'],
 })
 export class SystemsComponent implements OnInit {
+    systems: System[];
+
     constructor(
         private router: Router,
         private route: ActivatedRoute,
         private http: HttpClient,
         private config: ConfigService
     ) {}
-
-    systems: System[];
 
     ngOnInit(): void {
         this.http.get<System[]>(this.config.getUrl('/system/')).subscribe({
@@ -28,11 +28,12 @@ export class SystemsComponent implements OnInit {
         });
     }
 
-    visitCreate() {
+    visitCreate(): void {
         this.router.navigate(['create-system'], { relativeTo: this.route.parent });
     }
 
-    select(system: System) {
+    select(system: System): void {
+        console.log('select');
         this.router.navigate(['edit-system', system.systemId], { relativeTo: this.route.parent });
     }
 }

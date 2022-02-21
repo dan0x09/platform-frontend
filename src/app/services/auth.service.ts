@@ -6,13 +6,13 @@ import { UserTokenPayload } from '../shared/types/interfaces';
     providedIn: 'root',
 })
 export class AuthService {
-    constructor() {}
-
-    tokenKey: string = 'authToken';
+    tokenKey = 'authToken';
     decodedToken: UserTokenPayload | null;
     jwtHelper = new JwtHelperService();
 
-    setToken(token: string) {
+    constructor() {}
+
+    setToken(token: string): void {
         sessionStorage.setItem(this.tokenKey, token);
     }
 
@@ -36,7 +36,7 @@ export class AuthService {
         return true;
     }
 
-    deleteToken() {
+    deleteToken(): void {
         sessionStorage.removeItem(this.tokenKey);
     }
 }

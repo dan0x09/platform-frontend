@@ -10,17 +10,16 @@ import { Customer, Farm, System } from 'src/app/shared/types/interfaces';
     styleUrls: ['./edit-farm.component.css'],
 })
 export class EditFarmComponent implements OnInit {
+    farm: Farm;
+    customer: Customer;
+    systems: System[];
+
     constructor(
         private http: HttpClient,
         private config: ConfigService,
         private route: ActivatedRoute,
         private router: Router
     ) {}
-
-    farm: Farm;
-    customer: Customer;
-
-    systems: System[];
 
     ngOnInit(): void {
         const farmId = this.route.snapshot.paramMap.get('farmId');
@@ -47,7 +46,7 @@ export class EditFarmComponent implements OnInit {
         });
     }
 
-    submit(customer: Customer) {
+    submit(customer: Customer): void {
         const body = {
             ...customer,
         };

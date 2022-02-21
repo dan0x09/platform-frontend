@@ -8,11 +8,11 @@ import { SilageHeapWithUrls } from '../../types/interfaces';
     styleUrls: ['./silage-heap-interactive-volume-model.component.css'],
 })
 export class SilageHeapInteractiveVolumeModelComponent implements OnInit {
-    constructor(private sanitizer: DomSanitizer) {}
-
     @Input() data!: SilageHeapWithUrls;
 
     url: SafeResourceUrl;
+
+    constructor(private sanitizer: DomSanitizer) {}
 
     ngOnInit(): void {
         this.url = this.sanitizer.bypassSecurityTrustResourceUrl(this.data.urls.interactiveVolumeModel);
