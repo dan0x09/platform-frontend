@@ -13,12 +13,14 @@ jobs:
   build_and_test_job:
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
     runs-on: ubuntu-latest
-    name: Build and Test Job
+    name: Build, lint and test job
     steps:
       - uses: actions/checkout@v2
         with:
           submodules: true
       - name: Install dependencies
         run: npm ci
+      -name: Lint
+        run: npm run lint
       - name: Test
         run: npm run ci-test
