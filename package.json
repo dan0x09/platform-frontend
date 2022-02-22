@@ -9,13 +9,8 @@
     "test": "ng test",
     "ci-test": "ng test '--no-watch' '--no-progress' '--browsers=ChromeHeadlessCI'",
     "lint": "ng lint",
-    "e2e": "ng e2e"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run lint",
-      "pre-push": "npm run ci-test"
-    }
+    "e2e": "ng e2e",
+    "prepare": "husky install"
   },
   "private": true,
   "dependencies": {
