@@ -2,13 +2,23 @@
 
 This project contains the frontend for the Silage Control Platform. It uses [Angular](https://angular.io/) to provide a web application for farmers and contractors. Owners and admins are users which manage the platform, e.g., the invitation of new users.
 
-## Development server
+## Requirements
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+-   [Node.js](https://nodejs.org/en/)
+-   [Angular](https://angular.io/) via `npm install -g @angular/cli`
+
+## Development
+1. Run `npm run prepare` once to enable automated tests before commits.
+2. Run `npm install` to install dependencies.
+3. Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. 
+
+The app will automatically reload if you change any of the source files.
 
 ## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Run `ng generate component component-name` to generate a new component.
+
+You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
 ## Build
 
