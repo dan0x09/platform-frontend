@@ -2,6 +2,7 @@
   "name": "platform-frontend",
   "version": "0.0.1",
   "scripts": {
+    "prepare": "node -e \"try { require('husky').install() } catch (e) {if (e.code !== 'MODULE_NOT_FOUND') throw e}\"",
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
@@ -9,8 +10,7 @@
     "test": "ng test",
     "ci-test": "ng test '--no-watch' '--no-progress' '--browsers=ChromeHeadlessCI'",
     "lint": "ng lint",
-    "e2e": "ng e2e",
-    "prepare": "husky install"
+    "e2e": "ng e2e"
   },
   "private": true,
   "dependencies": {
@@ -65,5 +65,9 @@
     "protractor": "~7.0.0",
     "ts-node": "~10.4.0",
     "typescript": "~4.5.4"
+  },
+  "engines": {
+    "npm": ">=7.0.0",
+    "node": ">=16.0.0"
   }
 }
