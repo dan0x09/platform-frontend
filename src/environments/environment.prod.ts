@@ -1,4 +1,4 @@
 export const environment = {
     production: true,
-    apiBaseUrl: 'http://silagecontrol.eu-central-1.elasticbeanstalk.com',
+    apiBaseUrl: 'http://silage-control-platform.eu-central-1.elasticbeanstalk.com',
 };
