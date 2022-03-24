@@ -48,4 +48,8 @@ export class AuthService {
             return Role.GUEST;
         }
     }
+
+    isLoggedIn(): boolean {
+        return this.getRole() !== Role.GUEST;
+    }
 }

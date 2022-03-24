@@ -16,6 +16,7 @@ import { RequestResetPasswordComponent } from './pages/request-reset-password/re
 import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { AlertComponent } from './shared/components/alert/alert.component';
+import { ToolbarComponent } from './shared/components/toolbar/toolbar.component';
 import { SharedModule } from './shared/shared.module';
 
 @NgModule({
@@ -26,6 +27,7 @@ import { SharedModule } from './shared/shared.module';
         RequestResetPasswordComponent,
         ResetPasswordComponent,
         AlertComponent,
+        ToolbarComponent,
     ],
     imports: [
         BrowserModule,

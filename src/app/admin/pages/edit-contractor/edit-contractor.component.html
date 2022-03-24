@@ -1,4 +1,3 @@
-<app-toolbar title="Lohnunternehmer bearbeiten"></app-toolbar>
 <div class="main">
     <app-edit-customer *ngIf="customer" [customer]="customer" (submitEvent)="submit($event)"></app-edit-customer>
     <app-system-list *ngIf="systems" [systems]="systems" (selectEvent)="visitSystem($event)"></app-system-list>

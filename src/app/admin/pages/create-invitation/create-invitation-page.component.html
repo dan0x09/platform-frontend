@@ -1,4 +1,3 @@
-<app-toolbar title="Nutzer einladen"></app-toolbar>
 <div class="main" *ngIf="allowedRoles">
     <app-create-invitation (inviteEvent)="invite($event)" [allowedRoles]="allowedRoles"></app-create-invitation>
 </div>

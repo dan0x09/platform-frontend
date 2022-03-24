@@ -8,11 +8,9 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { MatToolbarModule } from '@angular/material/toolbar';
 import { SharedModule } from '../shared/shared.module';
 import { AdminRoutingModule } from './admin-routing.module';
 import { AdminComponent } from './admin.component';
-import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { ContractorsComponent } from './pages/contractors/contractors.component';
 import { CreateContractorComponent } from './pages/create-contractor/create-contractor.component';
 import { CreateFarmComponent } from './pages/create-farm/create-farm.component';
@@ -43,7 +41,6 @@ import { ViewSilageHeapComponent } from './pages/view-silage-heap/view-silage-he
         UsersComponent,
         CreateContractorComponent,
         CreateFarmComponent,
-        ToolbarComponent,
         CreateSystemComponent,
         EditContractorComponent,
         EditFarmComponent,
@@ -57,7 +54,6 @@ import { ViewSilageHeapComponent } from './pages/view-silage-heap/view-silage-he
         CommonModule,
         SharedModule,
         AdminRoutingModule,
-        MatToolbarModule,
         MatIconModule,
         MatButtonModule,
         MatCardModule,
