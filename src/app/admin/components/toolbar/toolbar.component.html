@@ -1,9 +1,33 @@
-<mat-toolbar color="primary">
-    <button mat-icon-button aria-label="Example icon-button with menu icon" (click)="sidenav.toggle()">
-        <mat-icon *ngIf="!sidenav.isOpen">menu</mat-icon>
-        <mat-icon *ngIf="sidenav.isOpen">menu_open</mat-icon>
-    </button>
-    <span>{{ title }}</span>
-    <span class="spacer"></span>
-    <button mat-stroked-button (click)="logout()" aria-label="Example icon-button with share icon">AUSLOGGEN</button>
-</mat-toolbar>
+<div class="header">
+    <img class="logo" routerLink="/" src="assets/images/logo.svg" alt="SilageControl" />
+    <div class="navigation-large nav-items">
+        <div *ngFor="let link of navLinks">
+            <a *ngIf="link.isVisible" [routerLink]="link.url" [class.selected]="link.isActive" class="nav-link">{{
+                link.name
+            }}</a>
+        </div>
+    </div>
+    <div class="navigation-large logout-container">
+        <button mat-flat-button color="accent" (click)="logout()" aria-label="Logout button">AUSLOGGEN</button>
+    </div>
+    <div class="navigation-small">
+        <div (click)="toggleSmallNav()">
+            <img class="menu-button" *ngIf="!dropdownVisible" src="assets/svg/menu-black-18dp.svg" alt="Menu" />
+            <img class="menu-button" *ngIf="dropdownVisible" src="assets/svg/menu_open-black-18dp.svg" alt="Menu" />
+        </div>
+    </div>
+</div>
+
+<div class="dropdown" *ngIf="dropdownVisible">
+    <span class="dropdown-item" *ngFor="let link of navLinks">
+        <div class="link-container" *ngIf="link.isVisible">
+            <div class="seperator" *ngIf="link != navLinks[0]"></div>
+            <a [routerLink]="link.url" [class.selected]="link.isActive" class="nav-link">{{ link.name }}</a>
+        </div>
+    </span>
+    <div class="logout-container">
+        <button mat-flat-button color="accent" (click)="logout()" aria-label="Logout button">AUSLOGGEN</button>
+    </div>
+</div>
+
+<hr />

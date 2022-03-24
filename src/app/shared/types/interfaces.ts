@@ -9,6 +9,7 @@ export enum Role {
     CONTRACTOR = 'contractor',
     FARMER = 'farmer',
     ADMIN = 'admin',
+    GUEST = 'guest',
 }
 export interface UserTokenPayload {
     uid: number;
