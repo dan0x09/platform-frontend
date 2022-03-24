@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConfigService } from 'src/app/services/config.service';
-import { ToolbarService } from 'src/app/services/toolbar.service';
 import { Contractor, Customer } from 'src/app/shared/types/interfaces';
 
 @Component({
@@ -10,23 +9,18 @@ import { Contractor, Customer } from 'src/app/shared/types/interfaces';
     templateUrl: './contractors.component.html',
     styleUrls: ['./contractors.component.css'],
 })
-export class ContractorsComponent implements OnInit, AfterViewInit {
+export class ContractorsComponent implements AfterViewInit {
     customers: Customer[];
 
     constructor(
         private router: Router,
         private route: ActivatedRoute,
         private http: HttpClient,
-        private config: ConfigService,
-        private toolbarService: ToolbarService
+        private config: ConfigService
     ) {}
 
     visitCreate(): void {
         this.router.navigate(['create-contractor'], { relativeTo: this.route.parent });
-    }
-
-    ngOnInit(): void {
-        this.toolbarService.setTitle('Lohnunternehmen');
     }
 
     ngAfterViewInit(): void {

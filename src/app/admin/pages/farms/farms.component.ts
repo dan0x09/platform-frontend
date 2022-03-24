@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConfigService } from 'src/app/services/config.service';
-import { ToolbarService } from 'src/app/services/toolbar.service';
 import { Customer, Farm } from 'src/app/shared/types/interfaces';
 
 @Component({
@@ -10,23 +9,18 @@ import { Customer, Farm } from 'src/app/shared/types/interfaces';
     templateUrl: './farms.component.html',
     styleUrls: ['./farms.component.css'],
 })
-export class FarmsComponent implements OnInit, AfterViewInit {
+export class FarmsComponent implements AfterViewInit {
     customers: Customer[];
 
     constructor(
         private router: Router,
         private route: ActivatedRoute,
         private http: HttpClient,
-        private config: ConfigService,
-        private toolbarService: ToolbarService
+        private config: ConfigService
     ) {}
 
     visitCreate(): void {
         this.router.navigate(['create-farm'], { relativeTo: this.route.parent });
-    }
-
-    ngOnInit(): void {
-        this.toolbarService.setTitle('Betriebe');
     }
 
     ngAfterViewInit(): void {
