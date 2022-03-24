@@ -4,11 +4,11 @@ import { AuthService } from 'src/app/services/auth.service';
 import { Role } from 'src/app/shared/types/interfaces';
 
 @Component({
-    selector: 'app-toolbar',
-    templateUrl: './toolbar.component.html',
-    styleUrls: ['./toolbar.component.css'],
+    selector: 'app-navbar',
+    templateUrl: './navbar.component.html',
+    styleUrls: ['./navbar.component.css'],
 })
-export class ToolbarComponent implements OnInit {
+export class NavbarComponent implements OnInit {
     dropdownVisible = false;
 
     navLinks: MetaNavLink[] = [
@@ -65,14 +65,14 @@ export class ToolbarComponent implements OnInit {
     constructor(private router: Router, private auth: AuthService) {}
 
     ngOnInit(): void {
-        for (const link of this.navLinks) {
-            link.isVisible = link.roles.includes(this.auth.getRole());
-            link.isActive =
-                link.url === this.router.url ||
-                (link.urlAliases === undefined ? false : link.urlAliases.indexOf(this.router.url) > -1);
-        }
-
         this.router.events.subscribe((evt) => {
+            for (const link of this.navLinks) {
+                link.isVisible = link.roles.includes(this.auth.getRole());
+                link.isActive =
+                    link.url === this.router.url ||
+                    (link.urlAliases === undefined ? false : link.urlAliases.indexOf(this.router.url) > -1);
+            }
+
             if (!(evt instanceof NavigationEnd)) {
                 return;
             }

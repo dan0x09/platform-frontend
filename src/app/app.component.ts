@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 import { AuthService } from './services/auth.service';
 
 @Component({
@@ -7,14 +8,14 @@ import { AuthService } from './services/auth.service';
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css'],
 })
-export class AppComponent implements OnInit {
-    isLoggedIn = true;
+export class AppComponent {
+    isLoggedIn = false;
 
-    constructor(private titleService: Title, private auth: AuthService) {
+    constructor(private router: Router, private titleService: Title, private auth: AuthService) {
         this.titleService.setTitle('Silolytics');
-    }
 
-    ngOnInit(): void {
-        this.isLoggedIn = this.auth.isLoggedIn();
+        this.router.events.subscribe(() => {
+            this.isLoggedIn = this.auth.isLoggedIn();
+        });
     }
 }

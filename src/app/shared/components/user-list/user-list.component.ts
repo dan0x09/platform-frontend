@@ -51,7 +51,6 @@ export class UserListComponent implements OnInit {
     }
 
     prettyRole(role: Role): string {
-        console.log(role);
         if (role === Role.OWNER) {
             return 'Owner';
         } else if (role === Role.ADMIN) {
