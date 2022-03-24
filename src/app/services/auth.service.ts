@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { UserTokenPayload } from '../shared/types/interfaces';
+import { Role, UserTokenPayload } from '../shared/types/interfaces';
 
 @Injectable({
     providedIn: 'root',
@@ -38,5 +38,14 @@ export class AuthService {
 
     deleteToken(): void {
         sessionStorage.removeItem(this.tokenKey);
+    }
+
+    getRole(): Role {
+        const token = this.getDecodedToken();
+        if (token && token.role) {
+            return token.role as Role;
+        } else {
+            return Role.GUEST;
+        }
     }
 }
