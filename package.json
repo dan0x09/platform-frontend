@@ -4,7 +4,8 @@
   "description": "Lerna project for silolytics frontends",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "postinstall": "lerna bootstrap",
+    "clean": "lerna clean --yes && rm -r ./node_modules"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/silolytics/platform-frontend/issues"
   },
-  "homepage": "https://github.com/silolytics/platform-frontend#readme"
+  "homepage": "https://github.com/silolytics/platform-frontend#readme",
+  "devDependencies": {
+    "lerna": "^4.0.0"
+  }
 }
