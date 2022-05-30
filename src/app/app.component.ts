@@ -12,7 +12,7 @@ export class AppComponent {
     isLoggedIn = false;
 
     constructor(private router: Router, private titleService: Title, private auth: AuthService) {
-        this.titleService.setTitle('Silolytics');
+        this.titleService.setTitle('SilageControl');
 
         this.router.events.subscribe(() => {
             this.isLoggedIn = this.auth.isLoggedIn();
