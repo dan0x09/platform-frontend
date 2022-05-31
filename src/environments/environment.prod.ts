@@ -1,4 +1,4 @@
 export const environment = {
     production: true,
-    apiBaseUrl: 'https://api.silagecontrol.de',
+    apiBaseUrl: 'http://api.silagecontrol.de',
 };
