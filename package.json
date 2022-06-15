@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "postinstall": "lerna bootstrap --hoist",
-    "lint": "eslint . --fix",
     "clean": "lerna clean --yes && rm -r ./node_modules",
+    "lint": "eslint . --fix",
+    "test": "jest",
     "_:lerna:add": "cd ./packages/test/ && lerna add test2"
   },
   "repository": {
@@ -20,10 +21,13 @@
   },
   "homepage": "https://github.com/silolytics/platform-frontend#readme",
   "devDependencies": {
+    "@babel/preset-typescript": "^7.17.12",
+    "@types/jest": "^28.1.1",
     "@typescript-eslint/eslint-plugin": "^5.27.1",
     "@typescript-eslint/parser": "^5.27.1",
     "eslint": "^8.17.0",
     "eslint-plugin-react": "^7.30.0",
+    "jest": "^28.1.1",
     "lerna": "^5.1.1"
   }
 }
