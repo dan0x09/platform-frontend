@@ -7,9 +7,7 @@
     "postinstall": "lerna bootstrap --hoist",
     "lint": "eslint . --fix",
     "clean": "lerna clean --yes && rm -r ./node_modules",
-    "components": "cd ./packages/silolytics-components && npm start",
-    "_TEST": "cd ./packages/test && npm start",
-    "lerna:add": "cd ./packages/test/ && lerna add test2"
+    "_:lerna:add": "cd ./packages/test/ && lerna add test2"
   },
   "repository": {
     "type": "git",
