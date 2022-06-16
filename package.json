@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "postinstall": "lerna bootstrap --hoist",
-    "clean": "lerna clean --yes && rm -r ./node_modules",
+    "clean": "lerna clean --yes && rm -v -r ./node_modules",
     "lint": "eslint . --fix",
     "test": "jest",
     "_:lerna:add": "cd ./packages/test/ && lerna add test2"
@@ -23,11 +23,30 @@
   "devDependencies": {
     "@babel/preset-typescript": "^7.17.12",
     "@types/jest": "^28.1.1",
+    "@types/react-dom": "^18.0.5",
+    "@types/react-test-renderer": "^18.0.0",
     "@typescript-eslint/eslint-plugin": "^5.27.1",
     "@typescript-eslint/parser": "^5.27.1",
     "eslint": "^8.17.0",
     "eslint-plugin-react": "^7.30.0",
     "jest": "^28.1.1",
-    "lerna": "^5.1.1"
+    "jest-environment-jsdom": "^28.1.1",
+    "lerna": "^5.1.1",
+    "react-dom": "^18.2.0",
+    "ts-jest": "^28.0.5"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ]
   }
 }
