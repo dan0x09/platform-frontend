@@ -12,7 +12,6 @@ describe('App', function () {
     beforeEach(() => {
         container = document.createElement('div') 
         document.body.appendChild(container)
-        ReactDOM.render(<App/>, container)
     })
 
     afterEach(() => {
@@ -21,6 +20,7 @@ describe('App', function () {
     })
 
     it('should display test2 package', function () {
+        ReactDOM.render(<App/>, container)
         const header = container.querySelector('h1')
         expect(header?.textContent).toBe("TEST2")
     });
