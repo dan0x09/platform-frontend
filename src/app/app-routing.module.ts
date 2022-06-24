@@ -4,7 +4,9 @@ import { AdminGuard } from './guards/admin.guard';
 import { ContractorGuard } from './guards/contractor.guard';
 import { FarmerGuard } from './guards/farmer.guard';
 import { GuestGuard } from './guards/guest.guard';
+import { ImprintComponent } from './pages/imprint/imprint.component';
 import { LoginComponent } from './pages/login/login.component';
+import { PrivacyComponent } from './pages/privacy/privacy.component';
 import { RequestResetPasswordComponent } from './pages/request-reset-password/request-reset-password.component';
 import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
 import { SignupComponent } from './pages/signup/signup.component';
@@ -47,6 +49,16 @@ const routes: Routes = [
     {
         path: 'password',
         component: ResetPasswordComponent,
+        canActivate: [GuestGuard],
+    },
+    {
+        path: 'privacy',
+        component: PrivacyComponent,
+        canActivate: [GuestGuard],
+    },
+    {
+        path: 'imprint',
+        component: ImprintComponent,
         canActivate: [GuestGuard],
     },
     {

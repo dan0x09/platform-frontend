@@ -18,6 +18,8 @@ import { SignupComponent } from './pages/signup/signup.component';
 import { AlertComponent } from './shared/components/alert/alert.component';
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { SharedModule } from './shared/shared.module';
+import { ImprintComponent } from './pages/imprint/imprint.component';
+import { PrivacyComponent } from './pages/privacy/privacy.component';
 
 @NgModule({
     declarations: [
@@ -28,6 +30,8 @@ import { SharedModule } from './shared/shared.module';
         ResetPasswordComponent,
         AlertComponent,
         NavbarComponent,
+        ImprintComponent,
+        PrivacyComponent,
     ],
     imports: [
         BrowserModule,
