@@ -4,11 +4,17 @@
   "description": "Lerna project for silolytics frontends",
   "main": "index.js",
   "scripts": {
+    "_": "",
     "postinstall": "lerna bootstrap --hoist",
-    "clean": "lerna clean --yes && rm -v -r ./node_modules",
-    "lint": "eslint . --fix",
+    "clean": "lerna clean --yes && rm -r ./node_modules",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "test": "jest",
-    "_:lerna:add": "cd ./packages/test/ && lerna add test2"
+    "check": "npm run lint && npm run test",
+    "check:fix": "npm run lint:fix && npm run test",
+    "_:lerna:add": "cd ./packages/workspace/test/ && lerna add sgcomponents",
+    "components:dev": "cd ./packages/libs/components/ && npm run build:watch",
+    "test:dev": "cd ./packages/workspace/test/ && npm start"
   },
   "repository": {
     "type": "git",
@@ -21,19 +27,21 @@
   },
   "homepage": "https://github.com/silolytics/platform-frontend#readme",
   "devDependencies": {
-    "@babel/preset-typescript": "^7.17.12",
     "@types/jest": "^28.1.1",
     "@types/react-dom": "^18.0.5",
     "@types/react-test-renderer": "^18.0.0",
     "@typescript-eslint/eslint-plugin": "^5.27.1",
     "@typescript-eslint/parser": "^5.27.1",
+    "copyfiles": "^2.4.1",
     "eslint": "^8.17.0",
     "eslint-plugin-react": "^7.30.0",
     "jest": "^28.1.1",
     "jest-environment-jsdom": "^28.1.1",
     "lerna": "^5.1.1",
     "react-dom": "^18.2.0",
-    "ts-jest": "^28.0.5"
+    "ts-jest": "^28.0.5",
+    "ts-loader": "^9.3.1",
+    "typescript": "^4.7.4"
   },
   "jest": {
     "transform": {
@@ -47,6 +55,9 @@
       "jsx",
       "json",
       "node"
-    ]
+    ],
+    "moduleNameMapper": {
+      "^.+\\.(css|less)$": "<rootDir>/jest/CSSStub.js"
+    }
   }
 }

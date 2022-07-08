@@ -8,9 +8,8 @@
       "registry": "https://npm.pkg.github.com"
     },
     "bootstrap": {
-      "ignore": "component-*",
       "npmClientArgs": ["--no-package-lock"]
     }
   },
-  "packages": ["packages/*"]
+  "packages": ["packages/libs/*", "packages/workspace/*", "packages/apps/*"]
 }
