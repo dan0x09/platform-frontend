@@ -1,0 +1,11 @@
+{
+  "name": "test2",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "components": "^0.1.0",
+    "sgcomponents": "^0.1.0"
+  },
+  "scripts": {},
+  "eslintConfig": {}
+}
