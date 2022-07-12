@@ -28,11 +28,14 @@ export interface PageProps extends StyleProps {
     children: [JSX.Element, JSX.Element] | JSX.Element;
     leftWidth?: number | string;
 }
-export interface ButtonProps extends StyleProps {
+export interface ClickableProps extends StyleProps {
     onClick: () => void;
-    styleActive?: CSS.Properties;
 }
-export interface FABProps extends ButtonProps {
+export interface ButtonProps extends ClickableProps {
+    children?: JSX.Element[] | JSX.Element | string;
+}
+export interface FABProps extends ClickableProps {
     toggle?: boolean;
+    styleActive?: CSS.Properties;
     children?: JSX.Element;
 }

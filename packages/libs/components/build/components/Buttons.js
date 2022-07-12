@@ -9,7 +9,7 @@ var __assign = (this && this.__assign) || function () {
     };
     return __assign.apply(this, arguments);
 };
-import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+import { jsx as _jsx } from "react/jsx-runtime";
 import { useState } from "react";
 import "./style.css";
 export var FAB = function (_a) {
@@ -18,6 +18,10 @@ export var FAB = function (_a) {
         onClick();
         setClicked(toggle && !clicked);
     };
-    return (_jsxs("div", { children: [_jsx("input", { "data-testid": "button-input", className: "_FAB color2 FAB" + (clicked ? " _FABActive FABActive" : ""), style: !clicked ? style : __assign(__assign({}, style), styleActive), type: "button", onClick: click }), children] }));
+    return (_jsx("div", __assign({ "data-testid": "button-input", className: "_FAB color2 FAB" + (clicked ? " _FABActive FABActive" : ""), style: !clicked ? style : __assign(__assign({}, style), styleActive), onClick: click }, { children: children })));
+};
+export var Button = function (_a) {
+    var _b = _a.style, style = _b === void 0 ? {} : _b, onClick = _a.onClick, children = _a.children;
+    return (_jsx("div", __assign({ "data-testid": "button-input", className: "_Button color2 Button", style: style, onClick: onClick }, { children: children })));
 };
 //# sourceMappingURL=Buttons.js.map

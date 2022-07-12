@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { FABProps } from './prop-types'
+import { ButtonProps, FABProps } from './prop-types'
 import CSS from 'csstype'
 import "./style.css"
 
@@ -13,14 +13,26 @@ export const FAB: React.FC<FABProps> = ({toggle=false, style={} as CSS.Propertie
         }
 
     return (
-        <div>
-            <input
-                data-testid="button-input"
-                className={"_FAB color2 FAB" + (clicked ? " _FABActive FABActive" : "")}
-                style={!clicked ? style : {...style, ...styleActive}}
-                type="button"
-                onClick={click}
-            ></input>
+        <div
+            data-testid="button-input"
+            className={"_FAB color2 FAB" + (clicked ? " _FABActive FABActive" : "")}
+            style={!clicked ? style : {...style, ...styleActive}}
+            onClick={click}
+        >
+            {children}
+        </div>
+    )
+}
+
+export const Button: React.FC<ButtonProps> = ({style={} as CSS.Properties, onClick, children}) => {
+
+    return (
+        <div
+            data-testid="button-input"
+            className={"_Button color2 Button"}
+            style={style}
+            onClick={onClick}
+        >
             {children}
         </div>
     )
