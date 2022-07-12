@@ -39,3 +39,5 @@ export interface FABProps extends ClickableProps {
     styleActive?: CSS.Properties;
     children?: JSX.Element;
 }
+export interface ChartProps extends StyleProps {
+}
