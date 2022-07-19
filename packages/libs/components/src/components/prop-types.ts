@@ -49,6 +49,19 @@ export interface FABProps extends ClickableProps {
     children?: JSX.Element
 }
 
+export enum ChartDataType {
+    LINE="line", AREA="area"
+}
+
+export type ChartDataPoint = [number | string, number]
+
+export interface ChartData {
+    yName: string
+    color?: string
+    type?: ChartDataType
+    points: ChartDataPoint[] | [ChartDataPoint]
+}
+
 export interface ChartProps extends StyleProps {
-    
+    data: ChartData[] | [ChartData]
 }
