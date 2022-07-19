@@ -1,4 +1,65 @@
-import { calculatePercentage } from "../../../src/lib/helper"
+import { ChartData } from "../../../src/components/prop-types"
+import { createDataSet, calculatePercentage } from "../../../src/lib/helper"
+
+describe('helper/createDataSet', function () {
+    const simpleSet =
+        [[{
+            yName: "why",
+            color: "red",
+            points: [
+                ["jo", 1],
+                [.5, 0],
+                [0, .5],
+                [1, 0],
+                ["lol", 1]
+            ]
+        }], [
+            { name: "jo", why: 1 },
+            { name: "lol", why: 1 },
+            { name: 0, why: .5 },
+            { name: .5, why: 0 },
+            { name: 1, why: 0 }
+        ]]
+
+    it('works for a simple set', function () {
+        expect(JSON.stringify(createDataSet(simpleSet[0] as ChartData[]))).toBe(JSON.stringify(simpleSet[1]))
+    })
+
+
+    const twoSets =
+        [[{
+            yName: "why",
+            color: "red",
+            points: [
+                ["jo", 1],
+                [.5, 0],
+                [0, .5],
+                [1, 0],
+                ["lol", 1]
+            ]
+        }, {
+            yName: "vi",
+            color: "yellow",
+            points: [
+                ["jo", 2],
+                [.75, 0],
+                [0, .5],
+                [1, 0],
+                ["lol", 2]
+            ]
+        }], [
+            { name: "jo", why: 1, vi: 2 },
+            { name: "lol", why: 1, vi: 2 },
+            { name: 0, why: .5, vi: .5 },
+            { name: .5, why: 0 },
+            { name: .75, vi: 0},
+            { name: 1, why: 0, vi:  0}
+        ]]
+
+    it('works for two sets', function () {
+        expect(JSON.stringify(createDataSet(twoSets[0] as ChartData[]))).toBe(JSON.stringify(twoSets[1]))
+    })
+})
 
 describe('helper/calculatePercentage', function () {
     it('is 100% for 1', function () {
@@ -20,4 +81,4 @@ describe('helper/calculatePercentage', function () {
     it('is 1% for 100', function () {
         expect(calculatePercentage(100)).toBe("1%")
     })
- })
+})
