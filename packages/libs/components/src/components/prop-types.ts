@@ -31,7 +31,7 @@ export interface SiteProps extends SiteAlignProps {
 }
 
 export interface PageProps extends StyleProps {
-    children: [JSX.Element, JSX.Element] | JSX.Element
+    children: [JSX.Element, JSX.Element] | [JSX.Element]
     leftWidth?: number | string
 }
 
@@ -40,7 +40,7 @@ export interface ClickableProps extends StyleProps {
 }
 
 export interface ButtonProps extends ClickableProps {
-    children?: JSX.Element[] | JSX.Element | string
+    children?: JSX.Element[] | [JSX.Element] | string
 }
 
 export interface FABProps extends ClickableProps {
