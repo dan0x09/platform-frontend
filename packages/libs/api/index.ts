@@ -1,4 +1,4 @@
 /**
  * Lerna package entry
  */
-export {}
+export * from "./fakeApi"

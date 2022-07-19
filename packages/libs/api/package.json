@@ -1,0 +1,19 @@
+{
+	"name": "sgapi",
+	"version": "1.0.0",
+	"description": "Api for silolytics backend",
+	"main": "index.ts",
+	"scripts": {
+	},
+	"repository": {
+	  "type": "git",
+	  "url": "git+https://github.com/silolytics/platform-frontend.git"
+	},
+	"author": "Lennart Hemmerling",
+	"license": "ISC",
+	"bugs": {
+	  "url": "https://github.com/silolytics/platform-frontend/issues"
+	},
+	"homepage": "https://github.com/silolytics/platform-frontend#readme"
+  }
+  
