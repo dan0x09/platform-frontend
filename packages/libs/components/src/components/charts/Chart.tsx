@@ -25,12 +25,13 @@ const Chart: React.FC<ChartProps> = ({style={} as CSS.Properties, data, sort=fal
                 <YAxis />
                 <CartesianGrid stroke="#eee" strokeDasharray="5 5" />
                 {   // Chart data goes here
-                    data.map(({yName, color="#8884d8", type}) => {
+                    data.map(({yName, style={color: "#8884d8", backgroundColor: "#8884d8"}, type}) => {
+                        const {color = "#8884d8", backgroundColor = "#8884d8"} = style
                         switch(type) {
                             case ChartDataType.AREA:
-                                return <Area key={"" + yName} type="monotone" dataKey={yName} stroke={color} />
+                                return <Area key={"" + yName} type="monotone" dataKey={yName} fill={backgroundColor} stroke={color} />
                             case ChartDataType.BAR:
-                                return <Bar key={"" + yName} dataKey={yName} stroke={color} />
+                                return <Bar key={"" + yName} dataKey={yName} fill={backgroundColor} stroke={color} />
                             default: //LINE
                                 return <Line key={"" + yName} type="monotone" dataKey={yName} stroke={color} />
                         }

@@ -58,9 +58,14 @@ export type ChartDataPointY = number
 
 export type ChartDataPoint = [ChartDataPointX, ChartDataPointY]
 
+export interface ChartDataStyle {
+    color?: string
+    backgroundColor?: string
+}
+
 export interface ChartData {
     yName: string
-    color?: string
+    style?: ChartDataStyle
     type?: ChartDataType
     points: ChartDataPoint[] | [ChartDataPoint]
 }

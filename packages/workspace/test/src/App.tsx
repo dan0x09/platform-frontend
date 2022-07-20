@@ -45,12 +45,14 @@ const App: React.FC = () => {
                         data={[{
                             yName: "temp2",
                             type: ChartDataType.BAR,
-                            color: "red",
+                            style: {
+                                color: "#00656f",
+                                backgroundColor: "#00717C"
+                            },
                             points: data
                         }, {
                             yName: "temperature",
                             type: ChartDataType.AREA,
-                            color: "blue",
                             points: data2
                         }]}
                     />
