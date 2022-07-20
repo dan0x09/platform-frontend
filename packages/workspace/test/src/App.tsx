@@ -40,18 +40,19 @@ const App: React.FC = () => {
                 <Site align={SiteAlign.TOP}>
                     <h2>Ok</h2>
 
-                    <Chart displayX={x=>x + "h"} displayY={y=>y + "°C"} 
-                    data={[{
-                        yName: "temp2",
-                        type: ChartDataType.LINE,
-                        color: "red",
-                        points: [[1, 3], [24, 10]]
-                    }, {
-                        yName: "temperature",
-                        type: ChartDataType.AREA,
-                        color: "blue",
-                        points: data
-                    }]} />
+                    <Chart sort displayX={x=>x + "h"}
+                        data={[{
+                            yName: "temp2",
+                            type: ChartDataType.AREA,
+                            color: "red",
+                            points: data
+                        }, {
+                            yName: "temperature",
+                            type: ChartDataType.LINE,
+                            color: "blue",
+                            points: data
+                        }]}
+                    />
 
                     <SomeText/>
 

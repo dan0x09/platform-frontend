@@ -22,7 +22,7 @@ describe('helper/createDataSet', function () {
         ]]
 
     it('works for a simple set', function () {
-        expect(JSON.stringify(createDataSet(simpleSet[0] as ChartData[], true))).toBe(JSON.stringify(simpleSet[1]))
+        expect(JSON.stringify(createDataSet("name", simpleSet[0] as ChartData[], true))).toBe(JSON.stringify(simpleSet[1]))
     })
 
 
@@ -57,7 +57,7 @@ describe('helper/createDataSet', function () {
         ]]
 
     it('works for two sets', function () {
-        expect(JSON.stringify(createDataSet(twoSets[0] as ChartData[], true))).toBe(JSON.stringify(twoSets[1]))
+        expect(JSON.stringify(createDataSet("name", twoSets[0] as ChartData[], true))).toBe(JSON.stringify(twoSets[1]))
     })
 })
 
