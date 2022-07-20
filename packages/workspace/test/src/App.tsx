@@ -24,7 +24,8 @@ const SomeText: React.FC<SomeTextProps> = ({count = 0}) => {
 }
 
 const App: React.FC = () => {
-    const [data, setData] = useState([] as ChartDataPoint[]);
+    const [data, setData] = useState([] as ChartDataPoint[])
+    const [data2, setData2] = useState([] as ChartDataPoint[])
 
     return (
         <PageLayout>
@@ -43,20 +44,23 @@ const App: React.FC = () => {
                     <Chart sort displayX={x=>x + "h"}
                         data={[{
                             yName: "temp2",
-                            type: ChartDataType.AREA,
+                            type: ChartDataType.LINE,
                             color: "red",
                             points: data
                         }, {
                             yName: "temperature",
-                            type: ChartDataType.LINE,
+                            type: ChartDataType.AREA,
                             color: "blue",
-                            points: data
+                            points: data2
                         }]}
                     />
 
                     <SomeText/>
 
-                    <Button onClick={() => getTempData().then(d => setData(d))}>Randomize</Button>
+                    <Button onClick={() => {
+                        getTempData().then(d => setData(d))
+                        getTempData().then(d => setData2(d))
+                    }}>Randomize</Button>
                 </Site>
 
             </Page>
