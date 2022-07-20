@@ -53,7 +53,10 @@ export enum ChartDataType {
     LINE="line", AREA="area"
 }
 
-export type ChartDataPoint = [number | string, number]
+export type ChartDataPointX = number | string
+export type ChartDataPointY = number
+
+export type ChartDataPoint = [ChartDataPointX, ChartDataPointY]
 
 export interface ChartData {
     yName: string
@@ -65,4 +68,6 @@ export interface ChartData {
 export interface ChartProps extends StyleProps {
     data: ChartData[] | [ChartData]
     sort?: boolean
+    displayX?: (x: ChartDataPointX) => number | string
+    displayY?: (y: ChartDataPointY) => number | string
 }
