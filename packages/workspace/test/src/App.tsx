@@ -44,7 +44,7 @@ const App: React.FC = () => {
                     <Chart sort displayX={x=>x + "h"}
                         data={[{
                             yName: "temp2",
-                            type: ChartDataType.LINE,
+                            type: ChartDataType.BAR,
                             color: "red",
                             points: data
                         }, {

@@ -2,7 +2,7 @@ import React from "react"
 import { 
     ResponsiveContainer, ComposedChart, 
     XAxis, YAxis, CartesianGrid, 
-    Line, Area 
+    Line, Area, Bar
 } from "recharts"
 import { ChartDataType, ChartProps } from '../prop-types'
 import CSS from 'csstype'
@@ -29,6 +29,8 @@ const Chart: React.FC<ChartProps> = ({style={} as CSS.Properties, data, sort=fal
                         switch(type) {
                             case ChartDataType.AREA:
                                 return <Area key={"" + yName} type="monotone" dataKey={yName} stroke={color} />
+                            case ChartDataType.BAR:
+                                return <Bar key={"" + yName} dataKey={yName} stroke={color} />
                             default: //LINE
                                 return <Line key={"" + yName} type="monotone" dataKey={yName} stroke={color} />
                         }
