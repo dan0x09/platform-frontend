@@ -1,7 +1,9 @@
 import { ChartData } from "../components/prop-types"
 
 // Creates a recharts compatible data list
-export function createDataSet(data: ChartData[]): any[] {
+//  data: DataStructure to enable multiple charts at once, while combining the x values
+//  sort: whether the x values should be sorted by string < number && numbers && strings
+export function createDataSet(data: ChartData[], sort: boolean): any[] {
     const result: any[] = []
     // For every set
     data.forEach(({yName, points}) => {
@@ -18,11 +20,16 @@ export function createDataSet(data: ChartData[]): any[] {
             }
         })
     })
-    // Sort the data list by x value, where numbers are considered, but strings are not
-    const numbers = result.filter(({name}) => typeof name === "number").sort((a, b) => a.name - b.name),
-        strings = result.filter(({name}) => typeof name !== "number").sort((a, b) => a.name < b.name ? -1 : a.name > b.name ? 1 : 0)
-    
-    return [...strings, ...numbers]
+
+    if(sort) {
+        // Sort the data list by x value, where numbers are considered, but strings are not
+        const numbers = result.filter(({name}) => typeof name === "number").sort((a, b) => a.name - b.name),
+            strings = result.filter(({name}) => typeof name !== "number").sort((a, b) => a.name < b.name ? -1 : a.name > b.name ? 1 : 0)
+        
+        return [...strings, ...numbers]
+    }else {
+        return result
+    }
 }
 
 

@@ -9,8 +9,8 @@ import CSS from 'csstype'
 import "../style.css"
 import { createDataSet } from "../../lib/helper"
 
-const Chart: React.FC<ChartProps> = ({style={} as CSS.Properties, data}) => {
-    const dataSet = createDataSet(data)
+const Chart: React.FC<ChartProps> = ({style={} as CSS.Properties, data, sort=false}) => {
+    const dataSet = createDataSet(data, sort)
 
     return (
         <ResponsiveContainer>
