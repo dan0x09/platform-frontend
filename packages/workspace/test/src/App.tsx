@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import TEST2 from 'test2'
-import { Page, Site, PageLayout, SiteAlign, Button, FAB, Chart, ChartDataType, ChartDataPoint } from 'sgcomponents'
+import { Page, Site, PageLayout, SiteAlign, Button, Chart, ChartDataType, ChartDataPoint } from 'sgcomponents'
 import { fetchTemperatureData } from 'sgapi'
 
 
@@ -40,11 +40,12 @@ const App: React.FC = () => {
                 <Site align={SiteAlign.TOP}>
                     <h2>Ok</h2>
 
-                    <Chart data={[{
+                    <Chart displayX={x=>x + "h"} displayY={y=>y + "°C"} 
+                    data={[{
                         yName: "temp2",
                         type: ChartDataType.LINE,
                         color: "red",
-                        points: [["1h", 3], ["24h", 10]]
+                        points: [[1, 3], [24, 10]]
                     }, {
                         yName: "temperature",
                         type: ChartDataType.AREA,
