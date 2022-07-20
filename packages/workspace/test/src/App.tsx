@@ -55,12 +55,12 @@ const App: React.FC = () => {
                         }]}
                     />
 
-                    <SomeText/>
-
-                    <Button onClick={() => {
+                    <Button style={{width: "200px"}} onClick={() => {
                         getTempData().then(d => setData(d))
                         getTempData().then(d => setData2(d))
-                    }}>Randomize</Button>
+                    }}>Randomize data</Button>
+
+                    <SomeText/>
                 </Site>
 
             </Page>
