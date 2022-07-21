@@ -13,7 +13,7 @@ const dataKeyX = "name"
 
 function mapFormatter(value: number, name: string, data: ChartData[]) {
     const match = data.find(({yName}) => name === yName)
-    if(match && match.displayTooltip) return match.displayTooltip("" + value, name)
+    if(match && match.displayTooltip) return match.displayTooltip(value, name)
     else return "" + value
 }
 
