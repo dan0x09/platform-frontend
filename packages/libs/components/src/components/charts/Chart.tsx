@@ -1,7 +1,7 @@
 import React from "react"
 import { 
     ResponsiveContainer, ComposedChart, 
-    XAxis, YAxis, CartesianGrid, 
+    XAxis, YAxis, CartesianGrid, Legend, Tooltip,
     Line, Area, Bar
 } from "recharts"
 import { ChartDataType, ChartProps } from '../prop-types'
@@ -24,6 +24,8 @@ const Chart: React.FC<ChartProps> = ({style={} as CSS.Properties, data, sort=fal
                 <XAxis dataKey={dataKeyX} />
                 <YAxis />
                 <CartesianGrid stroke="#eee" strokeDasharray="5 5" />
+                <Legend verticalAlign="top" height={36} />
+                <Tooltip />
                 {   // Chart data goes here
                     data.map(({yName, style={color: "#8884d8", backgroundColor: "#8884d8"}, type}) => {
                         const {color = "#8884d8", backgroundColor = "#8884d8"} = style
