@@ -1,1 +1,1 @@
-export default "TEST2"
+export default "SILAGECONTROL"

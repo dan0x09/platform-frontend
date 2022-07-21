@@ -43,16 +43,20 @@ const App: React.FC = () => {
 
                     <Chart sort displayX={x=>x + "h"}
                         data={[{
-                            yName: "temp2",
+                            yName: "humidity",
                             type: ChartDataType.BAR,
                             style: {
-                                color: "#00656f",
-                                backgroundColor: "#00717C"
+                                color: "#2f536b",
+                                backgroundColor: "#447799"
                             },
                             points: data
                         }, {
                             yName: "temperature",
                             type: ChartDataType.AREA,
+                            style: {
+                                color: "#CC4F38",
+                                backgroundColor: "#ff6347"
+                            },
                             points: data2
                         }]}
                     />
