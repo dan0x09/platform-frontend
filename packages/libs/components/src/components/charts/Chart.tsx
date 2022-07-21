@@ -4,12 +4,18 @@ import {
     XAxis, YAxis, CartesianGrid, Legend, Tooltip,
     Line, Area, Bar
 } from "recharts"
-import { ChartDataType, ChartProps } from '../prop-types'
+import { ChartData, ChartDataType, ChartProps } from '../prop-types'
 import CSS from 'csstype'
 import "../style.css"
 import { createDataSet } from "../../lib/helper"
 
 const dataKeyX = "name"
+
+function mapFormatter(value: number, name: string, data: ChartData[]) {
+    const match = data.find(({yName}) => name === yName)
+    if(match && match.displayTooltip) return match.displayTooltip("" + value, name)
+    else return "" + value
+}
 
 const Chart: React.FC<ChartProps> = ({style={} as CSS.Properties, data, sort=false, displayX=v=>v}) => {
     const dataSet = createDataSet(dataKeyX, data, sort)
@@ -25,7 +31,7 @@ const Chart: React.FC<ChartProps> = ({style={} as CSS.Properties, data, sort=fal
                 <YAxis />
                 <CartesianGrid stroke="#eee" strokeDasharray="5 5" />
                 <Legend verticalAlign="top" height={36} />
-                <Tooltip />
+                <Tooltip formatter={(value: number, name: string) => mapFormatter(value, name, data)} />
                 {   // Chart data goes here
                     data.map(({yName, style={color: "#8884d8", backgroundColor: "#8884d8"}, type}) => {
                         const {color = "#8884d8", backgroundColor = "#8884d8"} = style

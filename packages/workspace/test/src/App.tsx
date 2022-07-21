@@ -39,7 +39,7 @@ const App: React.FC = () => {
                 </Site>
 
                 <Site align={SiteAlign.TOP}>
-                    <h2>Ok</h2>
+                    <h2>Data of silage</h2>
 
                     <Chart sort displayX={x=>x + "h"}
                         data={[{
@@ -53,6 +53,7 @@ const App: React.FC = () => {
                         }, {
                             yName: "temperature",
                             type: ChartDataType.AREA,
+                            displayTooltip: (value) => value + "°C",
                             style: {
                                 color: "#CC4F38",
                                 backgroundColor: "#ff6347"

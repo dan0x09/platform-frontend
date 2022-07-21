@@ -65,6 +65,7 @@ export interface ChartDataStyle {
 
 export interface ChartData {
     yName: string
+    displayTooltip?: (value: string, name: string) => [string, string] | string
     style?: ChartDataStyle
     type?: ChartDataType
     points: ChartDataPoint[] | [ChartDataPoint]
