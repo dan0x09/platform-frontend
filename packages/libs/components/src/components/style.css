@@ -57,6 +57,25 @@
     overflow: hidden;
 }
 
+._Row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-self: stretch;
+}
+
+.__RowLeft {
+    justify-content: flex-start;
+}
+
+.__RowRight {
+    justify-content: flex-end;
+}
+
+.__RowMid {
+    justify-content: center;
+}
+
 ._Site {
     align-self: stretch;
     height: 100%;

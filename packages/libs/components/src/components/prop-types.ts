@@ -14,6 +14,20 @@ export interface GridLayoutProps extends StyleProps {
     rows?: number
 }
 
+export enum RowAlign {
+    LEFT="left", RIGHT="right", MID="mid"
+}
+
+export interface RowAlignProps extends StyleProps {
+    align?: RowAlign
+}
+
+export interface RowProps extends RowAlignProps {
+    space?: number | string
+    spaceAround?: boolean
+    children: JSX.Element[] | JSX.Element
+}
+
 export enum SiteAlign {
     LEFT="left", TOP="top"
 }

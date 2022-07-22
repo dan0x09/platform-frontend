@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import TEST2 from 'test2'
-import { Page, Site, PageLayout, SiteAlign, Button, Chart, ChartDataType, ChartDataPoint } from 'sgcomponents'
+import { Page, Site, PageLayout, SiteAlign, Button, Chart, ChartDataType, ChartDataPoint, Row } from 'sgcomponents'
 import { fetchTemperatureData } from 'sgapi'
 
 
 import './Style.css'
+import { RowAlign } from 'sgcomponents/build/components/prop-types'
 
 async function getTempData() {
     return await fetchTemperatureData() as ChartDataPoint[]
@@ -33,13 +34,19 @@ const App: React.FC = () => {
 
             <Page>
                 <Site>
-                    <Button onClick={() => alert("Alert alert!")}>Click me!</Button>
+                    <h1>Some Title</h1>
 
                     <SomeText/>
+
+                    <Row align={RowAlign.RIGHT} space="50px" spaceAround>
+                        <Button onClick={() => alert("Alert alert!")}>Click me!</Button>
+                    </Row>
                 </Site>
 
                 <Site align={SiteAlign.TOP}>
-                    <h2>Data of silage</h2>
+                    <Row>
+                        <h2>Data of silage</h2>
+                    </Row>
 
                     <Chart sort displayX={x=>x + "h"}
                         data={[{
@@ -63,10 +70,19 @@ const App: React.FC = () => {
                         }]}
                     />
 
-                    <Button style={{width: "200px"}} onClick={() => {
-                        getTempData().then(d => setData(d))
-                        getTempData().then(d => setData2(d))
-                    }}>Randomize data</Button>
+                    <Row align={RowAlign.RIGHT} space={"8px"} spaceAround>
+
+                        <Button style={{width: "200px"}} onClick={() => {
+                            getTempData().then(d => setData(d))
+                            getTempData().then(d => setData2(d))
+                        }}>Randomize data</Button>
+
+                        <Button style={{width: "200px", backgroundColor: "red"}} onClick={() => {
+                            setData([])
+                            setData2([])
+                        }}>Clear data</Button>
+
+                    </Row>
 
                     <SomeText/>
                 </Site>
