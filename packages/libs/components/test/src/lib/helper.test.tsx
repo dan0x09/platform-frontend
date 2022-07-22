@@ -5,7 +5,9 @@ describe('helper/createDataSet', function () {
     const simpleSet =
         [[{
             yName: "why",
-            color: "red",
+            style: {
+                color: "red"
+            },
             points: [
                 ["jo", 1],
                 [.5, 0],
@@ -29,7 +31,9 @@ describe('helper/createDataSet', function () {
     const twoSets =
         [[{
             yName: "why",
-            color: "red",
+            style: {
+                color: "red"
+            },
             points: [
                 ["jo", 1],
                 [.5, 0],
@@ -39,7 +43,9 @@ describe('helper/createDataSet', function () {
             ]
         }, {
             yName: "vi",
-            color: "yellow",
+            style: {
+                color: "red"
+            },
             points: [
                 ["jo", 2],
                 [.75, 0],
