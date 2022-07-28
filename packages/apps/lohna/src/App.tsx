@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
-import { Page, Site, PageLayout, SiteAlign, Button, Chart, ChartDataType, ChartDataPoint, Row } from 'sgcomponents'
+import { Page, Site, PageLayout, SiteAlign, Button, Chart, ChartDataType, ChartDataPoint, Row, RowAlign } from 'sgcomponents'
 import { fetchTemperatureData } from 'sgapi'
 
 
 import './Style.css'
-import { RowAlign } from 'sgcomponents/build/components/prop-types'
 
 async function getTempData() {
     return await fetchTemperatureData() as ChartDataPoint[]
