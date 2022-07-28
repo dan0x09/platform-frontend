@@ -1,11 +1,11 @@
 /**
  * @jest-environment jsdom
  */
-
- import { render, fireEvent, screen } from '@testing-library/react'
- import { FAB } from "../../../src"
+import React from 'react'
+import { render, fireEvent, screen } from '@testing-library/react'
+import { FAB } from "../../../src"
  
- describe('FAB', function () {
+describe('FAB', function () {
     it('should use onClick', function () {
         const onClickSpy = jest.fn()
         render(
@@ -27,4 +27,4 @@
         expect(onClickSpy).toHaveBeenCalled()
         expect(screen.getByTestId('button-input').className).not.toBe(n)
     })
- })
+})

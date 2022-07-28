@@ -1,11 +1,11 @@
 /**
  * @jest-environment jsdom
  */
-
- import { render, screen } from '@testing-library/react'
- import { Page } from "../../../src"
+import React from 'react'
+import { render, screen } from '@testing-library/react'
+import { Page } from "../../../src"
  
- describe('Page', function () {
+describe('Page', function () {
     it('should render all components', function () {
         render(
             <Page>
@@ -30,4 +30,4 @@
         expect(screen.getByTestId("page-h2").textContent).toBe("jo")
         expect(screen.getByTestId("page-p").textContent).toBe("some testing. is everything at its place?")
     })
- })
+})
