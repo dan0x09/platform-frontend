@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import TEST2 from 'test2'
 import { Page, Site, PageLayout, SiteAlign, Button, Chart, ChartDataType, ChartDataPoint, Row } from 'sgcomponents'
 import { fetchTemperatureData } from 'sgapi'
 
@@ -30,7 +29,7 @@ const App: React.FC = () => {
 
     return (
         <PageLayout>
-            <h2 className='color0'>{TEST2}</h2>
+            <h2 className='color0'>TITLE</h2>
 
             <Page>
                 <Site>
