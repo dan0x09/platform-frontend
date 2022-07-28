@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 
+import Login from "./pages/Login"
 import App from "./App";
 
 export default function Router() {
@@ -7,10 +8,8 @@ export default function Router() {
 	  <BrowserRouter>
 		<Routes>
 		  <Route path="/">
-			<Route index element={<App />} />
-			{
-				//<Route path="blogs" element={<Blogs />} />
-			}
+			<Route index element={<Login />} />
+			<Route path="test" element={<App />} />
 			{
 				//<Route path="*" element={<NoPage />} />
 			}
