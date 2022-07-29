@@ -54,7 +54,7 @@ export interface ClickableProps extends StyleProps {
 }
 
 export interface ButtonProps extends ClickableProps {
-    children?: JSX.Element[] | [JSX.Element] | string
+    children?: Array<JSX.Element> | string
 }
 
 export interface FABProps extends ClickableProps {
@@ -82,7 +82,7 @@ export interface ChartData {
     displayTooltip?: (value: number, name: string) => [string, string] | string
     style?: ChartDataStyle
     type?: ChartDataType
-    points: ChartDataPoint[] | [ChartDataPoint]
+    points: Array<ChartDataPoint>
 }
 
 export interface ChartProps extends StyleProps {
