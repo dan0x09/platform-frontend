@@ -65,7 +65,7 @@ export interface FABProps extends ClickableProps {
 }
 
 export enum ChartDataType {
-    LINE="line", AREA="area", BAR="bar"
+    LINE="line", AREA="area"//, BAR="bar"
 }
 
 export type ChartDataPointX = number | string

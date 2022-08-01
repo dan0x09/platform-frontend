@@ -2,7 +2,7 @@ import React from "react"
 import { 
     ResponsiveContainer, ComposedChart, 
     XAxis, YAxis, CartesianGrid, Legend, Tooltip,
-    Line, Area, Bar
+    Line, Area
 } from "recharts"
 import { ChartData, ChartDataType, ChartProps } from '../prop-types'
 import CSS from 'csstype'
@@ -38,8 +38,8 @@ const Chart: React.FC<ChartProps> = ({style={} as CSS.Properties, data, displayX
                                     // @ts-ignore
                                     data={dataSet}
                                     type="monotone" fill={backgroundColor} stroke={color} />
-                            case ChartDataType.BAR:
-                                return <Bar key={"" + yName} dataKey={yName} name={yName} data={dataSet} fill={backgroundColor} stroke={color} />
+                            // case ChartDataType.BAR:
+                            //     return <Bar key={"" + yName} dataKey={yName} name={yName} fill={backgroundColor} stroke={color} />
                             default: //LINE
                                 return <Line key={"" + yName} dataKey={yName} name={yName} data={dataSet} type="monotone" stroke={color} />
                         }
