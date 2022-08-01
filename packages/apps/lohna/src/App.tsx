@@ -46,7 +46,7 @@ const App: React.FC = () => {
                         <h2>Data of silage</h2>
                     </Row>
 
-                    <Chart sort displayX={x=>x + "h"}
+                    <Chart displayX={x=>x + "h"}
                         data={[{
                             yName: "Humidity",
                             type: ChartDataType.BAR,
