@@ -48,7 +48,7 @@ const App: React.FC = () => {
                         <h2>Data of silage</h2>
                     </Row>
 
-                    <Chart sort displayX={x=>x + "h"}
+                    <Chart displayX={x=>x + "h"}
                         data={[{
                             yName: "Humidity",
                             type: ChartDataType.BAR,
@@ -60,7 +60,7 @@ const App: React.FC = () => {
                             points: data
                         }, {
                             yName: "Temperature",
-                            type: ChartDataType.AREA,
+                            type: ChartDataType.LINE,
                             displayTooltip: (value) => value.toFixed(2) + " °C",
                             style: {
                                 color: "#CC4F38",

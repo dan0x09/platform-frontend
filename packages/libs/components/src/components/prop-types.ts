@@ -87,6 +87,5 @@ export interface ChartData {
 
 export interface ChartProps extends StyleProps {
     data: ChartData[] | [ChartData]
-    sort?: boolean
     displayX?: (x: ChartDataPointX) => number | string
 }

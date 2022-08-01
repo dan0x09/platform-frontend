@@ -7,7 +7,6 @@ import {
 import { ChartData, ChartDataType, ChartProps } from '../prop-types'
 import CSS from 'csstype'
 import "../style.css"
-import { createDataSet } from "../../lib/helper"
 
 const dataKeyX = "name"
 
@@ -17,31 +16,32 @@ function mapFormatter(value: number, name: string, data: ChartData[]) {
     else return "" + value
 }
 
-const Chart: React.FC<ChartProps> = ({style={} as CSS.Properties, data, sort=false, displayX=v=>v}) => {
-    const dataSet = createDataSet(dataKeyX, data, sort)
-    // Change values according to display function
-    dataSet.forEach(point => {
-        point[dataKeyX] = displayX(point[dataKeyX])
-    })
-
+const Chart: React.FC<ChartProps> = ({style={} as CSS.Properties, data, displayX=v=>v}) => {
     return (
         <ResponsiveContainer>
-            <ComposedChart data={dataSet} style={style}>
-                <XAxis dataKey={dataKeyX} />
+            <ComposedChart style={style}>
+                <XAxis dataKey={dataKeyX} type="category" allowDuplicatedCategory={false} />
                 <YAxis />
                 <CartesianGrid stroke="#eee" strokeDasharray="5 5" />
                 <Legend verticalAlign="top" height={36} />
                 <Tooltip formatter={(value: number, name: string) => mapFormatter(value, name, data)} />
                 {   // Chart data goes here
-                    data.map(({yName, style={color: "#8884d8", backgroundColor: "#8884d8"}, type}) => {
+                    data.map(({yName, style={color: "#8884d8", backgroundColor: "#8884d8"}, type, points}) => {
+                        const dataSet = points.map(([x, y]) => ({
+                            [dataKeyX]: "" + displayX(x),
+                            [yName]: y
+                        }))
                         const {color = "#8884d8", backgroundColor = "#8884d8"} = style
                         switch(type) {
                             case ChartDataType.AREA:
-                                return <Area key={"" + yName} type="monotone" dataKey={yName} fill={backgroundColor} stroke={color} />
+                                return <Area key={"" + yName} dataKey={yName} name={yName} 
+                                    // @ts-ignore
+                                    data={dataSet}
+                                    type="monotone" fill={backgroundColor} stroke={color} />
                             case ChartDataType.BAR:
-                                return <Bar key={"" + yName} dataKey={yName} fill={backgroundColor} stroke={color} />
+                                return <Bar key={"" + yName} dataKey={yName} name={yName} data={dataSet} fill={backgroundColor} stroke={color} />
                             default: //LINE
-                                return <Line key={"" + yName} type="monotone" dataKey={yName} stroke={color} />
+                                return <Line key={"" + yName} dataKey={yName} name={yName} data={dataSet} type="monotone" stroke={color} />
                         }
                     })
                 }

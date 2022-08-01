@@ -1,33 +1,3 @@
-import { ChartData } from "../components/prop-types"
-
-// Creates a recharts compatible data list
-//  data: DataStructure to enable multiple charts at once, while combining the x values
-//  sort: whether the x values should be sorted by string < number && numbers && strings
-export function createDataSet(dataKeyX: string, data: ChartData[], sort: boolean): any[] {
-    const result: any[] = []
-    // For every set
-    data.forEach(({yName, points}) => {
-        // For every data point in every set
-        points.forEach(([x, y]) => {
-            // The data list already features this x value
-            const xField = result.find(f => f[dataKeyX] === x)
-            if(xField) xField[yName] = y
-            // The data set does not feature the x value
-            else result.push({[dataKeyX]: x, [yName]: y})
-        })
-    })
-
-    if(sort) {
-        // Sort the data list by x value, where numbers are considered, but strings are not
-        const numbers = result.filter(f => typeof f[dataKeyX] === "number").sort((a, b) => a[dataKeyX] - b[dataKeyX]),
-            strings = result.filter(f => typeof f[dataKeyX] !== "number").sort((a, b) => a[dataKeyX] < b[dataKeyX] ? -1 : a[dataKeyX] > b[dataKeyX] ? 1 : 0)
-        
-        return [...strings, ...numbers]
-    }else {
-        return result
-    }
-}
-
 
 // Creates a percentage of a given number, using string type and '%' character
 export function calculatePercentage(count: number): string {
