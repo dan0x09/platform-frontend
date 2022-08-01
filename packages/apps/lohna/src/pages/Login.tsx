@@ -12,7 +12,7 @@ const Login: React.FC = () => {
 			</Row>
 
 			<Page>
-				{[<Site>
+				<Site>
 					<Row align={RowAlign.MID}>
 						<div>
 							<Row align={RowAlign.MID}>
@@ -32,7 +32,7 @@ const Login: React.FC = () => {
 
 						<Button onClick={() => window.location.href = "/__--"}>ERROR</Button>
 					</Row>
-				</Site>]}
+				</Site>
 			</Page>
 
 			<Row align={RowAlign.RIGHT} spaceAround space="20%">
