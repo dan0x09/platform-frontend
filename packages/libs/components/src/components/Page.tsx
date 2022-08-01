@@ -57,7 +57,7 @@ export const Page: React.FC<PageProps> = ({children, style={} as CSS.Properties,
     // Used to switch between site parts (if given)
     const [mobileSwitch, setMobileSwitch] = useState(false)
 
-    if(children[1]) {
+    if(Array.isArray(children) && children[1]) {
         if(!isMobile)
             return (
                 <div className="_Page color0 Page" style={style}>

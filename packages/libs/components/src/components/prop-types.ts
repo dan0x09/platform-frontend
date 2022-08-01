@@ -1,5 +1,6 @@
 
 import CSS from 'csstype'
+import React from 'react'
 
 export interface StyleProps {
     style?: CSS.Properties
@@ -25,7 +26,7 @@ export interface RowAlignProps extends StyleProps {
 export interface RowProps extends RowAlignProps {
     space?: number | string
     spaceAround?: boolean
-    children: JSX.Element[] | JSX.Element
+    children: React.ReactNode
 }
 
 export enum SiteAlign {
@@ -41,11 +42,11 @@ export interface PageLayoutProps extends SiteAlignProps {
 }
 
 export interface SiteProps extends SiteAlignProps {
-    children: JSX.Element[] | JSX.Element
+    children: React.ReactNode
 }
 
 export interface PageProps extends StyleProps {
-    children: [JSX.Element, JSX.Element] | [JSX.Element]
+    children: React.ReactNode
     leftWidth?: number | string
 }
 
@@ -54,13 +55,13 @@ export interface ClickableProps extends StyleProps {
 }
 
 export interface ButtonProps extends ClickableProps {
-    children?: Array<JSX.Element> | string
+    children?: React.ReactNode
 }
 
 export interface FABProps extends ClickableProps {
     toggle?: boolean
     styleActive?: CSS.Properties
-    children?: JSX.Element
+    children?: React.ReactNode
 }
 
 export enum ChartDataType {

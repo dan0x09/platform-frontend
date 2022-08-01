@@ -25,8 +25,6 @@ export const ErrorPage: React.FC = () => {
 						<p>If this error persists, contact our support team under _</p>
 					</div>
 				</Site>
-
-				<div/>
 			</Page>
 
 			<div/>
