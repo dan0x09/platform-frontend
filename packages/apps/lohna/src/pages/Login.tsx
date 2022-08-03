@@ -1,15 +1,15 @@
 import React from 'react'
 import { Page, Site, PageLayout, Button, Row, RowAlign } from 'sgcomponents'
 
+import Header from '../components/Header'
+import Footer from '../components/Footer'
 
 import '../Style.css'
 
 const Login: React.FC = () => {
 	return (
         <PageLayout>
-			<Row align={RowAlign.LEFT} spaceAround space="20%">
-				<h2 className='color0'>Login Page</h2>
-			</Row>
+			<Header>LOGIN</Header>
 
 			<Page>
 				<Site>
@@ -35,9 +35,7 @@ const Login: React.FC = () => {
 				</Site>
 			</Page>
 
-			<Row align={RowAlign.RIGHT} spaceAround space="20%">
-				<h3 className='color0'>SILAGE CONTROL</h3>
-			</Row>
+			<Footer></Footer>
 		</PageLayout>
 	)
 }
