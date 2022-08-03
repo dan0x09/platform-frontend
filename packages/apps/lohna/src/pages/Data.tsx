@@ -2,8 +2,10 @@ import React, { useState } from 'react'
 import { Page, Site, PageLayout, SiteAlign, Button, Chart, ChartDataType, ChartDataPoint, Row, RowAlign } from 'sgcomponents'
 import { fetchTemperatureData } from 'sgapi'
 
+import Header from '../components/Header'
+import Footer from '../components/Footer'
 
-import './Style.css'
+import '../Style.css'
 
 async function getTempData() {
     return await fetchTemperatureData() as ChartDataPoint[]
@@ -28,7 +30,7 @@ const App: React.FC = () => {
 
     return (
         <PageLayout>
-            <h2 className='color0'>TITLE</h2>
+			<Header>TEST DATA</Header>
 
             <Page>
                 <Site>
@@ -46,27 +48,27 @@ const App: React.FC = () => {
                         <h2>Data of silage</h2>
                     </Row>
 
-                    <Chart displayX={x=>x + "h"}
-                        data={[{
-                            yName: "Humidity",
-                            type: ChartDataType.BAR,
-                            displayTooltip: (value) => value.toFixed(2),
-                            style: {
-                                color: "#2f536b",
-                                backgroundColor: "#447799"
-                            },
-                            points: data
-                        }, {
-                            yName: "Temperature",
-                            type: ChartDataType.AREA,
-                            displayTooltip: (value) => value.toFixed(2) + " °C",
-                            style: {
-                                color: "#CC4F38",
-                                backgroundColor: "#ff6347"
-                            },
-                            points: data2
-                        }]}
-                    />
+					<Chart displayX={x=>x + "h"}
+						data={[{
+							yName: "Humidity",
+							type: ChartDataType.AREA,
+							displayTooltip: (value) => value.toFixed(2),
+							style: {
+								color: "#2f536b",
+								backgroundColor: "#447799"
+							},
+							points: data
+						}, {
+							yName: "Temperature",
+							type: ChartDataType.LINE,
+							displayTooltip: (value) => value.toFixed(2) + " °C",
+							style: {
+								color: "#CC4F38",
+								backgroundColor: "#ff6347"
+							},
+							points: data2
+						}]}
+					/>
 
                     <Row align={RowAlign.RIGHT} space={"8px"} spaceAround>
 
@@ -87,7 +89,7 @@ const App: React.FC = () => {
 
             </Page>
 
-            <h3 className='color0'>Footer</h3>
+			<Footer></Footer>
         </PageLayout>
     )
 }
