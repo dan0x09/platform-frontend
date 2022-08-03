@@ -3,8 +3,20 @@
  */
 import React from 'react'
 import { render, fireEvent, screen } from '@testing-library/react'
-import { FAB } from "../../../src"
- 
+import { Button, FAB } from "../../../src"
+
+describe('Button', function () {
+    it('should use onClick', function () {
+        const onClickSpy = jest.fn()
+        render(
+            <Button onClick={onClickSpy}/>
+        )
+        fireEvent.click(screen.getByTestId('button-input'))
+        
+        expect(onClickSpy).toHaveBeenCalled()
+    })
+})
+
 describe('FAB', function () {
     it('should use onClick', function () {
         const onClickSpy = jest.fn()
