@@ -1,8 +1,8 @@
 import React, { useState } from "react"
-import "./style.css"
 import CSS from 'csstype'
 import { SiteAlign, SiteProps, PageProps, RowAlign, RowProps } from "./prop-types"
 import { FAB } from "./Buttons"
+import "./style.css"
 
 
 export const Row: React.FC<RowProps> = ({children, align=RowAlign.LEFT, space="20px", spaceAround=false}) => {
@@ -25,11 +25,11 @@ export const Row: React.FC<RowProps> = ({children, align=RowAlign.LEFT, space="2
                 Array.isArray(children) ?
                     children.reduce((prev: JSX.Element[], curr: JSX.Element, i: number) => {
                         if(spaceAround && i === 0) prev.push(
-                            <div style={{width: space}} />
+                            <div key={"." + i} style={{width: space}} />
                         )
                         prev.push(curr)
                         if(spaceAround || i < children.length - 1) prev.push(
-                            <div style={{width: space}} />
+                            <div key={i + "."} style={{width: space}} />
                         )
                         return prev
                     }, [])
@@ -53,7 +53,7 @@ export const Site: React.FC<SiteProps> = ({children, style={} as CSS.Properties,
 }
 
 export const Page: React.FC<PageProps> = ({children, style={} as CSS.Properties, leftWidth=false}) => {
-    const isMobile = false // TODO add mobile detection
+    const isMobile = false // TODO
     // Used to switch between site parts (if given)
     const [mobileSwitch, setMobileSwitch] = useState(false)
 
@@ -71,12 +71,15 @@ export const Page: React.FC<PageProps> = ({children, style={} as CSS.Properties,
                 </div>
             )
         else {
-            
             return (
                 <div className="_PageMobile color0 PageMobile">
-                    {!mobileSwitch && children[0]}
+                    {!mobileSwitch && <div className="__PageMobileWrapper">
+                        {children[0]}
+                    </div>}
     
-                    {mobileSwitch && children[1]}
+                    {mobileSwitch && <div className="__PageMobileWrapper">
+                        {children[1]}
+                    </div>}
     
                     <FAB
                         toggle
