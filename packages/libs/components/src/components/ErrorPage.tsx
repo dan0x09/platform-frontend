@@ -9,7 +9,10 @@ export const ErrorPage: React.FC = () => {
 	return (
 		<PageLayout>
 			<Row spaceAround space="20%">
-				<h1>ERROR 404</h1>
+				<h1
+            		data-testid="error-text">
+						ERROR 404
+				</h1>
 			</Row>
 
 			<Page>
