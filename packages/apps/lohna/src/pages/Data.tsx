@@ -1,11 +1,9 @@
 import React, { useState } from 'react'
-import { Page, Site, PageLayout, SiteAlign, Button, Chart, ChartDataType, ChartDataPoint, Row, RowAlign } from 'sgcomponents'
+import { Site, SiteAlign, Button, Chart, ChartDataType, ChartDataPoint, Row, RowAlign } from 'sgcomponents'
 import { fetchTemperatureData } from 'sgapi'
 
-import Header from '../components/Header'
-import Footer from '../components/Footer'
-
 import '../Style.css'
+import Page from '../components/Page'
 
 async function getTempData() {
     return await fetchTemperatureData() as ChartDataPoint[]
@@ -29,68 +27,61 @@ const App: React.FC = () => {
     const [data2, setData2] = useState([] as ChartDataPoint[])
 
     return (
-        <PageLayout>
-			<Header>TEST DATA</Header>
+        <Page>
+            <Site>
+                <h1>Some Title</h1>
 
-            <Page>
-                <Site>
-                    <h1>Some Title</h1>
+                <SomeText/>
 
-                    <SomeText/>
+                <Row align={RowAlign.RIGHT} space="50px" spaceAround>
+                    <Button onClick={() => alert("Alert alert!")}>Click me!</Button>
+                </Row>
+            </Site>
 
-                    <Row align={RowAlign.RIGHT} space="50px" spaceAround>
-                        <Button onClick={() => alert("Alert alert!")}>Click me!</Button>
-                    </Row>
-                </Site>
+            <Site align={SiteAlign.TOP}>
+                <Row>
+                    <h2>Data of silage</h2>
+                </Row>
 
-                <Site align={SiteAlign.TOP}>
-                    <Row>
-                        <h2>Data of silage</h2>
-                    </Row>
+                <Chart displayX={x=>x + "h"}
+                    data={[{
+                        yName: "Humidity",
+                        type: ChartDataType.AREA,
+                        displayTooltip: (value) => value.toFixed(2),
+                        style: {
+                            color: "#2f536b",
+                            backgroundColor: "#447799"
+                        },
+                        points: data
+                    }, {
+                        yName: "Temperature",
+                        type: ChartDataType.LINE,
+                        displayTooltip: (value) => value.toFixed(2) + " °C",
+                        style: {
+                            color: "#CC4F38",
+                            backgroundColor: "#ff6347"
+                        },
+                        points: data2
+                    }]}
+                />
 
-					<Chart displayX={x=>x + "h"}
-						data={[{
-							yName: "Humidity",
-							type: ChartDataType.AREA,
-							displayTooltip: (value) => value.toFixed(2),
-							style: {
-								color: "#2f536b",
-								backgroundColor: "#447799"
-							},
-							points: data
-						}, {
-							yName: "Temperature",
-							type: ChartDataType.LINE,
-							displayTooltip: (value) => value.toFixed(2) + " °C",
-							style: {
-								color: "#CC4F38",
-								backgroundColor: "#ff6347"
-							},
-							points: data2
-						}]}
-					/>
+                <Row align={RowAlign.RIGHT} space={"8px"} spaceAround>
 
-                    <Row align={RowAlign.RIGHT} space={"8px"} spaceAround>
+                    <Button style={{width: "200px"}} onClick={() => {
+                        getTempData().then(d => setData(d))
+                        getTempData().then(d => setData2(d))
+                    }}>Randomize data</Button>
 
-                        <Button style={{width: "200px"}} onClick={() => {
-                            getTempData().then(d => setData(d))
-                            getTempData().then(d => setData2(d))
-                        }}>Randomize data</Button>
+                    <Button style={{width: "200px", backgroundColor: "red"}} onClick={() => {
+                        setData([])
+                        setData2([])
+                    }}>Clear data</Button>
 
-                        <Button style={{width: "200px", backgroundColor: "red"}} onClick={() => {
-                            setData([])
-                            setData2([])
-                        }}>Clear data</Button>
+                </Row>
 
-                    </Row>
-
-                    <SomeText/>
-                </Site>
-
-            </Page>
-
-			<Footer></Footer>
-        </PageLayout>
+                <SomeText/>
+            </Site>
+        </Page>
     )
 }
 export default App
