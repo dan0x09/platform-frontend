@@ -7,7 +7,7 @@ import '../Style.css'
 interface FooterProps {
 }
 
-const Login: React.FC<FooterProps> = () => {
+const Footer: React.FC<FooterProps> = () => {
 	return (
         <>
 			<Row align={RowAlign.RIGHT} spaceAround space="20%">
@@ -17,4 +17,4 @@ const Login: React.FC<FooterProps> = () => {
 	)
 }
 
-export default Login
+export default Footer

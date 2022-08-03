@@ -9,7 +9,7 @@ interface HeaderProps {
 	children: string
 }
 
-const Login: React.FC<HeaderProps> = ({children}) => {
+const Header: React.FC<HeaderProps> = ({children}) => {
 	return (
 		<>
 			<Row align={RowAlign.LEFT} spaceAround space="20%">
@@ -19,4 +19,4 @@ const Login: React.FC<HeaderProps> = ({children}) => {
 	)
 }
 
-export default Login
+export default Header
