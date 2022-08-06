@@ -16,10 +16,10 @@ function mapFormatter(value: number, name: string, data: ChartData[]) {
     else return "" + value
 }
 
-const Chart: React.FC<ChartProps> = ({style={} as CSS.Properties, data, displayX=v=>v}) => {
+const Chart: React.FC<ChartProps> = ({style={} as CSS.Properties, aspect=1.3, maxHeight=undefined, data, displayX=v=>v}) => {
     return (
         <div style={{width: '100%'}}>
-            <ResponsiveContainer aspect={1.3}>
+            <ResponsiveContainer aspect={aspect} maxHeight={maxHeight} width="100%">
                 <ComposedChart style={style}>
                     <XAxis dataKey={dataKeyX} type="category" allowDuplicatedCategory={false} />
                     <YAxis />

@@ -48,6 +48,7 @@ export interface SiteProps extends SiteAlignProps {
 export interface PageProps extends StyleProps {
     children: React.ReactNode
     leftWidth?: number | string
+    mobile?: boolean
 }
 
 export interface ClickableProps extends StyleProps {
@@ -87,6 +88,8 @@ export interface ChartData {
 }
 
 export interface ChartProps extends StyleProps {
-    data: ChartData[] | [ChartData]
+    aspect?: number | undefined
+    maxHeight?: number | undefined
+    data: Array<ChartData>
     displayX?: (x: ChartDataPointX) => number | string
 }

@@ -52,13 +52,12 @@ export const Site: React.FC<SiteProps> = ({children, style={} as CSS.Properties,
     )
 }
 
-export const Page: React.FC<PageProps> = ({children, style={} as CSS.Properties, leftWidth=false}) => {
-    const isMobile = false // TODO
+export const Page: React.FC<PageProps> = ({children, style={} as CSS.Properties, leftWidth=false, mobile=false}) => {
     // Used to switch between site parts (if given)
     const [mobileSwitch, setMobileSwitch] = useState(false)
 
     if(Array.isArray(children) && children[1]) {
-        if(!isMobile)
+        if(!mobile)
             return (
                 <div className="_Page color0 Page" style={style}>
                     <div className="__PageLeft" style={(leftWidth ? {width: leftWidth} : {}) as CSS.Properties}>
@@ -91,7 +90,7 @@ export const Page: React.FC<PageProps> = ({children, style={} as CSS.Properties,
     } 
     else 
     {
-        if(!isMobile)
+        if(!mobile)
             return (
                 <div className="_Page __PageH color0 Page" style={style}>
                     {children}
