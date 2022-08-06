@@ -114,7 +114,7 @@
     justify-content: center;
     align-items: flex-start;
     flex-direction: row;
-    overflow: scroll;
+    overflow: hidden scroll;
 }
 
 .__PageH {
@@ -148,6 +148,7 @@
     justify-content: center;
     align-items: flex-start;
     flex-direction: column;
+    overflow: hidden scroll;
 }
 
 .__PageMobileWrapper {
@@ -157,6 +158,12 @@
     justify-content: flex-start;
     align-items: center;
     flex-direction: column;
+    transition-duration: 1s;
+    overflow: hidden;
+}
+
+.__PageMobileWrapperCollapsed {
+    height: 0;
 }
 
 .__GridLayout {

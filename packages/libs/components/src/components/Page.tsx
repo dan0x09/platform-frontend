@@ -72,13 +72,13 @@ export const Page: React.FC<PageProps> = ({children, style={} as CSS.Properties,
         else {
             return (
                 <div className="_PageMobile color0 PageMobile">
-                    {!mobileSwitch && <div className="__PageMobileWrapper">
+                    <div className={!mobileSwitch ? "__PageMobileWrapper" : "__PageMobileWrapper __PageMobileWrapperCollapsed"}>
                         {children[0]}
-                    </div>}
+                    </div>
     
-                    {mobileSwitch && <div className="__PageMobileWrapper">
+                    <div className={mobileSwitch ? "__PageMobileWrapper" : "__PageMobileWrapper __PageMobileWrapperCollapsed"}>
                         {children[1]}
-                    </div>}
+                    </div>
     
                     <FAB
                         toggle
