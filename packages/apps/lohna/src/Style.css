@@ -1,6 +1,94 @@
-.Site {
-}
-
 .Page {
     background-color: #ddd;
+}
+
+
+.Drawer {
+    z-index: 999;
+    background-color: #fff;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    transition-duration: .5s;
+    right: 0;
+    bottom: 0;
+    border-radius: 0;
+    overflow: hidden;
+}
+
+.DrawerCollapsed {
+    width: 0;
+    height: 0;
+    border-top-left-radius: 50%;
+}
+
+.DrawerContent {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden scroll;
+    padding: 20px;
+    padding-right: 100px;
+}
+
+.DrawerNavigation {
+    background-color: #f0f0f0;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 100px;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+    z-index: 1000;
+}
+
+.DrawerNavigationTop {
+    background-color: #f0f0f0;
+    position: absolute;
+    top: 0;
+    width: 100vw;
+    height: 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    padding-left: 20px;
+    z-index: 1000;
+}
+
+.Widget {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-width: 30vw;
+    height: 400px;
+}
+
+.WidgetDouble {
+    min-width: 60vw;
+}
+
+.WidgetContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-width: 350px;
+    height: 100%;
+    min-height: 350px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: #f3f3f3;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    transition-duration: 0.2s;
+}
+
+.WidgetContent:hover {
+    background-color: #fff;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    cursor: pointer;
 }

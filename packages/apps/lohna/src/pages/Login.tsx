@@ -7,7 +7,7 @@ import Page from '../components/Page'
 
 const Login: React.FC = () => {
 	return (
-		<Page>
+		<Page header footer>
 			<Site>
 				<Row align={RowAlign.MID}>
 					<div>
