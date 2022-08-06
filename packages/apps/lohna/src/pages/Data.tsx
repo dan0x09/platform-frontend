@@ -3,13 +3,12 @@ import React, { useState } from 'react'
 import '../Style.css'
 import NavigationDrawer from './NavigationDrawer'
 import Page from '../components/Page'
-import { DataState } from '../types'
+import { DataStateWrapper } from '../types'
 import { Button, Chart, Row, RowAlign, Site, SiteAlign } from 'sgcomponents'
 import { isMobileThreshold } from '../lib/helper'
 
 const Data: React.FC = () => {
-
-    const [dataState, setDataState] = useState(null as DataState | null)
+    const [dataStateWrapper, setDataStateWrapper] = useState(null as DataStateWrapper | null)
 
     const [windowWidth, setWindowWidth] = useState(window.innerWidth)
     useState(window.addEventListener("resize", () => setWindowWidth(window.innerWidth)))
@@ -19,17 +18,17 @@ const Data: React.FC = () => {
         <div style={{paddingRight: !mobile ? '100px' : 0}}>
         {/* Space for drawer navigation */}
             
-            <NavigationDrawer collapsable={!!dataState} showData={(d) => setDataState(d)}/>
+            <NavigationDrawer showData={setDataStateWrapper}/>
 
             {/* Space for drawer navigation */}
             {mobile && <div style={{height: '100px'}} />}
 
-            {dataState && <Page footer>
+            {dataStateWrapper && <Page footer>
                 <Site>
-                    <h1>{dataState.title}</h1>
+                    <h1>{dataStateWrapper.dataState.title}</h1>
 
                     <h3>
-                        {dataState.subtitle}
+                        {dataStateWrapper.dataState.subtitle}
                     </h3>
 
                     <Row align={RowAlign.RIGHT} space="50px" spaceAround>
@@ -37,21 +36,21 @@ const Data: React.FC = () => {
                     </Row>
 
                     <p>
-                        {dataState.text}
+                        {dataStateWrapper.dataState.text}
                     </p>
                 </Site>
 
                 <Site align={SiteAlign.TOP}>
-                    <Row>
-                        <h2>{dataState.subtitle1}</h2>
+                    <Row align={RowAlign.RIGHT}>
+                        <h2>{dataStateWrapper.dataState.subtitle1}</h2>
                     </Row>
 
-                    {dataState.dataSets && <Chart displayX={x=>x + "h"}
-                        data={dataState.dataSets}
+                    {dataStateWrapper.dataSets && <Chart displayX={x=>x + "h"}
+                        data={dataStateWrapper.dataSets}
                     />}
 
                     <p>
-                        {dataState.text1}
+                        {dataStateWrapper.dataState.text1}
                     </p>
                 </Site>
             </Page>}
