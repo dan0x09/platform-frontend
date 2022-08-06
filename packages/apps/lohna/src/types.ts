@@ -6,5 +6,10 @@ export interface DataState {
 	text: string
 	subtitle1: string
 	text1: string
-	dataSets?: Array<ChartData>
+	getDataSets?: () => Promise<Array<ChartData>>
+}
+
+export interface DataStateWrapper {
+	dataState: DataState
+	dataSets: Array<ChartData>
 }
