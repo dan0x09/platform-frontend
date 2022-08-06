@@ -43,7 +43,7 @@
     overflow: hidden;
     cursor: pointer;
     transition-duration: 0.3s;
-    z-index: 1000;
+    z-index: 1;
 }
 
 ._FAB:hover {
@@ -161,7 +161,7 @@
 
 .__GridLayout {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     flex-direction: row;
     flex-wrap: wrap;
