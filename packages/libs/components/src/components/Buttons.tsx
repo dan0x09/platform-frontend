@@ -4,7 +4,7 @@ import CSS from 'csstype'
 import "./style.css"
 
 
-export const FAB: React.FC<FABProps> = ({toggle=false, style={} as CSS.Properties, styleActive={} as CSS.Properties, onClick, children=false}) => {
+export const FAB: React.FC<FABProps> = ({toggle=false, style={} as CSS.Properties, className="", styleActive={} as CSS.Properties, onClick, children=false}) => {
     const 
         [clicked, setClicked] = useState(false),
         click = () => {
@@ -15,7 +15,7 @@ export const FAB: React.FC<FABProps> = ({toggle=false, style={} as CSS.Propertie
     return (
         <div
             data-testid="button-input"
-            className={"_FAB color2 FAB" + (clicked ? " _FABActive FABActive" : "")}
+            className={"_FAB color2 FAB" + (clicked ? " _FABActive FABActive" : "") + (className !== "" ? " " + className : "")}
             style={!clicked ? style : {...style, ...styleActive}}
             onClick={click}
         >
@@ -24,12 +24,12 @@ export const FAB: React.FC<FABProps> = ({toggle=false, style={} as CSS.Propertie
     )
 }
 
-export const Button: React.FC<ButtonProps> = ({style={} as CSS.Properties, onClick, children}) => {
+export const Button: React.FC<ButtonProps> = ({style={} as CSS.Properties, className="", onClick, children}) => {
 
     return (
         <div
             data-testid="button-input"
-            className={"_Button color2 Button"}
+            className={"_Button color2 Button" + (className !== "" ? " " + className : "")}
             style={style}
             onClick={onClick}
         >

@@ -5,7 +5,7 @@ import { FAB } from "./Buttons"
 import "./style.css"
 
 
-export const Row: React.FC<RowProps> = ({children, align=RowAlign.LEFT, space="20px", spaceAround=false}) => {
+export const Row: React.FC<RowProps> = ({className="", children, align=RowAlign.LEFT, space="20px", spaceAround=false}) => {
     let alignStyle
     switch(align) {
         case RowAlign.MID:
@@ -20,7 +20,7 @@ export const Row: React.FC<RowProps> = ({children, align=RowAlign.LEFT, space="2
     }
 
     return (
-        <div className={"_Row " + alignStyle + " Row"}>
+        <div className={"_Row " + alignStyle + " Row" + (className !== "" ? " " + className : "")}>
             {
                 Array.isArray(children) ?
                     children.reduce((prev: JSX.Element[], curr: JSX.Element, i: number) => {
@@ -40,26 +40,26 @@ export const Row: React.FC<RowProps> = ({children, align=RowAlign.LEFT, space="2
     )
 }
 
-export const Site: React.FC<SiteProps> = ({children, style={} as CSS.Properties, align=SiteAlign.TOP, 
+export const Site: React.FC<SiteProps> = ({children, style={} as CSS.Properties, className="", align=SiteAlign.TOP, 
 }) => {
     let alignStyle = "__SiteLeft"
     if(align === SiteAlign.TOP) alignStyle = "__SiteTop"
 
     return (
-        <div className={"_Site " + alignStyle + " Site"} style={style}>
+        <div className={"_Site " + alignStyle + " Site" + (className !== "" ? " " + className : "")} style={style}>
             {children}
         </div>
     )
 }
 
-export const Page: React.FC<PageProps> = ({children, style={} as CSS.Properties, leftWidth=false, mobile=false}) => {
+export const Page: React.FC<PageProps> = ({children, style={} as CSS.Properties, className="", leftWidth=false, mobile=false}) => {
     // Used to switch between site parts (if given)
     const [mobileSwitch, setMobileSwitch] = useState(false)
 
     if(Array.isArray(children) && children[1]) {
         if(!mobile)
             return (
-                <div className="_Page color0 Page" style={style}>
+                <div className={"_Page color0 Page" + (className !== "" ? " " + className : "")} style={style}>
                     <div className="__PageLeft" style={(leftWidth ? {width: leftWidth} : {}) as CSS.Properties}>
                         {children[0]}
                     </div>
@@ -75,7 +75,7 @@ export const Page: React.FC<PageProps> = ({children, style={} as CSS.Properties,
             )
         else {
             return (
-                <div className="_PageMobile color0 PageMobile">
+                <div className={"_PageMobile color0 PageMobile" + (className !== "" ? " " + className : "")}>
                     <div className={!mobileSwitch ? "__PageMobileClosingWrapper" : "__PageMobileClosingWrapper __PageMobileClosingWrapperCollapsed"}>
                         {children[0]}
                     </div>
@@ -96,7 +96,7 @@ export const Page: React.FC<PageProps> = ({children, style={} as CSS.Properties,
     {
         if(!mobile)
             return (
-                <div className="_Page __PageH color0 Page" style={style}>
+                <div className={"_Page __PageH color0 Page" + (className !== "" ? " " + className : "")} style={style}>
                     {children}
                 </div>
             )
@@ -104,7 +104,7 @@ export const Page: React.FC<PageProps> = ({children, style={} as CSS.Properties,
     
     
             return (
-                <div className="_PageMobile __PageH color0 PageMobile">
+                <div className={"_PageMobile __PageH color0 PageMobile" + (className !== "" ? " " + className : "")}>
                     {children}
                 </div>
             )

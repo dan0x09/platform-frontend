@@ -4,6 +4,7 @@ import React from 'react'
 
 export interface StyleProps {
     style?: CSS.Properties
+    className?: string
 }
 
 export interface GridLayoutProps extends StyleProps {
