@@ -4,20 +4,22 @@ import CSS from 'csstype'
 import "./style.css"
 import { calculatePercentage } from "../lib/helper"
 
-export const GridLayout: React.FC<GridLayoutProps> = ({children=[], style={} as CSS.Properties, width='90%', height='80vh', auto=false, columns=3, rows=2}) => {
+export const GridLayout: React.FC<GridLayoutProps> = ({children=[], style={} as CSS.Properties, auto=false, columns=3}) => {
     const containerStyle: CSS.Properties = {
-        width: calculatePercentage(columns),
-        height: calculatePercentage(rows)
+        width: calculatePercentage(columns)
     }
 
     return (
-        <div className="__GridLayout" style={{...style, width: width, height: height}}>
+        <div className="__GridLayout" style={style}>
             { auto ? 
-            children.map((c, i) => (
-                <div key={"" + i} style={containerStyle}>
-                    {c}
-                </div>
-            ))
+            children.reduce((all, c, i) => {
+                if(c) all.push(
+                    <div key={"" + i} style={containerStyle}>
+                        {c}
+                    </div>
+                )    
+                return all
+            }, [] as Array<JSX.Element>)
             : children }
         </div>
     )

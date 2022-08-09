@@ -7,12 +7,9 @@ export interface StyleProps {
 }
 
 export interface GridLayoutProps extends StyleProps {
-    children: JSX.Element[]
-    width?: number | string
-    height?: number | string
+    children: Array<JSX.Element | boolean>
     auto?: boolean
     columns?: number
-    rows?: number
 }
 
 export enum RowAlign {
@@ -89,6 +86,8 @@ export interface ChartData {
 
 export interface ChartProps extends StyleProps {
     aspect?: number | undefined
+    showLegend?: boolean
+    upscaleLegend?: boolean
     maxHeight?: number | undefined
     data: Array<ChartData>
     displayX?: (x: ChartDataPointX) => number | string
