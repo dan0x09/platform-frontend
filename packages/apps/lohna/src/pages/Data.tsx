@@ -24,6 +24,10 @@ const DataTypeLeftComponent: React.FC<DataDisplayComponentProps> = ({dataStateWr
             <p>
                 {dataStateWrapper.dataState.text}
             </p>
+
+            {dataStateWrapper.dataState.informationComponent &&
+                dataStateWrapper.dataState.informationComponent(dataStateWrapper)
+            }
         </Site>
     )
 }

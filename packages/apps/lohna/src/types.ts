@@ -13,6 +13,7 @@ export interface DataState {
 	title?: string
 	subtitle?: string
 	text?: string
+	informationComponent?: DataStateComponent
 	subtitle1?: string
 	text1?: string
 	getDataSets?: () => Promise<Array<ChartData>>
