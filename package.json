@@ -16,6 +16,7 @@
     "check:fix": "npm run lint:fix && npm run test",
     "_:lerna:add": "cd ./packages/workspace/test/ && lerna add sgcomponents",
     "components:dev": "cd ./packages/libs/components/ && npm run build:watch",
+    "widgets:dev": "cd ./packages/libs/widgets/ && npm run build:watch",
     "test:dev": "cd ./packages/workspace/test/ && npm start"
   },
   "repository": {
