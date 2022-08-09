@@ -19,12 +19,14 @@ const Login: React.FC = () => {
 							<input/>
 						</Row>
 
+						<div style={{height: '20px'}} />
+
 						<Row align={RowAlign.MID}>
 							<input/>
 						</Row>
 					</div>
 
-					<Button onClick={() => window.location.href = "/test"}>LOGIN</Button>
+					<Button onClick={() => window.location.href = "/silos"}>LOGIN</Button>
 
 					<Button onClick={() => window.location.href = "/__--"}>ERROR</Button>
 				</Row>

@@ -2,6 +2,19 @@
     background-color: #ddd;
 }
 
+.SiloChooserButton {
+    width: 500px;
+    max-width: 90vw;
+    justify-content: flex-start;
+    padding: 20px;
+    margin: 10px;
+    font-size: larger;
+}
+
+.SiloChooserButtonInactive {
+    background-color: #bbb;
+}
+
 .Drawer {
     z-index: 999;
     background-color: #fff;
