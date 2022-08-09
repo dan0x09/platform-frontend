@@ -21,7 +21,7 @@ const PageWrapper: React.FC<PageProps> = ({children, header=false, footer=false}
 		<PageLayout>
 			{header ? <Header>TEST DATA</Header> : <div></div>}
 
-			<Page leftWidth="140%" mobile={isMobileThreshold(windowWidth)}>
+			<Page leftWidth="70%" mobile={isMobileThreshold(windowWidth)}>
 				{children}
 			</Page>
 
