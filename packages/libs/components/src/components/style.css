@@ -78,7 +78,6 @@
 
 ._Site {
     align-self: stretch;
-    height: 100%;
     padding: 5px;
 }
 
@@ -98,8 +97,7 @@
 
 .__PageLayout {
     width: 100%;
-    height: 100%;
-    max-height: 100vh;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -109,7 +107,7 @@
 ._Page {
     width: 100%;
     max-width: 2000px;
-    height: 100vh;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -145,31 +143,27 @@
     width: 100%;
     height: 100vh;
     display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    flex-direction: column;
-    overflow: hidden scroll;
-}
-
-.__PageMobileWrapper {
-    width: 100%;
-    height: 100%;
-    display: flex;
     justify-content: flex-start;
     align-items: center;
     flex-direction: column;
-    transition-duration: 1s;
     overflow: hidden;
 }
 
-.__PageMobileWrapperCollapsed {
+.__PageMobileClosingWrapper {
+    width: 100%;
+    height: 100%;
+    transition-duration: .2s;
+    overflow: hidden scroll;
+}
+
+.__PageMobileClosingWrapperCollapsed {
     height: 0;
 }
 
 .__GridLayout {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     flex-direction: row;
     flex-wrap: wrap;
 }
