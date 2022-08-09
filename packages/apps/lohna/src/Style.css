@@ -22,6 +22,7 @@
 .DrawerCollapsed {
     width: 0;
     height: 0;
+    background-color: #ffffff00;
     border-top-left-radius: 50%;
 }
 
