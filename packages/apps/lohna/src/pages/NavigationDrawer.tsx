@@ -3,12 +3,11 @@ import React, { useState } from 'react'
 import Drawer from '../components/Drawer'
 
 import '../Style.css'
-import { Button, GridLayout } from 'sgcomponents'
-import { DataState, DataStateWrapper } from '../types'
+import { Button } from 'sgcomponents'
+import { DataStateWrapper } from '../types'
 
-import { Data1, Data2 } from '../data/TestDataStates'
-import Widget from '../components/DataWidget'
-import { createDataStateWrapper, isMobileThreshold } from '../lib/helper'
+import { isMobileThreshold } from '../lib/helper'
+import Widgets from './Widgets'
 
 interface NavigationDrawerProps {
 	showData: (data: DataStateWrapper | null) => void
@@ -17,16 +16,10 @@ interface NavigationDrawerProps {
 const NavigationDrawer: React.FC<NavigationDrawerProps> = ({showData}) => {
 	const [collapsed, setCollapsed] = useState(false)
 
-	const dataStates = {
-		"test1": Data1,
-		"test2": Data2
-	}
-
-	const showDataAndCollapse = async (data: DataState) => {
-		showData(await createDataStateWrapper(data))
+	const showDataAndCollapse = (data: DataStateWrapper) => {
+		showData(data)
 		setCollapsed(true)
 	}
-
 
 	const [windowWidth, setWindowWidth] = useState(window.innerWidth)
     useState(window.addEventListener("resize", () => setWindowWidth(window.innerWidth)))
@@ -43,22 +36,10 @@ const NavigationDrawer: React.FC<NavigationDrawerProps> = ({showData}) => {
 
 				{!mobile && <div key="spacer" style={{height: '10%'}}/>}
 			</div>
-
+			
 			<Drawer collapsed={collapsed}>
 				{/* Space for drawer navigation */}
-				{mobile && <div style={{height: '120px'}} />}
-
-				<GridLayout style={{minHeight: '100vh'}} auto columns={widgetsColumns}>
-					<Widget show={showDataAndCollapse} dataState={dataStates["test1"]} />
-
-					<Widget show={showDataAndCollapse} dataState={dataStates["test2"]} />
-
-					<Widget show={showDataAndCollapse} dataState={dataStates["test1"]} />
-
-					<Widget big={widgetsColumns > 2} show={showDataAndCollapse} dataState={dataStates["test1"]} />
-
-					<Widget show={showDataAndCollapse} dataState={dataStates["test1"]} />
-				</GridLayout>
+				<Widgets columns={widgetsColumns} showData={showDataAndCollapse} />
 			</Drawer>
 		</>
 	)

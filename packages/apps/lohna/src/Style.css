@@ -8,11 +8,15 @@
     position: absolute;
     width: 100vw;
     height: 100vh;
-    transition-duration: .5s;
+    transition-duration: .2s;
     right: 0;
     bottom: 0;
     border-radius: 0;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .DrawerCollapsed {
@@ -22,11 +26,13 @@
 }
 
 .DrawerContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     width: 100vw;
     height: 100vh;
     overflow: hidden scroll;
-    padding: 20px;
-    padding-right: 100px;
 }
 
 .DrawerNavigation {
@@ -62,12 +68,12 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    min-width: 30vw;
     height: 400px;
+    padding-top: 20px;
 }
 
 .WidgetDouble {
-    min-width: 60vw;
+    width: 196%;
 }
 
 .WidgetContent {
@@ -76,11 +82,11 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    min-width: 350px;
     height: 100%;
-    min-height: 350px;
     padding-left: 10px;
     padding-right: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
     background-color: #f3f3f3;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     transition-duration: 0.2s;
@@ -89,4 +95,8 @@
 .WidgetContent:hover {
     background-color: #fff;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.WidgetContentSpacer {
+    flex: 1;
 }

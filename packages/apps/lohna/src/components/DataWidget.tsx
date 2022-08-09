@@ -1,56 +1,64 @@
 import React, { useState } from 'react'
 import { Button, Chart, Row, RowAlign } from 'sgcomponents'
-import { createDataStateWrapper } from '../lib/helper'
+import { hydrateDataStateWrapper } from '../lib/helper'
 
 
 import '../Style.css'
-import { DataState, DataStateWrapper } from '../types'
+import { DataStateWrapper } from '../types'
 
 interface WidgetProps {
-	show: (dataState: DataState) => void
-	dataState: DataState
+	show: (dataStateWrapper: DataStateWrapper) => void
+	dataStateWrapper: DataStateWrapper
 	big?: boolean
 }
 
-const Widget: React.FC<WidgetProps> = ({show, dataState, big=false}) => {
-	const [dataStateWrapper, setDataStateWrapper] = useState(null as DataStateWrapper | null)
-	const [dataFetched, setDataFetched] = useState(false)
-	if(!dataFetched) {
-		setDataFetched(true)
-		createDataStateWrapper(dataState).then(r => setDataStateWrapper(r))
-	}
+const Widget: React.FC<WidgetProps> = ({show, dataStateWrapper, big=false}) => {
+	const [dataSets, setDataSets] = useState(dataStateWrapper.dataSets)
+
+	const refreshDataSets = async() => setDataSets((await hydrateDataStateWrapper(dataStateWrapper)).dataSets)
 
 	return (
 		<div className={'Widget' + (big ? ' WidgetDouble' : '')}>
-			<div style={{width: '20px'}} />
-
 			<div className={'WidgetContent'}>
 				<Row>
-					<h2>{dataState.title}</h2>
+					<h2>{dataStateWrapper.dataState.title}</h2>
 				</Row>
 
 				<Row align={RowAlign.RIGHT}>
-					<p>{dataState.subtitle1}</p>
+					<p>{dataStateWrapper.dataState.subtitle1}</p>
 				</Row>
 
-				<Row align={RowAlign.MID} space='1px' spaceAround>
+				<div className='WidgetContentSpacer' />
+
+				{!!(dataSets.length) ? <Row align={RowAlign.MID} space='1px' spaceAround>
 					<div>
-						<Button onClick={() => setDataFetched(false)}>REFRESH</Button>
+						<Button onClick={refreshDataSets}>REFRESH</Button>
 
 						<div style={{height: '20px'}}></div>
 
-						<Button onClick={() => show(dataState)}>SHOW</Button>
+						<Button onClick={() => show(dataStateWrapper)}>SHOW</Button>
 					</div>
 
-					{dataStateWrapper?.dataSets.length && <div style={{flex: 1, width: 0}}><Chart displayX={x=>x + "h"}
+					<div style={{flex: 1, width: 0}}> <Chart displayX={x=>x + "h"}
 							aspect={undefined}
-							maxHeight={250}
-							data={dataStateWrapper.dataSets}
-						/></div>}
+							upscaleLegend
+							maxHeight={200}
+							data={dataSets}
+						/></div>
 				</Row>
-			</div>
+				:
+				dataStateWrapper.dataState.text && <div>
+					<p style={{maxHeight: '200px', overflow: 'hidden scroll', backgroundColor: 'white', padding: '2px'}}>
+						{dataStateWrapper.dataState.text}	
+					</p>
 
-			<div style={{width: big ? '15px' : '20px'}} />
+					<Row align={RowAlign.RIGHT}>
+						<Button onClick={() => show(dataStateWrapper)}>SHOW</Button>
+					</Row>
+				</div>}
+
+				<div className='WidgetContentSpacer' />
+			</div>
 		</div>
 	)
 }

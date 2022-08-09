@@ -2,10 +2,11 @@ import { fetchTemperatureData } from 'sgapi'
 import { ChartDataPoint, ChartDataType } from 'sgcomponents'
 
 import '../Style.css'
-import { DataState } from '../types'
+import { DataDisplayType, DataState } from '../types'
 
 const Data1: DataState = 
 {
+	displayType: DataDisplayType.DATA,
 	title: "Humidity",
 	subtitle: "some data",
 	text: ".......",
@@ -40,6 +41,7 @@ const Data1: DataState =
 
 const Data2: DataState = 
 {
+	displayType: DataDisplayType.DATA,
 	title: "Temperature",
 	subtitle: "some data",
 	text: "lisjdafbpo sjdnf üsoadn gfoinas ofinasodi füdinso füidsaj füpiasjd fpsadijüpfijh aw+psifjhdüaiudhfougsdufh h idhf uhäspoj dfsdhi sudpäofhaoufhgäapwih föuh äpeuwRFO UGSAÜFIJH säpidhf jäwoahf",
@@ -61,7 +63,25 @@ const Data2: DataState =
 	}
 }
 
+const Data3 : DataState = 
+{
+	displayType: DataDisplayType.DATA,
+}
+
+const Data4 : DataState = 
+{
+	displayType: DataDisplayType.DATA,
+	title: "Something else",
+	text: "This is a text to test some styling. This is a text to test some styling. This is a text to test some styling. This is a text to test some styling. This is a text to test some styling. This is a text to test some styling."
+		+ "This is a text to test some styling. This is a text to test some styling. This is a text to test some styling. This is a text to test some styling. This is a text to test some styling. This is a text to test some styling."
+		+ "This is a text to test some styling. This is a text to test some styling. This is a text to test some styling. This is a text to test some styling. This is a text to test some styling. This is a text to test some styling."
+		+ "This is a text to test some styling. This is a text to test some styling. This is a text to test some styling. This is a text to test some styling. This is a text to test some styling. This is a text to test some styling."
+		+ "This is a text to test some styling. This is a text to test some styling. This is a text to test some styling. This is a text to test some styling. This is a text to test some styling. This is a text to test some styling."
+}
+
 export {
 	Data1,
-	Data2
+	Data2,
+	Data3,
+	Data4
 }
