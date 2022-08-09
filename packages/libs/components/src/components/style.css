@@ -139,6 +139,22 @@
     flex-direction: column;
 }
 
+.__VerticalDividerWrapper {
+    width: 2px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+._VerticalDivider {
+    width: 2px;
+    height: 95%;
+    border-style: solid;
+    border-color: #33333366;
+    border-width: 0 2px 0 0;
+}
+
 ._PageMobile {
     width: 100%;
     height: 100vh;

@@ -63,6 +63,10 @@ export const Page: React.FC<PageProps> = ({children, style={} as CSS.Properties,
                     <div className="__PageLeft" style={(leftWidth ? {width: leftWidth} : {}) as CSS.Properties}>
                         {children[0]}
                     </div>
+
+                    <div className="__VerticalDividerWrapper">
+                        <div className="_VerticalDivider VerticalDivider" />
+                    </div>
     
                     <div className="__PageRight">
                         {children[1]}
