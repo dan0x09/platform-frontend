@@ -122,7 +122,7 @@
 }
 
 .__PageLeft {
-    width: 100%;
+    width: 50%;
     height: 100%;
     display: flex;
     justify-content: flex-start;
@@ -131,7 +131,7 @@
 }
 
 .__PageRight {
-    width: 100%;
+    width: 50%;
     height: 100%;
     display: flex;
     justify-content: flex-start;
