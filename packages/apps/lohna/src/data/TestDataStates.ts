@@ -1,21 +1,20 @@
-import { fetchTemperatureData } from 'sgapi'
-import { ChartDataPoint, ChartDataType } from 'sgcomponents'
+import { fetchTemperatureData } from "sgapi"
+import { ChartDataPoint, ChartDataType } from "sgcomponents"
+import { WidgetState, WidgetDisplayType } from "sgwidgets"
 
-import '../Style.css'
-import { DataDisplayType, DataState } from '../types'
+import "../Style.css"
 
-const Data1: DataState = 
+const Data1: WidgetState = 
 {
-	displayType: DataDisplayType.DATA,
+	displayType: WidgetDisplayType.DATA,
 	title: "Humidity",
 	subtitle: "some data",
 	text: ".......",
-	informationComponent: ({dataState, dataSets}) => dataState.text1 + "  " + dataSets[0].yName,
 	subtitle1: "Humidity",
 	text1: "some data about humidity",
 	getDataSets: async () => {
 		const 	d1 = await fetchTemperatureData() as Array<ChartDataPoint>,
-				d2 = await fetchTemperatureData() as Array<ChartDataPoint>
+			d2 = await fetchTemperatureData() as Array<ChartDataPoint>
 		
 		return [{
 			yName: "Humidity field 0",
@@ -40,9 +39,10 @@ const Data1: DataState =
 }
 
 
-const Data2: DataState = 
+const Data2: WidgetState = 
 {
-	displayType: DataDisplayType.DATA,
+	displayType: WidgetDisplayType.DATA,
+	big: true,
 	title: "Temperature",
 	subtitle: "some data",
 	text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Viverra adipiscing at in tellus integer feugiat scelerisque. Et magnis dis parturient montes. Diam maecenas sed enim ut sem viverra aliquet eget sit. Facilisis volutpat est velit egestas dui. Mauris augue neque gravida in fermentum et sollicitudin. Viverra vitae congue eu consequat ac felis. Tellus id interdum velit laoreet id donec ultrices tincidunt arcu. Id ornare arcu odio ut. Volutpat consequat mauris nunc congue nisi vitae. Est ante in nibh mauris. Quisque sagittis purus sit amet volutpat. Ipsum a arcu cursus vitae congue.
@@ -102,15 +102,15 @@ const Data2: DataState =
 	}
 }
 
-const Data3 : DataState = 
+const Data3 : WidgetState = 
 {
-	displayType: DataDisplayType.CUSTOM,
-	widgetComponent: ({dataState}) => "Das ist ein neues Widget"
+	displayType: WidgetDisplayType.CUSTOM,
+	widgetComponent: ({widgetState}) => "Das ist ein neues Widget"
 }
 
-const Data4 : DataState = 
+const Data4 : WidgetState = 
 {
-	displayType: DataDisplayType.DATA,
+	displayType: WidgetDisplayType.DATA,
 	title: "Something else",
 	text: "This is a text to test some styling. This is a text to test some styling. This is a text to test some styling. This is a text to test some styling. This is a text to test some styling. This is a text to test some styling."
 		+ "This is a text to test some styling. This is a text to test some styling. This is a text to test some styling. This is a text to test some styling. This is a text to test some styling. This is a text to test some styling."

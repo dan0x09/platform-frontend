@@ -1,13 +1,12 @@
-import React from 'react'
-import {Site, Button, Row, RowAlign, } from 'sgcomponents'
+import React from "react"
+import { Page, Site, Button, Row, RowAlign, } from "sgcomponents"
 
-import '../Style.css'
-import Page from '../components/Page'
+import "../Style.css"
 
 
 const Login: React.FC = () => {
 	return (
-		<Page header footer>
+		<Page>
 			<Site>
 				<Button className='SiloChooserButton' onClick={() => {}}>Silo X</Button>
 
