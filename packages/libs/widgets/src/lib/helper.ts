@@ -1,14 +1,14 @@
-import { DataState, DataStateWrapper } from "../../types"
+import { WidgetState, WidgetStateWrapper } from "../types"
 
 
-export async function createDataStateWrapper(dataState: DataState) {
+export async function createWidgetStateWrapper(widgetState: WidgetState) {
 	return {
-		dataState,
-		dataSets: dataState.getDataSets ? await dataState.getDataSets() : []
-	} as DataStateWrapper
+		widgetState,
+		dataSets: widgetState.getDataSets ? await widgetState.getDataSets() : []
+	} as WidgetStateWrapper
 }
 
-export async function hydrateDataStateWrapper(dataStateWrapper: DataStateWrapper) {
-	dataStateWrapper.dataSets = dataStateWrapper.dataState.getDataSets ? await dataStateWrapper.dataState.getDataSets() : []
-	return dataStateWrapper
+export async function hydrateWidgetStateWrapper(widgetStateWrapper: WidgetStateWrapper) {
+	widgetStateWrapper.dataSets = widgetStateWrapper.widgetState.getDataSets ? await widgetStateWrapper.widgetState.getDataSets() : []
+	return widgetStateWrapper
 }
