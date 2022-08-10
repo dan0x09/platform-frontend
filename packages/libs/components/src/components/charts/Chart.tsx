@@ -16,7 +16,7 @@ function mapFormatter(value: number, name: string, data: ChartData[]) {
     else return "" + value
 }
 
-const Chart: React.FC<ChartProps> = ({style={} as CSS.Properties, className="", aspect=1.3, showLegend=true, upscaleLegend=false, maxHeight=undefined, data, displayX=v=>v}) => {
+const Chart: React.FC<ChartProps> = ({style={} as CSS.Properties, className="", aspect=1.3, showLegend=true, maxHeight=undefined, data, displayX=v=>v}) => {
     return (
         <div style={{width: '100%'}}>
             <ResponsiveContainer debounce={300} aspect={aspect} maxHeight={maxHeight} width="100%">
@@ -24,7 +24,7 @@ const Chart: React.FC<ChartProps> = ({style={} as CSS.Properties, className="", 
                     <XAxis dataKey={dataKeyX} type="category" allowDuplicatedCategory={false} />
                     <YAxis />
                     <CartesianGrid stroke="#eee" strokeDasharray="5 5" />
-                    {showLegend && <Legend verticalAlign="top" height={upscaleLegend ? 25 * data.length : 36} />}
+                    {showLegend && <Legend verticalAlign="top" height={50} />}
                     <Tooltip formatter={(value: number, name: string) => mapFormatter(value, name, data)} />
                     {   // Chart data goes here
                         data.map(({yName, style={color: "#8884d8", backgroundColor: "#8884d8"}, type, points}) => {

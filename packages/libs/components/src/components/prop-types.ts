@@ -88,7 +88,6 @@ export interface ChartData {
 export interface ChartProps extends StyleProps {
     aspect?: number | undefined
     showLegend?: boolean
-    upscaleLegend?: boolean
     maxHeight?: number | undefined
     data: Array<ChartData>
     displayX?: (x: ChartDataPointX) => number | string
