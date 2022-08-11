@@ -104,19 +104,35 @@ const Data2: WidgetState =
 	}
 }
 
-const Data3 : WidgetState = 
+const Data3CustomComponent: React.FC = () => {
+	return (
+		<img width={200} height={200} src="logo512.png" alt="logo192.png"></img>
+	)
+}
+
+const Data3: WidgetState = 
 {
 	title: "Works!",
 	displayType: WidgetDisplayType.CUSTOM,
 	widgetComponent: (widgetStateWrapper, show) => {
 		return (
-			<Button style={{width: '200px'}} onClick={() => show(widgetStateWrapper)}>Das ist ein neues Widget</Button>
+			<div>
+				<Data3CustomComponent />
+
+				<Button style={{width: '200px'}} onClick={() => show(widgetStateWrapper)}>Das ist ein neues Widget</Button>
+			</div>
 		)
 	},
-	displayComponent: ({widgetState}) => widgetState.title
+	displayComponent: ({widgetState}) => (
+		<div style={{width: '100%', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+			<h1>{widgetState.title}</h1>
+
+			<Data3CustomComponent />
+		</div>
+	)
 }
 
-const Data4 : WidgetState = 
+const Data4: WidgetState = 
 {
 	displayType: WidgetDisplayType.SIMPLE,
 	title: "Something else",
