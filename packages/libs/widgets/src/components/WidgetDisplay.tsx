@@ -9,8 +9,7 @@ interface DataDisplayComponentProps {
     widgetStateWrapper: WidgetStateWrapper
 }
 
-const DataTypeLeftComponent: React.FC<DataDisplayComponentProps> = ({widgetStateWrapper}) => {
-    // TODO ADD SIMPLE WIDGET
+const DataTypeSimpleComponent: React.FC<DataDisplayComponentProps> = ({widgetStateWrapper}) => {
     return (
         <Site>
             <h1>{widgetStateWrapper.widgetState.title}</h1>
@@ -67,17 +66,18 @@ interface WidgetDisplayProps {
 }
 
 const WidgetDisplay: React.FC<WidgetDisplayProps> = ({widgetStateWrapper, setWidgetStateWrapper, mobile=false}) => {
+    const widgetType = widgetStateWrapper.widgetState.displayType
     return (
         <Page mobile={mobile}>
-            {/* DataDisplayType DATA */}
-            {widgetStateWrapper.widgetState.displayType === WidgetDisplayType.DATA &&
-                <DataTypeLeftComponent widgetStateWrapper={widgetStateWrapper} />
+            {/* DataDisplayType SIMPLE + DATA */}
+            {(widgetType === WidgetDisplayType.DATA || widgetType === WidgetDisplayType.SIMPLE) &&
+                <DataTypeSimpleComponent widgetStateWrapper={widgetStateWrapper} />
             }
-            {widgetStateWrapper.widgetState.displayType === WidgetDisplayType.DATA &&
+            {widgetType === WidgetDisplayType.DATA &&
                 <DataTypeRightComponent widgetStateWrapper={widgetStateWrapper} setWidgetStateWrapper={setWidgetStateWrapper} />
             }
             {/* DataDisplayType CUSTOM */}
-            {widgetStateWrapper.widgetState.displayType === WidgetDisplayType.CUSTOM && widgetStateWrapper.widgetState.displayComponent && 
+            {widgetType === WidgetDisplayType.CUSTOM && widgetStateWrapper.widgetState.displayComponent && 
                 widgetStateWrapper.widgetState.displayComponent(widgetStateWrapper)
             }
         </Page>
