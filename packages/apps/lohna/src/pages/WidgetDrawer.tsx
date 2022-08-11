@@ -30,6 +30,8 @@ const WidgetDrawer: React.FC<WidgetDrawerProps> = ({showData}) => {
 	return (
 		<div>
 			<div className={mobile ? "DrawerNavigationTop" : "DrawerNavigation"}>
+				{!mobile && <div key="spacer" style={{height: "10%"}}/>}
+				
 				<Button key="close" onClick={() => setCollapsed(!collapsed)}>{collapsed ? "OPEN" : "CLOSE"}</Button>
 
 				{!mobile && <div key="spacer" style={{height: "10%"}}/>}
