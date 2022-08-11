@@ -1,16 +1,17 @@
 import React from 'react'
+import CSS from 'csstype'
+import { Button, Chart, Page, Row, RowAlign, Site, SiteAlign } from 'sgcomponents'
 
 import '../style.css'
-import { Button, Chart, Page, Row, RowAlign, Site, SiteAlign } from 'sgcomponents'
-import { RefreshWidgetFunction, WidgetDisplayType, WidgetStateWrapper } from '../types'
+import { RefreshWidgetFunction, WidgetDisplayProps, WidgetDisplayType, WidgetStateWrapper } from '../types'
 import { createWidgetStateWrapper, hydrateWidgetStateWrapper } from '../lib/helper'
 
-interface DataDisplayComponentProps {
+interface DisplayComponentProps {
     widgetStateWrapper: WidgetStateWrapper
     refresh: RefreshWidgetFunction
 }
 
-const DataTypeSimpleComponent: React.FC<DataDisplayComponentProps> = ({widgetStateWrapper, refresh}) => {
+const DataTypeSimpleComponent: React.FC<DisplayComponentProps> = ({widgetStateWrapper, refresh}) => {
     return (
         <Site>
             <h1>{widgetStateWrapper.widgetState.title}</h1>
@@ -30,12 +31,12 @@ const DataTypeSimpleComponent: React.FC<DataDisplayComponentProps> = ({widgetSta
     )
 }
 
-interface DataDisplayComponentDataSetProps {
+interface DataDisplayComponentProps {
     widgetStateWrapper: WidgetStateWrapper
     setWidgetStateWrapper: (dataStateWrapper: WidgetStateWrapper) => void
 }
 
-const DataTypeRightComponent: React.FC<DataDisplayComponentDataSetProps> = ({widgetStateWrapper, setWidgetStateWrapper}) => {
+const DataTypeRightComponent: React.FC<DataDisplayComponentProps> = ({widgetStateWrapper, setWidgetStateWrapper}) => {
     const hasData = !!(widgetStateWrapper.dataSets.length)
     const refreshDataSets = async() => setWidgetStateWrapper(await createWidgetStateWrapper(widgetStateWrapper.widgetState))
 
@@ -60,23 +61,19 @@ const DataTypeRightComponent: React.FC<DataDisplayComponentDataSetProps> = ({wid
     )
 }
 
-interface WidgetDisplayProps {
-    widgetStateWrapper: WidgetStateWrapper
-    setWidgetStateWrapper: (widgetStateWrapper: WidgetStateWrapper) => void
-    mobile?: boolean
-}
-
-const WidgetDisplay: React.FC<WidgetDisplayProps> = ({widgetStateWrapper, setWidgetStateWrapper, mobile=false}) => {
+// shows widget data
+const WidgetDisplay: React.FC<WidgetDisplayProps> = ({style={} as CSS.Properties, className="", widgetStateWrapper, setWidgetStateWrapper, mobile=false}) => {
     const widgetType = widgetStateWrapper.widgetState.displayType
 
 	const refreshDataSets = async() => setWidgetStateWrapper((await hydrateWidgetStateWrapper(widgetStateWrapper)))
 
     return (
-        <Page mobile={mobile}>
+        <Page style={style} className={className} mobile={mobile}>
             {/* DataDisplayType SIMPLE + DATA */}
             {(widgetType === WidgetDisplayType.DATA || widgetType === WidgetDisplayType.SIMPLE) &&
                 <DataTypeSimpleComponent widgetStateWrapper={widgetStateWrapper} refresh={refreshDataSets} />
             }
+            {/* DataDisplayType DATA */}
             {widgetType === WidgetDisplayType.DATA &&
                 <DataTypeRightComponent widgetStateWrapper={widgetStateWrapper} setWidgetStateWrapper={setWidgetStateWrapper} />
             }

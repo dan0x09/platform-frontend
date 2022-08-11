@@ -1,15 +1,9 @@
 import React, { useState } from "react"
 import CSS from 'csstype'
-import { GridLayout, StyleProps } from "sgcomponents"
+import { GridLayout } from "sgcomponents"
 import Widget from "./Widget"
-import { ShowWidgetFunction, WidgetState, WidgetStateWrapper } from "../types"
+import { WidgetGridProps, WidgetState, WidgetStateWrapper } from "../types"
 import { createWidgetStateWrapper } from "../lib/helper"
-
-interface WidgetGridProps extends StyleProps {
-	widgets: Array<WidgetState>
-	mobile?: boolean
-	show: ShowWidgetFunction
-}
 
 async function createStateWrappers(states: Array<WidgetState>, setStateWrappers: (wrapper: Array<WidgetStateWrapper>) => void) {
 	const wrappers = []

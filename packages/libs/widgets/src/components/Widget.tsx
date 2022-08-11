@@ -4,6 +4,7 @@ import CustomWidget from "./widgets/CustomWidget"
 import DataWidget from "./widgets/DataWidget"
 import SimpleWidget from "./widgets/SimpleWidget"
 
+// decides which widget to use based on displayType
 const Widget: React.FC<WidgetProps> = (props) => {
 	const { widgetStateWrapper } = props,
 		widgetType = widgetStateWrapper.widgetState.displayType
