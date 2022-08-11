@@ -9,7 +9,11 @@ export enum WidgetDisplayType {
 
 export type ShowWidgetFunction = (widgetStateWrapper: WidgetStateWrapper) => void
 
-export type WidgetStateComponent = (widgetStateWrapper: WidgetStateWrapper, show?: ShowWidgetFunction, refresh?: () => void) => React.ReactNode
+export type RefreshWidgetFunction = () => void
+
+export type WidgetStateComponent = (widgetStateWrapper: WidgetStateWrapper, show: ShowWidgetFunction, refresh: RefreshWidgetFunction) => React.ReactNode
+
+export type WidgetDisplayStateComponent = (widgetStateWrapper: WidgetStateWrapper, refresh: RefreshWidgetFunction) => React.ReactNode
 
 export interface WidgetState {
 	displayType: WidgetDisplayType
@@ -17,12 +21,12 @@ export interface WidgetState {
 	title?: string
 	subtitle?: string
 	text?: string
-	informationComponent?: WidgetStateComponent
+	informationComponent?: WidgetDisplayStateComponent
 	subtitle1?: string
 	text1?: string
 	getDataSets?: () => Promise<Array<ChartData>>
 	widgetComponent?: WidgetStateComponent
-	displayComponent?: WidgetStateComponent
+	displayComponent?: WidgetDisplayStateComponent
 }
 
 export interface WidgetStateWrapper {

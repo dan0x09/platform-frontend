@@ -1,5 +1,7 @@
+import React from "react"
+
 import { fetchTemperatureData } from "sgapi"
-import { ChartDataPoint, ChartDataType } from "sgcomponents"
+import { ChartDataPoint, ChartDataType, Button } from "sgcomponents"
 import { WidgetState, WidgetDisplayType } from "sgwidgets"
 
 import "../Style.css"
@@ -104,13 +106,19 @@ const Data2: WidgetState =
 
 const Data3 : WidgetState = 
 {
+	title: "Works!",
 	displayType: WidgetDisplayType.CUSTOM,
-	widgetComponent: ({widgetState}) => "Das ist ein neues Widget"
+	widgetComponent: (widgetStateWrapper, show) => {
+		return (
+			<Button style={{width: '200px'}} onClick={() => show(widgetStateWrapper)}>Das ist ein neues Widget</Button>
+		)
+	},
+	displayComponent: ({widgetState}) => widgetState.title
 }
 
 const Data4 : WidgetState = 
 {
-	displayType: WidgetDisplayType.DATA,
+	displayType: WidgetDisplayType.SIMPLE,
 	title: "Something else",
 	text: "This is a text to test some styling. This is a text to test some styling. This is a text to test some styling. This is a text to test some styling. This is a text to test some styling. This is a text to test some styling."
 		+ "This is a text to test some styling. This is a text to test some styling. This is a text to test some styling. This is a text to test some styling. This is a text to test some styling. This is a text to test some styling."

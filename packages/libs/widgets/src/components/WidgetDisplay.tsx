@@ -2,14 +2,15 @@ import React from 'react'
 
 import '../style.css'
 import { Button, Chart, Page, Row, RowAlign, Site, SiteAlign } from 'sgcomponents'
-import { WidgetDisplayType, WidgetStateWrapper } from '../types'
-import { createWidgetStateWrapper } from '../lib/helper'
+import { RefreshWidgetFunction, WidgetDisplayType, WidgetStateWrapper } from '../types'
+import { createWidgetStateWrapper, hydrateWidgetStateWrapper } from '../lib/helper'
 
 interface DataDisplayComponentProps {
     widgetStateWrapper: WidgetStateWrapper
+    refresh: RefreshWidgetFunction
 }
 
-const DataTypeSimpleComponent: React.FC<DataDisplayComponentProps> = ({widgetStateWrapper}) => {
+const DataTypeSimpleComponent: React.FC<DataDisplayComponentProps> = ({widgetStateWrapper, refresh}) => {
     return (
         <Site>
             <h1>{widgetStateWrapper.widgetState.title}</h1>
@@ -23,7 +24,7 @@ const DataTypeSimpleComponent: React.FC<DataDisplayComponentProps> = ({widgetSta
             </p>
 
             {widgetStateWrapper.widgetState.informationComponent &&
-                widgetStateWrapper.widgetState.informationComponent(widgetStateWrapper)
+                widgetStateWrapper.widgetState.informationComponent(widgetStateWrapper, refresh)
             }
         </Site>
     )
@@ -67,18 +68,21 @@ interface WidgetDisplayProps {
 
 const WidgetDisplay: React.FC<WidgetDisplayProps> = ({widgetStateWrapper, setWidgetStateWrapper, mobile=false}) => {
     const widgetType = widgetStateWrapper.widgetState.displayType
+
+	const refreshDataSets = async() => setWidgetStateWrapper((await hydrateWidgetStateWrapper(widgetStateWrapper)))
+
     return (
         <Page mobile={mobile}>
             {/* DataDisplayType SIMPLE + DATA */}
             {(widgetType === WidgetDisplayType.DATA || widgetType === WidgetDisplayType.SIMPLE) &&
-                <DataTypeSimpleComponent widgetStateWrapper={widgetStateWrapper} />
+                <DataTypeSimpleComponent widgetStateWrapper={widgetStateWrapper} refresh={refreshDataSets} />
             }
             {widgetType === WidgetDisplayType.DATA &&
                 <DataTypeRightComponent widgetStateWrapper={widgetStateWrapper} setWidgetStateWrapper={setWidgetStateWrapper} />
             }
             {/* DataDisplayType CUSTOM */}
             {widgetType === WidgetDisplayType.CUSTOM && widgetStateWrapper.widgetState.displayComponent && 
-                widgetStateWrapper.widgetState.displayComponent(widgetStateWrapper)
+                widgetStateWrapper.widgetState.displayComponent(widgetStateWrapper, refreshDataSets)
             }
         </Page>
     )
