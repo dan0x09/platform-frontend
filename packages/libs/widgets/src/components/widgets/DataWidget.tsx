@@ -45,7 +45,7 @@ const DataWidget: React.FC<WidgetProps> = ({show, widgetStateWrapper, big=false,
 				</Row>
 				:
 				widgetStateWrapper.widgetState.text && <div>
-					<p style={{maxHeight: '200px', overflow: 'hidden scroll', backgroundColor: 'white', padding: '2px'}}>
+					<p className='WidgetContentText'>
 						{widgetStateWrapper.widgetState.text}	
 					</p>
 

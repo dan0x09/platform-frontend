@@ -19,7 +19,7 @@ const SimpleWidget: React.FC<WidgetProps> = ({show, widgetStateWrapper, big=fals
 
 				<div className='WidgetContentSpacer' />
 
-                <p style={{maxHeight: '200px', overflow: 'hidden scroll', backgroundColor: 'white', padding: '2px'}}>
+                <p className='WidgetContentText'>
                     {widgetStateWrapper.widgetState.text}	
                 </p>
 				
