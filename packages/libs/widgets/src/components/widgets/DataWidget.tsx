@@ -15,7 +15,11 @@ const DataWidget: React.FC<WidgetProps> = ({show, widgetStateWrapper, big=false,
 		<div className={(mobile ? 'WidgetMobile' : 'Widget') + (big && !mobile ? ' WidgetDouble' : '')}>
 			<div className={'WidgetContent'}>
 				<Row>
-					<h2>{widgetStateWrapper.widgetState.title}</h2>
+					<div>
+						<h2>{widgetStateWrapper.widgetState.title}</h2>
+
+						<p>{widgetStateWrapper.widgetState.subtitle}</p>
+					</div>
 				</Row>
 
 				<Row align={RowAlign.RIGHT}>
