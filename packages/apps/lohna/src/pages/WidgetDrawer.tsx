@@ -35,11 +35,7 @@ const WidgetDrawer: React.FC<WidgetDrawerProps> = ({showData}) => {
 				{!mobile && <div key="spacer" style={{height: "10%"}}/>}
 			</div>
 			
-			<Drawer collapsed={collapsed}>
-				{ // Mobile spacer for navigation bar
-					mobile && <div className='DrawerNavigationTopSpacer' />
-				}
-
+			<Drawer collapsed={collapsed} margin={mobile ? "120px 0 0 0" : "0 100px 0 0"}>
 				<Widgets showData={showDataAndCollapse} mobile={mobile} />
 			</Drawer>
 		</div>

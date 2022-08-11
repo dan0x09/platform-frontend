@@ -14,7 +14,7 @@ const widgets = [
 ]
 
 const Widgets: React.FC<WidgetsPageProps> = ({showData, mobile}) => {
-	const style = !mobile ? {minHeight: "800px", minWidth: "85%", maxWidth: "85vw"} : {minHeight: "0px"}
+	const style = !mobile ? {minHeight: "800px"} : {minHeight: "0px"}
 
 	return (
 		<WidgetGrid style={style} widgets={widgets} show={showData} mobile={mobile} />
