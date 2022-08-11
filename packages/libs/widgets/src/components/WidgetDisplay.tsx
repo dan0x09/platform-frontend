@@ -10,7 +10,7 @@ interface DataDisplayComponentProps {
 }
 
 const DataTypeLeftComponent: React.FC<DataDisplayComponentProps> = ({widgetStateWrapper}) => {
-
+    // TODO ADD SIMPLE WIDGET
     return (
         <Site>
             <h1>{widgetStateWrapper.widgetState.title}</h1>

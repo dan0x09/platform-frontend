@@ -3,6 +3,7 @@ import { ChartData } from "sgcomponents";
 
 export enum WidgetDisplayType {
 	CUSTOM="custom",
+	SIMPLE="simple",
 	DATA="data"
 }
 
