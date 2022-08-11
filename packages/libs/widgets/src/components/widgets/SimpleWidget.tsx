@@ -14,13 +14,19 @@ const SimpleWidget: React.FC<WidgetProps> = ({show, widgetStateWrapper, big=fals
 				</Row>
 
 				<Row align={RowAlign.RIGHT}>
-					<p>{widgetStateWrapper.widgetState.subtitle1}</p>
+					<p>{widgetStateWrapper.widgetState.subtitle}</p>
 				</Row>
 
 				<div className='WidgetContentSpacer' />
-						
-                <Button onClick={() => show(widgetStateWrapper)}>SHOW</Button>
-                
+
+                <p style={{maxHeight: '200px', overflow: 'hidden scroll', backgroundColor: 'white', padding: '2px'}}>
+                    {widgetStateWrapper.widgetState.text}	
+                </p>
+				
+                <Row align={RowAlign.RIGHT}>
+                    <Button onClick={() => show(widgetStateWrapper)}>SHOW</Button>
+                </Row>
+
 				<div className='WidgetContentSpacer' />
 			</div>
 		</div>
