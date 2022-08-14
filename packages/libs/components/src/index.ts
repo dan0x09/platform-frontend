@@ -11,6 +11,7 @@ export {
 export * from './components/ErrorPage'
 export * from './components/Layouts'
 export * from './components/Page'
+export * from './components/Searchbar'
 export * from './components/Buttons'
 export * from './components/prop-types'
 
