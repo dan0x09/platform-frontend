@@ -1,37 +1,74 @@
 import React from "react";
-import { ChartData } from "sgcomponents";
+import { ChartData, StyleProps } from "sgcomponents";
 
 export enum WidgetDisplayType {
-	CUSTOM="custom",
-	DATA="data"
+	CUSTOM="custom", // widget with custom components
+	SIMPLE="simple", // widget with basic text
+	DATA="data"		 // widget with text and data
 }
 
+// function to show a widget on display
 export type ShowWidgetFunction = (widgetStateWrapper: WidgetStateWrapper) => void
 
-export type WidgetStateComponent = (widgetStateWrapper: WidgetStateWrapper, show?: ShowWidgetFunction, refresh?: () => void) => React.ReactNode
+// function to fetch a widgets data (again)
+export type RefreshWidgetFunction = () => void
+
+// function to render a custom widget component
+export type WidgetStateComponent = (widgetStateWrapper: WidgetStateWrapper, show: ShowWidgetFunction, refresh: RefreshWidgetFunction) => React.ReactNode
+
+// function to render a custom widget display component
+export type WidgetDisplayStateComponent = (widgetStateWrapper: WidgetStateWrapper, refresh: RefreshWidgetFunction) => React.ReactNode
 
 export interface WidgetState {
+	// what will this widget look like
 	displayType: WidgetDisplayType
+	// basic fields widgets will use
 	big?: boolean
 	title?: string
 	subtitle?: string
 	text?: string
-	informationComponent?: WidgetStateComponent
+	informationComponent?: WidgetDisplayStateComponent
+	// more advanced fields some widgets will use
 	subtitle1?: string
 	text1?: string
 	getDataSets?: () => Promise<Array<ChartData>>
+	// fields a custom widget will use
 	widgetComponent?: WidgetStateComponent
-	displayComponent?: WidgetStateComponent
+	displayComponent?: WidgetDisplayStateComponent
 }
 
 export interface WidgetStateWrapper {
+	// settings regarding a widget
 	widgetState: WidgetState
+	// data, which is fetched and used by some widgets
 	dataSets: Array<ChartData>
 }
 
 export interface WidgetProps {
+	// function to switch to the display component
 	show: (widgetStateWrapper: WidgetStateWrapper) => void
+	// a widget with possibly fetched data
 	widgetStateWrapper: WidgetStateWrapper
+	// whether to expand over 2 fields (WidgetGrid)
 	big?: boolean
+	// whether to expand to full width (WidgetGrid)
 	mobile?: boolean
+}
+
+export interface WidgetGridProps extends StyleProps {
+	// widgets to render
+	widgets: Array<WidgetState>
+	// what happens when expanding a widget
+	show: ShowWidgetFunction
+	// whether to render as list or grid
+	mobile?: boolean
+}
+
+export interface WidgetDisplayProps extends StyleProps {
+	// a widget with possibly fetched data
+    widgetStateWrapper: WidgetStateWrapper
+	// a setter to update a widgets data
+    setWidgetStateWrapper: (widgetStateWrapper: WidgetStateWrapper) => void
+	// decides on rendering
+    mobile?: boolean
 }

@@ -1,21 +1,22 @@
-import { fetchTemperatureData } from 'sgapi'
-import { ChartDataPoint, ChartDataType } from 'sgcomponents'
+import React from "react"
 
-import '../Style.css'
-import { DataDisplayType, DataState } from '../types'
+import { fetchTemperatureData } from "sgapi"
+import { ChartDataPoint, ChartDataType, Button } from "sgcomponents"
+import { WidgetState, WidgetDisplayType } from "sgwidgets"
 
-const Data1: DataState = 
+import "../Style.css"
+
+const Data1: WidgetState = 
 {
-	displayType: DataDisplayType.DATA,
+	displayType: WidgetDisplayType.DATA,
 	title: "Humidity",
 	subtitle: "some data",
 	text: ".......",
-	informationComponent: ({dataState, dataSets}) => dataState.text1 + "  " + dataSets[0].yName,
 	subtitle1: "Humidity",
 	text1: "some data about humidity",
 	getDataSets: async () => {
 		const 	d1 = await fetchTemperatureData() as Array<ChartDataPoint>,
-				d2 = await fetchTemperatureData() as Array<ChartDataPoint>
+			d2 = await fetchTemperatureData() as Array<ChartDataPoint>
 		
 		return [{
 			yName: "Humidity field 0",
@@ -40,9 +41,10 @@ const Data1: DataState =
 }
 
 
-const Data2: DataState = 
+const Data2: WidgetState = 
 {
-	displayType: DataDisplayType.DATA,
+	displayType: WidgetDisplayType.DATA,
+	big: true,
 	title: "Temperature",
 	subtitle: "some data",
 	text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Viverra adipiscing at in tellus integer feugiat scelerisque. Et magnis dis parturient montes. Diam maecenas sed enim ut sem viverra aliquet eget sit. Facilisis volutpat est velit egestas dui. Mauris augue neque gravida in fermentum et sollicitudin. Viverra vitae congue eu consequat ac felis. Tellus id interdum velit laoreet id donec ultrices tincidunt arcu. Id ornare arcu odio ut. Volutpat consequat mauris nunc congue nisi vitae. Est ante in nibh mauris. Quisque sagittis purus sit amet volutpat. Ipsum a arcu cursus vitae congue.
@@ -102,15 +104,37 @@ const Data2: DataState =
 	}
 }
 
-const Data3 : DataState = 
-{
-	displayType: DataDisplayType.CUSTOM,
-	widgetComponent: ({dataState}) => "Das ist ein neues Widget"
+const Data3CustomComponent: React.FC = () => {
+	return (
+		<img width={200} height={200} src="logo512.png" alt="logo192.png"></img>
+	)
 }
 
-const Data4 : DataState = 
+const Data3: WidgetState = 
 {
-	displayType: DataDisplayType.DATA,
+	title: "Works!",
+	displayType: WidgetDisplayType.CUSTOM,
+	widgetComponent: (widgetStateWrapper, show) => {
+		return (
+			<div>
+				<Data3CustomComponent />
+
+				<Button style={{width: '200px'}} onClick={() => show(widgetStateWrapper)}>Das ist ein neues Widget</Button>
+			</div>
+		)
+	},
+	displayComponent: ({widgetState}) => (
+		<div style={{width: '100%', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+			<h1>{widgetState.title}</h1>
+
+			<Data3CustomComponent />
+		</div>
+	)
+}
+
+const Data4: WidgetState = 
+{
+	displayType: WidgetDisplayType.SIMPLE,
 	title: "Something else",
 	text: "This is a text to test some styling. This is a text to test some styling. This is a text to test some styling. This is a text to test some styling. This is a text to test some styling. This is a text to test some styling."
 		+ "This is a text to test some styling. This is a text to test some styling. This is a text to test some styling. This is a text to test some styling. This is a text to test some styling. This is a text to test some styling."
