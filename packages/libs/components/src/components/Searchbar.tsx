@@ -11,17 +11,16 @@ interface SearchbarProps {
 }
 
 const Searchbar: React.FC<SearchbarProps> = ({id, data, find, setSubSet, debounceMS=300}) => {
-
-	const update = () => {
+	const update = (e: React.ChangeEvent<HTMLInputElement>): void => {
 		debounce(() => {
-			const value = (document.getElementById(id) as HTMLInputElement).value
+			const value = e.target.value
 			const subS = data.reduce((all, c) => {
 				if(find(c, value)) all.push(c)
 				return all
 			}, [])
 
 			setSubSet(subS)
-		}, debounceMS)
+		}, debounceMS)()
 	}
 	return (
 		<div>
@@ -29,7 +28,7 @@ const Searchbar: React.FC<SearchbarProps> = ({id, data, find, setSubSet, debounc
             	data-testid="search-bar-input" 
 				type="text" 
 				id={id} 
-				onInput={() => update()}
+				onInput={update}
 			></input>
 		</div>
 	)
