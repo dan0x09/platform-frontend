@@ -20,12 +20,11 @@ const Login: React.FC = () => {
 		<Page>
 			<Site>
 				<Searchbar 
-					id="siloSearchbar" 
-					data={items} 
+					items={items} 
 					find={({name}, val) => 
 						val === "" ||
 						(name as string).toLowerCase().includes(val.toLowerCase())} 
-					setSubSet={setSubSet} 
+					onChange={setSubSet} 
 				/>
 
 
