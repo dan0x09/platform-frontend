@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import CSS from 'csstype'
 import { FAB } from "./Buttons"
-import "./style.css"
+import "../Style.css"
 import { StyleProps } from "../types"
 
 export enum RowAlign {

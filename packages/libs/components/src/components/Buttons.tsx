@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import CSS from 'csstype'
-import "./style.css"
+import "../Style.css"
 import { ClickableProps } from "../types"
 
 interface FABProps extends ClickableProps {

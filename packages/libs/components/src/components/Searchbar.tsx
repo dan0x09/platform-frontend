@@ -1,6 +1,7 @@
 import React from "react"
-
 import {debounce} from "debounce"
+
+import "../Style.css"
 
 interface SearchbarProps {
 	items: Array<any>
