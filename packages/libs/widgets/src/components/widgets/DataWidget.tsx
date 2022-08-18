@@ -3,7 +3,7 @@ import { Button, Chart, Row, RowAlign } from 'sgcomponents'
 import { hydrateWidgetStateWrapper } from '../../lib/helper'
 
 
-import '../../style.css'
+import '../../Style.css'
 import { WidgetProps } from '../../types'
 
 const DataWidget: React.FC<WidgetProps> = ({show, widgetStateWrapper, big=false, mobile=false}) => {

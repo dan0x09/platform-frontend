@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { hydrateWidgetStateWrapper } from '../../lib/helper'
 
 
-import '../../style.css'
+import '../../Style.css'
 import { WidgetProps } from '../../types'
 
 const CustomWidget: React.FC<WidgetProps> = ({show, widgetStateWrapper, big=false, mobile=false}) => {

@@ -2,7 +2,7 @@ import React from 'react'
 import CSS from 'csstype'
 import { Button, Chart, Page, Row, RowAlign, Site, SiteAlign } from 'sgcomponents'
 
-import '../style.css'
+import '../Style.css'
 import { RefreshWidgetFunction, WidgetDisplayProps, WidgetDisplayType, WidgetStateWrapper } from '../types'
 import { createWidgetStateWrapper, hydrateWidgetStateWrapper } from '../lib/helper'
 

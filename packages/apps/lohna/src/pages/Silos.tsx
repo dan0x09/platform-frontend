@@ -1,20 +1,45 @@
-import React from "react"
-import { Page, Site, Button, Row, RowAlign, } from "sgcomponents"
+import React, { useState } from "react"
+import { Searchbar, Page, Site, Button, Row, RowAlign, } from "sgcomponents"
 
 import "../Style.css"
 
 
 const Login: React.FC = () => {
+	const items = [
+		{
+			name: "SILO x"
+		},
+		{
+			name: "SILO Y"
+		}
+	] as Array<any>
+
+	const [subSet, setSubSet] = useState(items)
+
 	return (
 		<Page>
 			<Site>
-				<Button className='SiloChooserButton' onClick={() => {}}>Silo X</Button>
+				<Searchbar 
+					id="siloSearchbar" 
+					data={items} 
+					find={({name}, val) => 
+						val === "" ||
+						(name as string).toLowerCase().includes(val.toLowerCase())} 
+					setSubSet={setSubSet} 
+				/>
+
+
+				{subSet.map((o, i) => {
+					return (
+						<Button key={"" + i} className='SiloChooserButton' onClick={() => {}}>{o.name}</Button>
+					)
+				})}
+
+				{/* <Button className='SiloChooserButton SiloChooserButtonInactive' onClick={() => {}}>Silo X</Button>
 
 				<Button className='SiloChooserButton SiloChooserButtonInactive' onClick={() => {}}>Silo X</Button>
 
-				<Button className='SiloChooserButton SiloChooserButtonInactive' onClick={() => {}}>Silo X</Button>
-
-				<Button className='SiloChooserButton SiloChooserButtonInactive' onClick={() => {}}>Silo X</Button>
+				<Button className='SiloChooserButton SiloChooserButtonInactive' onClick={() => {}}>Silo X</Button> */}
 			</Site>
 
 			<Site>

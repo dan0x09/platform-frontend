@@ -11,7 +11,7 @@ export enum WidgetDisplayType {
 export type ShowWidgetFunction = (widgetStateWrapper: WidgetStateWrapper) => void
 
 // function to fetch a widgets data (again)
-export type RefreshWidgetFunction = () => void
+export type RefreshWidgetFunction = (options?: any) => void
 
 // function to render a custom widget component
 export type WidgetStateComponent = (widgetStateWrapper: WidgetStateWrapper, show: ShowWidgetFunction, refresh: RefreshWidgetFunction) => React.ReactNode
@@ -31,7 +31,7 @@ export interface WidgetState {
 	// more advanced fields some widgets will use
 	subtitle1?: string
 	text1?: string
-	getDataSets?: () => Promise<Array<ChartData>>
+	getDataSets?: (options?: any) => Promise<Array<ChartData>>
 	// fields a custom widget will use
 	widgetComponent?: WidgetStateComponent
 	displayComponent?: WidgetDisplayStateComponent
