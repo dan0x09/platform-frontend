@@ -3,31 +3,29 @@ import React from "react"
 import {debounce} from "debounce"
 
 interface SearchbarProps {
-	id: string
-	data: Array<any>
+	items: Array<any>
 	find: (sub: any, val: string) => boolean
-	setSubSet: (data: Array<any>) => void
+	onChange: (data: Array<any>) => void
 	debounceMS?: number
 }
 
-const Searchbar: React.FC<SearchbarProps> = ({id, data, find, setSubSet, debounceMS=300}) => {
+const Searchbar: React.FC<SearchbarProps> = ({items, find, onChange, debounceMS=300}) => {
 	const update = (e: React.ChangeEvent<HTMLInputElement>): void => {
 		debounce(() => {
 			const value = e.target.value
-			const subS = data.reduce((all, c) => {
+			const subS = items.reduce((all, c) => {
 				if(find(c, value)) all.push(c)
 				return all
 			}, [])
 
-			setSubSet(subS)
+			onChange(subS)
 		}, debounceMS)()
 	}
 	return (
 		<div>
 			<input 
             	data-testid="search-bar-input" 
-				type="text" 
-				id={id} 
+				type="text"
 				onInput={update}
 			></input>
 		</div>

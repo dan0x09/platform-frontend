@@ -1,9 +1,21 @@
 import React, { useState } from "react"
 import CSS from 'csstype'
-import { SiteAlign, SiteProps, PageProps, RowAlign, RowProps } from "./prop-types"
 import { FAB } from "./Buttons"
 import "./style.css"
+import { StyleProps } from "../types"
 
+export enum RowAlign {
+    LEFT="left", RIGHT="right", MID="mid"
+}
+
+interface RowAlignProps extends StyleProps {
+    align?: RowAlign
+}
+interface RowProps extends RowAlignProps {
+    space?: number | string
+    spaceAround?: boolean
+    children: React.ReactNode
+}
 
 export const Row: React.FC<RowProps> = ({className="", children, align=RowAlign.LEFT, space="20px", spaceAround=false}) => {
     let alignStyle
@@ -40,6 +52,18 @@ export const Row: React.FC<RowProps> = ({className="", children, align=RowAlign.
     )
 }
 
+export enum SiteAlign {
+    LEFT="left", TOP="top"
+}
+
+interface SiteAlignProps extends StyleProps {
+    align?: SiteAlign
+}
+
+interface SiteProps extends SiteAlignProps {
+    children: React.ReactNode
+}
+
 export const Site: React.FC<SiteProps> = ({children, style={} as CSS.Properties, className="", align=SiteAlign.TOP, 
 }) => {
     let alignStyle = "__SiteLeft"
@@ -50,6 +74,12 @@ export const Site: React.FC<SiteProps> = ({children, style={} as CSS.Properties,
             {children}
         </div>
     )
+}
+
+interface PageProps extends StyleProps {
+    children: React.ReactNode
+    leftWidth?: number | string
+    mobile?: boolean
 }
 
 export const Page: React.FC<PageProps> = ({children, style={} as CSS.Properties, className="", leftWidth=false, mobile=false}) => {

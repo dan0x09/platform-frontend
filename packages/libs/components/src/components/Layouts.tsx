@@ -1,8 +1,15 @@
 import React from "react"
-import { GridLayoutProps, PageLayoutProps, SiteAlign } from './prop-types'
 import CSS from 'csstype'
 import "./style.css"
 import { calculatePercentage } from "../lib/helper"
+import { StyleProps } from "../types"
+
+
+interface GridLayoutProps extends StyleProps {
+    children: Array<JSX.Element | boolean>
+    auto?: boolean
+    columns?: number
+}
 
 export const GridLayout: React.FC<GridLayoutProps> = ({children=[], style={} as CSS.Properties, className="", auto=false, columns=3}) => {
     const containerStyle: CSS.Properties = {
@@ -23,16 +30,4 @@ export const GridLayout: React.FC<GridLayoutProps> = ({children=[], style={} as 
             : children }
         </div>
     )
-}
-
-export const PageLayout: React.FC<PageLayoutProps> = ({children, style={} as CSS.Properties, className="", align=SiteAlign.TOP}) => {
-    let styleAlign: string = "__SiteTop"
-    if(align === SiteAlign.LEFT) styleAlign = "__SiteLeft"
-
-    return (
-        <div className={styleAlign + " __PageLayout" + (className !== "" ? " " + className : "")} style={style}>
-            {children}
-        </div>
-    )
-
 }

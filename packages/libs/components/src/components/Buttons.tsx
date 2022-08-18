@@ -1,8 +1,13 @@
 import React, { useState } from "react"
-import { ButtonProps, FABProps } from './prop-types'
 import CSS from 'csstype'
 import "./style.css"
+import { ClickableProps } from "../types"
 
+interface FABProps extends ClickableProps {
+    toggle?: boolean
+    styleActive?: CSS.Properties
+    children?: React.ReactNode
+}
 
 export const FAB: React.FC<FABProps> = ({toggle=false, style={} as CSS.Properties, className="", styleActive={} as CSS.Properties, onClick, children=false}) => {
     const 
@@ -22,6 +27,10 @@ export const FAB: React.FC<FABProps> = ({toggle=false, style={} as CSS.Propertie
             {children}
         </div>
     )
+}
+
+interface ButtonProps extends ClickableProps {
+    children?: React.ReactNode
 }
 
 export const Button: React.FC<ButtonProps> = ({style={} as CSS.Properties, className="", onClick, children}) => {
