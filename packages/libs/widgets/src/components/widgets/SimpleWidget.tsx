@@ -2,7 +2,7 @@ import React from 'react'
 import { Button, Row, RowAlign } from 'sgcomponents'
 
 
-import '../../style.css'
+import '../../Style.css'
 import { WidgetProps } from '../../types'
 
 const SimpleWidget: React.FC<WidgetProps> = ({show, widgetStateWrapper, big=false, mobile=false}) => {

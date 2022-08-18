@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import CSS from 'csstype'
 import { GridLayout } from "sgcomponents"
 import Widget from "./Widget"
+import '../Style.css'
 import { WidgetGridProps, WidgetState, WidgetStateWrapper } from "../types"
 import { createWidgetStateWrapper } from "../lib/helper"
 
