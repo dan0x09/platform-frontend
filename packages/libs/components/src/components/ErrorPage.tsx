@@ -1,7 +1,7 @@
 import React from "react"
 import { Page, Row, Site } from './Page'
 
-import "./style.css"
+import "../Style.css"
 
 export const ErrorPage: React.FC = () => {
 	return (

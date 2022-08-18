@@ -1,6 +1,6 @@
 import React from "react"
 import CSS from 'csstype'
-import "./style.css"
+import "../Style.css"
 import { calculatePercentage } from "../lib/helper"
 import { StyleProps } from "../types"
 

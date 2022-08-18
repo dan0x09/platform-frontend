@@ -5,7 +5,8 @@ import {
     Line, Area
 } from "recharts"
 import CSS from 'csstype'
-import "../style.css"
+
+import "../Style.css"
 import { ChartData, ChartDataPointX, ChartDataType, StyleProps } from "../../types"
 
 const dataKeyX = "name"
