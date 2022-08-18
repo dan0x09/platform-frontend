@@ -10,6 +10,7 @@ export {
     Searchbar
 }
 
+export * from './components/Wrapper'
 export * from './components/ErrorPage'
 export * from './components/Layouts'
 export * from './components/Page'
