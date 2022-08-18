@@ -5,8 +5,8 @@ import {
     Line, Area
 } from "recharts"
 import CSS from 'csstype'
-import { ChartData, ChartDataType, ChartProps } from '../prop-types'
 import "../style.css"
+import { ChartData, ChartDataPointX, ChartDataType, StyleProps } from "../../types"
 
 const dataKeyX = "name"
 
@@ -14,6 +14,14 @@ function mapFormatter(value: number, name: string, data: ChartData[]) {
     const match = data.find(({yName}) => name === yName)
     if(match && match.displayTooltip) return match.displayTooltip(value, name)
     else return "" + value
+}
+
+interface ChartProps extends StyleProps {
+    aspect?: number | undefined
+    showLegend?: boolean
+    maxHeight?: number | undefined
+    data: Array<ChartData>
+    displayX?: (x: ChartDataPointX) => number | string
 }
 
 const Chart: React.FC<ChartProps> = ({style={} as CSS.Properties, className="", aspect=1.3, showLegend=true, maxHeight=undefined, data, displayX=v=>v}) => {
