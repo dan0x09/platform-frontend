@@ -40,7 +40,7 @@
 		}
 
         render(
-            <Searchbar id="testSearchbar" data={items} find={(sub, val) => sub.field.includes(val)} setSubSet={(s) => setWrapper.set = s} debounceMS={0} />
+            <Searchbar items={items} find={(sub, val) => sub.field.includes(val)} onChange={(s) => setWrapper.set = s} debounceMS={0} />
         )
 		const input = screen.getByTestId("search-bar-input")
 		input.focus()
@@ -60,7 +60,7 @@
 	it('should call find on items', function () {
         const onClickSpy = jest.fn()
 		render(
-            <Searchbar id="testSearchbar" data={items} find={onClickSpy} setSubSet={() => {}} debounceMS={0} />
+            <Searchbar items={items} find={onClickSpy} onChange={() => {}} debounceMS={0} />
         )
 		const input = screen.getByTestId("search-bar-input")
 		input.focus()
