@@ -30,11 +30,11 @@ const WidgetDrawer: React.FC<WidgetDrawerProps> = ({showData}) => {
 	return (
 		<div>
 			<div className={mobile ? "DrawerNavigationTop" : "DrawerNavigation"}>
-				{!mobile && <div key="spacer" style={{height: "10%"}}/>}
+				{!mobile && <div key="spacer1" style={{height: "10%"}}/>}
 				
 				<Button key="close" onClick={() => setCollapsed(!collapsed)}>{collapsed ? "OPEN" : "CLOSE"}</Button>
 
-				{!mobile && <div key="spacer" style={{height: "10%"}}/>}
+				{!mobile && <div key="spacer2" style={{height: "10%"}}/>}
 			</div>
 			
 			<Drawer collapsed={collapsed} margin={mobile ? "120px 0 0 0" : "0 100px 0 0"}>
