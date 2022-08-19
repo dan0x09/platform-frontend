@@ -24,13 +24,13 @@ export interface WidgetState {
 	displayType: WidgetDisplayType
 	// basic fields widgets will use
 	big?: boolean
-	title?: string
-	subtitle?: string
-	text?: string
+	title?: React.ReactNode
+	subtitle?: React.ReactNode
+	text?: React.ReactNode
 	informationComponent?: WidgetDisplayStateComponent
 	// more advanced fields some widgets will use
-	subtitle1?: string
-	text1?: string
+	subtitle1?: React.ReactNode
+	text1?: React.ReactNode
 	getDataSets?: (options?: any) => Promise<Array<ChartData>>
 	// fields a custom widget will use
 	widgetComponent?: WidgetStateComponent
