@@ -1,10 +1,14 @@
 import React from "react"
 import { Page, Site, Button, Row, RowAlign } from "sgcomponents"
+import LanguageChooser from "../components/LanguageChooser"
 
+import { useTranslation } from "react-i18next"
 import "../Style.css"
 
 
 const Login: React.FC = () => {
+	const { t } = useTranslation()
+
 	return (
 		<Page>
 			<Site>
@@ -25,9 +29,13 @@ const Login: React.FC = () => {
 						</Row>
 					</div>
 
-					<Button onClick={() => window.location.href = "/silos"}>LOGIN</Button>
+					<Button onClick={() => window.location.href = "/silos"}>{t("title")}</Button>
 
 					<Button onClick={() => window.location.href = "/__--"}>ERROR</Button>
+					
+					<LanguageChooser
+					
+					/>
 				</Row>
 			</Site>
 		</Page>

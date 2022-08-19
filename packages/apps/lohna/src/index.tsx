@@ -5,6 +5,8 @@ import './index.css'
 import reportWebVitals from './reportWebVitals'
 import Router from './Router'
 
+import './i18n'
+
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 )
