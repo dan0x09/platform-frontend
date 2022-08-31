@@ -2,22 +2,26 @@ import React from "react"
 import { WidgetGrid, ShowWidgetFunction } from "sgwidgets"
 
 
-import { Data1, Data2, Data3, Data4 } from "../data/TestDataStates"
+import { Data1, Data2, Data4 } from "../data/TestDataStates"
+import SilageMetaWidget from "../data/SilageMetaWidget"
+import Silage3DModelWidget from "../data/Silage3DModelWidget"
 
 interface WidgetsPageProps {
+	id: string
 	showData: ShowWidgetFunction
 	mobile: boolean
 }
 
-const widgets = [
-	Data1, Data2, Data3, Data4, Data4
-]
-
-const Widgets: React.FC<WidgetsPageProps> = ({showData, mobile}) => {
+const Widgets: React.FC<WidgetsPageProps> = ({id, showData, mobile}) => {
 	const style = !mobile ? {minHeight: "800px"} : {minHeight: "0px"}
 
+	const widgets = [
+		SilageMetaWidget(id), Data1, Silage3DModelWidget(id), Data2, Data4
+	]
+
+
 	return (
-		<WidgetGrid style={style} widgets={widgets} show={showData} mobile={mobile} />
+		<WidgetGrid key={""+ id} style={style} widgets={widgets} show={showData} mobile={mobile} />
 	)
 }
 
