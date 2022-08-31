@@ -6,7 +6,7 @@ import {
 } from "recharts"
 import CSS from 'csstype'
 
-import "../Style.css"
+import "../../Style.css"
 import { ChartData, ChartDataPointX, ChartDataType, StyleProps } from "../../types"
 
 const dataKeyX = "name"
