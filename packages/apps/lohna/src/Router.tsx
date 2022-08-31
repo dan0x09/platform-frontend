@@ -13,7 +13,7 @@ export default function Router() {
 				<Route path="/">
 					<Route index element={<Login />} />
 					<Route path="silos" element={<Silos />} />
-					<Route path="silo" element={<Data />} />
+					<Route path="silo/:id" element={<Data />} />
 					<Route path="*" element={<ErrorPage />} />
 				</Route>
 			</Routes>
