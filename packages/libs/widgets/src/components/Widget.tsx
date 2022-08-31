@@ -7,7 +7,7 @@ import SimpleWidget from "./widgets/SimpleWidget"
 // decides which widget to use based on displayType
 const Widget: React.FC<WidgetProps> = (props) => {
 	const { widgetStateWrapper } = props,
-		widgetType = widgetStateWrapper.widgetState.displayType
+		widgetType = widgetStateWrapper.widgetState.widgetType ? widgetStateWrapper.widgetState.widgetType : widgetStateWrapper.widgetState.displayType
 	const WhichWidget = 
 		widgetType === WidgetDisplayType.CUSTOM ? CustomWidget
 		: widgetType === WidgetDisplayType.SIMPLE ? SimpleWidget
