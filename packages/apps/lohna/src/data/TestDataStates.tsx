@@ -1,7 +1,7 @@
-import React from "react"
+import React, { useState } from "react"
 
 import { fetchTemperatureData } from "sgapi"
-import { ChartDataPoint, ChartDataType, Button } from "sgcomponents"
+import { ChartDataPoint, ChartDataType, Button, Row, RowAlign, Site } from "sgcomponents"
 import { WidgetState, WidgetDisplayType } from "sgwidgets"
 
 import "../Style.css"
@@ -104,32 +104,61 @@ const Data2: WidgetState =
 	}
 }
 
-const Data3CustomComponent: React.FC = () => {
+interface Data3CustomComponentProps {
+	width: number | string
+	height: number | string
+	title: string
+	debounceMs: number
+}
+
+const Data3CustomComponent: React.FC<Data3CustomComponentProps> = ({width, height, title, debounceMs}) => {
+	const [startLoading, setLoading] = useState(false)
+	if(!startLoading) setTimeout(() => setLoading(true), debounceMs)
+
 	return (
-		<img width={200} height={200} src="logo512.png" alt="logo192.png"></img>
+		<div style={{width, height, maxWidth: '100vw', display: 'flex', alignItems: 'center', flexDirection: 'column'}}>{
+			startLoading ?
+				<iframe style={{border: 'solid 2px #555', padding: 0, margin: 0, maxWidth: '98vw'}} title={title} src="./example_silo.html" width={width} height={height} /> 
+				: "Loading..."
+		}</div>
 	)
 }
 
 const Data3: WidgetState = 
 {
-	title: "Works!",
 	displayType: WidgetDisplayType.CUSTOM,
 	widgetComponent: (widgetStateWrapper, show) => {
 		return (
 			<div>
-				<Data3CustomComponent />
+				<Row align={RowAlign.MID} space="50%">
+					<Button style={{width: '80px'}} onClick={() => show(widgetStateWrapper)}>SHOW</Button>
 
-				<Button style={{width: '200px'}} onClick={() => show(widgetStateWrapper)}>Das ist ein neues Widget</Button>
+					<h2>
+						Silage volume
+					</h2>
+				</Row>
+
+				<Row>
+					<Data3CustomComponent width={'270px'} height={'270px'} title="PlotWidget" debounceMs={2000} />
+
+					<p> The volume is measured by driving over the silo. </p>
+				</Row>
 			</div>
 		)
 	},
-	displayComponent: ({widgetState}) => (
-		<div style={{width: '100%', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
-			<h1>{widgetState.title}</h1>
-
-			<Data3CustomComponent />
-		</div>
-	)
+	displayComponent: () => (
+		<Site>
+			<h1>3D Model</h1>
+			<Data3CustomComponent width={'1000px'} height={'800px'} title="PlotLeft" debounceMs={300} />
+		</Site>
+	),
+	displayComponentRight: () => {
+		return (
+			<Site>
+				<h2>And again</h2>
+				<Data3CustomComponent width={'1000px'} height={'800px'} title="PlotRight" debounceMs={300} />
+			</Site>
+	)}
 }
 
 const Data4: WidgetState = 

@@ -1,0 +1,27 @@
+{
+	"title": "Willkommen",
+	"drawer": {
+		"open": "Öffnen",
+		"close": "Schließen",
+		"next": "Nächste Silage"
+	},
+	"widgets": {
+		"all": {
+			"refresh": "Neu laden",
+			"show": "Anzeigen"
+		},
+		"weather": {
+			"title": "Wetter",
+			"subtitle": ""
+		},
+		"volume": {
+			"title": "Volumen",
+			"subtitle": "- - -",
+			"subtitle1": "m^3 / Tag"
+		}
+	},
+	"description": {
+		"part1": "To get started, edit <1>src/App.js</1> and save to reload.",
+		"part2": "Switch language between english and german using buttons above."
+	}
+}

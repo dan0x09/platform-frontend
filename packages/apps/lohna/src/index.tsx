@@ -1,15 +1,20 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
+import { ApplicationWrapper } from 'sgcomponents'
 import './index.css'
 import reportWebVitals from './reportWebVitals'
 import Router from './Router'
+
+import './i18n'
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 )
 root.render(
   <React.StrictMode>
-    <Router />
+    <ApplicationWrapper>
+      <Router />
+    </ApplicationWrapper>
   </React.StrictMode>
 )
 export default root

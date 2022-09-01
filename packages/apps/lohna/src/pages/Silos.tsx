@@ -7,48 +7,68 @@ import "../Style.css"
 const Login: React.FC = () => {
 	const items = [
 		{
+			id: "0",
 			name: "SILO x"
 		},
 		{
-			name: "SILO Y"
+			id: "1",
+			name: "SILO y"
+		},
+		{
+			id: "2",
+			name: "SILO z"
+		},
+		{
+			id: "4",
+			name: "SILO 1"
+		},
+		{
+			id: "siloId",
+			name: "SILO 2"
 		}
 	] as Array<any>
 
 	const [subSet, setSubSet] = useState(items)
 
+	const [selectedSet, setSelectedSet] = useState([] as Array<number>)
+	const switchSelect = (id: number) => {
+		if(selectedSet.indexOf(id) === -1) setSelectedSet([...selectedSet, id])
+		else setSelectedSet(selectedSet.filter((i) => i !== id))
+	}
+	const isSelected = (id: number) => selectedSet.indexOf(id) > -1
+	const createUrlParam = () => selectedSet.reduce((all, id, i) => (all + (i === 0 ? id : "+" + id)), "")
+
 	return (
 		<Page>
 			<Site>
 				<Searchbar 
-					id="siloSearchbar" 
-					data={items} 
+					items={items} 
 					find={({name}, val) => 
 						val === "" ||
 						(name as string).toLowerCase().includes(val.toLowerCase())} 
-					setSubSet={setSubSet} 
+					onChange={setSubSet} 
 				/>
 
 
 				{subSet.map((o, i) => {
+					const slctd = isSelected(o.id)
 					return (
-						<Button key={"" + i} className='SiloChooserButton' onClick={() => {}}>{o.name}</Button>
+						[
+							<div key={"spacer" + i} style={{marginTop: '20px'}}></div>,
+							<Button key={"" + i} className={slctd ? 'SiloChooserButton SiloChooserButtonActive' : 'SiloChooserButton'} onClick={() => switchSelect(o.id)}>{o.name}</Button>
+						]
 					)
 				})}
+
+				<Row style={{marginTop: '20px'}} align={RowAlign.MID}>
+					<Button onClick={() => window.location.href = "/silo/" + createUrlParam()}>OPEN</Button>
+				</Row>
 
 				{/* <Button className='SiloChooserButton SiloChooserButtonInactive' onClick={() => {}}>Silo X</Button>
 
 				<Button className='SiloChooserButton SiloChooserButtonInactive' onClick={() => {}}>Silo X</Button>
 
 				<Button className='SiloChooserButton SiloChooserButtonInactive' onClick={() => {}}>Silo X</Button> */}
-			</Site>
-
-			<Site>
-				<h2>Silo X</h2>
-				<p>Some information about Silo X</p>
-
-				<Row align={RowAlign.RIGHT}>
-					<Button onClick={() => window.location.href = "/silo"}>OPEN</Button>
-				</Row>
 			</Site>
 		</Page>
 	)
