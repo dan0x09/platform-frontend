@@ -18,7 +18,7 @@ const MetaWidget = (silageId: string): WidgetState => {
 				id: silageId,
 				name: "Test silage",
 				date: "22.08.2022",
-				description: "A silage with grass.",
+				description: "Eine Silage mit Grassschnitt.",
 				customer: "Customer " + (silageId + 1)
 			} as SilageMetaData
 		},
