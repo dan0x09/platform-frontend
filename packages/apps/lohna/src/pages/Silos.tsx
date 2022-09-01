@@ -42,6 +42,7 @@ const Login: React.FC = () => {
 		<Page>
 			<Site>
 				<Searchbar 
+					label="Silage Suche"
 					items={items} 
 					find={({name}, val) => 
 						val === "" ||
