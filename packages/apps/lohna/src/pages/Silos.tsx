@@ -54,7 +54,7 @@ const Login: React.FC = () => {
 					const slctd = isSelected(o.id)
 					return (
 						[
-							<div style={{marginTop: '20px'}}></div>,
+							<div key={"spacer" + i} style={{marginTop: '20px'}}></div>,
 							<Button key={"" + i} className={slctd ? 'SiloChooserButton SiloChooserButtonActive' : 'SiloChooserButton'} onClick={() => switchSelect(o.id)}>{o.name}</Button>
 						]
 					)
