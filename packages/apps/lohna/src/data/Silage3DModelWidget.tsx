@@ -1,4 +1,5 @@
-import { useState } from "react"
+import React, { useState } from "react"
+import { Translation } from "react-i18next"
 import { Button, Chart, ChartData, ChartDataType, Row, RowAlign, Site } from "sgcomponents"
 import { WidgetDisplayType, WidgetState } from "sgwidgets"
 
@@ -29,7 +30,11 @@ const ModelWidget = (silageId: string): WidgetState => {
 	return {
 		widgetType: WidgetDisplayType.DATA,
 		displayType: WidgetDisplayType.CUSTOM,
-		title: "Volume",
+		title: <Translation>{(t) => t("widgets.volume.title")}</Translation>,
+		subtitle: <Translation>{(t) => t("widgets.volume.subtitle")}</Translation>,
+		subtitle1: <Translation>{(t) => t("widgets.volume.subtitle1")}</Translation>,
+		refreshText: <Translation>{(t) => t("widgets.all.refresh")}</Translation>,
+		showText: <Translation>{(t) => t("widgets.all.show")}</Translation>,
 		getData: async() => {
 			// async fetch address of plot
 			return {
@@ -49,27 +54,27 @@ const ModelWidget = (silageId: string): WidgetState => {
 				points: testData.map(({timestamp, volume}) => [timestamp, volume])
 			} as ChartData]
 		},
-		displayComponent: ({data, dataSets}, refresh) => {
+		displayComponent: ({widgetState: {title, subtitle, subtitle1, refreshText}, data, dataSets}, refresh) => {
 			const {address} = data as Silage3DModelData
 			return (
 				<Site>
 					<Row align={RowAlign.MID}>
-						<h1>Volume</h1>
+						<h1>{title}</h1>
 
 						<h3>{address}</h3>
 					</Row>
 					
 					<Row>
-                		<Button onClick={refresh}>REFRESH</Button>
+                		<Button onClick={refresh}>{refreshText}</Button>
 
 						<Chart data={dataSets} aspect={1} maxHeight={300} />
 
-						<p>Volume over Time</p>
+						<p>{subtitle1}</p>
 					</Row>
 
 					<Plot3DModel width={'990px'} height={'800px'} title="PlotLeft" debounceMs={2000} />
 
-					<p>ilsdf asdf iodjf öoisjdf iojasdf oijasdi jsdaiojfsodaij asdij dasiojfosdaij fdsaijfosdiajfodsij fasdiojf oidsjf odsijf sodij fsdoijf </p>
+					<p>{subtitle}</p>
 				</Site>
 			)
 		}
