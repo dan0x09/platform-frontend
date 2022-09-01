@@ -51,7 +51,7 @@ const DataTypeRightComponent: React.FC<DataDisplayComponentProps> = ({widgetStat
             />}
 
             {hasData && <Row align={RowAlign.RIGHT} space="50px" spaceAround>
-                <Button onClick={refreshDataSets}>REFRESH</Button>
+                <Button onClick={refreshDataSets}>{widgetStateWrapper.widgetState.refreshText}</Button>
             </Row>}
 
             <p>

@@ -25,6 +25,10 @@ export interface WidgetState {
 	displayType: WidgetDisplayType
 	// basic fields widgets will use
 	big?: boolean
+	// buttons
+	refreshText?: React.ReactNode
+	showText?: React.ReactNode
+	// content
 	title?: React.ReactNode
 	subtitle?: React.ReactNode
 	text?: React.ReactNode
