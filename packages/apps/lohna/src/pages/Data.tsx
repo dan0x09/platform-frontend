@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 
 import "../Style.css"
@@ -10,7 +10,9 @@ const Data: React.FC = () => {
 	const [widgetStateWrapper, setWidgetStateWrapper] = useState(null as WidgetStateWrapper | null)
 	const {id} = useParams()
 	const [windowWidth, setWindowWidth] = useState(window.innerWidth)
-	useState(window.addEventListener("resize", () => setWindowWidth(window.innerWidth)))
+	useEffect(() => {
+		window.addEventListener("resize", () => setWindowWidth(window.innerWidth))
+	}, [])
 	const mobile = isMobileThreshold(windowWidth)
 
 	return (
