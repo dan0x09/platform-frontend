@@ -12,8 +12,10 @@ interface DrawerProps {
 const Drawer: React.FC<DrawerProps> = ({children, collapsed, margin=""}) => {
 	return (
 		<div className={collapsed ? 'Drawer DrawerCollapsed' : 'Drawer'}>
-			<div className='DrawerContent' style={margin !== "" ? {margin: margin} : {}}>
-				{children}
+			<div className='DrawerContentWindow'>
+				<div className='DrawerContent' style={margin !== "" ? {margin: margin} : {}}>
+					{children}
+				</div>
 			</div>
 		</div>
 	)

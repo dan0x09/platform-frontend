@@ -52,13 +52,19 @@
     border-top-left-radius: 50%;
 }
 
+.DrawerContentWindow {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden scroll;
+}
+
 .DrawerContent {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
     flex: 1;
-    overflow: hidden scroll;
+    align-self: stretch;
 }
 
 .DrawerNavigation {
