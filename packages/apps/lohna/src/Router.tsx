@@ -4,7 +4,7 @@ import { ErrorPage } from "sgcomponents"
 
 import Login from "./pages/Login"
 import Silos from "./pages/Silos"
-import Data from "./pages/Data"
+import Silo from "./pages/Silo"
 
 export default function Router() {
 	return (
@@ -13,7 +13,7 @@ export default function Router() {
 				<Route path="/">
 					<Route index element={<Login />} />
 					<Route path="silos" element={<Silos />} />
-					<Route path="silo/:id" element={<Data />} />
+					<Route path="silo/:id" element={<Silo />} />
 					<Route path="*" element={<ErrorPage />} />
 				</Route>
 			</Routes>
