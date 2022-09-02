@@ -7,7 +7,7 @@ import { Button, Row } from "sgcomponents"
 import { WidgetStateWrapper, ShowWidgetFunction } from "sgwidgets"
 
 import { isMobileThreshold } from "../lib/helper"
-import Widgets from "./Widgets"
+import Widgets from "../widgets"
 import { Translation } from "react-i18next"
 
 interface WidgetDrawerProps {
