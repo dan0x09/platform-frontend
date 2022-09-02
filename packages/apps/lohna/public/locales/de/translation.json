@@ -10,6 +10,14 @@
 			"refresh": "Neu laden",
 			"show": "Anzeigen"
 		},
+		"meta": {
+
+		},
+		"metadata": {
+			"title": "Daten",
+			"subtitle": "- - -",
+			"subtitle1": " --"
+		},
 		"weather": {
 			"title": "Wetter",
 			"subtitle": ""
