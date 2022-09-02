@@ -27,14 +27,16 @@ interface Silage3DModelData {
 }
 
 const ModelWidget = (silageId: string): WidgetState => {
+	const t = (s: string) => <Translation>{(t) => t(s)}</Translation>
+
 	return {
 		widgetType: WidgetDisplayType.DATA,
 		displayType: WidgetDisplayType.CUSTOM,
-		title: <Translation>{(t) => t("widgets.volume.title")}</Translation>,
-		subtitle: <Translation>{(t) => t("widgets.volume.subtitle")}</Translation>,
-		subtitle1: <Translation>{(t) => t("widgets.volume.subtitle1")}</Translation>,
-		refreshText: <Translation>{(t) => t("widgets.all.refresh")}</Translation>,
-		showText: <Translation>{(t) => t("widgets.all.show")}</Translation>,
+		title: t("widgets.volume.title"),
+		subtitle: t("widgets.volume.subtitle"),
+		subtitle1: t("widgets.volume.subtitle1"),
+		refreshText: t("widgets.all.refresh"),
+		showText: t("widgets.all.show"),
 		getData: async() => {
 			// async fetch address of plot
 			return {
