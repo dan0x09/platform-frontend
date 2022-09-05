@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import CSS from 'csstype'
 import { GridLayout } from "sgcomponents"
 import Widget from "./Widget"
@@ -17,8 +17,10 @@ async function createStateWrappers(states: Array<WidgetState>, setStateWrappers:
 
 const WidgetGrid: React.FC<WidgetGridProps> = ({style={} as CSS.Properties, className="", widgets, show, mobile=false}) => {
 	const [widgetStateWrappers, setWidgetStateWrappers] = useState([] as Array<WidgetStateWrapper>)
-	if(widgetStateWrappers.length === 0)
+	useEffect(() => {
 		createStateWrappers(widgets, (wrappers) => setWidgetStateWrappers(wrappers))
+	}, [widgets])
+		
 
 	return (
 		<GridLayout style={style} className={className}>

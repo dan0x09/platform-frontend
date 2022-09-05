@@ -30,11 +30,11 @@ const DataWidget: React.FC<WidgetProps> = ({show, widgetStateWrapper, big=false,
 
 				{!!(dataSets.length) ? <Row align={RowAlign.MID} space='1px' spaceAround>
 					<div>
-						<Button onClick={refreshDataSets}>REFRESH</Button>
+						<Button onClick={refreshDataSets}>{widgetStateWrapper.widgetState.refreshText}</Button>
 
 						<div style={{height: '20px'}}></div>
 
-						<Button onClick={() => show(widgetStateWrapper)}>SHOW</Button>
+						<Button onClick={() => show(widgetStateWrapper)}>{widgetStateWrapper.widgetState.showText}</Button>
 					</div>
 
 					<div style={{flex: 1, width: 0}}> <Chart displayX={x=>x + "h"}
@@ -50,7 +50,7 @@ const DataWidget: React.FC<WidgetProps> = ({show, widgetStateWrapper, big=false,
 					</p>
 
 					<Row align={RowAlign.RIGHT}>
-						<Button onClick={() => show(widgetStateWrapper)}>SHOW</Button>
+						<Button onClick={() => show(widgetStateWrapper)}>{widgetStateWrapper.widgetState.showText}</Button>
 					</Row>
 				</div>}
 

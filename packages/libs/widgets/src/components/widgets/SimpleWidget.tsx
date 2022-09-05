@@ -24,7 +24,7 @@ const SimpleWidget: React.FC<WidgetProps> = ({show, widgetStateWrapper, big=fals
                 </p>
 				
                 <Row align={RowAlign.RIGHT}>
-                    <Button onClick={() => show(widgetStateWrapper)}>SHOW</Button>
+                    <Button onClick={() => show(widgetStateWrapper)}>{widgetStateWrapper.widgetState.showText}</Button>
                 </Row>
 
 				<div className='WidgetContentSpacer' />

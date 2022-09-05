@@ -21,26 +21,34 @@ export type WidgetDisplayStateComponent = (widgetStateWrapper: WidgetStateWrappe
 
 export interface WidgetState {
 	// what will this widget look like
+	widgetType?: WidgetDisplayType
 	displayType: WidgetDisplayType
 	// basic fields widgets will use
 	big?: boolean
-	title?: string
-	subtitle?: string
-	text?: string
+	// buttons
+	refreshText?: React.ReactNode
+	showText?: React.ReactNode
+	// content
+	title?: React.ReactNode
+	subtitle?: React.ReactNode
+	text?: React.ReactNode
 	informationComponent?: WidgetDisplayStateComponent
 	// more advanced fields some widgets will use
-	subtitle1?: string
-	text1?: string
+	subtitle1?: React.ReactNode
+	text1?: React.ReactNode
+	getData?: (options?: any) => Promise<any | undefined>
 	getDataSets?: (options?: any) => Promise<Array<ChartData>>
 	// fields a custom widget will use
 	widgetComponent?: WidgetStateComponent
 	displayComponent?: WidgetDisplayStateComponent
+	displayComponentRight?: WidgetDisplayStateComponent
 }
 
 export interface WidgetStateWrapper {
 	// settings regarding a widget
 	widgetState: WidgetState
 	// data, which is fetched and used by some widgets
+	data?: any
 	dataSets: Array<ChartData>
 }
 

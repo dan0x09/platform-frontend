@@ -51,7 +51,7 @@ const DataTypeRightComponent: React.FC<DataDisplayComponentProps> = ({widgetStat
             />}
 
             {hasData && <Row align={RowAlign.RIGHT} space="50px" spaceAround>
-                <Button onClick={refreshDataSets}>REFRESH</Button>
+                <Button onClick={refreshDataSets}>{widgetStateWrapper.widgetState.refreshText}</Button>
             </Row>}
 
             <p>
@@ -67,21 +67,24 @@ const WidgetDisplay: React.FC<WidgetDisplayProps> = ({style={} as CSS.Properties
 
 	const refreshDataSets = async() => setWidgetStateWrapper((await hydrateWidgetStateWrapper(widgetStateWrapper)))
 
-    return (
+    if(widgetType === WidgetDisplayType.DATA || widgetType === WidgetDisplayType.SIMPLE) return (
         <Page style={style} className={className} mobile={mobile}>
             {/* DataDisplayType SIMPLE + DATA */}
-            {(widgetType === WidgetDisplayType.DATA || widgetType === WidgetDisplayType.SIMPLE) &&
-                <DataTypeSimpleComponent widgetStateWrapper={widgetStateWrapper} refresh={refreshDataSets} />
-            }
+            <DataTypeSimpleComponent widgetStateWrapper={widgetStateWrapper} refresh={refreshDataSets} />
             {/* DataDisplayType DATA */}
             {widgetType === WidgetDisplayType.DATA &&
                 <DataTypeRightComponent widgetStateWrapper={widgetStateWrapper} setWidgetStateWrapper={setWidgetStateWrapper} />
             }
-            {/* DataDisplayType CUSTOM */}
-            {widgetType === WidgetDisplayType.CUSTOM && widgetStateWrapper.widgetState.displayComponent && 
-                widgetStateWrapper.widgetState.displayComponent(widgetStateWrapper, refreshDataSets)
-            }
         </Page>
     )
+    else if(widgetType === WidgetDisplayType.CUSTOM) {
+        return (
+            <Page style={style} className={className} mobile={mobile}>
+                {widgetStateWrapper.widgetState.displayComponent &&
+                    widgetStateWrapper.widgetState.displayComponent(widgetStateWrapper, refreshDataSets)}
+                {widgetStateWrapper.widgetState.displayComponentRight &&
+                    widgetStateWrapper.widgetState.displayComponentRight(widgetStateWrapper, refreshDataSets)}
+            </Page>
+    )} else return null
 }
 export default WidgetDisplay

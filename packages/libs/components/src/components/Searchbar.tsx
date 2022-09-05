@@ -8,9 +8,10 @@ interface SearchbarProps {
 	find: (sub: any, val: string) => boolean
 	onChange: (data: Array<any>) => void
 	debounceMS?: number
+	label: string
 }
 
-const Searchbar: React.FC<SearchbarProps> = ({items, find, onChange, debounceMS=300}) => {
+const Searchbar: React.FC<SearchbarProps> = ({items, find, onChange, debounceMS=300, label}) => {
 	const update = (e: React.ChangeEvent<HTMLInputElement>): void => {
 		debounce(() => {
 			const value = e.target.value
@@ -24,11 +25,14 @@ const Searchbar: React.FC<SearchbarProps> = ({items, find, onChange, debounceMS=
 	}
 	return (
 		<div>
-			<input 
-            	data-testid="search-bar-input" 
-				type="text"
-				onInput={update}
-			></input>
+			<label>
+				{label}
+				<input 
+					data-testid="search-bar-input" 
+					type="text"
+					onInput={update}
+				></input>
+			</label>
 		</div>
 	)
 }

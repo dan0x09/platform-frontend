@@ -17,7 +17,7 @@ interface RowProps extends RowAlignProps {
     children: React.ReactNode
 }
 
-export const Row: React.FC<RowProps> = ({className="", children, align=RowAlign.LEFT, space="20px", spaceAround=false}) => {
+export const Row: React.FC<RowProps> = ({className="", style={} as CSS.Properties, children, align=RowAlign.LEFT, space="20px", spaceAround=false}) => {
     let alignStyle
     switch(align) {
         case RowAlign.MID:
@@ -32,7 +32,7 @@ export const Row: React.FC<RowProps> = ({className="", children, align=RowAlign.
     }
 
     return (
-        <div className={"_Row " + alignStyle + " Row" + (className !== "" ? " " + className : "")}>
+        <div className={"_Row " + alignStyle + " Row" + (className !== "" ? " " + className : "")} style={style}>
             {
                 Array.isArray(children) ?
                     children.reduce((prev: JSX.Element[], curr: JSX.Element, i: number) => {
