@@ -1,6 +1,11 @@
 import { Row, RowAlign } from "sgcomponents"
 import { WidgetDisplayType, WidgetState } from "sgwidgets"
 
+// TODO interface extending everywhere
+interface MetaWidgetState extends WidgetState {
+	getData: () => Promise<SilageMetaData>
+}
+
 interface SilageMetaData {
 	id: number | string
 	name: string
@@ -9,7 +14,7 @@ interface SilageMetaData {
 	customer: string
 }
 
-const MetaWidget = (silageId: string): WidgetState => {
+const MetaWidget = (silageId: string): MetaWidgetState => {
 	return {
 		displayType: WidgetDisplayType.CUSTOM,
 		getData: async() => {
@@ -20,7 +25,7 @@ const MetaWidget = (silageId: string): WidgetState => {
 				date: "22.08.2022",
 				description: "Eine Silage mit Grassschnitt.",
 				customer: "Customer " + (silageId + 1)
-			} as SilageMetaData
+			}
 		},
 		widgetComponent: ({data}) => {
 			const {id, name, date, description, customer} = data as SilageMetaData
