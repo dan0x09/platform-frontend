@@ -1,7 +1,7 @@
-import CSS from 'csstype'
+import React from 'react'
 
 export interface StyleProps {
-    style?: CSS.Properties
+    style?: React.CSSProperties
     className?: string
 }
 
