@@ -178,6 +178,10 @@
     overflow: hidden;
 }
 
+.__PageMobileClosingWrapperSpacer {
+    height: 200px;
+}
+
 .__GridLayout {
     display: flex;
     justify-content: space-between;
