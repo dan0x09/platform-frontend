@@ -46,7 +46,7 @@ const DataTypeRightComponent: React.FC<DataDisplayComponentProps> = ({widgetStat
                 <h2>{widgetStateWrapper.widgetState.subtitle1}</h2>
             </Row>
 
-            {hasData && <Chart displayX={x=>x + "h"}
+            {hasData && <Chart displayX={widgetStateWrapper.widgetState?.displayX}
                 data={widgetStateWrapper.dataSets}
             />}
 
