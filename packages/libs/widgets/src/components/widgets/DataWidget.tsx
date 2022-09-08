@@ -37,7 +37,7 @@ const DataWidget: React.FC<WidgetProps> = ({show, widgetStateWrapper, big=false,
 						<Button onClick={() => show(widgetStateWrapper)}>{widgetStateWrapper.widgetState.showText}</Button>
 					</div>
 
-					<div style={{flex: 1, width: 0}}> <Chart displayX={x=>x + "h"}
+					<div style={{flex: 1, width: 0}}> <Chart displayX={widgetStateWrapper.widgetState?.displayX}
 							aspect={undefined}
 							maxHeight={200}
 							data={dataSets}
