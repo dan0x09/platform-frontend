@@ -31,3 +31,5 @@ export interface ChartData {
     points: Array<ChartDataPoint>
 }
 
+export type ChartDisplayXAxis = (x: ChartDataPointX) => string | number
+
