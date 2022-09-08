@@ -27,7 +27,7 @@ const MetaWidget = (silageId: string): MetaWidgetState => {
 				date: r?.date,
 				description: r?.description,
 				customer: r?.customer
-			}
+			} as SilageMetaData
 		},
 		widgetComponent: ({data}) => {
 			const {id, name, date, description, customer} = data as SilageMetaData
