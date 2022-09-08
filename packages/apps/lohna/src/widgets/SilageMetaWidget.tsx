@@ -1,5 +1,6 @@
 import { Row, RowAlign } from "sgcomponents"
 import { WidgetDisplayType, WidgetState } from "sgwidgets"
+import { getSilage } from "../lib/backendMock"
 
 // TODO interface extending everywhere
 interface MetaWidgetState extends WidgetState {
@@ -19,12 +20,13 @@ const MetaWidget = (silageId: string): MetaWidgetState => {
 		displayType: WidgetDisplayType.CUSTOM,
 		getData: async() => {
 			// async fetch of silage meta data
+			const r = await getSilage(silageId)
 			return {
-				id: silageId,
-				name: "Test silage",
-				date: "22.08.2022",
-				description: "Eine Silage mit Grassschnitt.",
-				customer: "Customer " + (silageId + 1)
+				id: r?.id,
+				name: r?.name,
+				date: r?.date,
+				description: r?.description,
+				customer: r?.customer
 			}
 		},
 		widgetComponent: ({data}) => {
@@ -33,6 +35,9 @@ const MetaWidget = (silageId: string): MetaWidgetState => {
 				<div style={{width: '100%', height: '100%'}}>
 					<Row align={RowAlign.LEFT} space="10%">
 						<h2>{name}</h2>
+					</Row>
+
+					<Row align={RowAlign.RIGHT}>
 						<h3>:{id}/{date}</h3>
 					</Row>
 

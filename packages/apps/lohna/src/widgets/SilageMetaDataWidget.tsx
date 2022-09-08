@@ -1,6 +1,7 @@
 import { Translation } from "react-i18next"
 import { ChartDataType } from "sgcomponents"
 import { WidgetDisplayType, WidgetState } from "sgwidgets"
+import { getSilage } from "../lib/backendMock"
 
 interface SilageMetaData {
 	id: number | string
@@ -23,12 +24,13 @@ const MetaWidget = (silageId: string): WidgetState => {
 		showText: t("widgets.all.show"),
 		getData: async() => {
 			// async fetch of silage meta data
+			const r = await getSilage(silageId)
 			return {
-				id: silageId,
-				name: "Test silage",
-				date: "22.08.2022",
-				description: "Eine Silage mit Grassschnitt.",
-				customer: "Customer " + (silageId + 1)
+				id: r?.id,
+				name: r?.name,
+				date: r?.date,
+				description: r?.description,
+				customer: r?.customer
 			} as SilageMetaData
 		},
 		getDataSets: async() => {
