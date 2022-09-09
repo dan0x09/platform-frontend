@@ -1,3 +1,13 @@
+
+
+export async function getSilage(silageId: number | string) {
+    return silages.find(({ id }) => id === silageId)
+}
+
+export async function getSilageIds() {
+    return silages.map(({id, name}) => ({id, name}))
+}
+
 const silages = [
     {
         id: "example_silo_1",
@@ -437,7 +447,3 @@ const silages = [
         ]
     }
 ]
-
-export async function getSilage(silageId: number | string) {
-    return silages.find(({ id }) => id === silageId)
-}
