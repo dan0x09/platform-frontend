@@ -22,7 +22,9 @@ const ModelWidget = (silageId: string): ModelWidgetState => {
 		displayType: WidgetDisplayType.CUSTOM,
 		title: t("widgets.volume.title"),
 		subtitle: t("widgets.volume.subtitle"),
+		text: t("widgets.volume.text"),
 		subtitle1: t("widgets.volume.subtitle1"),
+		text1: t("widgets.volume.text1"),
 		refreshText: t("widgets.all.refresh"),
 		showText: t("widgets.all.show"),
 		getData: async() => {
@@ -49,7 +51,7 @@ const ModelWidget = (silageId: string): ModelWidgetState => {
 			} as ChartData]
 		},
 		displayX: x => (new Date(x)).getHours() + "h",
-		displayComponent: ({widgetState: {title, subtitle, subtitle1, refreshText, displayX}, data, dataSets}, refresh) => {
+		displayComponent: ({widgetState: {title, subtitle, subtitle1, text, text1, refreshText, displayX}, data, dataSets}, refresh) => {
 			const {volume, plotAddress, imgAddress} = data as Silage3DModelData
 			return (
 				<Site>
@@ -59,15 +61,17 @@ const ModelWidget = (silageId: string): ModelWidgetState => {
 						<h3>{plotAddress}</h3>
 					</Row>
 
-					<p>{volume}</p>
+					<p>{text}{volume}.</p>
 					
-					<Row>
+					<Row style={{maxWidth: '90%'}}>
                 		<Button onClick={refresh}>{refreshText}</Button>
 
 						<Chart data={dataSets} aspect={1} maxHeight={300} 
 							displayX={displayX}
 						/>
 					</Row>
+
+					<p>{text1}</p>
 
 					<Plot3DModel src={plotAddress} width={'990px'} height={'800px'} title="PlotLeft" debounceMs={2000} />
 
