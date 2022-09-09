@@ -3,15 +3,19 @@ import { ChartDataType } from "sgcomponents"
 import { WidgetDisplayType, WidgetState } from "sgwidgets"
 import { getSilage } from "../lib/backendMock"
 
+interface MetaDataWidgetState extends WidgetState {
+	getData?: () => Promise<SilageMetaData>
+}
+
 interface SilageMetaData {
-	id: number | string
+	id: string
 	name: string
 	date: string
 	description: string
 	customer: string
 }
 
-const MetaWidget = (silageId: string): WidgetState => {
+const MetaWidget = (silageId: string): MetaDataWidgetState => {
 	const t = (s: string) => <Translation>{(t) => t(s)}</Translation>
 
 	return {
@@ -26,12 +30,12 @@ const MetaWidget = (silageId: string): WidgetState => {
 			// async fetch of silage meta data
 			const r = await getSilage(silageId)
 			return {
-				id: r?.id,
-				name: r?.name,
-				date: r?.date,
-				description: r?.description,
-				customer: r?.customer
-			} as SilageMetaData
+				id: r?.id || "",
+				name: r?.name || "",
+				date: r?.date || "",
+				description: r?.description || "",
+				customer: r?.customer || ""
+			}
 		},
 		getDataSets: async() => {
 			return [{

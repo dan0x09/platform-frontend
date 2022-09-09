@@ -3,18 +3,22 @@ import { Chart, ChartData, ChartDataType, Row, RowAlign } from "sgcomponents"
 import { WidgetDisplayType, WidgetState } from "sgwidgets"
 import { getSilage } from "../lib/backendMock"
 
-interface WeatherData {
-	id: number | string
+interface WeatherWidgetState extends WidgetState {
+	getData?: () => Promise<WeatherData>
 }
 
-const WeatherWidget = (silageId: string): WidgetState => {
+interface WeatherData {
+	id: string
+}
+
+const WeatherWidget = (silageId: string): WeatherWidgetState => {
 	return {
 		displayType: WidgetDisplayType.CUSTOM,
 		getData: async() => {
 			// async fetch of weather data based on geo location fetched from silage api
 			const r = await getSilage(silageId)
 			return {
-				id: r?.id
+				id: r?.id || ""
 			} as WeatherData
 		},
 		getDataSets: async() => {

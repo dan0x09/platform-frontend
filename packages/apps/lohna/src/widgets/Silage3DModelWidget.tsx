@@ -4,13 +4,17 @@ import { Button, Chart, ChartData, ChartDataType, Row, RowAlign, Site } from "sg
 import { WidgetDisplayType, WidgetState } from "sgwidgets"
 import { getSilage } from "../lib/backendMock"
 
+interface ModelWidgetState extends WidgetState {
+	getData?: () => Promise<Silage3DModelData>
+}
+
 interface Silage3DModelData {
 	volume: number
 	plotAddress: string
 	imgAddress: string
 }
 
-const ModelWidget = (silageId: string): WidgetState => {
+const ModelWidget = (silageId: string): ModelWidgetState => {
 	const t = (s: string) => <Translation>{(t) => t(s)}</Translation>
 
 	return {
@@ -25,10 +29,10 @@ const ModelWidget = (silageId: string): WidgetState => {
 			// async fetch address of plot
 			const r = await getSilage(silageId)
 			return {
-				volume: r?.volume,
-				plotAddress: r?.plotAddress,
-				imgAddress: r?.imgAddress
-			} as Silage3DModelData
+				volume: r?.volume || 0,
+				plotAddress: r?.plotAddress || "",
+				imgAddress: r?.imgAddress || ""
+			}
 		},
 		getDataSets: async() => {
 			// async fetch volume data

@@ -8,7 +8,7 @@ interface MetaWidgetState extends WidgetState {
 }
 
 interface SilageMetaData {
-	id: number | string
+	id: string
 	name: string
 	date: string
 	description: string
@@ -22,12 +22,12 @@ const MetaWidget = (silageId: string): MetaWidgetState => {
 			// async fetch of silage meta data
 			const r = await getSilage(silageId)
 			return {
-				id: r?.id,
-				name: r?.name,
-				date: r?.date,
-				description: r?.description,
-				customer: r?.customer
-			} as SilageMetaData
+				id: r?.id || "",
+				name: r?.name || "",
+				date: r?.date || "",
+				description: r?.description || "",
+				customer: r?.customer || ""
+			}
 		},
 		widgetComponent: ({data}) => {
 			const {id, name, date, description, customer} = data as SilageMetaData
