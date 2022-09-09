@@ -25,7 +25,9 @@
 		"volume": {
 			"title": "Volumen",
 			"subtitle": "- - -",
-			"subtitle1": "m^3 / Tag"
+			"subtitle1": "m^3 / Tag",
+			"text": "Das aktuelle Gesammtvolumen beträgt: ",
+			"text1": "Die folgende Grafik zeigt ein 3D Modell der Silage. "
 		}
 	},
 	"description": {

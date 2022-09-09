@@ -1,41 +1,32 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { Searchbar, Page, Site, Button, Row, RowAlign, } from "sgcomponents"
+import { getSilageIds } from "../lib/backendMock"
 
 import "../Style.css"
 
 
+interface SilageInfoData {
+	id: string
+	name: string
+}
+
 const Login: React.FC = () => {
-	const items = [
-		{
-			id: "0",
-			name: "SILO x"
-		},
-		{
-			id: "1",
-			name: "SILO y"
-		},
-		{
-			id: "2",
-			name: "SILO z"
-		},
-		{
-			id: "4",
-			name: "SILO 1"
-		},
-		{
-			id: "siloId",
-			name: "SILO 2"
-		}
-	] as Array<any>
+	const [items, setItems] = useState([] as Array<SilageInfoData>)
+	const [subSet, setSubSet] = useState([] as Array<SilageInfoData>)
+	useEffect(() => {
+		(async() => {
+			const silages = await getSilageIds()
+			setItems(silages)
+			setSubSet(silages)
+		})()
+	}, [])
 
-	const [subSet, setSubSet] = useState(items)
-
-	const [selectedSet, setSelectedSet] = useState([] as Array<number>)
-	const switchSelect = (id: number) => {
+	const [selectedSet, setSelectedSet] = useState([] as Array<string>)
+	const switchSelect = (id: string) => {
 		if(selectedSet.indexOf(id) === -1) setSelectedSet([...selectedSet, id])
 		else setSelectedSet(selectedSet.filter((i) => i !== id))
 	}
-	const isSelected = (id: number) => selectedSet.indexOf(id) > -1
+	const isSelected = (id: string) => selectedSet.indexOf(id) > -1
 	const createUrlParam = () => selectedSet.reduce((all, id, i) => (all + (i === 0 ? id : "+" + id)), "")
 
 	return (
