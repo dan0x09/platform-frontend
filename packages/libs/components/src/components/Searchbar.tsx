@@ -25,13 +25,13 @@ const Searchbar: React.FC<SearchbarProps> = ({items, find, onChange, debounceMS=
 	}
 	return (
 		<div>
-			<label>
-				{label}
+			<label className="_Searchbar color0 Searchbar">
 				<input 
 					data-testid="search-bar-input" 
 					type="text"
 					onInput={update}
 				></input>
+				{label}
 			</label>
 		</div>
 	)
