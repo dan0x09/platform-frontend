@@ -1,5 +1,5 @@
 import React from "react";
-import { ChartData, StyleProps } from "sgcomponents";
+import { ChartData, ChartDisplayXAxis, StyleProps } from "sgcomponents";
 
 export enum WidgetDisplayType {
 	CUSTOM="custom", // widget with custom components
@@ -38,6 +38,7 @@ export interface WidgetState {
 	text1?: React.ReactNode
 	getData?: (options?: any) => Promise<any | undefined>
 	getDataSets?: (options?: any) => Promise<Array<ChartData>>
+	displayX?: ChartDisplayXAxis
 	// fields a custom widget will use
 	widgetComponent?: WidgetStateComponent
 	displayComponent?: WidgetDisplayStateComponent

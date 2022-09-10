@@ -7,7 +7,7 @@ import {
 import CSS from 'csstype'
 
 import "../../Style.css"
-import { ChartData, ChartDataPointX, ChartDataType, StyleProps } from "../../types"
+import { ChartData, ChartDataType, ChartDisplayXAxis, StyleProps } from "../../types"
 
 const dataKeyX = "name"
 
@@ -22,7 +22,7 @@ interface ChartProps extends StyleProps {
     showLegend?: boolean
     maxHeight?: number | undefined
     data: Array<ChartData>
-    displayX?: (x: ChartDataPointX) => number | string
+    displayX?: ChartDisplayXAxis
 }
 
 const Chart: React.FC<ChartProps> = ({style={} as CSS.Properties, className="", aspect=1.3, showLegend=true, maxHeight=undefined, data, displayX=v=>v}) => {
