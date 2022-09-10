@@ -219,7 +219,7 @@ const silages = [
     {
         id: "example_silo_2",
         name: "Silage 2",
-        date: "25.08.2022",
+        date: "22.08.2022",
         description: "Eine Silage mit Grassschnitt.",
         customer: "Customer 2",
         plotAddress: "../example_silo_2.html",
