@@ -12,8 +12,8 @@ const DataWidget: React.FC<WidgetProps> = ({show, widgetStateWrapper, big=false,
 	const refreshDataSets = async() => setDataSets((await hydrateWidgetStateWrapper(widgetStateWrapper)).dataSets)
 
 	return (
-		<div className={(mobile ? 'WidgetMobile' : 'Widget') + (big && !mobile ? ' WidgetDouble' : '')}>
-			<div className={'WidgetContent'}>
+		<div className={(mobile ? '_WidgetMobile' : '_Widget') + (big && !mobile ? ' _WidgetDouble' : '') + (mobile ? ' WidgetMobile' : ' Widget') + (big && !mobile ? ' WidgetDouble' : '')}>
+			<div className='_WidgetContent WidgetContent'>
 				<Row>
 					<div>
 						<h2>{widgetStateWrapper.widgetState.title}</h2>
@@ -26,7 +26,7 @@ const DataWidget: React.FC<WidgetProps> = ({show, widgetStateWrapper, big=false,
 					<p>{widgetStateWrapper.widgetState.subtitle1}</p>
 				</Row>
 
-				<div className='WidgetContentSpacer' />
+				<div className='_WidgetContentSpacer WidgetContentSpacer' />
 
 				{!!(dataSets.length) ? <Row align={RowAlign.MID} space='1px' spaceAround>
 					<div>
@@ -45,7 +45,7 @@ const DataWidget: React.FC<WidgetProps> = ({show, widgetStateWrapper, big=false,
 				</Row>
 				:
 				widgetStateWrapper.widgetState.text && <div>
-					<p className='WidgetContentText'>
+					<p className='_WidgetContentText WidgetContentText'>
 						{widgetStateWrapper.widgetState.text}	
 					</p>
 
@@ -54,7 +54,7 @@ const DataWidget: React.FC<WidgetProps> = ({show, widgetStateWrapper, big=false,
 					</Row>
 				</div>}
 
-				<div className='WidgetContentSpacer' />
+				<div className='_WidgetContentSpacer WidgetContentSpacer' />
 			</div>
 		</div>
 	)

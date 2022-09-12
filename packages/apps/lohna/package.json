@@ -16,6 +16,7 @@
     "sgapi": "*",
     "sgcomponents": "*",
     "sgwidgets": "*",
+    "sg-evaluation-widget": "*",
     "typescript": "4.7.4",
     "web-vitals": "2.1.4",
     "i18next": "21.9.1",
