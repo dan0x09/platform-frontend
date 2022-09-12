@@ -10,7 +10,7 @@ export interface ClickableProps extends StyleProps {
 }
 
 export enum ChartDataType {
-    LINE="line", AREA="area"//, BAR="bar"
+    LINE="line", AREA="area", BAR="bar", PIE="pie"
 }
 
 export type ChartDataPointX = number | string
