@@ -2,6 +2,14 @@
     background-color: #ddd;
 }
 
+.WidgetContent {
+    background-color: #fafafa;
+}
+
+.WidgetContent:hover {
+    background-color: #fff;
+}
+
 .DataPageWrapper {
     display: flex;
     flex-direction: column;

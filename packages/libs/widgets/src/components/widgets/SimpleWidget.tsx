@@ -7,8 +7,8 @@ import { WidgetProps } from '../../types'
 
 const SimpleWidget: React.FC<WidgetProps> = ({show, widgetStateWrapper, big=false, mobile=false}) => {
 	return (
-		<div className={(mobile ? 'WidgetMobile' : 'Widget') + (big ? ' WidgetDouble' : '')}>
-			<div className={'WidgetContent'}>
+		<div className={(mobile ? '_WidgetMobile' : '_Widget') + (big ? ' _WidgetDouble' : '') + (mobile ? ' WidgetMobile' : ' Widget') + (big ? ' WidgetDouble' : '')}>
+			<div className={'_WidgetContent WidgetContent'}>
 				<Row>
 					<h2>{widgetStateWrapper.widgetState.title}</h2>
 				</Row>
@@ -17,9 +17,9 @@ const SimpleWidget: React.FC<WidgetProps> = ({show, widgetStateWrapper, big=fals
 					<p>{widgetStateWrapper.widgetState.subtitle}</p>
 				</Row>
 
-				<div className='WidgetContentSpacer' />
+				<div className='_WidgetContentSpacer WidgetContentSpacer' />
 
-                <p className='WidgetContentText'>
+                <p className='_WidgetContentText WidgetContentText'>
                     {widgetStateWrapper.widgetState.text}	
                 </p>
 				
@@ -27,7 +27,7 @@ const SimpleWidget: React.FC<WidgetProps> = ({show, widgetStateWrapper, big=fals
                     <Button onClick={() => show(widgetStateWrapper)}>{widgetStateWrapper.widgetState.showText}</Button>
                 </Row>
 
-				<div className='WidgetContentSpacer' />
+				<div className='_WidgetContentSpacer WidgetContentSpacer' />
 			</div>
 		</div>
 	)

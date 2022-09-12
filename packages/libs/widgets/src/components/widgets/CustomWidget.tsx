@@ -11,8 +11,8 @@ const CustomWidget: React.FC<WidgetProps> = ({show, widgetStateWrapper, big=fals
 	const refreshDataSets = async() => setWidgetStateWrapperState((await hydrateWidgetStateWrapper(widgetStateWrapper)))
 
 	return (
-		<div className={(mobile ? 'WidgetMobile' : 'Widget') + (big ? ' WidgetDouble' : '')}>
-			<div className={'WidgetContent'}>
+		<div className={(mobile ? '_WidgetMobile' : '_Widget') + (big ? ' _WidgetDouble' : '') + (mobile ? ' WidgetMobile' : ' Widget') + (big ? ' WidgetDouble' : '')}>
+			<div className='_WidgetContent WidgetContent'>
 				{widgetStateWrapper.widgetState.widgetComponent && 
 					widgetStateWrapper.widgetState.widgetComponent(widgetStateWrapperState, show, refreshDataSets)
 				}

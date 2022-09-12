@@ -1,4 +1,4 @@
-.Widget {
+._Widget {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -8,7 +8,7 @@
     padding-bottom: 10px;
 }
 
-.WidgetMobile {
+._WidgetMobile {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -17,11 +17,11 @@
     padding-top: 20px;
 }
 
-.WidgetDouble {
+._WidgetDouble {
     width: 66.6%;
 }
 
-.WidgetContent {
+._WidgetContent {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -32,21 +32,19 @@
     padding-right: 10px;
     margin-left: 10px;
     margin-right: 10px;
-    background-color: #f3f3f3;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     transition-duration: 0.2s;
 }
 
-.WidgetContent:hover {
-    background-color: #fff;
+._WidgetContent:hover {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.WidgetContentSpacer {
+._WidgetContentSpacer {
     flex: 1;
 }
 
-.WidgetContentText {
+._WidgetContentText {
     max-height: 150px;
     overflow: hidden scroll;
     background-color: white;
