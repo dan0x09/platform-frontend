@@ -29,4 +29,6 @@ The DATA type offers fields featured by a SIMPLE widget, but also implements a s
 Fields used by the DATA widget are: title, subtitle, text, informationComponent, subtitle1, text1, getDataSets
 
 ### custom
-The CUSTOM type is using the fields widgetComponent and displayComponent, which represent both sides of a widget, the content inside of a widget within the WidgetGrid and the content featured in a WidgetDisplay.
+The CUSTOM type is using the fields widgetComponent and displayComponent as well as displayComponentRight, which represent both sides of a widget, the content inside of a widget within the WidgetGrid and the content featured in a WidgetDisplay.
+These functions take the widgetStateWrapper as first argument, which features the widgetState, fetched dataSets and data. The second argument is a function to trigger the show event for the widget component. For the display components it is a function to trigger the data refresh. This is also implemented as the third argument of the widget component.
+Furthermore and can be useful to implement getData, which returns an object of type any, while async tasks can be executed here. getData is called together with getDataSets in the background, on first render and on clicking refresh.
