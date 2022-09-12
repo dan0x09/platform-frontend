@@ -17,7 +17,8 @@
     "components:dev": "cd ./packages/libs/components/ && npm run build:watch",
     "widgets:dev": "cd ./packages/libs/widgets/ && npm run build:watch",
     "test:dev": "cd ./packages/workspace/testproject/ && npm start",
-    "lohna:dev": "cd ./packages/apps/lohna/ && npm start"
+    "lohna:dev": "cd ./packages/apps/lohna/ && npm start",
+    "evaluation:dev": "cd ./packages/libs/evaluation-widget/ && npm run build:watch"
   },
   "repository": {
     "type": "git",
