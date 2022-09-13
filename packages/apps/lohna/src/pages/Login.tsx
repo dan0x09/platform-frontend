@@ -14,7 +14,7 @@ const Login: React.FC = () => {
 			<Site>
 				<div>
 					<Row align={RowAlign.MID}>
-						<h3>Please login here</h3>
+						<h3>{t("login.text")}</h3>
 					</Row>
 
 					<Row align={RowAlign.MID}>
@@ -32,7 +32,7 @@ const Login: React.FC = () => {
 
 				<Row align={RowAlign.MID}>
 
-					<Button style={{width: '120px'}} onClick={() => window.location.href = "/silos"}>{t("title")}</Button>
+					<Button style={{width: '120px'}} onClick={() => window.location.href = "/silos"}>{t("login.button")}</Button>
 
 					<Button onClick={() => window.location.href = "/__--"}>ERROR</Button>
 					

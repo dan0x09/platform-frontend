@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from "react"
+import { useTranslation } from "react-i18next"
+import { BiCheckSquare, BiSquare } from "react-icons/bi"
+
 import { Searchbar, Page, Site, Button, Row, RowAlign, } from "sgcomponents"
 import { getSilageIds } from "../lib/backendMock"
 
@@ -11,6 +14,7 @@ interface SilageInfoData {
 }
 
 const Login: React.FC = () => {
+	const { t } = useTranslation()
 	const [items, setItems] = useState([] as Array<SilageInfoData>)
 	const [subSet, setSubSet] = useState([] as Array<SilageInfoData>)
 	useEffect(() => {
@@ -33,7 +37,7 @@ const Login: React.FC = () => {
 		<Page>
 			<Site>
 				<Searchbar 
-					label="Silage Suche"
+					label={t("silos.search")}
 					items={items} 
 					find={({name}, val) => 
 						val === "" ||
@@ -47,13 +51,18 @@ const Login: React.FC = () => {
 					return (
 						[
 							<div key={"spacer" + i} style={{marginTop: '20px'}}></div>,
-							<Button key={"" + i} className={slctd ? 'SiloChooserButton SiloChooserButtonActive' : 'SiloChooserButton'} onClick={() => switchSelect(o.id)}>{o.name}</Button>
+							<Button key={"" + i} 
+								className={slctd ? 'SiloChooserButton SiloChooserButtonActive' : 'SiloChooserButton'} 
+								onClick={() => switchSelect(o.id)}
+							>{slctd ? <BiCheckSquare /> : <BiSquare />} {o.name}</Button>
 						]
 					)
 				})}
 
 				<Row style={{marginTop: '20px'}} align={RowAlign.MID}>
-					<Button onClick={() => window.location.href = "/silo/" + createUrlParam()}>OPEN</Button>
+					{selectedSet.length === 0 
+						? <Button style={{backgroundColor: 'grey'}} onClick={() => {}}>...</Button>
+						: <Button onClick={() => window.location.href = "/silo/" + createUrlParam()}>{t('silos.open')}</Button>}
 				</Row>
 
 				{/* <Button className='SiloChooserButton SiloChooserButtonInactive' onClick={() => {}}>Silo X</Button>

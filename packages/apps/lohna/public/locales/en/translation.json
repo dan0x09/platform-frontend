@@ -1,7 +1,35 @@
 {
-	"title": "TITLE",
-	"description": {
-		"part1": "To get started, edit <1>src/App.js</1> and save to reload.",
-		"part2": "Switch language between english and german using buttons above."
+	"login": {
+		"text": "Please login here:",
+		"button": "Login"
+	},
+	"silos": {
+		"search": "Search silage",
+		"open": "Open"
+	},
+	"widgets": {
+		"all": {
+			"refresh": "Reload",
+			"show": "Show"
+		},
+		"meta": {
+
+		},
+		"metadata": {
+			"title": "Data",
+			"subtitle": "- - -",
+			"subtitle1": " --"
+		},
+		"weather": {
+			"title": "Weather",
+			"subtitle": ""
+		},
+		"volume": {
+			"title": "Volume",
+			"subtitle": "- - -",
+			"subtitle1": "m^3",
+			"text": "The current volume is: ",
+			"text1": "The following graphic shows a 3D model of the silage. "
+		}
 	}
 }

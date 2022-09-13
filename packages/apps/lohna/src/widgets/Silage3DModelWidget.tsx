@@ -41,7 +41,7 @@ const ModelWidget = (silageId: string): ModelWidgetState => {
 			const r = await getSilage(silageId)
 			return [{
 				yName: "volume",
-				displayTooltip: (value, name) => ["" + value, name],
+				displayTooltip: (value, name) => ["" + value + " m^3", name],
 				style: {
 					color: '#3B2D8F',
 					backgroundColor: '#4A39B3'
@@ -61,7 +61,7 @@ const ModelWidget = (silageId: string): ModelWidgetState => {
 						<h3>{plotAddress}</h3>
 					</Row>
 
-					<p>{text}{volume}.</p>
+					<p>{text}{volume} m^3.</p>
 					
 					<Row style={{maxWidth: '90%'}}>
                 		<Button onClick={refresh}>{refreshText}</Button>
