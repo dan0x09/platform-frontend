@@ -22,7 +22,8 @@
     "i18next": "21.9.1",
     "react-i18next": "11.18.4",
     "i18next-http-backend": "1.4.1",
-    "i18next-browser-languagedetector": "6.1.5"
+    "i18next-browser-languagedetector": "6.1.5",
+    "react-icons": "4.4.0"
   },
   "scripts": {
     "start": "react-scripts start",

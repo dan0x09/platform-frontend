@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react"
+import { BiX, BiMenu } from "react-icons/bi"
 
 import Drawer from "../components/Drawer"
 
@@ -8,7 +9,6 @@ import { WidgetStateWrapper, ShowWidgetFunction } from "sgwidgets"
 
 import { isMobileThreshold } from "../lib/helper"
 import Widgets from "../widgets"
-import { Translation } from "react-i18next"
 
 interface WidgetDrawerProps {
 	id: string
@@ -16,12 +16,14 @@ interface WidgetDrawerProps {
 }
 
 const WidgetDrawer: React.FC<WidgetDrawerProps> = ({id, showData}) => {
+	const [showedOnce, setShowedOnce] = useState(false)
 	const [collapsed, setCollapsed] = useState(false)
 	const silageIds = id.split("+")
 	const [silageId, setSilageId] = useState(0)
 
 	const showDataAndCollapse = ((data) => {
 		showData(data)
+		setShowedOnce(true)
 		setCollapsed(true)
 	}) as ShowWidgetFunction
 
@@ -36,7 +38,13 @@ const WidgetDrawer: React.FC<WidgetDrawerProps> = ({id, showData}) => {
 	return (
 		<div>
 			<div className={mobile ? "DrawerNavigationTop" : "DrawerNavigation"}>
-				<Button key="close" onClick={() => setCollapsed(!collapsed)}><Translation>{(t) => t(collapsed ? "drawer.open" : "drawer.close")}</Translation></Button>
+				<div style={{padding: '3px'}}>
+					<Button key="close" onClick={() => showedOnce && setCollapsed(!collapsed)}>
+						{!collapsed && showedOnce
+							? <BiX size={40} />
+							: <BiMenu size={40} />}
+					</Button>
+				</div>
 			</div>
 			
 			<Drawer collapsed={collapsed} margin={mobile ? "100px 0 0 0" : "0 100px 0 0"}>

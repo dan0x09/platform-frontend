@@ -1,9 +1,11 @@
 {
-	"title": "Willkommen",
-	"drawer": {
-		"open": "Öffnen",
-		"close": "Schließen",
-		"next": "Nächste Silage"
+	"login": {
+		"text": "Bitte melden Sie sich an:",
+		"button": "Login"
+	},
+	"silos": {
+		"search": "Silage suchen",
+		"open": "Öffnen"
 	},
 	"widgets": {
 		"all": {
@@ -25,13 +27,9 @@
 		"volume": {
 			"title": "Volumen",
 			"subtitle": "- - -",
-			"subtitle1": "m^3 / Tag",
+			"subtitle1": "m^3",
 			"text": "Das aktuelle Gesammtvolumen beträgt: ",
 			"text1": "Die folgende Grafik zeigt ein 3D Modell der Silage. "
 		}
-	},
-	"description": {
-		"part1": "To get started, edit <1>src/App.js</1> and save to reload.",
-		"part2": "Switch language between english and german using buttons above."
 	}
 }
