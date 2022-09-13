@@ -135,6 +135,7 @@ const PieComposed: React.FC<ChartProps> = ({style={} as CSS.Properties, classNam
                             switch(type) {
                                 case ChartDataType.PIE:
                                     return <Pie 
+                                        key={"" + yName}
                                         data={dataSet} dataKey={yName} 
                                         fill={style.backgroundColor} 
                                         innerRadius={pieSizes[i].inner} outerRadius={pieSizes[i].outer}
