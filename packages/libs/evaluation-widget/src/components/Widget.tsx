@@ -6,6 +6,7 @@ import "../Style.css"
 const Widget = (): WidgetState => {
 
 	return {
+		widgetType: WidgetDisplayType.DATA,
 		displayType: WidgetDisplayType.DATA,
 		title: "Evaluation",
 		subtitle: "Ein Widget, welches während der Evaluation enstanden ist.",
@@ -23,11 +24,15 @@ const Widget = (): WidgetState => {
 				} as ChartData
 			]
 		},
-		// widgetComponent: ({widgetState, data, dataSets}, show, refresh) => { 
-		// 	return null
-		// },
-		// displayComponent: ({widgetState, data, dataSets}, refresh) => {
-		// 	return null
+		// widgetComponent: (widgetStateWrapper, show) => {
+		// 	const {widgetState, dataSets} = widgetStateWrapper
+		// 	const {title} = widgetState
+			
+		// 	return (
+		// 		<div style={{width: '100%', height: '100%'}}>
+					
+		// 		</div>
+		// 	)
 		// }
 	}
 }

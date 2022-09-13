@@ -1,18 +1,13 @@
 import { Translation } from "react-i18next"
-import { ChartDataType } from "sgcomponents"
+import { Chart, ChartData, ChartDataType, Row, Site } from "sgcomponents"
 import { WidgetDisplayType, WidgetState } from "sgwidgets"
-import { getSilage } from "../lib/backendMock"
 
 interface MetaDataWidgetState extends WidgetState {
 	getData?: () => Promise<SilageMetaData>
 }
 
 interface SilageMetaData {
-	id: string
-	name: string
-	date: string
-	description: string
-	customer: string
+	additionalSets: Array<ChartData>
 }
 
 const MetaWidget = (silageId: string): MetaDataWidgetState => {
@@ -28,13 +23,27 @@ const MetaWidget = (silageId: string): MetaDataWidgetState => {
 		showText: t("widgets.all.show"),
 		getData: async() => {
 			// async fetch of silage meta data
-			const r = await getSilage(silageId)
 			return {
-				id: r?.id || "",
-				name: r?.name || "",
-				date: r?.date || "",
-				description: r?.description || "",
-				customer: r?.customer || ""
+				additionalSets: [{
+					yName: 'data',
+					points: [[0,0], [1,1], [2,3]],
+					type: ChartDataType.BAR
+				},{
+					yName: 'data1',
+					points: [[0,0], [1,1.5], [2,2.3]],
+					style: {backgroundColor: 'tomato', color: 'tomato'},
+					type: ChartDataType.BAR
+				},{
+					yName: 'data2',
+					points: [[0,1.2], [1,0], [2,1.9]],
+					style: {backgroundColor: 'yellow', color: 'yellow'},
+					type: ChartDataType.BAR
+				},{
+					yName: 'data3',
+					points: [[0,1], [1,1.2], [2,3.1]],
+					style: {color: '#000'},
+					type: ChartDataType.LINE
+				}]
 			}
 		},
 		getDataSets: async() => {
@@ -45,8 +54,28 @@ const MetaWidget = (silageId: string): MetaDataWidgetState => {
 			}, {
 				yName: 'data1',
 				points: [[0,0], [1,1], [2,3]],
+				style: {color: '#000'},
 				type: ChartDataType.PIE
 			}]
+		},
+		displayComponent: ({widgetState, data, dataSets}) => {
+			return (
+				<Site>
+					<h1>{widgetState?.title}</h1>
+
+					<Row>
+						<Chart 
+							maxHeight={500}
+							data={dataSets}
+						/>
+
+						<Chart 
+							maxHeight={500}
+							data={data.additionalSets}
+						/>
+					</Row>
+				</Site>
+			)
 		}
 	}
 }
