@@ -50,7 +50,7 @@ const ModelWidget = (silageId: string): ModelWidgetState => {
 				points: r?.volumeTimeSeries.map(p => [p.timestamp, p.volume])
 			} as ChartData]
 		},
-		displayX: x => (new Date(x)).getHours() + "h",
+		displayX: x => (new Date(x)).getHours() + ":" + (new Date(x)).getMinutes() + "h",
 		displayComponent: ({widgetState: {title, subtitle, subtitle1, text, text1, refreshText, displayX}, data, dataSets}, refresh) => {
 			const {volume, plotAddress, imgAddress} = data as Silage3DModelData
 			return (
