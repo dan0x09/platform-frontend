@@ -19,29 +19,31 @@ const MetaWidget = (silageId: string): MetaDataWidgetState => {
 		title: t("widgets.metadata.title"),
 		subtitle: t("widgets.metadata.subtitle"),
 		subtitle1: t("widgets.metadata.subtitle1"),
+		text: t("widgets.metadata.text"),
 		refreshText: t("widgets.all.refresh"),
 		showText: t("widgets.all.show"),
 		getData: async() => {
 			// async fetch of silage meta data
 			return {
 				additionalSets: [{
-					yName: 'data',
-					points: [[0,0], [1,1], [2,3]],
-					type: ChartDataType.BAR
-				},{
-					yName: 'data1',
-					points: [[0,0], [1,1.5], [2,2.3]],
+					yName: 'test data',
+					points: [[0,.1], [1,1], [2,3]],
 					style: {backgroundColor: 'tomato', color: 'tomato'},
-					type: ChartDataType.BAR
+					type: ChartDataType.AREA
 				},{
-					yName: 'data2',
-					points: [[0,1.2], [1,0], [2,1.9]],
-					style: {backgroundColor: 'yellow', color: 'yellow'},
-					type: ChartDataType.BAR
+					yName: 'other data',
+					points: [[0,.1], [1,1.5], [2,2.3]],
+					style: {color: 'magenta'},
+					type: ChartDataType.LINE
 				},{
-					yName: 'data3',
+					yName: 'more data',
+					points: [[0,1.2], [1,.2], [2,1.9]],
+					style: {color: 'blue'},
+					type: ChartDataType.LINE
+				},{
+					yName: 'a curve',
 					points: [[0,1], [1,1.2], [2,3.1]],
-					style: {color: '#000'},
+					style: {color: '#333'},
 					type: ChartDataType.LINE
 				}]
 			}
@@ -58,20 +60,33 @@ const MetaWidget = (silageId: string): MetaDataWidgetState => {
 				type: ChartDataType.PIE
 			}]
 		},
-		displayComponent: ({widgetState, data, dataSets}) => {
+		displayComponent: ({widgetState, dataSets}) => {
 			return (
 				<Site>
 					<h1>{widgetState?.title}</h1>
+
+					<h3>{widgetState?.subtitle}</h3>
 
 					<Row>
 						<Chart 
 							maxHeight={500}
 							data={dataSets}
 						/>
+					</Row>
 
+					<p>{widgetState?.text}</p>
+				</Site>
+			)
+		},
+		displayComponentRight: ({widgetState, data}) => {
+			return (
+				<Site>
+					<h2>{widgetState?.subtitle1}</h2>
+					<Row>
 						<Chart 
 							maxHeight={500}
 							data={data.additionalSets}
+							displayX={(x) => x + " m"}
 						/>
 					</Row>
 				</Site>

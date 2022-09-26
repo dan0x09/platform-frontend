@@ -17,8 +17,9 @@
 		},
 		"metadata": {
 			"title": "Daten",
-			"subtitle": "- - -",
-			"subtitle1": " --"
+			"subtitle": "Einige Beispiele für Charts.",
+			"subtitle1": " --",
+			"text": "Die Grafiken zeigen Testdaten."
 		},
 		"weather": {
 			"title": "Wetter",
@@ -26,8 +27,8 @@
 		},
 		"volume": {
 			"title": "Volumen",
-			"subtitle": "- - -",
-			"subtitle1": "m^3",
+			"subtitle": "Das Volumen des Silagehaufens.",
+			"subtitle1": "in m^3",
 			"text": "Das aktuelle Gesammtvolumen beträgt: ",
 			"text1": "Die folgende Grafik zeigt ein 3D Modell der Silage. "
 		}

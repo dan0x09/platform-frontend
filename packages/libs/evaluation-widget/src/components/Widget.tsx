@@ -9,6 +9,7 @@ const Widget = (): WidgetState => {
 		widgetType: WidgetDisplayType.DATA,
 		displayType: WidgetDisplayType.DATA,
 		title: "Evaluation",
+		big: true,
 		subtitle: "Ein Widget, welches während der Evaluation enstanden ist.",
 		refreshText: "Neu laden",
 		showText: "Anzeigen",
