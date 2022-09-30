@@ -5,6 +5,8 @@ Part of the modules are components, widgets and an application.
 
 ## Documentation
 
+This project was created with Node.js.
+
 Documentation can be found under /docs/.
 
 ## Modules
