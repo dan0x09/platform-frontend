@@ -14,3 +14,39 @@ On top of that each data set can alter the way a tooltip is shown, by using the 
 
 ## x-axis
 We implemented a function, which can be set with the `displayX` property. It alters x values before getting displayed, we now can define a data set with the x values ranging from 1 to 24 and then be renamed with a function like ``` x => x + "h" ``` to get better results while data remains a list of numbers.
+
+## example
+
+```
+const dataSets = [{
+	// identifier for this set
+	yName: "height",
+	// changes tooltips, takes the y value and the name of the set
+	displayTooltip: (value, name) => ["" + value + " m", name + " in m"],
+	// sets line and backgroundColor
+	style: {
+		color: '#3B2D8F',
+		backgroundColor: '#4A39B3'
+	},
+	// types are AREA, LINE, BAR, PIE
+	type: ChartDataType.AREA,
+	// points are lists of tuples [[number | string, number], ...]
+	points: [["Building", 20], ...]
+} as ChartData,
+{
+	yName: "height 2",
+	style: {
+		color: '#3B2D8F',
+		backgroundColor: '#4A39B3'
+	},
+	type: ChartDataType.LINE,
+	points: [["Building", 10], ...]
+} as ChartData]
+
+
+<Chart 
+	displayX={x => "- " + x + " -"}
+	maxHeight={200}
+	data={dataSets}
+/>
+```
