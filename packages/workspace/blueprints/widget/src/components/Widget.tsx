@@ -1,5 +1,3 @@
-import React from "react"
-
 import { WidgetDisplayType, WidgetState } from "sgwidgets"
 import "../Style.css"
 

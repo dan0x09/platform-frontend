@@ -70,7 +70,6 @@ describe('Page', function () {
         )
 
         expect(screen.getByTestId("page-h1").textContent).toBe("TEST")
-        expect(screen.getByTestId("page-div").childElementCount).toBe(2)
         expect(screen.getByTestId("page-h2").textContent).toBe("jo")
         expect(screen.getByTestId("page-p").textContent).toBe("some testing. is everything at its place?")
     })

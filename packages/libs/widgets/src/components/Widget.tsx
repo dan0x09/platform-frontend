@@ -1,4 +1,3 @@
-import React from "react"
 import { WidgetDisplayType, WidgetProps } from "../types"
 import CustomWidget from "./widgets/CustomWidget"
 import DataWidget from "./widgets/DataWidget"
