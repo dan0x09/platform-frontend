@@ -1,4 +1,4 @@
-# projects / packages
+# projects / packages / technologies
 
 ## web applications
 Using react, typescript, css, jest, eslint

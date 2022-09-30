@@ -1,14 +1,6 @@
 
 # This is a module for reusable components
 
+## components can be found within the ./src/components folder.
 
-## Page
-
-## Site
-
-## Buttons
-### FAB - Floating Action Button
-
-## Layouts
-### Grid Layout
-### Page Layout
+Their type definitions are located at ./src/types.ts and in the component files.
