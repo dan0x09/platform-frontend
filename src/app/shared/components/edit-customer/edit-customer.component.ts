@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { Customer } from '../../types/interfaces';
 
 @Component({
@@ -15,18 +15,18 @@ export class EditCustomerComponent implements OnInit {
 
     editable = false;
 
-    editForm: FormGroup;
+    editForm: UntypedFormGroup;
 
     constructor() {}
     ngOnInit(): void {
-        this.editForm = new FormGroup({
-            name: new FormControl({ value: this.customer.name, disabled: true }, [Validators.required]),
-            streetAndNumber: new FormControl({ value: this.customer.streetAndNumber, disabled: true }, [
+        this.editForm = new UntypedFormGroup({
+            name: new UntypedFormControl({ value: this.customer.name, disabled: true }, [Validators.required]),
+            streetAndNumber: new UntypedFormControl({ value: this.customer.streetAndNumber, disabled: true }, [
                 Validators.required,
             ]),
-            city: new FormControl({ value: this.customer.city, disabled: true }, [Validators.required]),
-            zipCode: new FormControl({ value: this.customer.zipCode, disabled: true }, [Validators.required]),
-            country: new FormControl({ value: this.customer.country, disabled: true }, [Validators.required]),
+            city: new UntypedFormControl({ value: this.customer.city, disabled: true }, [Validators.required]),
+            zipCode: new UntypedFormControl({ value: this.customer.zipCode, disabled: true }, [Validators.required]),
+            country: new UntypedFormControl({ value: this.customer.country, disabled: true }, [Validators.required]),
         });
     }
 

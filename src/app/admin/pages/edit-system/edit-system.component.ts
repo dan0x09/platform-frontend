@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ConfigService } from 'src/app/services/config.service';
 import { Contractor, GenerateToken, System } from 'src/app/shared/types/interfaces';
@@ -11,7 +11,7 @@ import { Contractor, GenerateToken, System } from 'src/app/shared/types/interfac
     styleUrls: ['./edit-system.component.css'],
 })
 export class EditSystemComponent implements OnInit {
-    editForm: FormGroup;
+    editForm: UntypedFormGroup;
     system: System;
     contractor: Contractor;
     token: string | undefined;
@@ -26,9 +26,9 @@ export class EditSystemComponent implements OnInit {
                 this.http.get<Contractor>(this.config.getUrl(`/contractor/${this.system.contractorId}`)).subscribe({
                     next: (contractor: Contractor) => {
                         this.contractor = contractor;
-                        this.editForm = new FormGroup({
-                            name: new FormControl({ value: this.system.name, disabled: true }, [Validators.required]),
-                            contractor: new FormControl({ value: this.contractor.name, disabled: true }, [
+                        this.editForm = new UntypedFormGroup({
+                            name: new UntypedFormControl({ value: this.system.name, disabled: true }, [Validators.required]),
+                            contractor: new UntypedFormControl({ value: this.contractor.name, disabled: true }, [
                                 Validators.required,
                             ]),
                         });

@@ -104,5 +104,7 @@
       }
     }
   },
-  "defaultProject": "platform-frontend"
+  "cli": {
+    "analytics": false
+  }
 }

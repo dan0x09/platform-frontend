@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConfigService } from 'src/app/services/config.service';
 import { Contractor } from 'src/app/shared/types/interfaces';
@@ -11,9 +11,9 @@ import { Contractor } from 'src/app/shared/types/interfaces';
     styleUrls: ['./create-system.component.css'],
 })
 export class CreateSystemComponent implements OnInit {
-    createForm: FormGroup = new FormGroup({
-        name: new FormControl('', [Validators.required]),
-        contractor: new FormControl('', [Validators.required]),
+    createForm: UntypedFormGroup = new UntypedFormGroup({
+        name: new UntypedFormControl('', [Validators.required]),
+        contractor: new UntypedFormControl('', [Validators.required]),
     });
 
     contractors: Contractor[];

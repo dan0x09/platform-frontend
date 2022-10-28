@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Role } from 'src/app/shared/types/interfaces';
 import { AlertService } from '../../services/alert.service';
@@ -13,15 +13,15 @@ import { ConfigService } from '../../services/config.service';
     styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
-    loginForm: FormGroup = this.formBuilder.group({
-        email: new FormControl('', [Validators.required, Validators.email]),
-        password: new FormControl('', [Validators.required, Validators.minLength(7)]),
+    loginForm: UntypedFormGroup = this.formBuilder.group({
+        email: new UntypedFormControl('', [Validators.required, Validators.email]),
+        password: new UntypedFormControl('', [Validators.required, Validators.minLength(7)]),
     });
 
     submitted = false;
 
     constructor(
-        private formBuilder: FormBuilder,
+        private formBuilder: UntypedFormBuilder,
         private http: HttpClient,
         private router: Router,
         private auth: AuthService,

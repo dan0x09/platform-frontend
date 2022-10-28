@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { ConfigService } from 'src/app/services/config.service';
@@ -12,13 +12,13 @@ import { Role } from 'src/app/shared/types/interfaces';
     styleUrls: ['./signup.component.css'],
 })
 export class SignupComponent implements OnInit {
-    signupForm: FormGroup;
+    signupForm: UntypedFormGroup;
 
     token: string | null;
     error = false;
 
     constructor(
-        private formBuilder: FormBuilder,
+        private formBuilder: UntypedFormBuilder,
         private http: HttpClient,
         private router: Router,
         private route: ActivatedRoute,
@@ -31,15 +31,15 @@ export class SignupComponent implements OnInit {
         if (this.token) {
             this.signupForm = this.formBuilder.group(
                 {
-                    firstName: new FormControl('', [Validators.required, Validators.minLength(2)]),
-                    lastName: new FormControl('', [Validators.required, Validators.minLength(2)]),
-                    password: new FormControl('', [Validators.required, Validators.minLength(7)]),
-                    repeatPassword: new FormControl('', [Validators.required, Validators.minLength(7)]),
-                    token: new FormControl(this.token, [Validators.required, Validators.minLength(7)]),
+                    firstName: new UntypedFormControl('', [Validators.required, Validators.minLength(2)]),
+                    lastName: new UntypedFormControl('', [Validators.required, Validators.minLength(2)]),
+                    password: new UntypedFormControl('', [Validators.required, Validators.minLength(7)]),
+                    repeatPassword: new UntypedFormControl('', [Validators.required, Validators.minLength(7)]),
+                    token: new UntypedFormControl(this.token, [Validators.required, Validators.minLength(7)]),
                 },
                 {
                     validators: [
-                        (fg: FormGroup) => {
+                        (fg: UntypedFormGroup) => {
                             const formInput = fg.value as { password: string; repeatPassword: string };
                             return formInput.password === formInput.repeatPassword;
                         },

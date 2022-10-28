@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ConfigService } from 'src/app/services/config.service';
 
@@ -10,8 +10,8 @@ import { ConfigService } from 'src/app/services/config.service';
     styleUrls: ['./request-reset-password.component.css'],
 })
 export class RequestResetPasswordComponent {
-    form: FormGroup = this.formBuilder.group({
-        email: new FormControl('', [Validators.required, Validators.email]),
+    form: UntypedFormGroup = this.formBuilder.group({
+        email: new UntypedFormControl('', [Validators.required, Validators.email]),
     });
 
     submitted = false;
@@ -19,7 +19,7 @@ export class RequestResetPasswordComponent {
     success = false;
 
     constructor(
-        private formBuilder: FormBuilder,
+        private formBuilder: UntypedFormBuilder,
         private http: HttpClient,
         private router: Router,
         private config: ConfigService

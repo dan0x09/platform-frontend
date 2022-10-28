@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { ConfigService } from 'src/app/services/config.service';
 import { Contractor, Farm, Role, UserInvitation } from '../../types/interfaces';
@@ -32,11 +32,11 @@ export class CreateInvitationComponent implements OnInit {
 
     roles: { id: Role; viewValue: string }[];
 
-    form: FormGroup = new FormGroup({
-        email: new FormControl('', [Validators.required, Validators.email]),
-        role: new FormControl({ value: Role.FARMER }, [Validators.required]),
-        contractorOrganization: new FormControl({ value: null, disabled: false }, []),
-        farmerOrganization: new FormControl({ value: null, disabled: false }, []),
+    form: UntypedFormGroup = new UntypedFormGroup({
+        email: new UntypedFormControl('', [Validators.required, Validators.email]),
+        role: new UntypedFormControl({ value: Role.FARMER }, [Validators.required]),
+        contractorOrganization: new UntypedFormControl({ value: null, disabled: false }, []),
+        farmerOrganization: new UntypedFormControl({ value: null, disabled: false }, []),
     });
 
     farmerOrganizationControlHidden = true;

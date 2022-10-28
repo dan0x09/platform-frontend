@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { CreateCustomer } from '../../types/interfaces';
 
 @Component({
@@ -10,12 +10,12 @@ import { CreateCustomer } from '../../types/interfaces';
 export class CreateCustomerComponent implements OnInit {
     @Output() submitEvent: EventEmitter<CreateCustomer> = new EventEmitter<CreateCustomer>();
 
-    createForm: FormGroup = new FormGroup({
-        name: new FormControl('', [Validators.required]),
-        streetAndNumber: new FormControl('', [Validators.required]),
-        city: new FormControl('', [Validators.required]),
-        zipCode: new FormControl('', [Validators.required]),
-        country: new FormControl('', [Validators.required]),
+    createForm: UntypedFormGroup = new UntypedFormGroup({
+        name: new UntypedFormControl('', [Validators.required]),
+        streetAndNumber: new UntypedFormControl('', [Validators.required]),
+        city: new UntypedFormControl('', [Validators.required]),
+        zipCode: new UntypedFormControl('', [Validators.required]),
+        country: new UntypedFormControl('', [Validators.required]),
     });
 
     constructor() {}

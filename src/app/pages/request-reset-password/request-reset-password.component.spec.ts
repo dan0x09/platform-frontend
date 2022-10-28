@@ -1,6 +1,6 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormBuilder } from '@angular/forms';
+import { UntypedFormBuilder } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ConfigService } from '../../services/config.service';
 import { RequestResetPasswordComponent } from './request-reset-password.component';
@@ -13,7 +13,7 @@ describe('RequestResetPasswordComponent', () => {
         await TestBed.configureTestingModule({
             imports: [HttpClientTestingModule, RouterTestingModule],
             declarations: [RequestResetPasswordComponent],
-            providers: [ConfigService, FormBuilder],
+            providers: [ConfigService, UntypedFormBuilder],
         }).compileComponents();
     });
 
