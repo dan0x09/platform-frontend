@@ -1,37 +1,46 @@
-# Frontend of Silage Control Platform
+# Getting Started with Create React App
 
-This project contains the frontend for the Silage Control Platform. It uses [Angular](https://angular.io/) to provide a web application for farmers and contractors. Owners and admins are users which manage the platform, e.g., the invitation of new users.
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Requirements
+## Available Scripts
 
--   [Node.js](https://nodejs.org/en/)
--   [Angular](https://angular.io/) via `npm install -g @angular/cli`
+In the project directory, you can run:
 
-## Development
-1. Run `npm run prepare` once to enable automated tests before commits.
-2. Run `npm install` to install dependencies.
-3. Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. 
+### `npm start`
 
-The app will automatically reload if you change any of the source files.
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-## Code scaffolding
+The page will reload if you make edits.\
+You will also see any lint errors in the console.
 
-Run `ng generate component component-name` to generate a new component.
+### `npm test`
 
-You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-## Build
+### `npm run build`
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-## Running unit tests
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-## Running end-to-end tests
+### `npm run eject`
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-## Further help
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+
+## Learn More
+
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+
+To learn React, check out the [React documentation](https://reactjs.org/).
