@@ -1,0 +1,22 @@
+version: 0.1
+
+phases:
+  install:
+    commands:
+      - echo Installing Node.JS...
+      - curl -sL https://deb.nodesource.com/setup_16.x | bash -
+      - apt-get install -y nodejs
+  pre_build:
+    commands:
+      - echo Installing dependencies...
+      - npm install
+  build:
+    commands:
+      - echo Building...
+      - npm run build
+      - echo Build finished.
+artifacts:
+  files:
+    - "**/*"
+  discard-paths: no
+  base-directory: build
