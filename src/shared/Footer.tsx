@@ -15,7 +15,6 @@ function Footer() {
             key={item.name}
             href={item.href}
             className="hover:underline font-light sm:text-base lg:text-sm no-underline text-black"
-            aria-current={item.current ? 'page' : undefined}
           >
             {item.name}
           </a>
