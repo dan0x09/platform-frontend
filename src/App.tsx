@@ -10,7 +10,6 @@ function App() {
   return (
     <AuthProvider>
       {/*       <Navigation /> */}
-
       <Routes>
         <Route path="login" element={<Login />} />
         <Route

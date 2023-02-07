@@ -3,7 +3,7 @@ import { useState, useContext, createContext } from 'react';
 
 interface Auth {
   token: string | null;
-  onLogin(): void;
+  onLogin(credentials: Credentials): void;
   onLogout(): void;
 }
 
@@ -11,6 +11,11 @@ const AuthContext = createContext<Auth>({} as Auth);
 
 export function useAuth() {
   return useContext(AuthContext);
+}
+
+export interface Credentials {
+  email: string;
+  password: string;
 }
 
 type Props = {
@@ -21,11 +26,19 @@ export function AuthProvider(props: Props) {
 
   const [token, setToken] = useState<string | null>(null);
 
-  const handleLogin = async () => {
-    const token = await fakeAuth();
+  const handleLogin = async (credentials: Credentials) => {
+    try {
+      const response = await loginUser(credentials);
 
-    setToken(token);
-    navigate('/dashboard');
+      const token = response.headers.get('x-authorization');
+
+      console.log(token);
+
+      setToken(token);
+      navigate('/dashboard');
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   const handleLogout = () => {
@@ -41,6 +54,12 @@ export function AuthProvider(props: Props) {
   return <AuthContext.Provider value={value}>{props.children}</AuthContext.Provider>;
 }
 
-async function fakeAuth() {
-  return new Promise((resolve) => setTimeout(resolve, 250, '2342f2f1d131rf12')) as Promise<string>;
+async function loginUser(credentials: Credentials) {
+  return fetch('http://localhost:3000/user/login', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(credentials),
+  });
 }
