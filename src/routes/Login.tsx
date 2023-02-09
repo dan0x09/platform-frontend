@@ -17,8 +17,8 @@ export default function Login() {
 
   return (
     <div className="login-wrapper h-screen flex justify-center items-center">
-      <div className="">
-        <h1 className="mb-3">Log In</h1>
+      <div className="flex flex-column items-center w-80 pt-5 pb-16 border-solid border-2 border-stone-200 shadow-xl rounded-lg">
+        <h1 className="mb-4 text-stone-700">Login</h1>
         <form className="flex flex-column items-center" onSubmit={handleSubmit}>
           <label>
             <p>E-Mail-Adresse</p>
@@ -27,13 +27,13 @@ export default function Login() {
           <label>
             <p>Passwort</p>
             <input
-              className="mb-3 border-solid border-2"
+              className="mb-4 border-solid border-2"
               type="password"
               onChange={(e) => setPassword(e.target.value)}
             />
           </label>
           <div>
-            <button className="p-2 bg-sky-600 rounded-md text-slate-50" type="submit">
+            <button className="p-2 bg-sky-900 rounded-md text-slate-50" type="submit">
               Sign in
             </button>
           </div>
