@@ -32,10 +32,8 @@ export function AuthProvider(props: Props) {
 
       const token = response.headers.get('x-authorization');
 
-      console.log(token);
-
       setToken(token);
-      navigate('/dashboard');
+      navigate('/silageheaps');
     } catch (e) {
       console.log(e);
     }

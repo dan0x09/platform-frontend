@@ -2,9 +2,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 import { Route, Routes } from 'react-router-dom';
 import { AuthProvider } from './authentication/AuthProvider';
-import { Dashboard } from './routes/Dashboard';
 import { ProtectedRoute } from './authentication/ProtectedRoute';
 import Login from './routes/Login';
+import SilageHeaps from './routes/SilageHeaps';
 
 function App() {
   return (
@@ -13,10 +13,10 @@ function App() {
       <Routes>
         <Route path="login" element={<Login />} />
         <Route
-          path="dashboard"
+          path="silageheaps"
           element={
             <ProtectedRoute>
-              <Dashboard />
+              <SilageHeaps />
             </ProtectedRoute>
           }
         />
