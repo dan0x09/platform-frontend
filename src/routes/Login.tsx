@@ -16,8 +16,8 @@ export default function Login() {
   };
 
   return (
-    <div className="login-wrapper h-screen flex justify-center items-center">
-      <div className="flex flex-column items-center w-80 pt-5 pb-16 border-solid border-2 border-stone-200 shadow-xl rounded-lg">
+    <div className="login-wrapper h-screen flex justify-center items-center bg-gradient-to-r from-green-400 to-blue-500">
+      <div className="flex flex-column items-center w-80 pt-5 pb-16 border-solid border-2 border-stone-200 shadow-xl rounded-lg bg-white">
         <h1 className="mb-4 text-stone-700">Login</h1>
         <form className="flex flex-column items-center" onSubmit={handleSubmit}>
           <label>
