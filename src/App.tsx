@@ -1,6 +1,5 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import { AuthProvider } from './authentication/AuthProvider';
 import { ProtectedRoute } from './authentication/ProtectedRoute';
 import Login from './routes/Login';
@@ -8,6 +7,8 @@ import SilageHeaps from './routes/SilageHeaps';
 import { Role } from './types/interfaces';
 
 function App() {
+  document.querySelector('html')?.setAttribute('data-theme', 'light');
+
   return (
     <AuthProvider>
       {/*       <Navigation /> */}
@@ -22,7 +23,7 @@ function App() {
           }
         />
 
-        {/*         <Route path="*" element={<NoMatch />} /> */}
+        <Route path="/" element={<Navigate to="/login" replace />} />
       </Routes>
     </AuthProvider>
   );

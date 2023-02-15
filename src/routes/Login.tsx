@@ -17,26 +17,20 @@ export default function Login() {
 
   return (
     <div className="login-wrapper h-screen flex justify-center items-center bg-gradient-to-r from-green-400 to-blue-500">
-      <div className="flex flex-column items-center w-80 pt-5 pb-16 border-solid border-2 border-stone-200 shadow-xl rounded-lg bg-white">
-        <h1 className="mb-4 text-stone-700">Login</h1>
-        <form className="flex flex-column items-center" onSubmit={handleSubmit}>
-          <label>
+      <div className="flex flex-col items-center w-80 pt-5 pb-4 shadow-xl rounded-lg bg-white">
+        <img src="svg/silage-control-logo.svg" className="w-36 mb-6 mt-4" />
+        <form className="flex flex-col items-center" onSubmit={handleSubmit}>
+          <label className="mb-4">
             <p>E-Mail-Adresse</p>
-            <input className="mb-3 border-solid border-2" type="text" onChange={(e) => setEmail(e.target.value)} />
+            <input className="input input-bordered" type="text" onChange={(e) => setEmail(e.target.value)} />
           </label>
-          <label>
+          <label className="mb-6">
             <p>Passwort</p>
-            <input
-              className="mb-4 border-solid border-2"
-              type="password"
-              onChange={(e) => setPassword(e.target.value)}
-            />
+            <input className="input input-bordered" type="password" onChange={(e) => setPassword(e.target.value)} />
           </label>
-          <div>
-            <button className="p-2 bg-sky-900 rounded-md text-slate-50" type="submit">
-              Sign in
-            </button>
-          </div>
+          <button className="btn btn-primary mb-6" type="submit">
+            Einloggen
+          </button>
         </form>
       </div>
     </div>
