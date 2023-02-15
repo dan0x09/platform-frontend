@@ -39,6 +39,15 @@ export interface SilageHeapWithUrls {
   };
 }
 
+export interface Contractor {
+  contractorId: number;
+  name: string;
+  streetAndNumber: string;
+  zipCode: string;
+  city: string;
+  country: string;
+}
+
 export interface System {
   systemId: number;
   name: string;

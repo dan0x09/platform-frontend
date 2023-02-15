@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useState, useContext, createContext } from 'react';
 import { decodeToken } from 'react-jwt';
-import { Credentials, UserTokenPayload } from '../types/interfaces';
+import { Credentials, Role, UserTokenPayload } from '../types/interfaces';
 
 interface Auth {
   token: string | null;
@@ -36,7 +36,12 @@ export function AuthProvider(props: Props) {
         setUserTokenPayload(decodedToken);
 
         setToken(token);
-        navigate('/silageheaps');
+
+        if (userTokenPayload?.role === Role.FARMER) {
+          navigate('/farmer/silos');
+        } else if (userTokenPayload?.role === Role.CONTRACTOR) {
+          navigate('/contractor/systems');
+        }
       }
     } catch (e) {
       console.log(e);

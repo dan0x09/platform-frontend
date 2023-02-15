@@ -3,8 +3,12 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import { AuthProvider } from './authentication/AuthProvider';
 import { ProtectedRoute } from './authentication/ProtectedRoute';
 import Login from './routes/Login';
-import SilageHeaps from './routes/SilageHeaps';
 import { Role } from './types/interfaces';
+import Farmer from './routes/Farmer';
+import Silos from './routes/Silos';
+import Contractor from './routes/Contractor';
+import Systems from './routes/Systems';
+import SilageHeaps from './routes/SilageHeaps';
 
 function App() {
   document.querySelector('html')?.setAttribute('data-theme', 'light');
@@ -15,15 +19,29 @@ function App() {
       <Routes>
         <Route path="login" element={<Login />} />
         <Route
-          path="silageheaps"
+          path="farmer"
           element={
-            <ProtectedRoute allowedRoles={[Role.ADMIN]}>
-              <SilageHeaps />
+            <ProtectedRoute allowedRoles={[Role.FARMER]}>
+              <Farmer />
             </ProtectedRoute>
           }
-        />
+        >
+          <Route path="silos" element={<Silos />} />
+        </Route>
+        <Route
+          path="contractor"
+          element={
+            <ProtectedRoute allowedRoles={[Role.CONTRACTOR]}>
+              <Contractor />
+            </ProtectedRoute>
+          }
+        >
+          <Route path="systems" element={<Systems />} />
+          <Route path="silage-heaps" element={<SilageHeaps />} />
+        </Route>
 
         <Route path="/" element={<Navigate to="/login" replace />} />
+        <Route path="*" element={<Navigate to="/login" replace />} />
       </Routes>
     </AuthProvider>
   );

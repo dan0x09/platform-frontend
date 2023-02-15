@@ -1,4 +1,4 @@
-import { Navigate } from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router-dom';
 import { Fragment } from 'react';
 import { useAuth } from './AuthProvider';
 import { Role } from '../types/interfaces';

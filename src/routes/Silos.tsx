@@ -3,14 +3,15 @@ import { useAuth } from '../authentication/AuthProvider';
 import { SilageHeapWithUrls } from '../types/interfaces';
 import { Table } from 'react-daisyui';
 
-export default function SilageHeaps(args: any) {
+export default function Silos(args: any) {
   const { token, userTokenPayload } = useAuth();
   const [silageHeaps, setSilageHeaps] = useState<SilageHeapWithUrls[]>([]);
 
   useEffect(() => {
     async function getSilageHeaps() {
-      const Response = await requestSilageHeaps(token!, userTokenPayload!.uid);
+      const Response = await requestSilageHeaps(token!, userTokenPayload!.organizationId);
       const data = (await Response.json()) as SilageHeapWithUrls[];
+      console.log(data);
       setSilageHeaps(data);
     }
     getSilageHeaps();
@@ -40,8 +41,8 @@ export default function SilageHeaps(args: any) {
   );
 }
 
-async function requestSilageHeaps(token: string, contractorId: number) {
-  return fetch(`http://localhost:3000/contractor/${contractorId}/silage-heap/`, {
+async function requestSilageHeaps(token: string, farmId: number) {
+  return fetch(`http://localhost:3000/farm/${farmId}/silo/`, {
     method: 'GET',
     headers: {
       Authorization: token!,
