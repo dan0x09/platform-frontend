@@ -1,8 +1,11 @@
 import { Fragment } from 'react';
 import { Button, Dropdown, Navbar, Menu } from 'react-daisyui';
 import { NavLink, Outlet } from 'react-router-dom';
+import { useAuth } from '../authentication/AuthProvider';
 
 export default function Contractor(args: any) {
+  const { onLogout } = useAuth();
+
   return (
     <Fragment>
       <div className="flex w-full items-center justify-center gap-2 mb-6 shrink-0">
@@ -40,7 +43,11 @@ export default function Contractor(args: any) {
               </Menu.Item>
             </Menu>
           </Navbar.Center>
-          <Navbar.End></Navbar.End>
+          <Navbar.End>
+            <Button {...args} onClick={() => onLogout()}>
+              Ausloggen
+            </Button>
+          </Navbar.End>
         </Navbar>
       </div>
       <Outlet></Outlet>
