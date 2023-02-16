@@ -16,7 +16,7 @@ export default function Login() {
   };
 
   return (
-    <div className="login-wrapper h-screen flex justify-center items-center bg-gray-50">
+    <div className="login-wrapper h-screen flex justify-center items-center">
       <div className="flex flex-col items-center w-80 pt-5 pb-4 shadow rounded-lg bg-white">
         <img src="svg/silage-control-logo.svg" className="w-36 mb-6 mt-4" />
         <form className="flex flex-col items-center" onSubmit={handleSubmit}>

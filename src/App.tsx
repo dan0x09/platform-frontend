@@ -11,52 +11,56 @@ import Systems from './routes/Systems';
 import SilageHeaps from './routes/SilageHeaps';
 import Admin from './routes/Admin';
 import Signup from './routes/Signup';
+import Footer from './shared/Footer';
 
 function App() {
   document.querySelector('html')?.setAttribute('data-theme', 'light');
 
   return (
-    <AuthProvider>
-      {/*       <Navigation /> */}
-      <Routes>
-        <Route path="login" element={<Login />} />
-        <Route
-          path="admin"
-          element={
-            <ProtectedRoute allowedRoles={[Role.ADMIN, Role.OWNER]}>
-              <Admin />
-            </ProtectedRoute>
-          }
-        >
-          <Route path="silos" element={<Silos />} />
-        </Route>
-        <Route
-          path="farmer"
-          element={
-            <ProtectedRoute allowedRoles={[Role.FARMER]}>
-              <Farmer />
-            </ProtectedRoute>
-          }
-        >
-          <Route path="silos" element={<Silos />} />
-        </Route>
-        <Route
-          path="contractor"
-          element={
-            <ProtectedRoute allowedRoles={[Role.CONTRACTOR]}>
-              <Contractor />
-            </ProtectedRoute>
-          }
-        >
-          <Route path="systems" element={<Systems />} />
-          <Route path="silage-heaps" element={<SilageHeaps />} />
-        </Route>
-        <Route path="signup" element={<Signup />} />
+    <div className="min-h-full flex flex-col items-stretch bg-gray-50">
+      <AuthProvider>
+        {/*       <Navigation /> */}
+        <Routes>
+          <Route path="login" element={<Login />} />
+          <Route
+            path="admin"
+            element={
+              <ProtectedRoute allowedRoles={[Role.ADMIN, Role.OWNER]}>
+                <Admin />
+              </ProtectedRoute>
+            }
+          >
+            <Route path="silos" element={<Silos />} />
+          </Route>
+          <Route
+            path="farmer"
+            element={
+              <ProtectedRoute allowedRoles={[Role.FARMER]}>
+                <Farmer />
+              </ProtectedRoute>
+            }
+          >
+            <Route path="silos" element={<Silos />} />
+          </Route>
+          <Route
+            path="contractor"
+            element={
+              <ProtectedRoute allowedRoles={[Role.CONTRACTOR]}>
+                <Contractor />
+              </ProtectedRoute>
+            }
+          >
+            <Route path="systems" element={<Systems />} />
+            <Route path="silage-heaps" element={<SilageHeaps />} />
+          </Route>
+          <Route path="signup" element={<Signup />} />
 
-        <Route path="/" element={<Navigate to="/login" replace />} />
-        <Route path="*" element={<Navigate to="/login" replace />} />
-      </Routes>
-    </AuthProvider>
+          <Route path="/" element={<Navigate to="/login" replace />} />
+          <Route path="*" element={<Navigate to="/login" replace />} />
+        </Routes>
+      </AuthProvider>
+      <Footer />
+    </div>
   );
 }
 

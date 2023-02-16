@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useAuth } from '../authentication/AuthProvider';
 import { ContractorSilageHeapWithUrls } from '../types/interfaces';
 import { Table } from 'react-daisyui';
+import PulseLoader from 'react-spinners/PulseLoader';
 
 export default function SilageHeaps(args: any) {
   const [loading, setLoading] = useState(true);
@@ -30,19 +31,27 @@ export default function SilageHeaps(args: any) {
   });
 
   if (loading) {
-    return <h1 className="Loading Silage Heaps..."></h1>;
+    return (
+      <div className="flex justify-center flex-1 shrink-0">
+        <div className="flex flex-col justify-center">
+          <PulseLoader color="#718351" />
+        </div>
+      </div>
+    );
   } else {
     return (
-      <div className="silageheaps-wrapper">
-        <Table {...args}>
-          <Table.Head>
-            <span>ID</span>
-            <span>Name</span>
-            <span>Erstellt</span>
-            <span>Aktualisiert</span>
-          </Table.Head>
-          <Table.Body>{silageHeapsJSX}</Table.Body>
-        </Table>
+      <div className="silageheaps-wrapper flex justify-center flex-1 shrink-0">
+        <div className="overflow-y-auto">
+          <Table {...args}>
+            <Table.Head>
+              <span>ID</span>
+              <span>Name</span>
+              <span>Erstellt</span>
+              <span>Aktualisiert</span>
+            </Table.Head>
+            <Table.Body>{silageHeapsJSX}</Table.Body>
+          </Table>
+        </div>
       </div>
     );
   }

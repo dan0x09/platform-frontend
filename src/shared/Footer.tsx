@@ -1,27 +1,16 @@
-const footerLinks = [
-  { name: 'Datenschutz', href: '/privacy' },
-  { name: 'Impressum', href: '/imprint' },
-];
+import { Footer as DaisyFooter } from 'react-daisyui';
+import { NavLink } from 'react-router-dom';
 
-function Footer() {
+export default function Footer(args: any) {
   return (
-    <div className="flex justify-center mb-4">
-      <div className="mx-2 space-x-20">
-        <a className="sm:text-base lg:text-sm no-underline text-black">
-          © {new Date().getFullYear()} Kiel. Alle Rechte vorbehalten.
-        </a>
-        {footerLinks.map((item) => (
-          <a
-            key={item.name}
-            href={item.href}
-            className="hover:underline font-light sm:text-base lg:text-sm no-underline text-black"
-          >
-            {item.name}
-          </a>
-        ))}
+    <DaisyFooter className="items-center p-4 bg-neutral text-neutral-content shrink-0" {...args}>
+      <div className="items-center grid-flow-col">
+        <p>© {new Date().getFullYear()} Kiel. Alle Rechte vorbehalten.</p>
       </div>
-    </div>
+      <div className="grid-flow-col gap-4 md:place-self-center md:justify-self-end">
+        <NavLink to="/imprint">Impressum</NavLink>
+        <NavLink to="/privacy">Datenschutz</NavLink>
+      </div>
+    </DaisyFooter>
   );
 }
-
-export default Footer;

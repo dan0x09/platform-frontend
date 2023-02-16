@@ -2,8 +2,10 @@ import { useEffect, useState } from 'react';
 import { useAuth } from '../authentication/AuthProvider';
 import { System } from '../types/interfaces';
 import { Table } from 'react-daisyui';
+import { PulseLoader } from 'react-spinners';
 
 export default function Systems(args: any) {
+  const [loading, setLoading] = useState(true);
   const { token, userTokenPayload } = useAuth();
   const [sytems, setSystems] = useState<System[]>([]);
 
@@ -12,6 +14,7 @@ export default function Systems(args: any) {
       const Response = await requestSystems(token!, userTokenPayload!.organizationId);
       const data = (await Response.json()) as System[];
       setSystems(data);
+      setLoading(false);
     }
     getSystems();
   }, []);
@@ -26,18 +29,30 @@ export default function Systems(args: any) {
     );
   });
 
-  return (
-    <div className="silageheaps-wrapper">
-      <Table {...args}>
-        <Table.Head>
-          <span>ID</span>
-          <span>Name</span>
-          <span>Version</span>
-        </Table.Head>
-        <Table.Body>{systemsJSX}</Table.Body>
-      </Table>
-    </div>
-  );
+  if (loading) {
+    return (
+      <div className="flex justify-center flex-1 shrink-0">
+        <div className="flex flex-col justify-center">
+          <PulseLoader color="#718351" />
+        </div>
+      </div>
+    );
+  } else {
+    return (
+      <div className="flex justify-center flex-1 shrink-0">
+        <div className="overflow-y-auto">
+          <Table {...args}>
+            <Table.Head>
+              <span>ID</span>
+              <span>Name</span>
+              <span>Version</span>
+            </Table.Head>
+            <Table.Body>{systemsJSX}</Table.Body>
+          </Table>
+        </div>
+      </div>
+    );
+  }
 }
 
 async function requestSystems(token: string, organizationId: number) {
