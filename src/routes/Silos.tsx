@@ -45,7 +45,7 @@ async function requestSilageHeaps(token: string, farmId: number) {
   return fetch(`http://localhost:3000/farm/${farmId}/silo/`, {
     method: 'GET',
     headers: {
-      Authorization: token!,
+      Authorization: token,
       'Content-Type': 'application/json',
     },
   });

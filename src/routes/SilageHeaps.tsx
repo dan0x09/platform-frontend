@@ -52,7 +52,7 @@ async function requestSilageHeaps(token: string, organizationId: number) {
   return fetch(`http://localhost:3000/contractor/${organizationId}/silage-heap/`, {
     method: 'GET',
     headers: {
-      Authorization: token!,
+      Authorization: token,
       'Content-Type': 'application/json',
     },
   });

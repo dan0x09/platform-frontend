@@ -48,7 +48,7 @@ async function requestSystems(token: string, organizationId: number) {
   return fetch(url.href, {
     method: 'GET',
     headers: {
-      Authorization: token!,
+      Authorization: token,
       'Content-Type': 'application/json',
     },
   });

@@ -1,9 +1,8 @@
 import { useState } from 'react';
 import { useAuth } from '../authentication/AuthProvider';
-import { Credentials } from '../types/interfaces';
 
 export default function Admin(args: any) {
-  const { token, userTokenPayload } = useAuth();
+  const { token } = useAuth();
   const [email, setEmail] = useState('');
   const [role, setRole] = useState('');
   const [organizationId, setOrganizationId] = useState('');
@@ -42,7 +41,7 @@ async function sendUserInviteRequest(token: string, email: string, role: string,
   return fetch(`http://localhost:3000/invitation/user/`, {
     method: 'POST',
     headers: {
-      Authorization: token!,
+      Authorization: token,
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({ email, role, organizationId }),
