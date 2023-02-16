@@ -2,10 +2,8 @@ import { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 export default function Signup(args: any) {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const token = searchParams.get('t');
-
-  console.log(token);
 
   const [password, setPassword] = useState('');
   const [firstName, setFirstName] = useState('');

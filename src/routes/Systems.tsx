@@ -11,7 +11,6 @@ export default function Systems(args: any) {
     async function getSystems() {
       const Response = await requestSystems(token!, userTokenPayload!.organizationId);
       const data = (await Response.json()) as System[];
-      console.log(data);
       setSystems(data);
     }
     getSystems();

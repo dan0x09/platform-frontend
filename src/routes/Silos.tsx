@@ -11,7 +11,6 @@ export default function Silos(args: any) {
     async function getSilageHeaps() {
       const Response = await requestSilageHeaps(token!, userTokenPayload!.organizationId);
       const data = (await Response.json()) as SilageHeapWithUrls[];
-      console.log(data);
       setSilageHeaps(data);
     }
     getSilageHeaps();
