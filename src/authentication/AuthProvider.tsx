@@ -41,6 +41,8 @@ export function AuthProvider(props: Props) {
           navigate('/farmer/silos');
         } else if (userTokenPayload?.role === Role.CONTRACTOR) {
           navigate('/contractor/systems');
+        } else if (userTokenPayload?.role === Role.ADMIN || userTokenPayload?.role === Role.OWNER) {
+          navigate('/admin');
         }
       }
     } catch (e) {

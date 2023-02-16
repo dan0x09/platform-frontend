@@ -39,6 +39,19 @@ export interface SilageHeapWithUrls {
   };
 }
 
+export interface ContractorSilageHeapWithUrls {
+  contractorSilageHeaps: {
+    contractorId: number;
+    description: string;
+    silageHeap: SilageHeap;
+  };
+  urls: {
+      volumeMap: string;
+      volumeModel: string;
+      interactiveVolumeModel: string;
+  };
+}
+
 export interface Contractor {
   contractorId: number;
   name: string;

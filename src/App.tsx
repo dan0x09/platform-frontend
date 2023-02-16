@@ -9,6 +9,8 @@ import Silos from './routes/Silos';
 import Contractor from './routes/Contractor';
 import Systems from './routes/Systems';
 import SilageHeaps from './routes/SilageHeaps';
+import Admin from './routes/Admin';
+import Signup from './routes/Signup';
 
 function App() {
   document.querySelector('html')?.setAttribute('data-theme', 'light');
@@ -18,6 +20,16 @@ function App() {
       {/*       <Navigation /> */}
       <Routes>
         <Route path="login" element={<Login />} />
+        <Route
+          path="admin"
+          element={
+            <ProtectedRoute allowedRoles={[Role.ADMIN, Role.OWNER]}>
+              <Admin />
+            </ProtectedRoute>
+          }
+        >
+          <Route path="silos" element={<Silos />} />
+        </Route>
         <Route
           path="farmer"
           element={
@@ -39,6 +51,7 @@ function App() {
           <Route path="systems" element={<Systems />} />
           <Route path="silage-heaps" element={<SilageHeaps />} />
         </Route>
+        <Route path="signup" element={<Signup />} />
 
         <Route path="/" element={<Navigate to="/login" replace />} />
         <Route path="*" element={<Navigate to="/login" replace />} />

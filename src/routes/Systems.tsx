@@ -1,14 +1,15 @@
 import { useEffect, useState } from 'react';
 import { useAuth } from '../authentication/AuthProvider';
 import { System } from '../types/interfaces';
+import { Table } from 'react-daisyui';
 
-export default function Systems() {
-  const { token } = useAuth();
+export default function Systems(args: any) {
+  const { token, userTokenPayload } = useAuth();
   const [sytems, setSystems] = useState<System[]>([]);
 
   useEffect(() => {
     async function getSystems() {
-      const Response = await requestSilageHeaps(token!);
+      const Response = await requestSystems(token!, userTokenPayload!.organizationId);
       const data = (await Response.json()) as System[];
       console.log(data);
       setSystems(data);
@@ -18,32 +19,33 @@ export default function Systems() {
 
   const systemsJSX = sytems.map((system) => {
     return (
-      <tr key={system.systemId}>
-        <td>{system.systemId}</td>
-        <td>{system.name}</td>
-        <td>{system.version}</td>
-      </tr>
+      <Table.Row key={system.systemId}>
+        <span>{system.systemId}</span>
+        <span>{system.name}</span>
+        <span>{system.version}</span>
+      </Table.Row>
     );
   });
 
   return (
     <div className="silageheaps-wrapper">
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Version</th>
-          </tr>
-        </thead>
-        <tbody>{systemsJSX}</tbody>
-      </table>
+      <Table {...args}>
+        <Table.Head>
+          <span>ID</span>
+          <span>Name</span>
+          <span>Version</span>
+        </Table.Head>
+        <Table.Body>{systemsJSX}</Table.Body>
+      </Table>
     </div>
   );
 }
 
-async function requestSilageHeaps(token: string) {
-  return fetch(`http://localhost:3000/system/`, {
+async function requestSystems(token: string, organizationId: number) {
+  const url = new URL('http://localhost:3000/system');
+  url.searchParams.append('contractorId', `${organizationId}`);
+
+  return fetch(url.href, {
     method: 'GET',
     headers: {
       Authorization: token!,
