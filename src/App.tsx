@@ -12,12 +12,13 @@ import SilageHeaps from './routes/SilageHeaps';
 import Admin from './routes/Admin';
 import Signup from './routes/Signup';
 import Footer from './shared/Footer';
+import SilageHeapDetails from './routes/SilageHeapDetails';
 
 function App() {
   document.querySelector('html')?.setAttribute('data-theme', 'light');
 
   return (
-    <div className="min-h-full flex flex-col items-stretch bg-gray-50">
+    <div className="min-h-full max-h-full flex flex-col items-stretch bg-gray-50">
       <AuthProvider>
         {/*       <Navigation /> */}
         <Routes>
@@ -51,7 +52,9 @@ function App() {
             }
           >
             <Route path="systems" element={<Systems />} />
-            <Route path="silage-heaps" element={<SilageHeaps />} />
+            <Route path="silage-heaps" element={<SilageHeaps />}>
+              <Route path=":silageHeapId" element={<SilageHeapDetails />} />
+            </Route>
           </Route>
           <Route path="signup" element={<Signup />} />
 

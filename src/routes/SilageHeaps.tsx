@@ -3,11 +3,14 @@ import { useAuth } from '../authentication/AuthProvider';
 import { ContractorSilageHeapWithUrls } from '../types/interfaces';
 import { Table } from 'react-daisyui';
 import PulseLoader from 'react-spinners/PulseLoader';
+import { Outlet, useNavigate, useParams } from 'react-router-dom';
 
 export default function SilageHeaps(args: any) {
   const [loading, setLoading] = useState(true);
   const { token, userTokenPayload } = useAuth();
   const [silageHeaps, setSilageHeaps] = useState<ContractorSilageHeapWithUrls[]>([]);
+  const { silageHeapId } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function getSilageHeaps() {
@@ -20,12 +23,19 @@ export default function SilageHeaps(args: any) {
   }, []);
 
   const silageHeapsJSX = silageHeaps.map((heap) => {
+    const { silageHeapId, name, createdAt, updatedAt } = heap.contractorSilageHeaps.silageHeap;
     return (
-      <Table.Row key={heap.contractorSilageHeaps.silageHeap.silageHeapId}>
-        <span>{heap.contractorSilageHeaps.silageHeap.silageHeapId}</span>
-        <span>{heap.contractorSilageHeaps.silageHeap.name}</span>
-        <span>{new Date(heap.contractorSilageHeaps.silageHeap.createdAt).toLocaleString()}</span>
-        <span>{new Date(heap.contractorSilageHeaps.silageHeap.updatedAt).toLocaleString()}</span>
+      <Table.Row
+        key={silageHeapId}
+        onClick={() => {
+          navigate(`${silageHeapId}`);
+        }}
+        className="cursor-pointer"
+      >
+        <span>{silageHeapId}</span>
+        <span>{name}</span>
+        <span>{new Date(createdAt).toLocaleString()}</span>
+        <span>{new Date(updatedAt).toLocaleString()}</span>
       </Table.Row>
     );
   });
@@ -40,18 +50,23 @@ export default function SilageHeaps(args: any) {
     );
   } else {
     return (
-      <div className="silageheaps-wrapper flex justify-center flex-1 shrink-0">
-        <div className="overflow-y-auto">
-          <Table {...args}>
-            <Table.Head>
-              <span>ID</span>
-              <span>Name</span>
-              <span>Erstellt</span>
-              <span>Aktualisiert</span>
-            </Table.Head>
-            <Table.Body>{silageHeapsJSX}</Table.Body>
-          </Table>
-        </div>
+      <div className="silageheaps-wrapper flex justify-center flex-1 shrink-1 overflow-y-auto">
+        {silageHeapId && <Outlet />}
+        {!silageHeapId && (
+          <div className="container">
+            <div className="flex flex-col justify-center shadow-xl overflow-x-auto">
+              <Table {...args}>
+                <Table.Head>
+                  <span>ID</span>
+                  <span>Name</span>
+                  <span>Erstellt</span>
+                  <span>Aktualisiert</span>
+                </Table.Head>
+                <Table.Body>{silageHeapsJSX}</Table.Body>
+              </Table>
+            </div>
+          </div>
+        )}
       </div>
     );
   }
