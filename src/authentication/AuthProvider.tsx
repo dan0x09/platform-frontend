@@ -32,16 +32,16 @@ export function AuthProvider(props: Props) {
       const token = response.headers.get('x-authorization');
 
       if (token) {
+        setToken(token);
+
         const decodedToken = decodeToken(token) as UserTokenPayload;
         setUserTokenPayload(decodedToken);
 
-        setToken(token);
-
-        if (userTokenPayload?.role === Role.FARMER) {
+        if (decodedToken.role === Role.FARMER) {
           navigate('/farmer/silos');
-        } else if (userTokenPayload?.role === Role.CONTRACTOR) {
+        } else if (decodedToken.role === Role.CONTRACTOR) {
           navigate('/contractor/systems');
-        } else if (userTokenPayload?.role === Role.ADMIN || userTokenPayload?.role === Role.OWNER) {
+        } else if (decodedToken.role === Role.ADMIN || decodedToken.role === Role.OWNER) {
           navigate('/admin');
         }
       }
