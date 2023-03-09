@@ -34,8 +34,6 @@ export function AuthProvider(props: Props) {
 
         const decodedToken = decodeToken(token) as UserTokenPayload;
         setUserTokenPayload(decodedToken);
-
-        console.log('aaa');
       }
     } catch (e) {
       console.log(e);

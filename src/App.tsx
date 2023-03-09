@@ -1,5 +1,5 @@
 import './index.css';
-import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, Navigate, Outlet, RouterProvider } from 'react-router-dom';
 import { useAuth } from './authentication/AuthProvider';
 import { ProtectedRoute } from './authentication/ProtectedRoute';
 import Login, { action as loginAction } from './routes/Login';
@@ -21,56 +21,66 @@ export default function App() {
 
   const routes = [
     {
-      path: 'login',
-      element: <Login />,
-      action: loginAction({ login: onLogin }),
-    },
-    {
-      path: 'admin',
       element: (
-        <ProtectedRoute allowedRoles={[Role.ADMIN, Role.OWNER]}>
-          <Admin />
-        </ProtectedRoute>
-      ),
-      children: [{ path: 'silos', element: <Silos /> }],
-    },
-    {
-      path: 'farmer',
-      element: (
-        <ProtectedRoute allowedRoles={[Role.FARMER]}>
-          <Farmer />
-        </ProtectedRoute>
-      ),
-      children: [{ path: 'silos', element: <Silos /> }],
-    },
-    {
-      path: 'contractor',
-      element: (
-        <ProtectedRoute allowedRoles={[Role.CONTRACTOR]}>
-          <Contractor />
-        </ProtectedRoute>
+        <>
+          <Outlet />
+          <Footer />
+        </>
       ),
       children: [
-        { path: 'farms', element: <Farms /> },
-        { path: 'systems', element: <Systems /> },
         {
-          path: 'silage-heaps',
-          element: <SilageHeaps />,
-          children: [{ path: ':silageHeapId', element: <SilageHeapDetails /> }],
+          path: 'login',
+          element: <Login />,
+          action: loginAction({ login: onLogin }),
+        },
+        {
+          path: 'admin',
+          element: (
+            <ProtectedRoute allowedRoles={[Role.ADMIN, Role.OWNER]}>
+              <Admin />
+            </ProtectedRoute>
+          ),
+          children: [{ path: 'silos', element: <Silos /> }],
+        },
+        {
+          path: 'farmer',
+          element: (
+            <ProtectedRoute allowedRoles={[Role.FARMER]}>
+              <Farmer />
+            </ProtectedRoute>
+          ),
+          children: [{ path: 'silos', element: <Silos /> }],
+        },
+        {
+          path: 'contractor',
+          element: (
+            <ProtectedRoute allowedRoles={[Role.CONTRACTOR]}>
+              <Contractor />
+            </ProtectedRoute>
+          ),
+          children: [
+            { path: 'farms', element: <Farms /> },
+            { path: 'systems', element: <Systems /> },
+            {
+              path: 'silage-heaps',
+              element: <SilageHeaps />,
+              children: [{ path: ':silageHeapId', element: <SilageHeapDetails /> }],
+            },
+          ],
+        },
+        {
+          path: 'signup',
+          element: <Signup />,
+        },
+        {
+          path: '/',
+          element: <Navigate to="/login" replace />,
+        },
+        {
+          path: '*',
+          element: <Navigate to="/login" replace />,
         },
       ],
-    },
-    {
-      path: 'signup',
-      element: <Signup />,
-    },
-    {
-      path: '/',
-      element: <Navigate to="/login" replace />,
-    },
-    {
-      path: '*',
-      element: <Navigate to="/login" replace />,
     },
   ];
 

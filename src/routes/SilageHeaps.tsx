@@ -6,9 +6,6 @@ import PulseLoader from 'react-spinners/PulseLoader';
 import { Outlet, useNavigate, useParams, useSearchParams } from 'react-router-dom';
 
 export default function SilageHeaps(args: any) {
-  const [searchParams] = useSearchParams();
-  const farmId = searchParams.get('farmId');
-
   const [loading, setLoading] = useState(true);
   const { token, userTokenPayload } = useAuth();
   const [silageHeaps, setSilageHeaps] = useState<ContractorSilageHeapWithUrls[]>([]);
