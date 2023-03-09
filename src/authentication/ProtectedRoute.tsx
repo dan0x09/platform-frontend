@@ -1,5 +1,5 @@
 import { Navigate } from 'react-router-dom';
-import { Fragment } from 'react';
+import { Fragment, useEffect } from 'react';
 import { useAuth } from './AuthProvider';
 import { Role } from '../types/interfaces';
 
@@ -14,6 +14,7 @@ export function ProtectedRoute({ children, allowedRoles, redirectPath = DEFAULT_
   const { token, userTokenPayload } = useAuth();
 
   if (!token || !userTokenPayload || !allowedRoles.includes(userTokenPayload.role)) {
+    console.log(token, userTokenPayload);
     return <Navigate to={redirectPath} replace={true} />;
   }
 

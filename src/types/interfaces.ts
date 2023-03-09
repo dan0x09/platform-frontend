@@ -66,6 +66,7 @@ export interface System {
   name: string;
   contractorId: number;
   version: number;
+  description: string;
   invalidated: boolean;
 }
 

@@ -56,7 +56,11 @@ export default function Contractor(args: any) {
           </Navbar.End>
         </Navbar>
       </div>
-      <Outlet></Outlet>
+      <div className="farms-wrapper flex justify-center flex-1 shrink-1 overflow-y-auto">
+        <div className="container">
+          <Outlet></Outlet>
+        </div>
+      </div>
     </Fragment>
   );
 }

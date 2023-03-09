@@ -1,8 +1,8 @@
 import './index.css';
-import { Navigate, Route, Routes } from 'react-router-dom';
-import { AuthProvider } from './authentication/AuthProvider';
+import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom';
+import { useAuth } from './authentication/AuthProvider';
 import { ProtectedRoute } from './authentication/ProtectedRoute';
-import Login from './routes/Login';
+import Login, { action as loginAction } from './routes/Login';
 import { Role } from './types/interfaces';
 import Farmer from './routes/Farmer';
 import Silos from './routes/Silos';
@@ -11,62 +11,74 @@ import Systems from './routes/Systems';
 import SilageHeaps from './routes/SilageHeaps';
 import Admin from './routes/Admin';
 import Signup from './routes/Signup';
-import Footer from './shared/Footer';
 import SilageHeapDetails from './routes/SilageHeapDetails';
 import Farms from './routes/Farms';
+import Footer from './shared/Footer';
 
-function App() {
+export default function App() {
   document.querySelector('html')?.setAttribute('data-theme', 'light');
+  const { onLogin } = useAuth();
+
+  const routes = [
+    {
+      path: 'login',
+      element: <Login />,
+      action: loginAction({ login: onLogin }),
+    },
+    {
+      path: 'admin',
+      element: (
+        <ProtectedRoute allowedRoles={[Role.ADMIN, Role.OWNER]}>
+          <Admin />
+        </ProtectedRoute>
+      ),
+      children: [{ path: 'silos', element: <Silos /> }],
+    },
+    {
+      path: 'farmer',
+      element: (
+        <ProtectedRoute allowedRoles={[Role.FARMER]}>
+          <Farmer />
+        </ProtectedRoute>
+      ),
+      children: [{ path: 'silos', element: <Silos /> }],
+    },
+    {
+      path: 'contractor',
+      element: (
+        <ProtectedRoute allowedRoles={[Role.CONTRACTOR]}>
+          <Contractor />
+        </ProtectedRoute>
+      ),
+      children: [
+        { path: 'farms', element: <Farms /> },
+        { path: 'systems', element: <Systems /> },
+        {
+          path: 'silage-heaps',
+          element: <SilageHeaps />,
+          children: [{ path: ':silageHeapId', element: <SilageHeapDetails /> }],
+        },
+      ],
+    },
+    {
+      path: 'signup',
+      element: <Signup />,
+    },
+    {
+      path: '/',
+      element: <Navigate to="/login" replace />,
+    },
+    {
+      path: '*',
+      element: <Navigate to="/login" replace />,
+    },
+  ];
+
+  const router = createBrowserRouter(routes);
 
   return (
     <div className="min-h-full max-h-full flex flex-col items-stretch bg-gray-50">
-      <AuthProvider>
-        {/*       <Navigation /> */}
-        <Routes>
-          <Route path="login" element={<Login />} />
-          <Route
-            path="admin"
-            element={
-              <ProtectedRoute allowedRoles={[Role.ADMIN, Role.OWNER]}>
-                <Admin />
-              </ProtectedRoute>
-            }
-          >
-            <Route path="silos" element={<Silos />} />
-          </Route>
-          <Route
-            path="farmer"
-            element={
-              <ProtectedRoute allowedRoles={[Role.FARMER]}>
-                <Farmer />
-              </ProtectedRoute>
-            }
-          >
-            <Route path="silos" element={<Silos />} />
-          </Route>
-          <Route
-            path="contractor"
-            element={
-              <ProtectedRoute allowedRoles={[Role.CONTRACTOR]}>
-                <Contractor />
-              </ProtectedRoute>
-            }
-          >
-            <Route path="farms" element={<Farms />} />
-            <Route path="systems" element={<Systems />} />
-            <Route path="silage-heaps" element={<SilageHeaps />}>
-              <Route path=":silageHeapId" element={<SilageHeapDetails />} />
-            </Route>
-          </Route>
-          <Route path="signup" element={<Signup />} />
-
-          <Route path="/" element={<Navigate to="/login" replace />} />
-          <Route path="*" element={<Navigate to="/login" replace />} />
-        </Routes>
-      </AuthProvider>
-      <Footer />
+      <RouterProvider router={router} />
     </div>
   );
 }
-
-export default App;

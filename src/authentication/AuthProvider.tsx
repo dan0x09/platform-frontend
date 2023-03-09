@@ -1,12 +1,12 @@
-import { useNavigate } from 'react-router-dom';
 import { useState, useContext, createContext } from 'react';
 import { decodeToken } from 'react-jwt';
+import { redirect } from 'react-router-dom';
 import { Credentials, Role, UserTokenPayload } from '../types/interfaces';
 
 interface Auth {
   token: string | null;
   userTokenPayload: UserTokenPayload | null;
-  onLogin(credentials: Credentials): void;
+  onLogin(credentials: Credentials): Promise<void>;
   onLogout(): void;
 }
 
@@ -20,8 +20,6 @@ type Props = {
   children?: React.ReactNode;
 };
 export function AuthProvider(props: Props) {
-  const navigate = useNavigate();
-
   const [token, setToken] = useState<string | null>(null);
   const [userTokenPayload, setUserTokenPayload] = useState<UserTokenPayload | null>(null);
 
@@ -37,13 +35,7 @@ export function AuthProvider(props: Props) {
         const decodedToken = decodeToken(token) as UserTokenPayload;
         setUserTokenPayload(decodedToken);
 
-        if (decodedToken.role === Role.FARMER) {
-          navigate('/farmer/silos');
-        } else if (decodedToken.role === Role.CONTRACTOR) {
-          navigate('/contractor/farms');
-        } else if (decodedToken.role === Role.ADMIN || decodedToken.role === Role.OWNER) {
-          navigate('/admin');
-        }
+        console.log('aaa');
       }
     } catch (e) {
       console.log(e);
@@ -52,7 +44,8 @@ export function AuthProvider(props: Props) {
 
   const handleLogout = () => {
     setToken(null);
-    navigate('/login');
+    setUserTokenPayload(null);
+    redirect('/login');
   };
 
   const value = {

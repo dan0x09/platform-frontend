@@ -3,13 +3,11 @@ import { useAuth } from '../authentication/AuthProvider';
 import { Farm } from '../types/interfaces';
 import { Table } from 'react-daisyui';
 import PulseLoader from 'react-spinners/PulseLoader';
-import { Outlet, useNavigate, useParams } from 'react-router-dom';
 
 export default function Farms(args: any) {
   const [loading, setLoading] = useState(true);
   const { token, userTokenPayload } = useAuth();
   const [farms, setFarms] = useState<Farm[]>([]);
-  const navigate = useNavigate();
 
   useEffect(() => {
     async function getSilageHeaps() {
@@ -49,20 +47,16 @@ export default function Farms(args: any) {
     );
   } else {
     return (
-      <div className="silageheaps-wrapper flex justify-center flex-1 shrink-1 overflow-y-auto">
-        <div className="container">
-          <div className="flex flex-col justify-center shadow-xl overflow-x-auto">
-            <Table {...args}>
-              <Table.Head>
-                <span>Betrieb</span>
-                <span>Straße</span>
-                <span>Stadt</span>
-                <span>PLZ</span>
-              </Table.Head>
-              <Table.Body>{farmsJSX}</Table.Body>
-            </Table>
-          </div>
-        </div>
+      <div className="flex flex-col justify-center shadow-xl overflow-x-auto">
+        <Table {...args}>
+          <Table.Head>
+            <span>Betrieb</span>
+            <span>Straße</span>
+            <span>Stadt</span>
+            <span>PLZ</span>
+          </Table.Head>
+          <Table.Body>{farmsJSX}</Table.Body>
+        </Table>
       </div>
     );
   }
