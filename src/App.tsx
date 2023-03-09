@@ -13,6 +13,7 @@ import Admin from './routes/Admin';
 import Signup from './routes/Signup';
 import Footer from './shared/Footer';
 import SilageHeapDetails from './routes/SilageHeapDetails';
+import Farms from './routes/Farms';
 
 function App() {
   document.querySelector('html')?.setAttribute('data-theme', 'light');
@@ -51,6 +52,7 @@ function App() {
               </ProtectedRoute>
             }
           >
+            <Route path="farms" element={<Farms />} />
             <Route path="systems" element={<Systems />} />
             <Route path="silage-heaps" element={<SilageHeaps />}>
               <Route path=":silageHeapId" element={<SilageHeapDetails />} />

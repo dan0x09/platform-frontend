@@ -68,3 +68,12 @@ export interface System {
   version: number;
   invalidated: boolean;
 }
+
+export interface Farm {
+  farmId: number;
+  name: string;
+  streetAndNumber: string;
+  city: string;
+  zipCode: string;
+  country: string;
+}

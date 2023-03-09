@@ -25,6 +25,9 @@ export default function Contractor(args: any) {
               </Button>
               <Dropdown.Menu tabIndex={0} className="w-52 menu-compact mt-3">
                 <li>
+                  <NavLink to="/contractor/farms">Betriebe</NavLink>
+                </li>
+                <li>
                   <NavLink to="/contractor/systems">Systeme</NavLink>
                 </li>
                 <li>
@@ -35,6 +38,9 @@ export default function Contractor(args: any) {
           </Navbar.Start>
           <Navbar.Center className="hidden lg:flex">
             <Menu horizontal className="p-0">
+              <Menu.Item>
+                <NavLink to="/contractor/farms">Betriebe</NavLink>
+              </Menu.Item>
               <Menu.Item>
                 <NavLink to="/contractor/systems">Systeme</NavLink>
               </Menu.Item>
