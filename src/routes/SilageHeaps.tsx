@@ -21,19 +21,27 @@ export default function SilageHeaps(args: any) {
 
   useEffect(() => {
     async function getSilageHeaps() {
+      setLoading(true);
       const silageHeapResponse = await requestSilageHeaps(token!, userTokenPayload!.organizationId, farmId);
       const silageHeapdata = (await silageHeapResponse.json()) as ContractorSilageHeapWithUrls[];
       setSilageHeaps(silageHeapdata);
-      const farmResponse = await requestFarms(token!, userTokenPayload!.organizationId);
-      const farmData = (await farmResponse.json()) as Farm[];
-      setFarms(farmData);
       setLoading(false);
     }
     getSilageHeaps();
   }, [selectedFarm]);
 
+  useEffect(() => {
+    async function getFarms() {
+      const farmResponse = await requestFarms(token!, userTokenPayload!.organizationId);
+      const farmData = (await farmResponse.json()) as Farm[];
+      setFarms(farmData);
+    }
+    getFarms();
+  }, []);
+
   const silageHeapsJSX = silageHeaps.map((heap) => {
-    const { silageHeapId, name, createdAt, updatedAt } = heap.contractorSilageHeaps.silageHeap;
+    const { silageHeapId, name, createdAt } = heap.contractorSilageHeaps.silageHeap;
+    const { description } = heap.contractorSilageHeaps;
     return (
       <Table.Row
         key={silageHeapId}
@@ -44,8 +52,8 @@ export default function SilageHeaps(args: any) {
       >
         <span>{silageHeapId}</span>
         <span>{name}</span>
+        <span>{description || <span className="italic">Keine Beschreibung</span>}</span>
         <span>{new Date(createdAt).toLocaleString()}</span>
-        <span>{new Date(updatedAt).toLocaleString()}</span>
       </Table.Row>
     );
   });
@@ -91,8 +99,8 @@ export default function SilageHeaps(args: any) {
                 <Table.Head>
                   <span>ID</span>
                   <span>Name</span>
+                  <span>Beschreibung</span>
                   <span>Erstellt</span>
-                  <span>Aktualisiert</span>
                 </Table.Head>
                 <Table.Body>{silageHeapsJSX}</Table.Body>
               </Table>
