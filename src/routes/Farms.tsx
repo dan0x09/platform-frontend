@@ -3,11 +3,14 @@ import { useAuth } from '../authentication/AuthProvider';
 import { Farm } from '../types/interfaces';
 import { Table } from 'react-daisyui';
 import PulseLoader from 'react-spinners/PulseLoader';
+import { createSearchParams, useNavigate } from 'react-router-dom';
 
 export default function Farms(args: any) {
   const [loading, setLoading] = useState(true);
   const { token, userTokenPayload } = useAuth();
   const [farms, setFarms] = useState<Farm[]>([]);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function getSilageHeaps() {
@@ -24,9 +27,12 @@ export default function Farms(args: any) {
     return (
       <Table.Row
         key={farmId}
-        /*         onClick={() => {
-          navigate(`${farmId}`);
-        }} */
+        onClick={() => {
+          navigate({
+            pathname: '/contractor/silage-heaps',
+            search: `?${createSearchParams({ farmId: `${farmId}` })}`,
+          });
+        }}
         className="cursor-pointer"
       >
         <span>{name}</span>
@@ -62,7 +68,7 @@ export default function Farms(args: any) {
   }
 }
 
-async function requestFarms(token: string, organizationId: number) {
+export async function requestFarms(token: string, organizationId: number) {
   const url = new URL('http://localhost:3000/farm');
   url.searchParams.append('contractorId', `${organizationId}`);
 

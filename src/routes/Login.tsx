@@ -44,7 +44,7 @@ export default function Login() {
 
 export const action =
   ({ login }: { login: (credentials: Credentials) => Promise<void> }) =>
-  async ({ request, params }: { request: any; params: any }) => {
+  async ({ request }: { request: any }) => {
     const formData = await request.formData();
 
     // call login, and redirect upon success

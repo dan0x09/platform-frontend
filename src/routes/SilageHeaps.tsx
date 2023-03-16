@@ -1,26 +1,36 @@
 import { useEffect, useState } from 'react';
 import { useAuth } from '../authentication/AuthProvider';
-import { ContractorSilageHeapWithUrls } from '../types/interfaces';
+import { ContractorSilageHeapWithUrls, Farm } from '../types/interfaces';
 import { Table } from 'react-daisyui';
 import PulseLoader from 'react-spinners/PulseLoader';
 import { Outlet, useNavigate, useParams, useSearchParams } from 'react-router-dom';
+import { requestFarms } from './Farms';
 
 export default function SilageHeaps(args: any) {
   const [loading, setLoading] = useState(true);
   const { token, userTokenPayload } = useAuth();
   const [silageHeaps, setSilageHeaps] = useState<ContractorSilageHeapWithUrls[]>([]);
+  const [farms, setFarms] = useState<Farm[]>([]);
   const { silageHeapId } = useParams();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const farmId = searchParams.get('farmId') ?? 'all';
+
+  const [selectedFarm, setSelectedFarm] = useState(farmId);
+
   const navigate = useNavigate();
 
   useEffect(() => {
     async function getSilageHeaps() {
-      const Response = await requestSilageHeaps(token!, userTokenPayload!.organizationId);
-      const data = (await Response.json()) as ContractorSilageHeapWithUrls[];
-      setSilageHeaps(data);
+      const silageHeapResponse = await requestSilageHeaps(token!, userTokenPayload!.organizationId, farmId);
+      const silageHeapdata = (await silageHeapResponse.json()) as ContractorSilageHeapWithUrls[];
+      setSilageHeaps(silageHeapdata);
+      const farmResponse = await requestFarms(token!, userTokenPayload!.organizationId);
+      const farmData = (await farmResponse.json()) as Farm[];
+      setFarms(farmData);
       setLoading(false);
     }
     getSilageHeaps();
-  }, []);
+  }, [selectedFarm]);
 
   const silageHeapsJSX = silageHeaps.map((heap) => {
     const { silageHeapId, name, createdAt, updatedAt } = heap.contractorSilageHeaps.silageHeap;
@@ -40,6 +50,15 @@ export default function SilageHeaps(args: any) {
     );
   });
 
+  const farmsJSX = farms.map((farm) => {
+    const { name, farmId } = farm;
+    return (
+      <option key={farmId} value={`${farmId}`}>
+        {name}
+      </option>
+    );
+  });
+
   if (loading) {
     return (
       <div className="flex justify-center flex-1 shrink-0">
@@ -54,6 +73,19 @@ export default function SilageHeaps(args: any) {
         {silageHeapId && <Outlet />}
         {!silageHeapId && (
           <div className="container">
+            <select
+              className="select select-primary select-bordered mb-3 active:outline-0 focus:outline-0"
+              value={farmId}
+              onChange={(e) => {
+                setSearchParams({ farmId: e.target.value });
+                setSelectedFarm(e.target.value);
+              }}
+            >
+              <option selected value="all">
+                Alle Betriebe
+              </option>
+              {farmsJSX}
+            </select>
             <div className="flex flex-col justify-center shadow-xl overflow-x-auto">
               <Table {...args}>
                 <Table.Head>
@@ -72,8 +104,13 @@ export default function SilageHeaps(args: any) {
   }
 }
 
-async function requestSilageHeaps(token: string, organizationId: number) {
-  return fetch(`http://localhost:3000/contractor/${organizationId}/silage-heap/`, {
+async function requestSilageHeaps(token: string, organizationId: number, farmId?: string) {
+  const url = new URL(`http://localhost:3000/contractor/${organizationId}/silage-heap`);
+  if (farmId && farmId !== 'all') {
+    url.searchParams.append('farmId', farmId);
+  }
+
+  return fetch(url.href, {
     method: 'GET',
     headers: {
       Authorization: token,
