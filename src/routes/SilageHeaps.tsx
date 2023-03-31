@@ -17,14 +17,14 @@ export default function SilageHeaps(args: any) {
 
   const [selectedFarm, setSelectedFarm] = useState(farmId);
 
-  const navigate = useNavigate();
-
   useEffect(() => {
     async function getSilageHeaps() {
       setLoading(true);
-      const silageHeapResponse = await requestSilageHeaps(token!, userTokenPayload!.organizationId, farmId);
+      const silageHeapResponse = await requestSilageHeaps(token!, userTokenPayload!.role, userTokenPayload!.organizationId, farmId);
       const silageHeapdata = (await silageHeapResponse.json()) as ContractorSilageHeapWithUrls[];
       setSilageHeaps(silageHeapdata);
+      console.log(silageHeapdata);
+      
       setLoading(false);
     }
     getSilageHeaps();
@@ -32,31 +32,14 @@ export default function SilageHeaps(args: any) {
 
   useEffect(() => {
     async function getFarms() {
-      const farmResponse = await requestFarms(token!, userTokenPayload!.organizationId);
+      const farmResponse = await requestFarms(token!,userTokenPayload!.role, userTokenPayload!.organizationId);
       const farmData = (await farmResponse.json()) as Farm[];
       setFarms(farmData);
     }
     getFarms();
   }, []);
 
-  const silageHeapsJSX = silageHeaps.map((heap) => {
-    const { silageHeapId, name, createdAt } = heap.contractorSilageHeaps.silageHeap;
-    const { description } = heap.contractorSilageHeaps;
-    return (
-      <Table.Row
-        key={silageHeapId}
-        onClick={() => {
-          navigate(`${silageHeapId}`);
-        }}
-        className="cursor-pointer"
-      >
-        <span>{silageHeapId}</span>
-        <span>{name}</span>
-        <span>{description || <span className="italic">Keine Beschreibung</span>}</span>
-        <span>{new Date(createdAt).toLocaleString()}</span>
-      </Table.Row>
-    );
-  });
+  const silageHeapsJSX = userTokenPayload!.role == 'contractor' ? mapContractorSilageHeaps(silageHeaps) : mapSilageHeaps(silageHeaps);
 
   const farmsJSX = farms.map((farm) => {
     const { name, farmId } = farm;
@@ -112,8 +95,15 @@ export default function SilageHeaps(args: any) {
   }
 }
 
-async function requestSilageHeaps(token: string, organizationId: number, farmId?: string) {
-  const url = new URL(`http://localhost:3000/contractor/${organizationId}/silage-heap`);
+async function requestSilageHeaps(token: string, role:string, organizationId: number, farmId?: string) {
+  let url: URL;
+  if (role == 'owner' || role == 'admin') {
+    url = new URL(`http://localhost:3000/silage-heap`);
+  } else {
+    url = new URL(`http://localhost:3000/contractor/${organizationId}/silage-heap`);
+  }
+
+
   if (farmId && farmId !== 'all') {
     url.searchParams.append('farmId', farmId);
   }
@@ -124,5 +114,50 @@ async function requestSilageHeaps(token: string, organizationId: number, farmId?
       Authorization: token,
       'Content-Type': 'application/json',
     },
+  });
+}
+
+function mapContractorSilageHeaps(silageHeaps: ContractorSilageHeapWithUrls[]) {
+  const navigate = useNavigate();
+
+  return silageHeaps.map((heap) => {
+    const { silageHeapId, name, createdAt } = heap.contractorSilageHeaps.silageHeap;
+    const { description } = heap.contractorSilageHeaps;
+    return (
+      <Table.Row
+        key={silageHeapId}
+        onClick={() => {
+          navigate(`${silageHeapId}`);
+        }}
+        className="cursor-pointer"
+      >
+        <span>{silageHeapId}</span>
+        <span>{name}</span>
+        <span>{description || <span className="italic">Keine Beschreibung</span>}</span>
+        <span>{new Date(createdAt).toLocaleString()}</span>
+      </Table.Row>
+    );
+  });
+}
+
+function mapSilageHeaps(silageHeaps: any) {
+  const navigate = useNavigate();
+
+  return silageHeaps.map((heap: any) => {
+    const { silageHeapId, name, description, createdAt } = heap.silageHeap;
+    return (
+      <Table.Row
+        key={silageHeapId}
+        onClick={() => {
+          navigate(`${silageHeapId}`);
+        }}
+        className="cursor-pointer"
+      >
+        <span>{silageHeapId}</span>
+        <span>{name}</span>
+        <span>{description || <span className="italic">Keine Beschreibung</span>}</span>
+        <span>{new Date(createdAt).toLocaleString()}</span>
+      </Table.Row>
+    );
   });
 }

@@ -1,3 +1,5 @@
+import { StringLiteral } from 'typescript';
+
 export interface Credentials {
   email: string;
   password: string;
@@ -25,6 +27,12 @@ export interface SilageHeap {
   silageHeapId: number;
   gpsLocation: string;
   name: string;
+  bucketUrl: string;
+  width: number;
+  depth: number;
+  snapshotId: number | null;
+  coordinates: number[][] | null;
+  consumedAt: number | null;
 
   createdAt: Date;
   updatedAt: Date;
@@ -33,9 +41,9 @@ export interface SilageHeap {
 export interface SilageHeapWithUrls {
   silageHeap: SilageHeap;
   urls: {
-      volumeMap: string;
-      volumeModel: string;
-      interactiveVolumeModel: string;
+    volumeMap: string;
+    volumeModel: string;
+    interactiveVolumeModel: string;
   };
 }
 
@@ -46,9 +54,18 @@ export interface ContractorSilageHeapWithUrls {
     silageHeap: SilageHeap;
   };
   urls: {
-      volumeMap: string;
-      volumeModel: string;
-      interactiveVolumeModel: string;
+    volumeMap: string;
+    volumeModel: string;
+    interactiveVolumeModel: string;
+  };
+}
+
+export interface SilageHeapWithUrls {
+  silageHeap: SilageHeap;
+  urls: {
+    volumeMap: string;
+    volumeModel: string;
+    interactiveVolumeModel: string;
   };
 }
 

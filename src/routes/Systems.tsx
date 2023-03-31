@@ -11,7 +11,8 @@ export default function Systems(args: any) {
 
   useEffect(() => {
     async function getSystems() {
-      const Response = await requestSystems(token!, userTokenPayload!.organizationId);
+      const Response = await requestSystems(token!, userTokenPayload!.role, userTokenPayload!.organizationId);
+
       const data = (await Response.json()) as System[];
       setSystems(data);
       setLoading(false);
@@ -53,9 +54,12 @@ export default function Systems(args: any) {
   }
 }
 
-async function requestSystems(token: string, organizationId: number) {
+async function requestSystems(token: string, role: string, organizationId: number) {
   const url = new URL('http://localhost:3000/system');
-  url.searchParams.append('contractorId', `${organizationId}`);
+  
+  if (role == 'contractor') {
+    url.searchParams.append('contractorId', `${organizationId}`);
+  }
 
   return fetch(url.href, {
     method: 'GET',

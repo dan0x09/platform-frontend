@@ -14,7 +14,7 @@ export default function Farms(args: any) {
 
   useEffect(() => {
     async function getSilageHeaps() {
-      const Response = await requestFarms(token!, userTokenPayload!.organizationId);
+      const Response = await requestFarms(token!, userTokenPayload!.role, userTokenPayload!.organizationId);
       const data = (await Response.json()) as Farm[];
       setFarms(data);
       setLoading(false);
@@ -68,9 +68,11 @@ export default function Farms(args: any) {
   }
 }
 
-export async function requestFarms(token: string, organizationId: number) {
+export async function requestFarms(token: string, role:string,  organizationId: number) {
   const url = new URL('http://localhost:3000/farm');
-  url.searchParams.append('contractorId', `${organizationId}`);
+  if (role == 'contractor') {
+    url.searchParams.append('contractorId', `${organizationId}`);
+  }
 
   return fetch(url.href, {
     method: 'GET',
