@@ -14,6 +14,8 @@ import Signup from './routes/Signup';
 import SilageHeapDetails from './routes/SilageHeapDetails';
 import Farms from './routes/Farms';
 import Footer from './shared/Footer';
+import Imprint from './shared/Imprint';
+import Privacy from './shared/Privacy';
 
 export default function App() {
   document.querySelector('html')?.setAttribute('data-theme', 'light');
@@ -71,6 +73,14 @@ export default function App() {
         {
           path: 'signup',
           element: <Signup />,
+        },
+        {
+          path: 'imprint',
+          element: <Imprint />,
+        },
+        {
+          path: 'privacy',
+          element: <Privacy />,
         },
         {
           path: '/',

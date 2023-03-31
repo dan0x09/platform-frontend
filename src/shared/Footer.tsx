@@ -8,8 +8,8 @@ export default function Footer(args: any) {
         <p>© {new Date().getFullYear()} Kiel. Alle Rechte vorbehalten.</p>
       </div>
       <div className="grid-flow-col gap-4 md:place-self-center md:justify-self-end">
-        <NavLink to="/imprint">Impressum</NavLink>
         <NavLink to="/privacy">Datenschutz</NavLink>
+        <NavLink to="/imprint">Impressum</NavLink>
       </div>
     </DaisyFooter>
   );
