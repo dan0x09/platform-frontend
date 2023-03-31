@@ -16,6 +16,7 @@ import Farms from './routes/Farms';
 import Footer from './shared/Footer';
 import Imprint from './shared/Imprint';
 import Privacy from './shared/Privacy';
+import Invite from './routes/Invite';
 
 export default function App() {
   document.querySelector('html')?.setAttribute('data-theme', 'light');
@@ -42,7 +43,11 @@ export default function App() {
               <Admin />
             </ProtectedRoute>
           ),
-          children: [{ path: 'silos', element: <Silos /> }],
+          children: [{ path: 'silos', element: <Silos /> },
+          { path: 'farms', element: <Farms /> },
+          { path: 'systems', element: <Systems /> },
+          { path: 'silage-heaps', element: <SilageHeaps /> },
+          { path: 'invite', element: <Invite /> }],
         },
         {
           path: 'farmer',

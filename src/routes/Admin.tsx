@@ -1,10 +1,74 @@
-import { useAuth } from '../authentication/AuthProvider';
+import { Fragment } from 'react';
 import Invite from './Invite';
+import { Button, Dropdown, Navbar, Menu } from 'react-daisyui';
+import { NavLink, Outlet } from 'react-router-dom';
+import { useAuth } from '../authentication/AuthProvider';
 
 export default function Admin(args: any) {
   const { token } = useAuth();
+  const { onLogout } = useAuth();
 
   return (
-    <Invite/>
+    <Fragment>
+    <div className="flex w-full items-center justify-center gap-2 mb-6 shrink-0">
+      <Navbar {...args}>
+        <Navbar.Start>
+          <Dropdown>
+            <Button color="ghost" tabIndex={0} className="lg:hidden">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h8m-8 6h16" />
+              </svg>
+            </Button>
+            <Dropdown.Menu tabIndex={0} className="w-52 menu-compact mt-3">
+              <li>
+                <NavLink to="/admin/farms">Betriebe</NavLink>
+              </li>
+              <li>
+                <NavLink to="/admin/systems">Systeme</NavLink>
+              </li>
+              <li>
+                <NavLink to="/admin/silage-heaps">Silagehaufen</NavLink>
+              </li>
+              <li>
+                <NavLink to="/admin/invite">Einladen</NavLink>
+              </li>
+            </Dropdown.Menu>
+          </Dropdown>
+        </Navbar.Start>
+        <Navbar.Center className="hidden lg:flex">
+          <Menu horizontal className="p-0">
+            <Menu.Item>
+              <NavLink to="/admin/farms">Betriebe</NavLink>
+            </Menu.Item>
+            <Menu.Item>
+              <NavLink to="/admin/systems">Systeme</NavLink>
+            </Menu.Item>
+            <Menu.Item>
+              <NavLink to="/admin/silage-heaps">Silagehaufen</NavLink>
+            </Menu.Item>
+            <Menu.Item>
+              <NavLink to="/admin/invite">Einladen</NavLink>
+            </Menu.Item>
+          </Menu>
+        </Navbar.Center>
+        <Navbar.End>
+          <Button {...args} onClick={() => onLogout()}>
+            Ausloggen
+          </Button>
+        </Navbar.End>
+      </Navbar>
+    </div>
+    <div className="farms-wrapper flex justify-center flex-1 shrink-1 overflow-y-auto">
+      <div className="container">
+        <Outlet></Outlet>
+      </div>
+    </div>
+  </Fragment>
   );
 }

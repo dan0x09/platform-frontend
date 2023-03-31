@@ -25,7 +25,7 @@ export default function Invite(args: any) {
       }
     
         return (
-            <div className="login-wrapper h-screen flex flex-col justify-center items-center">
+            <div className="flex flex-col justify-center items-center">
             <h1>Invite User</h1>
             <form className="flex flex-col items-center mt-3" onSubmit={handleSubmit}>
               <label className="mb-4">
