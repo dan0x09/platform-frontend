@@ -53,16 +53,18 @@ export default function Farms(args: any) {
     );
   } else {
     return (
-      <div className="flex flex-col justify-center shadow-xl overflow-x-auto">
-        <Table {...args}>
-          <Table.Head>
-            <span>Betrieb</span>
-            <span>Straße</span>
-            <span>Stadt</span>
-            <span>PLZ</span>
-          </Table.Head>
-          <Table.Body>{farmsJSX}</Table.Body>
-        </Table>
+      <div className="container pb-6">
+        <div className="flex flex-col justify-center shadow-xl overflow-x-auto">
+          <Table {...args}>
+            <Table.Head>
+              <span>Betrieb</span>
+              <span>Straße</span>
+              <span>Stadt</span>
+              <span>PLZ</span>
+            </Table.Head>
+            <Table.Body>{farmsJSX}</Table.Body>
+          </Table>
+        </div>
       </div>
     );
   }

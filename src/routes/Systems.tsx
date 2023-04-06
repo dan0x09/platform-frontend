@@ -40,15 +40,17 @@ export default function Systems(args: any) {
     );
   } else {
     return (
-      <div className="flex flex-col justify-center shadow-xl overflow-x-auto">
-        <Table {...args}>
-          <Table.Head>
-            <span>Name</span>
-            <span>Beschreibung</span>
-            <span>Version</span>
-          </Table.Head>
-          <Table.Body>{systemsJSX}</Table.Body>
-        </Table>
+      <div className="container pb-6">
+        <div className="flex flex-col justify-center shadow-xl overflow-x-auto">
+          <Table {...args}>
+            <Table.Head>
+              <span>Name</span>
+              <span>Beschreibung</span>
+              <span>Version</span>
+            </Table.Head>
+            <Table.Body>{systemsJSX}</Table.Body>
+          </Table>
+        </div>
       </div>
     );
   }

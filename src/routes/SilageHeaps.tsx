@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { useAuth } from '../authentication/AuthProvider';
 import { ContractorSilageHeapWithUrls, Farm, Role } from '../types/interfaces';
 import { Table } from 'react-daisyui';
@@ -66,10 +66,10 @@ export default function SilageHeaps(args: any) {
     );
   } else {
     return (
-      <div className="silageheaps-wrapper flex justify-center flex-1 shrink-1 overflow-y-auto">
+      <Fragment>
         {silageHeapId && <Outlet />}
         {!silageHeapId && (
-          <div className="container">
+          <div className="container pb-6">
             <select
               className="select select-primary select-bordered mb-3 active:outline-0 focus:outline-0"
               value={farmId}
@@ -83,7 +83,7 @@ export default function SilageHeaps(args: any) {
               </option>
               {farmsJSX}
             </select>
-            <div className="flex flex-col justify-center shadow-xl overflow-x-auto">
+            <div className="flex flex-col justify-center shadow-xl overflow-auto">
               <Table {...args}>
                 <Table.Head>
                   <span>ID</span>
@@ -96,7 +96,7 @@ export default function SilageHeaps(args: any) {
             </div>
           </div>
         )}
-      </div>
+      </Fragment>
     );
   }
 }
