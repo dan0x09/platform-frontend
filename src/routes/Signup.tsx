@@ -40,7 +40,7 @@ export default function Signup(args: any) {
 }
 
 async function sendInviteAcceptRequest(token: string, password: string, firstName: string, lastName: string) {
-  return fetch(`http://localhost:3000/invitation/user/accept`, {
+  return fetch(`${process.env.REACT_APP_BACKEND_URL}/invitation/user/accept`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

@@ -104,9 +104,9 @@ export default function SilageHeaps(args: any) {
 async function requestSilageHeaps(token: string, role: Role, organizationId: number, farmId?: string) {
   let url: URL;
   if (role == Role.OWNER || role == Role.ADMIN) {
-    url = new URL(`http://localhost:3000/silage-heap`);
+    url = new URL(`${process.env.REACT_APP_BACKEND_URL}/silage-heap`);
   } else {
-    url = new URL(`http://localhost:3000/contractor/${organizationId}/silage-heap`);
+    url = new URL(`${process.env.REACT_APP_BACKEND_URL}/contractor/${organizationId}/silage-heap`);
   }
 
   if (farmId && farmId !== 'all') {

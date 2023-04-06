@@ -41,7 +41,7 @@ export default function Silos(args: any) {
 }
 
 async function requestSilageHeaps(token: string, farmId: number) {
-  return fetch(`http://localhost:3000/farm/${farmId}/silo/`, {
+  return fetch(`${process.env.REACT_APP_BACKEND_URL}/farm/${farmId}/silo/`, {
     method: 'GET',
     headers: {
       Authorization: token,

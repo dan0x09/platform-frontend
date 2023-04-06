@@ -16,7 +16,7 @@ export default function Invite(args: any) {
   };
 
   async function sendUserInviteRequest(token: string, email: string, role: Role, organizationId: number) {
-    return fetch(`http://localhost:3000/invitation/user/`, {
+    return fetch(`${process.env.REACT_APP_BACKEND_URL}/invitation/user/`, {
       method: 'POST',
       headers: {
         Authorization: token,

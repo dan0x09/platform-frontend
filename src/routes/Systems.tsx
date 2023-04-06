@@ -55,7 +55,7 @@ export default function Systems(args: any) {
 }
 
 async function requestSystems(token: string, role: Role, organizationId: number) {
-  const url = new URL('http://localhost:3000/system');
+  const url = new URL(`${process.env.REACT_APP_BACKEND_URL}/system`);
 
   if (role === Role.CONTRACTOR) {
     url.searchParams.append('contractorId', `${organizationId}`);

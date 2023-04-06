@@ -25,7 +25,7 @@ export default function SilageHeapDetails(args: any) {
 }
 
 /* async function requestSilageHeap(token: string, organizationId: number) {
-  return fetch(`http://localhost:3000/contractor/${organizationId}/silage-heap/`, {
+  return fetch(`${process.env.REACT_APP_BACKEND_URL}/contractor/${organizationId}/silage-heap/`, {
     method: 'GET',
     headers: {
       Authorization: token,
