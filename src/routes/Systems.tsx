@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useAuth } from '../authentication/AuthProvider';
-import { System } from '../types/interfaces';
+import { Role, System } from '../types/interfaces';
 import { Table } from 'react-daisyui';
 import { PulseLoader } from 'react-spinners';
 
@@ -54,10 +54,10 @@ export default function Systems(args: any) {
   }
 }
 
-async function requestSystems(token: string, role: string, organizationId: number) {
+async function requestSystems(token: string, role: Role, organizationId: number) {
   const url = new URL('http://localhost:3000/system');
-  
-  if (role == 'contractor') {
+
+  if (role === Role.CONTRACTOR) {
     url.searchParams.append('contractorId', `${organizationId}`);
   }
 

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useAuth } from '../authentication/AuthProvider';
-import { Farm } from '../types/interfaces';
+import { Farm, Role } from '../types/interfaces';
 import { Table } from 'react-daisyui';
 import PulseLoader from 'react-spinners/PulseLoader';
 import { createSearchParams, useNavigate } from 'react-router-dom';
@@ -68,9 +68,9 @@ export default function Farms(args: any) {
   }
 }
 
-export async function requestFarms(token: string, role:string,  organizationId: number) {
+export async function requestFarms(token: string, role: Role, organizationId: number) {
   const url = new URL('http://localhost:3000/farm');
-  if (role == 'contractor') {
+  if (role === Role.CONTRACTOR) {
     url.searchParams.append('contractorId', `${organizationId}`);
   }
 

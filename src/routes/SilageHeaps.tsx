@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useAuth } from '../authentication/AuthProvider';
-import { ContractorSilageHeapWithUrls, Farm } from '../types/interfaces';
+import { ContractorSilageHeapWithUrls, Farm, Role } from '../types/interfaces';
 import { Table } from 'react-daisyui';
 import PulseLoader from 'react-spinners/PulseLoader';
 import { Outlet, useNavigate, useParams, useSearchParams } from 'react-router-dom';
@@ -20,11 +20,16 @@ export default function SilageHeaps(args: any) {
   useEffect(() => {
     async function getSilageHeaps() {
       setLoading(true);
-      const silageHeapResponse = await requestSilageHeaps(token!, userTokenPayload!.role, userTokenPayload!.organizationId, farmId);
+      const silageHeapResponse = await requestSilageHeaps(
+        token!,
+        userTokenPayload!.role,
+        userTokenPayload!.organizationId,
+        farmId
+      );
       const silageHeapdata = (await silageHeapResponse.json()) as ContractorSilageHeapWithUrls[];
       setSilageHeaps(silageHeapdata);
       console.log(silageHeapdata);
-      
+
       setLoading(false);
     }
     getSilageHeaps();
@@ -32,14 +37,15 @@ export default function SilageHeaps(args: any) {
 
   useEffect(() => {
     async function getFarms() {
-      const farmResponse = await requestFarms(token!,userTokenPayload!.role, userTokenPayload!.organizationId);
+      const farmResponse = await requestFarms(token!, userTokenPayload!.role, userTokenPayload!.organizationId);
       const farmData = (await farmResponse.json()) as Farm[];
       setFarms(farmData);
     }
     getFarms();
   }, []);
 
-  const silageHeapsJSX = userTokenPayload!.role == 'contractor' ? mapContractorSilageHeaps(silageHeaps) : mapSilageHeaps(silageHeaps);
+  const silageHeapsJSX =
+    userTokenPayload!.role == 'contractor' ? mapContractorSilageHeaps(silageHeaps) : mapSilageHeaps(silageHeaps);
 
   const farmsJSX = farms.map((farm) => {
     const { name, farmId } = farm;
@@ -95,14 +101,13 @@ export default function SilageHeaps(args: any) {
   }
 }
 
-async function requestSilageHeaps(token: string, role:string, organizationId: number, farmId?: string) {
+async function requestSilageHeaps(token: string, role: Role, organizationId: number, farmId?: string) {
   let url: URL;
-  if (role == 'owner' || role == 'admin') {
+  if (role == Role.OWNER || role == Role.ADMIN) {
     url = new URL(`http://localhost:3000/silage-heap`);
   } else {
     url = new URL(`http://localhost:3000/contractor/${organizationId}/silage-heap`);
   }
-
 
   if (farmId && farmId !== 'all') {
     url.searchParams.append('farmId', farmId);
