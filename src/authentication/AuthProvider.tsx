@@ -1,7 +1,7 @@
 import { useState, useContext, createContext } from 'react';
 import { decodeToken } from 'react-jwt';
 import { redirect } from 'react-router-dom';
-import { Credentials, Role, UserTokenPayload } from '../types/interfaces';
+import { Credentials, UserTokenPayload } from '../types/interfaces';
 
 interface Auth {
   token: string | null;

@@ -4,7 +4,6 @@ import { Farm, Role } from '../types/interfaces';
 import { Table } from 'react-daisyui';
 import PulseLoader from 'react-spinners/PulseLoader';
 import { createSearchParams, useNavigate } from 'react-router-dom';
-import env from 'ts-react-dotenv';
 
 export default function Farms(args: any) {
   const [loading, setLoading] = useState(true);
@@ -70,7 +69,7 @@ export default function Farms(args: any) {
 }
 
 export async function requestFarms(token: string, role: Role, organizationId: number) {
-  const url = new URL(`${env.REACT_APP_BACKEND_URL}/farm`);
+  const url = new URL(`${process.env.REACT_APP_BACKEND_URL}/farm`);
   if (role === Role.CONTRACTOR) {
     url.searchParams.append('contractorId', `${organizationId}`);
   }
