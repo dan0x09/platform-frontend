@@ -25,7 +25,6 @@ export interface UserTokenPayload {
 export interface SilageHeap {
   systemId: number;
   silageHeapId: number;
-  gpsLocation: string;
   name: string;
   bucketUrl: string;
   width: number;
@@ -33,6 +32,7 @@ export interface SilageHeap {
   snapshotId: number | null;
   coordinates: number[][] | null;
   consumedAt: number | null;
+  harvestFinishedAt: number | null;
 
   createdAt: Date;
   updatedAt: Date;
@@ -60,13 +60,29 @@ export interface ContractorSilageHeapWithUrls {
   };
 }
 
-export interface SilageHeapWithUrls {
-  silageHeap: SilageHeap;
-  urls: {
-    volumeMap: string;
-    volumeModel: string;
-    interactiveVolumeModel: string;
+export interface ContractorSilageHeapWithSnapshots {
+  contractorSilageHeaps: {
+    contractorId: number;
+    description: string;
+    silageHeap: SilageHeapWithSnapshots;
   };
+}
+
+export interface SilageHeapWithSnapshots extends SilageHeap {
+  silageSnapshots: SilageSnapshot[];
+}
+
+export interface SilageSnapshot {
+  snapshotId: number;
+  snapshotTimestamp: number;
+  gridMap: unknown;
+  height: number;
+  volume: number;
+  description: string;
+  isHarvestFinished: boolean;
+  isConsumed: boolean;
+
+  updatedAt: Date;
 }
 
 export interface Contractor {

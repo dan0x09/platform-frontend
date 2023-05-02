@@ -28,12 +28,11 @@ export default function SilageHeaps(args: any) {
       );
       const silageHeapdata = (await silageHeapResponse.json()) as ContractorSilageHeapWithUrls[];
       setSilageHeaps(silageHeapdata);
-      console.log(silageHeapdata);
 
       setLoading(false);
     }
     getSilageHeaps();
-  }, [selectedFarm]);
+  }, [selectedFarm, farmId]);
 
   useEffect(() => {
     async function getFarms() {
