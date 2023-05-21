@@ -44,7 +44,7 @@ export default function SilageHeaps(args: any) {
   }, []);
 
   const silageHeapsJSX =
-    userTokenPayload!.role == 'contractor' ? mapContractorSilageHeaps(silageHeaps) : mapSilageHeaps(silageHeaps);
+    userTokenPayload!.role === Role.CONTRACTOR ? mapContractorSilageHeaps(silageHeaps) : mapSilageHeaps(silageHeaps);
 
   const farmsJSX = farms.map((farm) => {
     const { name, farmId } = farm;
@@ -134,6 +134,7 @@ function mapContractorSilageHeaps(silageHeaps: ContractorSilageHeapWithUrls[]) {
           navigate(`${silageHeapId}`);
         }}
         className="cursor-pointer"
+        hover
       >
         <span>{silageHeapId}</span>
         <span>{name}</span>
@@ -156,6 +157,7 @@ function mapSilageHeaps(silageHeaps: any) {
           navigate(`${silageHeapId}`);
         }}
         className="cursor-pointer"
+        hover
       >
         <span>{silageHeapId}</span>
         <span>{name}</span>

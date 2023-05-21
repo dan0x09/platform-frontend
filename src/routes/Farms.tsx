@@ -37,6 +37,7 @@ export default function Farms(args: any) {
           );
         }}
         className="cursor-pointer"
+        hover
       >
         <span>{name}</span>
         <span>{streetAndNumber}</span>

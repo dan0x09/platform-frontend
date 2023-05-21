@@ -34,6 +34,7 @@ export default function Systems(args: any) {
           navigate(`${system.systemId}`);
         }}
         className="cursor-pointer"
+        hover
       >
         <span>{system.name}</span>
         <span>{system.description || <span className="italic">Keine Beschreibung</span>}</span>

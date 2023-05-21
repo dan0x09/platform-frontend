@@ -65,6 +65,7 @@ export interface ContractorSilageHeapWithSnapshots {
     contractorId: number;
     description: string;
     silageHeap: SilageHeapWithSnapshots;
+    silageHeapId: number;
   };
 }
 
