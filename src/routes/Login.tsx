@@ -14,7 +14,7 @@ export default function Login() {
       } else if (userTokenPayload.role === Role.CONTRACTOR) {
         navigate('/contractor/farms');
       } else if (userTokenPayload.role === Role.ADMIN || userTokenPayload.role === Role.OWNER) {
-        navigate('/admin/farms');
+        navigate('/admin/contractors');
       }
     }
   });

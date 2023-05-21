@@ -1,9 +1,9 @@
-import { Fragment, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useAuth } from '../authentication/AuthProvider';
 import { ContractorSilageHeapWithUrls, Farm, Role } from '../types/interfaces';
 import { Table } from 'react-daisyui';
 import PulseLoader from 'react-spinners/PulseLoader';
-import { Outlet, useNavigate, useParams, useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { requestFarms } from './Farms';
 
 export default function SilageHeaps(args: any) {
@@ -11,7 +11,6 @@ export default function SilageHeaps(args: any) {
   const { token, userTokenPayload } = useAuth();
   const [silageHeaps, setSilageHeaps] = useState<ContractorSilageHeapWithUrls[]>([]);
   const [farms, setFarms] = useState<Farm[]>([]);
-  const { silageHeapId } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
   const farmId = searchParams.get('farmId') ?? 'all';
 
@@ -65,37 +64,32 @@ export default function SilageHeaps(args: any) {
     );
   } else {
     return (
-      <Fragment>
-        {silageHeapId && <Outlet />}
-        {!silageHeapId && (
-          <div className="container pb-6">
-            <select
-              className="select select-primary select-bordered mb-3 active:outline-0 focus:outline-0"
-              value={farmId}
-              onChange={(e) => {
-                setSearchParams({ farmId: e.target.value });
-                setSelectedFarm(e.target.value);
-              }}
-            >
-              <option selected value="all">
-                Alle Betriebe
-              </option>
-              {farmsJSX}
-            </select>
-            <div className="flex flex-col justify-center shadow-xl overflow-auto">
-              <Table {...args}>
-                <Table.Head>
-                  <span>ID</span>
-                  <span>Name</span>
-                  <span>Beschreibung</span>
-                  <span>Erstellt</span>
-                </Table.Head>
-                <Table.Body>{silageHeapsJSX}</Table.Body>
-              </Table>
-            </div>
-          </div>
-        )}
-      </Fragment>
+      <div className="container pb-6">
+        <select
+          className="select select-primary select-bordered mb-3 active:outline-0 focus:outline-0"
+          value={farmId}
+          onChange={(e) => {
+            setSearchParams({ farmId: e.target.value });
+            setSelectedFarm(e.target.value);
+          }}
+        >
+          <option selected value="all">
+            Alle Betriebe
+          </option>
+          {farmsJSX}
+        </select>
+        <div className="flex flex-col justify-center shadow-xl overflow-auto">
+          <Table {...args}>
+            <Table.Head>
+              <span>ID</span>
+              <span>Name</span>
+              <span>Beschreibung</span>
+              <span>Erstellt</span>
+            </Table.Head>
+            <Table.Body>{silageHeapsJSX}</Table.Body>
+          </Table>
+        </div>
+      </div>
     );
   }
 }

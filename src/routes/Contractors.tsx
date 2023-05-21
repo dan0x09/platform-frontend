@@ -1,44 +1,44 @@
 import { useEffect, useState } from 'react';
 import { useAuth } from '../authentication/AuthProvider';
-import { Role, System } from '../types/interfaces';
+import { Contractor } from '../types/interfaces';
 import { Button, Table } from 'react-daisyui';
 import { PulseLoader } from 'react-spinners';
-import { Outlet, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
-export default function Systems(args: any) {
+export default function Contractors(args: any) {
   const [loading, setLoading] = useState(true);
-  const { token, userTokenPayload } = useAuth();
-  const [systems, setSystems] = useState<System[]>([]);
-  const { systemId } = useParams();
+  const { token } = useAuth();
+  const [contractors, setContractors] = useState<Contractor[]>([]);
   const navigate = useNavigate();
 
   useEffect(() => {
-    async function getSystems() {
+    async function getContractors() {
       setLoading(true);
 
-      const Response = await requestSystems(token!, userTokenPayload!.role, userTokenPayload!.organizationId);
-      const data = (await Response.json()) as System[];
-      setSystems(data);
+      const Response = await requestContractors(token!);
+      const data = (await Response.json()) as Contractor[];
+      setContractors(data);
 
       setLoading(false);
     }
-    getSystems();
+    getContractors();
   }, []);
 
-  const systemsJSX = systems.map((system) => {
+  const contractorsJSX = contractors.map((contractor) => {
     return (
       <Table.Row
-        key={system.systemId}
+        key={contractor.contractorId}
         onClick={() => {
-          console.log(`${system.systemId}`);
-          navigate(`${system.systemId}`);
+          navigate(`${contractor.contractorId}`);
         }}
         className="cursor-pointer"
         hover
       >
-        <span>{system.name}</span>
-        <span>{system.description || <span className="italic">Keine Beschreibung</span>}</span>
-        <span>{system.version}</span>
+        <span>{contractor.name}</span>
+        <span>{contractor.streetAndNumber}</span>
+        <span>{contractor.zipCode}</span>
+        <span>{contractor.city}</span>
+        <span>{contractor.country}</span>
       </Table.Row>
     );
   });
@@ -56,7 +56,7 @@ export default function Systems(args: any) {
       <div className="container pb-6">
         <div className="flex flex-row justify-end pb-4">
           <Button variant="outline" onClick={() => navigate('create')}>
-            System anlegen
+            Lohnunternehmen anlegen
           </Button>
         </div>
 
@@ -64,10 +64,12 @@ export default function Systems(args: any) {
           <Table {...args}>
             <Table.Head>
               <span>Name</span>
-              <span>Beschreibung</span>
-              <span>Version</span>
+              <span>Straße und Hausnummer</span>
+              <span>PLZ</span>
+              <span>Stadt</span>
+              <span>Land</span>
             </Table.Head>
-            <Table.Body>{systemsJSX}</Table.Body>
+            <Table.Body>{contractorsJSX}</Table.Body>
           </Table>
         </div>
       </div>
@@ -75,14 +77,10 @@ export default function Systems(args: any) {
   }
 }
 
-async function requestSystems(token: string, role: Role, organizationId: number) {
-  const url = new URL(`${process.env.REACT_APP_BACKEND_URL}/system`);
+async function requestContractors(token: string) {
+  const url = `${process.env.REACT_APP_BACKEND_URL}/contractor`;
 
-  if (role === Role.CONTRACTOR) {
-    url.searchParams.append('contractorId', `${organizationId}`);
-  }
-
-  return fetch(url.href, {
+  return fetch(url, {
     method: 'GET',
     headers: {
       Authorization: token,

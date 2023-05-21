@@ -23,6 +23,9 @@ export default function NavbarAdmin(args: any) {
             </Button>
             <Dropdown.Menu tabIndex={0} className="w-52 menu-compact mt-3">
               <li>
+                <NavLink to="/admin/contractors">Lohnunternehmen</NavLink>
+              </li>
+              <li>
                 <NavLink to="/admin/farms">Betriebe</NavLink>
               </li>
               <li>
@@ -39,6 +42,9 @@ export default function NavbarAdmin(args: any) {
         </Navbar.Start>
         <Navbar.Center className="hidden lg:flex">
           <Menu horizontal className="p-0">
+            <Menu.Item>
+              <NavLink to="/admin/contractors">Lohnunternehmen</NavLink>
+            </Menu.Item>
             <Menu.Item>
               <NavLink to="/admin/farms">Betriebe</NavLink>
             </Menu.Item>

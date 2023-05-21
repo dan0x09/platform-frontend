@@ -18,6 +18,8 @@ import Imprint from './shared/Imprint';
 import Privacy from './shared/Privacy';
 import Invite from './routes/Invite';
 import SystemDetails from './routes/SystemDetails';
+import SystemCreation from './routes/SystemCreation';
+import Contractors from './routes/Contractors';
 
 export default function App() {
   document.querySelector('html')?.setAttribute('data-theme', 'light');
@@ -45,17 +47,29 @@ export default function App() {
             </ProtectedRoute>
           ),
           children: [
-            { path: 'silos', element: <Silos /> },
             { path: 'farms', element: <Farms /> },
             {
               path: 'systems',
-              element: <Systems />,
-              children: [{ path: ':systemId', element: <SystemDetails /> }],
+              children: [
+                { index: true, element: <Systems /> },
+                { path: ':systemId', element: <SystemDetails /> },
+                { path: 'create', element: <SystemCreation /> },
+              ],
             },
             {
               path: 'silage-heaps',
-              element: <SilageHeaps />,
-              children: [{ path: ':silageHeapId', element: <SilageHeapDetails /> }],
+              children: [
+                { index: true, element: <SilageHeaps /> },
+                { path: ':silageHeapId', element: <SilageHeapDetails /> },
+              ],
+            },
+            {
+              path: 'contractors',
+              children: [
+                { index: true, element: <Contractors /> },
+                { path: ':contractorId', element: <span>ContractorDetails</span> },
+                { path: 'create', element: <span>ContractorCreation</span> },
+              ],
             },
             { path: 'invite', element: <Invite /> },
           ],
@@ -80,8 +94,10 @@ export default function App() {
             { path: 'farms', element: <Farms /> },
             {
               path: 'silage-heaps',
-              element: <SilageHeaps />,
-              children: [{ path: ':silageHeapId', element: <SilageHeapDetails /> }],
+              children: [
+                { index: true, element: <SilageHeaps /> },
+                { path: ':silageHeapId', element: <SilageHeapDetails /> },
+              ],
             },
           ],
         },
