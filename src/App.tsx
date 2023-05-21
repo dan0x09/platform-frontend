@@ -20,6 +20,7 @@ import Invite from './routes/Invite';
 import SystemDetails from './routes/SystemDetails';
 import SystemCreation from './routes/SystemCreation';
 import Contractors from './routes/Contractors';
+import ContractorCreation from './routes/ContractorCreation';
 
 export default function App() {
   document.querySelector('html')?.setAttribute('data-theme', 'light');
@@ -68,7 +69,7 @@ export default function App() {
               children: [
                 { index: true, element: <Contractors /> },
                 { path: ':contractorId', element: <span>ContractorDetails</span> },
-                { path: 'create', element: <span>ContractorCreation</span> },
+                { path: 'create', element: <ContractorCreation /> },
               ],
             },
             { path: 'invite', element: <Invite /> },
