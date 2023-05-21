@@ -52,7 +52,11 @@ export default function App() {
               element: <Systems />,
               children: [{ path: ':systemId', element: <SystemDetails /> }],
             },
-            { path: 'silage-heaps', element: <SilageHeaps /> },
+            {
+              path: 'silage-heaps',
+              element: <SilageHeaps />,
+              children: [{ path: ':silageHeapId', element: <SilageHeapDetails /> }],
+            },
             { path: 'invite', element: <Invite /> },
           ],
         },
