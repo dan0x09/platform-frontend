@@ -13,7 +13,7 @@ export default function SilageHeapDetails(args: any) {
   const [silageHeap, setSilageHeap] = useState<ContractorSilageHeapWithSnapshots>();
 
   useEffect(() => {
-    async function getFarms() {
+    async function getSilageHeapDetails() {
       if (!silageHeapId) return;
       setLoading(true);
       const silageResponse = await requestSilageHeapDetails(token!, userTokenPayload!.organizationId, silageHeapId);
@@ -21,7 +21,7 @@ export default function SilageHeapDetails(args: any) {
       setSilageHeap(silageData);
       setLoading(false);
     }
-    getFarms();
+    getSilageHeapDetails();
   }, []);
 
   const silageSnapshotDataFormatted = silageHeap?.contractorSilageHeaps.silageHeap.silageSnapshots.map((snapshot) => {

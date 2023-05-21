@@ -1,20 +1,25 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Fragment } from 'react';
 import { useAuth } from '../authentication/AuthProvider';
 import { Role, System } from '../types/interfaces';
 import { Table } from 'react-daisyui';
 import { PulseLoader } from 'react-spinners';
+import { Outlet, useNavigate, useParams } from 'react-router-dom';
 
 export default function Systems(args: any) {
   const [loading, setLoading] = useState(true);
   const { token, userTokenPayload } = useAuth();
   const [systems, setSystems] = useState<System[]>([]);
+  const { systemId } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function getSystems() {
-      const Response = await requestSystems(token!, userTokenPayload!.role, userTokenPayload!.organizationId);
+      setLoading(true);
 
+      const Response = await requestSystems(token!, userTokenPayload!.role, userTokenPayload!.organizationId);
       const data = (await Response.json()) as System[];
       setSystems(data);
+
       setLoading(false);
     }
     getSystems();
@@ -22,7 +27,14 @@ export default function Systems(args: any) {
 
   const systemsJSX = systems.map((system) => {
     return (
-      <Table.Row key={system.systemId}>
+      <Table.Row
+        key={system.systemId}
+        onClick={() => {
+          console.log(`${system.systemId}`);
+          navigate(`${system.systemId}`);
+        }}
+        className="cursor-pointer"
+      >
         <span>{system.name}</span>
         <span>{system.description || <span className="italic">Keine Beschreibung</span>}</span>
         <span>{system.version}</span>
@@ -38,6 +50,8 @@ export default function Systems(args: any) {
         </div>
       </div>
     );
+  } else if (systemId) {
+    return <Outlet />;
   } else {
     return (
       <div className="container pb-6">
