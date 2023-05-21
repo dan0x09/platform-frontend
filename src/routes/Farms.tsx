@@ -28,10 +28,13 @@ export default function Farms(args: any) {
       <Table.Row
         key={farmId}
         onClick={() => {
-          navigate({
-            pathname: '/contractor/silage-heaps',
-            search: `?${createSearchParams({ farmId: `${farmId}` })}`,
-          });
+          navigate(
+            {
+              pathname: '../silage-heaps',
+              search: `?${createSearchParams({ farmId: `${farmId}` })}`,
+            },
+            { replace: true }
+          );
         }}
         className="cursor-pointer"
       >
