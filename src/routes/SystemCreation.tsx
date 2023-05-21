@@ -52,28 +52,32 @@ export default function SystemCreation(args: any) {
     return (
       <div className="container flex flex-col pb-6">
         <h1 className="self-center font-bold pb-6">System anlegen</h1>
-        <div className="flex col">
-          <form onSubmit={handleSubmit}>
+        <div className="flex flex-col">
+          <form className="flex flex-col items-center mt-3" onSubmit={handleSubmit}>
             <label>
-              Systemname:
+              <p>Systemname</p>
               <input
                 type="text"
                 placeholder="System 1"
-                className="input"
+                className="input mb-3 w-80"
                 value={systemName}
                 onChange={(e) => setSystemName(e.target.value)}
               />
             </label>
             <label>
-              Lohnunternehmen:
-              <select value={contractorId} onChange={(e) => setContractorId(Number(e.target.value))}>
+              <p>Lohnunternehmen</p>
+              <select
+                className="select mb-5 w-80"
+                value={contractorId}
+                onChange={(e) => setContractorId(Number(e.target.value))}
+              >
                 <option value={-1} disabled>
                   Unternehmen wählen
                 </option>
                 {contractorOptions}
               </select>
             </label>
-            <Button type="submit" className={isCreatingSystem ? 'loading' : ''}>
+            <Button type="submit" className={`w-80 ${isCreatingSystem ? 'loading' : ''}`}>
               Erstellen
             </Button>
           </form>
