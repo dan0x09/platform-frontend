@@ -5,6 +5,8 @@ import { isValidEmailFormat } from '../helpers/formatValidation';
 
 export default function Invite(args: any) {
   const { token } = useAuth();
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [role, setRole] = useState<Role>(Role.ADMIN);
   const [organizationId, setOrganizationId] = useState('');
@@ -12,18 +14,19 @@ export default function Invite(args: any) {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
 
-    sendUserInviteRequest(token!, email, role, Number(organizationId));
+    sendUserInviteRequest(token!, firstName, lastName, email, role, Number(organizationId));
   };
 
-  async function sendUserInviteRequest(token: string, email: string, role: Role, organizationId: number) {
-    return fetch(`${process.env.REACT_APP_BACKEND_URL}/invitation/user/`, {
-      method: 'POST',
-      headers: {
-        Authorization: token,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ email, role, organizationId }),
-    });
+  function onFirstNameChange(event: React.ChangeEvent<HTMLInputElement>) {
+    const enteredFirstName = event.currentTarget.value;
+
+    setFirstName(enteredFirstName);
+  }
+
+  function onLastNameChange(event: React.ChangeEvent<HTMLInputElement>) {
+    const enteredLastName = event.currentTarget.value;
+
+    setLastName(enteredLastName);
   }
 
   function onEmailChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -51,8 +54,20 @@ export default function Invite(args: any) {
       <h1>Invite User</h1>
       <form className="flex flex-col items-center mt-3" onSubmit={handleSubmit}>
         <label className="mb-4">
+          <p>Vorname</p>
+          <input className="input input-bordered" type="text" onChange={onFirstNameChange} />
+        </label>
+        <label className="mb-4">
+          <p>Nachname</p>
+          <input className="input input-bordered" type="text" onChange={onLastNameChange} />
+        </label>
+        <label className="mb-4">
           <p>E-Mail</p>
           <input className="input input-bordered" type="text" onChange={onEmailChange} />
+        </label>
+        <label className="mb-6">
+          <p>Betrieb</p>
+          <input className="input input-bordered" type="text" onChange={(e) => setOrganizationId(e.target.value)} />
         </label>
         <label className="mb-6">
           <p>Rolle</p>
@@ -64,14 +79,28 @@ export default function Invite(args: any) {
             <option value={Role.FARMER}>Landwirt</option>
           </select>
         </label>
-        <label className="mb-6">
-          <p>Betrieb</p>
-          <input className="input input-bordered" type="text" onChange={(e) => setOrganizationId(e.target.value)} />
-        </label>
         <button className="btn btn-primary mb-6" type="submit">
           Invite
         </button>
       </form>
     </div>
   );
+}
+
+async function sendUserInviteRequest(
+  token: string,
+  firstName: string,
+  lastName: string,
+  email: string,
+  role: Role,
+  organizationId: number
+) {
+  return fetch(`${process.env.REACT_APP_BACKEND_URL}/invitation/user/`, {
+    method: 'POST',
+    headers: {
+      Authorization: token,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ firstName, lastName, email, role, organizationId }),
+  });
 }
