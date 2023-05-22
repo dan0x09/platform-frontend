@@ -53,7 +53,7 @@ export default function SystemCreation(args: any) {
       <div className="container flex flex-col pb-6">
         <h1 className="self-center font-bold pb-5">System anlegen</h1>
         <div className="flex flex-col">
-          <form className="flex flex-col items-center mt-3" onSubmit={handleSubmit}>
+          <form className="flex flex-col items-center" onSubmit={handleSubmit}>
             <label className="mb-3">
               <p>Systemname</p>
               <input
@@ -77,7 +77,7 @@ export default function SystemCreation(args: any) {
                 {contractorOptions}
               </select>
             </label>
-            <Button type="submit" className={`w-80 ${isCreatingSystem ? 'loading' : ''}`}>
+            <Button color="primary" type="submit" className={`w-80 ${isCreatingSystem ? 'loading' : ''}`}>
               Erstellen
             </Button>
           </form>

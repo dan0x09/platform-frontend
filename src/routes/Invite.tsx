@@ -67,22 +67,22 @@ export default function Invite(args: any) {
   }
 
   return (
-    <div className="flex flex-col justify-center items-center">
-      <h1>Invite User</h1>
-      <form className="flex flex-col items-center mt-5" onSubmit={handleSubmit}>
-        <label className="mb-4">
+    <div className="container flex flex-col pb-6">
+      <h1 className="self-center font-bold pb-5">Benutzer einladen</h1>
+      <form className="flex flex-col items-center" onSubmit={handleSubmit}>
+        <label className="mb-3">
           <p>Vorname</p>
           <input className="input input-bordered w-80" type="text" onChange={onFirstNameChange} />
         </label>
-        <label className="mb-4">
+        <label className="mb-3">
           <p>Nachname</p>
           <input className="input input-bordered w-80" type="text" onChange={onLastNameChange} />
         </label>
-        <label className="mb-4">
+        <label className="mb-3">
           <p>E-Mail</p>
           <input className="input input-bordered w-80" type="text" onChange={onEmailChange} />
         </label>
-        <label className="mb-6">
+        <label className="mb-3">
           <p>Unternehmen</p>
           <input
             className="input input-bordered w-80"
@@ -90,7 +90,7 @@ export default function Invite(args: any) {
             onChange={(e) => setOrganizationId(e.target.value)}
           />
         </label>
-        <label className="mb-6">
+        <label className="mb-5">
           <p>Rolle</p>
           <select className="select select-bordered w-80" onChange={onRoleChange} value={role}>
             <option selected value={Role.CONTRACTOR}>
@@ -101,7 +101,7 @@ export default function Invite(args: any) {
             </option>
           </select>
         </label>
-        <Button color="primary" className="mb-6 w-80" type="submit">
+        <Button color="primary" className="w-80" type="submit">
           Invite
         </Button>
       </form>

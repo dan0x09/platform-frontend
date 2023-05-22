@@ -25,7 +25,7 @@ export default function ContractorCreation(args: any) {
     <div className="container flex flex-col pb-6">
       <h1 className="self-center font-bold pb-5">Lohnunternehmen anlegen</h1>
       <div className="flex flex-col">
-        <form className="flex flex-col items-center mt-3" onSubmit={handleSubmit}>
+        <form className="flex flex-col items-center" onSubmit={handleSubmit}>
           <label className="mb-3">
             <p>Name</p>
             <input
@@ -76,7 +76,7 @@ export default function ContractorCreation(args: any) {
               onChange={(e) => setCountry(e.target.value)}
             />
           </label>
-          <Button type="submit" className={`w-80 ${isCreatingContractor ? 'loading' : ''}`}>
+          <Button color="primary" type="submit" className={`w-80 ${isCreatingContractor ? 'loading' : ''}`}>
             Erstellen
           </Button>
         </form>
