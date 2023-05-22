@@ -42,7 +42,9 @@ export default function NavbarContractor(args: any) {
           </Menu>
         </Navbar.Center>
         <Navbar.End>
-          <Button onClick={() => onLogout()}>Ausloggen</Button>
+          <Button color="secondary" onClick={() => onLogout()}>
+            Ausloggen
+          </Button>
         </Navbar.End>
       </Navbar>
     </div>

@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 export default function Footer(args: any) {
   return (
-    <DaisyFooter className="items-center p-4 bg-neutral text-neutral-content shrink-0" {...args}>
+    <DaisyFooter className="items-center p-4 bg-secondary text-secondary-content shrink-0" {...args}>
       <div className="items-center grid-flow-col">
         <p>© {new Date().getFullYear()} Kiel. Alle Rechte vorbehalten.</p>
       </div>
