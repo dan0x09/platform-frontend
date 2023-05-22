@@ -32,7 +32,7 @@ export default function NavbarAdmin(args: any) {
                 <NavLink to="/admin/systems">Systeme</NavLink>
               </li>
               <li>
-                <NavLink to="/admin/silage-heaps">Silagehaufen</NavLink>
+                <NavLink to="/admin/silage-heaps">Silagen</NavLink>
               </li>
               <li>
                 <NavLink to="/admin/invite">Einladen</NavLink>
@@ -52,7 +52,7 @@ export default function NavbarAdmin(args: any) {
               <NavLink to="/admin/systems">Systeme</NavLink>
             </Menu.Item>
             <Menu.Item>
-              <NavLink to="/admin/silage-heaps">Silagehaufen</NavLink>
+              <NavLink to="/admin/silage-heaps">Silagen</NavLink>
             </Menu.Item>
             <Menu.Item>
               <NavLink to="/admin/invite">Einladen</NavLink>

@@ -26,7 +26,7 @@ export default function NavbarContractor(args: any) {
                 <NavLink to="/contractor/farms">Betriebe</NavLink>
               </li>
               <li>
-                <NavLink to="/contractor/silage-heaps">Silagehaufen</NavLink>
+                <NavLink to="/contractor/silage-heaps">Silagen</NavLink>
               </li>
             </Dropdown.Menu>
           </Dropdown>
@@ -37,7 +37,7 @@ export default function NavbarContractor(args: any) {
               <NavLink to="/contractor/farms">Betriebe</NavLink>
             </Menu.Item>
             <Menu.Item>
-              <NavLink to="/contractor/silage-heaps">Silagehaufen</NavLink>
+              <NavLink to="/contractor/silage-heaps">Silagen</NavLink>
             </Menu.Item>
           </Menu>
         </Navbar.Center>
