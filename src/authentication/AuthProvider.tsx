@@ -6,7 +6,7 @@ import { Credentials, UserTokenPayload } from '../types/interfaces';
 interface Auth {
   token: string | null;
   userTokenPayload: UserTokenPayload | null;
-  onLogin(credentials: Credentials): Promise<void>;
+  onLogin(credentials: Credentials): Promise<null | undefined>;
   onLogout(): void;
 }
 
@@ -35,6 +35,7 @@ export function AuthProvider(props: Props) {
         const decodedToken = decodeToken(token) as UserTokenPayload;
         setUserTokenPayload(decodedToken);
       }
+      return null;
     } catch (e) {
       console.log(e);
     }

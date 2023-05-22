@@ -43,7 +43,7 @@ export default function Login() {
 }
 
 export const action =
-  ({ login }: { login: (credentials: Credentials) => Promise<void> }) =>
+  ({ login }: { login: (credentials: Credentials) => Promise<null | undefined> }) =>
   async ({ request }: { request: any }) => {
     const formData = await request.formData();
 

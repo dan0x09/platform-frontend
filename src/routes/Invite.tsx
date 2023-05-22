@@ -8,12 +8,13 @@ export default function Invite(args: any) {
   const [isLoading, setIsLoading] = useState(true);
   const { token } = useAuth();
   const [contractors, setContractors] = useState<Contractor[]>([]);
+  const [isSendingInvite, setIsSendingInvite] = useState(true);
 
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
-  const [role, setRole] = useState<Role>(Role.ADMIN);
-  const [organizationId, setOrganizationId] = useState('');
+  const [role, setRole] = useState<Role>(Role.CONTRACTOR);
+  const [organizationId, setOrganizationId] = useState(-1);
 
   useEffect(() => {
     async function getContractors() {
@@ -28,11 +29,33 @@ export default function Invite(args: any) {
     getContractors();
   }, []);
 
-  const handleSubmit = async (e: any) => {
+  async function handleSubmit(e: any) {
     e.preventDefault();
 
-    sendUserInviteRequest(token!, firstName, lastName, email, role, Number(organizationId));
-  };
+    if (firstName.length === 0) {
+      throw new Error('Gib einen Vornamen ein.');
+    }
+
+    if (lastName.length === 0) {
+      throw new Error('Gib einen Nachnamen ein.');
+    }
+
+    if (!isValidEmailFormat(email)) {
+      throw new Error('Gib eine valide E-Mail-Adresse ein.');
+    }
+
+    if (role !== Role.ADMIN && role !== Role.CONTRACTOR && role !== Role.FARMER) {
+      throw new Error('Gib eine valide E-Mail-Adresse ein.');
+    }
+
+    if (organizationId === -1) {
+      throw new Error('Wähle ein Unternehmen aus.');
+    }
+
+    setIsSendingInvite(true);
+    await sendUserInviteRequest(token!, firstName, lastName, email, role, Number(organizationId));
+    setIsSendingInvite(false);
+  }
 
   function onFirstNameChange(event: React.ChangeEvent<HTMLInputElement>) {
     const enteredFirstName = event.currentTarget.value;
@@ -49,11 +72,7 @@ export default function Invite(args: any) {
   function onEmailChange(event: React.ChangeEvent<HTMLInputElement>) {
     const enteredEmail = event.currentTarget.value;
 
-    if (isValidEmailFormat(enteredEmail)) {
-      setEmail(enteredEmail);
-    } else {
-      throw new Error('Invalid email');
-    }
+    setEmail(enteredEmail);
   }
 
   function onRoleChange(event: React.ChangeEvent<HTMLSelectElement>) {
@@ -65,6 +84,11 @@ export default function Invite(args: any) {
       throw new Error('Invalid role');
     }
   }
+
+  if (!contractors) {
+    return <span>No data</span>;
+  }
+  const contractorOptions = mapContractorsToSelectOptions(contractors);
 
   return (
     <div className="container flex flex-col pb-6">
@@ -83,22 +107,27 @@ export default function Invite(args: any) {
           <input className="input input-bordered w-80" type="text" onChange={onEmailChange} />
         </label>
         <label className="mb-3">
-          <p>Unternehmen</p>
-          <input
-            className="input input-bordered w-80"
-            type="text"
-            onChange={(e) => setOrganizationId(e.target.value)}
-          />
-        </label>
-        <label className="mb-5">
           <p>Rolle</p>
           <select className="select select-bordered w-80" onChange={onRoleChange} value={role}>
             <option selected value={Role.CONTRACTOR}>
-              Lohnarbeiter
+              Lohnunternehmer
             </option>
             <option value={Role.FARMER} disabled>
               Landwirt
             </option>
+          </select>
+        </label>
+        <label className="mb-5">
+          <p>Unternehmen</p>
+          <select
+            className="select select-bordered w-80"
+            value={organizationId}
+            onChange={(e) => setOrganizationId(Number(e.target.value))}
+          >
+            <option value={-1} disabled>
+              Unternehmen wählen
+            </option>
+            {contractorOptions}
           </select>
         </label>
         <Button color="primary" className="w-80" type="submit">
@@ -124,6 +153,17 @@ async function sendUserInviteRequest(
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({ firstName, lastName, email, role, organizationId }),
+  });
+}
+
+function mapContractorsToSelectOptions(contractors: Contractor[]) {
+  return contractors.map((contractor) => {
+    const { name, contractorId } = contractor;
+    return (
+      <option key={contractorId} value={contractorId}>
+        {name}
+      </option>
+    );
   });
 }
 
