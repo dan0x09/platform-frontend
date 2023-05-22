@@ -51,23 +51,23 @@ export default function SystemCreation(args: any) {
     const contractorOptions = mapContractorsToSelectOptions(contractors);
     return (
       <div className="container flex flex-col pb-6">
-        <h1 className="self-center font-bold pb-6">System anlegen</h1>
+        <h1 className="self-center font-bold pb-5">System anlegen</h1>
         <div className="flex flex-col">
           <form className="flex flex-col items-center mt-3" onSubmit={handleSubmit}>
-            <label>
+            <label className="mb-3">
               <p>Systemname</p>
               <input
                 type="text"
                 placeholder="System 1"
-                className="input mb-3 w-80"
+                className="input input-bordered w-80"
                 value={systemName}
                 onChange={(e) => setSystemName(e.target.value)}
               />
             </label>
-            <label>
+            <label className="mb-5">
               <p>Lohnunternehmen</p>
               <select
-                className="select mb-5 w-80"
+                className="select select-bordered w-80"
                 value={contractorId}
                 onChange={(e) => setContractorId(Number(e.target.value))}
               >

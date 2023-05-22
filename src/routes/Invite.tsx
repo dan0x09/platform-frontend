@@ -1,15 +1,32 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useAuth } from '../authentication/AuthProvider';
-import { Role } from '../types/interfaces';
+import { Contractor, Role } from '../types/interfaces';
 import { isValidEmailFormat } from '../helpers/formatValidation';
+import { Button } from 'react-daisyui';
 
 export default function Invite(args: any) {
+  const [isLoading, setIsLoading] = useState(true);
   const { token } = useAuth();
+  const [contractors, setContractors] = useState<Contractor[]>([]);
+
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [role, setRole] = useState<Role>(Role.ADMIN);
   const [organizationId, setOrganizationId] = useState('');
+
+  useEffect(() => {
+    async function getContractors() {
+      setIsLoading(true);
+
+      const Response = await requestContractors(token!);
+      const data = (await Response.json()) as Contractor[];
+      setContractors(data);
+
+      setIsLoading(false);
+    }
+    getContractors();
+  }, []);
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -52,36 +69,41 @@ export default function Invite(args: any) {
   return (
     <div className="flex flex-col justify-center items-center">
       <h1>Invite User</h1>
-      <form className="flex flex-col items-center mt-3" onSubmit={handleSubmit}>
+      <form className="flex flex-col items-center mt-5" onSubmit={handleSubmit}>
         <label className="mb-4">
           <p>Vorname</p>
-          <input className="input input-bordered" type="text" onChange={onFirstNameChange} />
+          <input className="input input-bordered w-80" type="text" onChange={onFirstNameChange} />
         </label>
         <label className="mb-4">
           <p>Nachname</p>
-          <input className="input input-bordered" type="text" onChange={onLastNameChange} />
+          <input className="input input-bordered w-80" type="text" onChange={onLastNameChange} />
         </label>
         <label className="mb-4">
           <p>E-Mail</p>
-          <input className="input input-bordered" type="text" onChange={onEmailChange} />
+          <input className="input input-bordered w-80" type="text" onChange={onEmailChange} />
         </label>
         <label className="mb-6">
-          <p>Betrieb</p>
-          <input className="input input-bordered" type="text" onChange={(e) => setOrganizationId(e.target.value)} />
+          <p>Unternehmen</p>
+          <input
+            className="input input-bordered w-80"
+            type="text"
+            onChange={(e) => setOrganizationId(e.target.value)}
+          />
         </label>
         <label className="mb-6">
           <p>Rolle</p>
-          <select className="select select-bordered" onChange={onRoleChange} value={role}>
-            <option selected value={Role.ADMIN}>
-              Admin
+          <select className="select select-bordered w-80" onChange={onRoleChange} value={role}>
+            <option selected value={Role.CONTRACTOR}>
+              Lohnarbeiter
             </option>
-            <option value={Role.CONTRACTOR}>Lohnarbeiter</option>
-            <option value={Role.FARMER}>Landwirt</option>
+            <option value={Role.FARMER} disabled>
+              Landwirt
+            </option>
           </select>
         </label>
-        <button className="btn btn-primary mb-6" type="submit">
+        <Button color="primary" className="mb-6 w-80" type="submit">
           Invite
-        </button>
+        </Button>
       </form>
     </div>
   );
@@ -102,5 +124,17 @@ async function sendUserInviteRequest(
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({ firstName, lastName, email, role, organizationId }),
+  });
+}
+
+async function requestContractors(token: string) {
+  const url = `${process.env.REACT_APP_BACKEND_URL}/contractor`;
+
+  return fetch(url, {
+    method: 'GET',
+    headers: {
+      Authorization: token,
+      'Content-Type': 'application/json',
+    },
   });
 }

@@ -23,55 +23,55 @@ export default function ContractorCreation(args: any) {
 
   return (
     <div className="container flex flex-col pb-6">
-      <h1 className="self-center font-bold pb-6">Lohnunternehmen anlegen</h1>
+      <h1 className="self-center font-bold pb-5">Lohnunternehmen anlegen</h1>
       <div className="flex flex-col">
         <form className="flex flex-col items-center mt-3" onSubmit={handleSubmit}>
-          <label>
+          <label className="mb-3">
             <p>Name</p>
             <input
               type="text"
               placeholder="Lohnunternehmer GmbH"
-              className="input mb-3 w-80"
+              className="input input-bordered w-80"
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
           </label>
-          <label>
+          <label className="mb-3">
             <p>Straße und Hausnummer</p>
             <input
               type="text"
               placeholder="Musterweg 12"
-              className="input mb-3 w-80"
+              className="input input-bordered w-80"
               value={streetAndNumber}
               onChange={(e) => setStreetAndNumber(e.target.value)}
             />
           </label>
-          <label>
+          <label className="mb-3">
             <p>PLZ</p>
             <input
               type="text"
               placeholder="12345"
-              className="input mb-3 w-80"
+              className="input input-bordered w-80"
               value={zipCode}
               onChange={(e) => setZipCode(e.target.value)}
             />
           </label>
-          <label>
+          <label className="mb-3">
             <p>Stadt</p>
             <input
               type="text"
               placeholder="Musterstadt"
-              className="input mb-3 w-80"
+              className="input input-bordered w-80"
               value={city}
               onChange={(e) => setCity(e.target.value)}
             />
           </label>
-          <label>
+          <label className="mb-5">
             <p>Land</p>
             <input
               type="text"
               placeholder="Musterland"
-              className="input mb-5 w-80"
+              className="input input-bordered w-80"
               value={country}
               onChange={(e) => setCountry(e.target.value)}
             />
