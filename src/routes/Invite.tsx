@@ -9,7 +9,7 @@ export default function Invite(args: any) {
   const [isLoading, setIsLoading] = useState(true);
   const { token } = useAuth();
   const [contractors, setContractors] = useState<Contractor[]>([]);
-  const [isSendingInvite, setIsSendingInvite] = useState(true);
+  const [isSendingInvite, setIsSendingInvite] = useState(false);
 
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
