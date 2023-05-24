@@ -3,6 +3,7 @@ import { useAuth } from '../authentication/AuthProvider';
 import { Contractor, Role } from '../types/interfaces';
 import { isValidEmailFormat } from '../helpers/formatValidation';
 import { Button } from 'react-daisyui';
+import { PulseLoader } from 'react-spinners';
 
 export default function Invite(args: any) {
   const [isLoading, setIsLoading] = useState(true);
@@ -90,6 +91,16 @@ export default function Invite(args: any) {
   }
   const contractorOptions = mapContractorsToSelectOptions(contractors);
 
+  if (isLoading) {
+    return (
+      <div className="flex justify-center flex-1 shrink-0">
+        <div className="flex flex-col justify-center">
+          <PulseLoader color="#718351" />
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="container flex flex-col pb-6">
       <h1 className="self-center font-bold pb-5">Benutzer einladen</h1>
@@ -130,8 +141,8 @@ export default function Invite(args: any) {
             {contractorOptions}
           </select>
         </label>
-        <Button color="primary" className="w-80" type="submit">
-          Invite
+        <Button color="primary" type="submit" className={`w-80 ${isSendingInvite ? 'loading' : ''}`}>
+          Einladung senden
         </Button>
       </form>
     </div>
