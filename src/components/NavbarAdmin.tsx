@@ -1,9 +1,21 @@
 import { Button, Dropdown, Navbar, Menu } from 'react-daisyui';
 import { NavLink } from 'react-router-dom';
 import { useAuth } from '../authentication/AuthProvider';
+import { useEffect, useState } from 'react';
+import { User } from '../types/interfaces';
 
 export default function NavbarAdmin(args: any) {
-  const { onLogout } = useAuth();
+  const { onLogout, token, userTokenPayload } = useAuth();
+  const [user, setUser] = useState<User>();
+
+  useEffect(() => {
+    async function getUser() {
+      const Response = await requestUser(token!, userTokenPayload!.uid);
+      const data = (await Response.json()) as User;
+      setUser(data);
+    }
+    getUser();
+  }, []);
 
   return (
     <div className="flex w-full items-center justify-center gap-2 shrink-0">
@@ -62,11 +74,42 @@ export default function NavbarAdmin(args: any) {
           </Menu>
         </Navbar.Center>
         <Navbar.End>
-          <Button color="secondary" onClick={() => onLogout()}>
-            Ausloggen
-          </Button>
+          <Dropdown vertical="end">
+            <Button className="avatar placeholder" color="secondary" shape="circle">
+              <div className="rounded-full">
+                <span className="font-medium !text-gray-100 text-lg">
+                  {user?.firstName[0]}
+                  {user?.lastName[0]}
+                </span>
+              </div>
+            </Button>
+            <Dropdown.Menu className="w-52 menu-compact">
+              <li className="menu-title !opacity-90">
+                <span className="text-sm">
+                  {user?.firstName} {user?.lastName}
+                </span>
+                <span className="text-xs !opacity-70 capitalize">{user?.role}</span>
+              </li>
+              <li className="menu-title mt-1">
+                <hr className="!rounded-none"></hr>
+              </li>
+              <Dropdown.Item onClick={onLogout}>Ausloggen</Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
         </Navbar.End>
       </Navbar>
     </div>
   );
+}
+
+async function requestUser(token: string, userId: number) {
+  const url = `${process.env.REACT_APP_BACKEND_URL}/user/${userId}`;
+
+  return fetch(url, {
+    method: 'GET',
+    headers: {
+      Authorization: token,
+      'Content-Type': 'application/json',
+    },
+  });
 }

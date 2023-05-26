@@ -5,6 +5,14 @@ export interface Credentials {
   password: string;
 }
 
+export interface User {
+  userId: number;
+  email: string;
+  firstName: string;
+  lastName: string;
+  role: Role;
+}
+
 export enum Role {
   OWNER = 'owner',
   CONTRACTOR = 'contractor',
