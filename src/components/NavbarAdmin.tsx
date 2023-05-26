@@ -7,8 +7,9 @@ export default function NavbarAdmin(args: any) {
 
   return (
     <div className="flex w-full items-center justify-center gap-2 shrink-0">
-      <Navbar>
+      <Navbar className="px-4 py-2 shadow-md">
         <Navbar.Start>
+          <img src="/svg/silage-control-logo.svg" className="hidden lg:flex w-20" />
           <Dropdown>
             <Button color="ghost" tabIndex={0} className="lg:hidden">
               <svg
@@ -40,8 +41,9 @@ export default function NavbarAdmin(args: any) {
             </Dropdown.Menu>
           </Dropdown>
         </Navbar.Start>
-        <Navbar.Center className="hidden lg:flex">
-          <Menu horizontal className="p-0">
+        <Navbar.Center className="">
+          <img src="/svg/silage-control-logo.svg" className="lg:hidden w-20" />
+          <Menu horizontal className="p-0 hidden lg:flex">
             <Menu.Item>
               <NavLink to="/admin/contractors">Lohnunternehmen</NavLink>
             </Menu.Item>
