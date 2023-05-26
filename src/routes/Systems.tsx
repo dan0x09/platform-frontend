@@ -3,13 +3,12 @@ import { useAuth } from '../authentication/AuthProvider';
 import { Role, System } from '../types/interfaces';
 import { Button, Table } from 'react-daisyui';
 import { PulseLoader } from 'react-spinners';
-import { Outlet, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export default function Systems(args: any) {
   const [loading, setLoading] = useState(true);
   const { token, userTokenPayload } = useAuth();
   const [systems, setSystems] = useState<System[]>([]);
-  const { systemId } = useParams();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -30,7 +29,6 @@ export default function Systems(args: any) {
       <Table.Row
         key={system.systemId}
         onClick={() => {
-          console.log(`${system.systemId}`);
           navigate(`${system.systemId}`);
         }}
         className="cursor-pointer"

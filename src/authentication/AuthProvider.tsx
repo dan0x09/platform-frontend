@@ -1,5 +1,5 @@
 import { useState, useContext, createContext } from 'react';
-import { decodeToken } from 'react-jwt';
+import { decodeToken, isExpired } from 'react-jwt';
 import { redirect } from 'react-router-dom';
 import { Credentials, UserTokenPayload } from '../types/interfaces';
 
@@ -23,6 +23,17 @@ export function AuthProvider(props: Props) {
   const [token, setToken] = useState<string | null>(null);
   const [userTokenPayload, setUserTokenPayload] = useState<UserTokenPayload | null>(null);
 
+  if (!token || !userTokenPayload) {
+    const tokenFromStorage = localStorage.getItem('token');
+    if (tokenFromStorage) {
+      const decodedToken = decodeToken<UserTokenPayload>(tokenFromStorage);
+      if (decodedToken && !isExpired(tokenFromStorage)) {
+        setToken(tokenFromStorage);
+        setUserTokenPayload(decodedToken);
+      }
+    }
+  }
+
   const handleLogin = async (credentials: Credentials) => {
     try {
       const response = await sendUserLoginRequest(credentials);
@@ -30,10 +41,12 @@ export function AuthProvider(props: Props) {
       const token = response.headers.get('x-authorization');
 
       if (token) {
-        setToken(token);
-
-        const decodedToken = decodeToken(token) as UserTokenPayload;
-        setUserTokenPayload(decodedToken);
+        const decodedToken = decodeToken<UserTokenPayload>(token);
+        if (decodedToken) {
+          setToken(token);
+          setUserTokenPayload(decodedToken);
+          localStorage.setItem('token', token);
+        }
       }
       return null;
     } catch (e) {
@@ -44,7 +57,7 @@ export function AuthProvider(props: Props) {
   const handleLogout = () => {
     setToken(null);
     setUserTokenPayload(null);
-    redirect('/login');
+    localStorage.removeItem('token');
   };
 
   const value = {
