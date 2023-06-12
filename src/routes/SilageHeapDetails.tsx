@@ -68,7 +68,7 @@ export default function SilageHeapDetails(args: any) {
                   <span>{silageHeap?.contractorSilageHeaps.silageHeap.width} m</span>
                   <span>
                     {harvestFinishedAt ? (
-                      new Date(harvestFinishedAt).toLocaleString()
+                      new Date(harvestFinishedAt * 1000).toLocaleString()
                     ) : (
                       <span className="italic">-</span>
                     )}
