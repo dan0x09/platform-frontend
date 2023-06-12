@@ -8,6 +8,7 @@ phases:
       - apt-get install -y nodejs
   pre_build:
     commands:
+      - echo REACT_APP_BACKEND_URL=${BACKEND_URL} >> .env.production
       - echo Installing dependencies...
       - npm install
   build:
