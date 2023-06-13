@@ -34,6 +34,33 @@ export default function SilageHeapDetails(args: any) {
     };
   });
 
+  const demoSilageData = [
+    {
+      silageLeftInPercent: 60,
+      daysUntilEmpty: 100,
+    },
+    {
+      silageLeftInPercent: 45,
+      daysUntilEmpty: 60,
+    },
+    {
+      silageLeftInPercent: 70,
+      daysUntilEmpty: 145,
+    },
+    {
+      silageLeftInPercent: 60,
+      daysUntilEmpty: 110,
+    },
+    {
+      silageLeftInPercent: 47,
+      daysUntilEmpty: 67,
+    },
+    {
+      silageLeftInPercent: 145,
+      daysUntilEmpty: 138,
+    },
+  ];
+
   if (loading) {
     return (
       <div className="flex justify-center flex-1 shrink-0">
@@ -50,11 +77,25 @@ export default function SilageHeapDetails(args: any) {
       <Fragment>
         <div className="container flex flex-col pb-6">
           <h1 className="self-center font-bold pb-6">{silageHeap?.contractorSilageHeaps.silageHeap.name}</h1>
+          <div className="flex flex-row justify-center">
+            <div className="md:w-1/2 stats shadow-xl mb-6">
+              <div className="stat place-items-center">
+                <div className="stat-title">Silage übrig</div>
+                <div className="stat-value text-primary">
+                  {demoSilageData[Number(silageHeapId) - 1].silageLeftInPercent}%
+                </div>
+                <div className="stat-desc">({silageSnapshots[silageSnapshots.length - 1]?.volume ?? '0'} cbm)</div>
+              </div>
+              <div className="stat place-items-center">
+                <div className="stat-title">Tage bis verbraucht</div>
+                <div className="stat-value text-primary">100</div>
+              </div>
+            </div>
+          </div>
           <div className="flex flex-col justify-center shadow-xl overflow-auto mb-6 rounded-lg">
             <Table {...args} className="text-center">
               <Table.Head>
-                <span>Aktuelles Volumen</span>
-                <span>Aktuelle Höhe</span>
+                <span>Höhe</span>
                 <span>Tiefe</span>
                 <span>Breite</span>
                 <span>Ernte beendet am</span>
@@ -62,7 +103,6 @@ export default function SilageHeapDetails(args: any) {
               </Table.Head>
               <Table.Body>
                 <Table.Row>
-                  <span>{silageSnapshots[silageSnapshots.length - 1]?.volume ?? '0'} cbm</span>
                   <span>{silageSnapshots[silageSnapshots.length - 1]?.height ?? '0'} m</span>
                   <span>{silageHeap?.contractorSilageHeaps.silageHeap.depth} m</span>
                   <span>{silageHeap?.contractorSilageHeaps.silageHeap.width} m</span>
