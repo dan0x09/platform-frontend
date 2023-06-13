@@ -24,15 +24,17 @@ export default function SilageHeapDetails(args: any) {
     getSilageHeapDetails();
   }, []);
 
-  const maxVolume = silageHeap?.contractorSilageHeaps.silageHeap.silageSnapshots.find(
-    (snapshot) => snapshot.isConsumed
-  )?.volume;
+  const maxVolume =
+    silageHeap?.contractorSilageHeaps.silageHeap.silageSnapshots.find((snapshot) => snapshot.isHarvestFinished)
+      ?.volume ?? Infinity;
+
+  console.log();
 
   const silageSnapshotDataFormatted = silageHeap?.contractorSilageHeaps.silageHeap.silageSnapshots.map((snapshot) => {
     return {
       date: new Date(snapshot.snapshotTimestamp * 1000).toLocaleString(),
       volume: snapshot.volume,
-      volumeLeftInPercent: `${Math.trunc((maxVolume ?? 0) / snapshot.volume)}%`,
+      volumeLeftInPercent: `${Math.trunc((snapshot.volume / maxVolume) * 100)}%`,
       description: snapshot.description,
       height: snapshot.height,
       snapshotId: snapshot.snapshotId,
