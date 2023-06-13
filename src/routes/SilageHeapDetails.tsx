@@ -2,7 +2,7 @@ import { Fragment, useState, useEffect } from 'react';
 import PulseLoader from 'react-spinners/PulseLoader';
 import { useAuth } from '../authentication/AuthProvider';
 import { useParams } from 'react-router-dom';
-import { ContractorSilageHeapWithSnapshots } from '../types/interfaces';
+import { ContractorSilageHeapWithSnapshots, SilageSnapshot } from '../types/interfaces';
 import { Table } from 'react-daisyui';
 import { Area, AreaChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 
@@ -24,10 +24,15 @@ export default function SilageHeapDetails(args: any) {
     getSilageHeapDetails();
   }, []);
 
+  const maxVolume = silageHeap?.contractorSilageHeaps.silageHeap.silageSnapshots.find(
+    (snapshot) => snapshot.isConsumed
+  )?.volume;
+
   const silageSnapshotDataFormatted = silageHeap?.contractorSilageHeaps.silageHeap.silageSnapshots.map((snapshot) => {
     return {
       date: new Date(snapshot.snapshotTimestamp * 1000).toLocaleString(),
       volume: snapshot.volume,
+      volumeLeftInPercent: `${Math.trunc((maxVolume ?? 0) / snapshot.volume)}%`,
       description: snapshot.description,
       height: snapshot.height,
       snapshotId: snapshot.snapshotId,
@@ -36,27 +41,21 @@ export default function SilageHeapDetails(args: any) {
 
   const demoSilageData = [
     {
-      silageLeftInPercent: 60,
       daysUntilEmpty: 100,
     },
     {
-      silageLeftInPercent: 45,
       daysUntilEmpty: 60,
     },
     {
-      silageLeftInPercent: 70,
       daysUntilEmpty: 145,
     },
     {
-      silageLeftInPercent: 60,
       daysUntilEmpty: 110,
     },
     {
-      silageLeftInPercent: 47,
       daysUntilEmpty: 67,
     },
     {
-      silageLeftInPercent: 145,
       daysUntilEmpty: 138,
     },
   ];
@@ -82,7 +81,9 @@ export default function SilageHeapDetails(args: any) {
               <div className="stat place-items-center">
                 <div className="stat-title">Silage übrig</div>
                 <div className="stat-value text-primary">
-                  {demoSilageData[Number(silageHeapId) - 1].silageLeftInPercent}%
+                  {silageSnapshotDataFormatted
+                    ? `${silageSnapshotDataFormatted[silageSnapshotDataFormatted.length - 1].volumeLeftInPercent}`
+                    : '0%'}
                 </div>
                 <div className="stat-desc">({silageSnapshots[silageSnapshots.length - 1]?.volume ?? '0'} cbm)</div>
               </div>
@@ -124,7 +125,7 @@ export default function SilageHeapDetails(args: any) {
               {silageSnapshotDataFormatted && silageSnapshotDataFormatted.length > 0 && (
                 <ResponsiveContainer width="100%" height={300}>
                   <AreaChart data={silageSnapshotDataFormatted} margin={{ top: 20, right: 30, left: 10, bottom: 0 }}>
-                    <XAxis dataKey="date" label="Datum" />
+                    <XAxis dataKey="volumeLeftInPercent" label="" />
                     <YAxis type="number" />
                     <CartesianGrid strokeDasharray="3 3" />
                     <Tooltip formatter={(value) => [`${value} m^3`, 'Volumen']} />
