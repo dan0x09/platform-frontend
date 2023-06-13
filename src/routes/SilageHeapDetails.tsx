@@ -81,7 +81,7 @@ export default function SilageHeapDetails(args: any) {
               <div className="stat place-items-center">
                 <div className="stat-title">Silage übrig</div>
                 <div className="stat-value text-primary">
-                  {silageSnapshotDataFormatted
+                  {silageSnapshotDataFormatted && silageSnapshotDataFormatted.length >= Number(silageHeapId)
                     ? `${silageSnapshotDataFormatted[silageSnapshotDataFormatted.length - 1].volumeLeftInPercent}`
                     : '0%'}
                 </div>
@@ -89,7 +89,7 @@ export default function SilageHeapDetails(args: any) {
               </div>
               <div className="stat place-items-center">
                 <div className="stat-title">Tage bis verbraucht</div>
-                <div className="stat-value text-primary">100</div>
+                <div className="stat-value text-primary">{demoSilageData[Number(silageHeapId) - 1].daysUntilEmpty}</div>
               </div>
             </div>
           </div>
@@ -125,7 +125,7 @@ export default function SilageHeapDetails(args: any) {
               {silageSnapshotDataFormatted && silageSnapshotDataFormatted.length > 0 && (
                 <ResponsiveContainer width="100%" height={300}>
                   <AreaChart data={silageSnapshotDataFormatted} margin={{ top: 20, right: 30, left: 10, bottom: 0 }}>
-                    <XAxis dataKey="volumeLeftInPercent" label="" />
+                    <XAxis dataKey="volumeLeftInPercent" hide={true} />
                     <YAxis type="number" />
                     <CartesianGrid strokeDasharray="3 3" />
                     <Tooltip formatter={(value) => [`${value} m^3`, 'Volumen']} />
